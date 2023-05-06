@@ -7,28 +7,16 @@ using System.Text;
 
 
 
-public class generateGibberishCode : MonoBehaviour
-{
+public static class generateGibberishCode {
 
-     string[] keywords = { "if", "else", "while", "for" };
-        string[] types = { "int", "char", "Vector2", "String", "Boolean", "float"};
-        string[] comparison = { ">", ">=", "<=", "<", "==", "!="};
-        string[] operators = { "*", "/", "+", "-", "%"};
-        string[] andor = { "&&", "||"};
+     static string[] keywords = { "if", "else", "while", "for" };
+       static string[] types = { "int", "char", "Vector2", "String", "Boolean", "float"};
+       static string[] comparison = { ">", ">=", "<=", "<", "==", "!="};
+       static string[] operators = { "*", "/", "+", "-", "%"};
+      static  string[] andor = { "&&", "||"};
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log(GenerateRandomCode(10));
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public  string GenerateRandomCode(int numLines)
+    public static  string GenerateRandomCode(int numLines)
     {
         StringBuilder code = new StringBuilder();
  
@@ -44,7 +32,7 @@ public class generateGibberishCode : MonoBehaviour
     
 
 
-    public string ParamBuilder() {
+    public static string ParamBuilder() {
         string[] technicalWords = {
     "numIterations", "maxThreads", "bufferSize", "dataLength", "outputFormat",
     "encryptionKey", "compressionLevel", "inputStream", "logFilePath", "timeoutSeconds",
@@ -64,14 +52,14 @@ public class generateGibberishCode : MonoBehaviour
 
     }
 
-    public string randomType() {
+    public static string randomType() {
 
         return types[UnityEngine.Random.Range(0, types.Length)];
 
     }
 
 
-    public string GenerateGenericLine(int numTabs) {
+    public static string GenerateGenericLine(int numTabs) {
         StringBuilder code = new StringBuilder();
 
         string param1 = ParamBuilder();
@@ -104,7 +92,7 @@ public class generateGibberishCode : MonoBehaviour
         return code.ToString();
     }
 
-    public string GenerateGenericNest(Boolean endNest, int numTabs) {
+    public static string GenerateGenericNest(Boolean endNest, int numTabs) {
         StringBuilder code = new StringBuilder();
 
         for (int j = 0; j < numTabs; j++)

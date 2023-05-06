@@ -1,21 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System;
 
-public class testScroll : MonoBehaviour
+public class CodeLine : MonoBehaviour
 {
+    public Boolean active;
 
-    public Scrollbar scrollbar;
+    public Boolean QTEpossible;
+
+    public string text;
     // Start is called before the first frame update
     void Start()
     {
-        scrollbar = GetComponent<Scrollbar>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        scrollbar.value -= 0.1f * Time.deltaTime;
+        
+    }
+
+    void Setup() {
+
     }
 }
