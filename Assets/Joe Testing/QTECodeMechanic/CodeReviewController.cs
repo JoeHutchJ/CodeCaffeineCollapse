@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ReviewController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ReviewController : MonoBehaviour
 
     public float scrollSpeed = 0;
 
-    float estimatedCodeLineHeight = 7.2403f;
+    float estimatedCodeLineHeight = 3.6202f;
 
     public GameObject CodeLinesLayout;
 
@@ -26,25 +27,39 @@ public class ReviewController : MonoBehaviour
     public ScrollManager scrollManager;
 
     public GameObject CodeLinePrefab;
+
+    public RectTransform inBoundsline;
+
+    List<GameObject> codeLines;
+
+    float timeSincelastCheck = 0.0f;
      void Start()
     {
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
+        estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
+        codeLines = new List<GameObject>();
         generateNew();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (timeSincelastCheck > 0.5) {
+            timeSincelastCheck = 0;
+            checkCodeLines(codeLines);
+        }
+        timeSincelastCheck += Time.deltaTime;
+
+
+        OnKeyUp();
     }
 
     public void generateNew() {
         //newDifficulty();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
-        Debug.Log(LineArray.Length);
         ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight);
         foreach(string Line in LineArray) {
             addToContent(Line);
@@ -62,9 +77,76 @@ public class ReviewController : MonoBehaviour
     public void addToContent(string Line) {
         GameObject newCodeLine = Instantiate(CodeLinePrefab, CodeLinesLayout.transform);
         newCodeLine.GetComponent<CodeLine>().Setup(Line);
-        
+        codeLines.Add(newCodeLine);
 
     }
+
+    public void checkCodeLines(List<GameObject> lines) {
+        foreach (GameObject line in lines) {
+            checkCodeLine(line);
+        }
+    }
+
+    public void checkCodeLine(GameObject line) {
+        RectTransform rectTransform = line.GetComponent<RectTransform>();
+        CodeLine codeLine = line.GetComponent<CodeLine>();
+           if (LineIntersect(inBoundsline, rectTransform)) { 
+            codeLine.inBounds();
+        } else {
+            codeLine.outBounds();
+        }
+    }
+
+
+    public bool LineIntersect(RectTransform point, RectTransform line) {
+        Vector3[] corners = new Vector3[4];
+        line.GetWorldCorners(corners);
+        for (int i = 0; i < corners.Length; i++) {
+            corners[i] = Camera.main.WorldToScreenPoint(corners[i]);
+            if (RectTransformUtility.RectangleContainsScreenPoint(point, corners[i], Camera.main)) {
+                return true;
+            }
+        }
+        return false;
+
+
+
+
+    }
+
+    public bool keyPressed(QTEKEY key) {
+        foreach (GameObject line in codeLines) {
+            CodeLine codeLine = line.GetComponent<CodeLine>();
+            if (codeLine.active) {
+                if (codeLine.QTEactive) {
+                    if (codeLine.QTEkey == key) {
+                        if (codeLine.QTEPressed(key)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+    void OnKeyUp() {
+        
+        if (Input.GetKeyUp("w")) {
+                keyPressed(QTEKEY.NORTHW);
+        } else if (Input.GetKeyUp("a")) {
+                keyPressed(QTEKEY.WESTA);
+
+        } else if (Input.GetKeyUp("s")) {
+                keyPressed(QTEKEY.SOUTHS);
+        } else if (Input.GetKeyUp("d")) {
+                keyPressed(QTEKEY.EASTD);
+        }
+        
+    }
+
+
 
     
 }

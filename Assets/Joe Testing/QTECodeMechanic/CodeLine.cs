@@ -81,4 +81,25 @@ public class CodeLine : MonoBehaviour
         
 
     }
+
+    public void outBounds() {
+        active = false;
+    }
+
+    public void inBounds() {
+        active = true;
+
+        
+    }
+
+    public bool QTEPressed(QTEKEY key) {
+        if (QTEkey == key) {
+           QTEIcon.gameObject.SetActive(false);  
+           QTEactive = false;
+           active = false;
+           Debug.Log("pressed");   
+           return true;    
+        }
+        return false;
+    }
 }
