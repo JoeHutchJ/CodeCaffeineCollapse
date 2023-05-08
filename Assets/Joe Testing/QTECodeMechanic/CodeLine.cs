@@ -97,7 +97,6 @@ public class CodeLine : MonoBehaviour
            QTEIcon.gameObject.SetActive(false);  
            QTEactive = false;
            active = false;
-           Debug.Log("pressed");   
            return true;    
         }
         return false;

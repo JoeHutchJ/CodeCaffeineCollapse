@@ -119,16 +119,21 @@ public class ReviewController : MonoBehaviour
             CodeLine codeLine = line.GetComponent<CodeLine>();
             if (codeLine.active) {
                 if (codeLine.QTEactive) {
-                    if (codeLine.QTEkey == key) {
                         if (codeLine.QTEPressed(key)) {
                             return true;
                         }
+                        return false;
                     }
                 }
             }
+            return false;
         }
-        return false;
-    }
+        
+        
+    
+
+
+    
 
 
     void OnKeyUp() {
