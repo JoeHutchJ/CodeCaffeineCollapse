@@ -7,6 +7,8 @@ public class ScrollManager : MonoBehaviour
 {
 
     public Scrollbar scrollbar;
+
+    public float scrollSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,6 @@ public class ScrollManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scrollbar.value -= 0.1f * Time.deltaTime;
+        scrollbar.value -= scrollSpeed * Time.deltaTime;
     }
 }

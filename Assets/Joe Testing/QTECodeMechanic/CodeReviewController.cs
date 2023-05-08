@@ -17,9 +17,11 @@ public class ReviewController : MonoBehaviour
 
     public float scrollSpeed = 0;
 
+    float estimatedCodeLineHeight = 7.2403f;
+
     public GameObject CodeLinesLayout;
 
-    public GameObject ContentBox;
+    public RectTransform ContentBox;
 
     public ScrollManager scrollManager;
 
@@ -27,7 +29,7 @@ public class ReviewController : MonoBehaviour
      void Start()
     {
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
-        ContentBox = GetChildByName.Get(this.gameObject, "Content");
+        ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
         generateNew();
     }
@@ -41,10 +43,11 @@ public class ReviewController : MonoBehaviour
     public void generateNew() {
         //newDifficulty();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
-        Debug.Log(CodeString);
         string[] LineArray = CodeString.Split("\n");
+        Debug.Log(LineArray.Length);
+        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight);
         foreach(string Line in LineArray) {
-            
+            addToContent(Line);
 
         }
 
@@ -57,8 +60,8 @@ public class ReviewController : MonoBehaviour
     }
 
     public void addToContent(string Line) {
-        GameObject newCodeLine = Instantiate(CodeLinePrefab, ContentBox.transform);
-        newCodeLine.GetComponent<CodeLine>().text = Line;
+        GameObject newCodeLine = Instantiate(CodeLinePrefab, CodeLinesLayout.transform);
+        newCodeLine.GetComponent<CodeLine>().Setup(Line);
         
 
     }
