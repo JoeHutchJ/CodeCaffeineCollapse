@@ -30,6 +30,8 @@ public class ReviewController : MonoBehaviour
 
     public RectTransform inBoundsline;
 
+    public GameObject progressBar;
+
     List<GameObject> codeLines;
 
     float timeSincelastCheck = 0.0f;
@@ -38,6 +40,7 @@ public class ReviewController : MonoBehaviour
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
+        progressBar = GetChildByName.Get(this.gameObject, "ProgressBar");
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
         generateNew();
@@ -54,13 +57,14 @@ public class ReviewController : MonoBehaviour
 
 
         OnKeyUp();
+        progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
     }
 
     public void generateNew() {
         //newDifficulty();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
-        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight);
+        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 70);
         foreach(string Line in LineArray) {
             addToContent(Line);
 

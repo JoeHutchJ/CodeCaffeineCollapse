@@ -18,7 +18,14 @@ public class ScrollManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (scrollbar.value > 0) {
         scrollbar.value -= scrollSpeed * Time.deltaTime;
+        } else {
+            scrollbar.value = 0;
+        }
+    }
+
+    public float getScrollValue() {
+        return scrollbar.value;
     }
 }
