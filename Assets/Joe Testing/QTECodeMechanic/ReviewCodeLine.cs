@@ -7,7 +7,7 @@ public enum QTEKEY {
     NORTHW, WESTA, SOUTHS, EASTD,
 }
 
-public class CodeLine : MonoBehaviour
+public class ReviewCodeLine : MonoBehaviour
 {
     public Boolean active;
 
@@ -15,6 +15,8 @@ public class CodeLine : MonoBehaviour
     public Boolean QTEactive;
 
     public  QTEKEY QTEkey;
+
+    public bool clicked;
 
     public string text;
 
@@ -35,7 +37,7 @@ public class CodeLine : MonoBehaviour
         
     }
 
-    public void Setup(string _text) {
+    public void Setup(string _text, float frequency) {
         QTEIcon = transform.Find("QTE Icon");
         textBox = transform.Find("Text").GetComponent<TMP_Text>();
         text = _text;
@@ -49,7 +51,7 @@ public class CodeLine : MonoBehaviour
         }
 
         if (QTEpossible) {
-            if (UnityEngine.Random.Range(0,10) > 6 ) {
+            if (UnityEngine.Random.Range(0.0f, 1.0f) > frequency) {
             SetupQTE();
             }
         }
@@ -97,6 +99,7 @@ public class CodeLine : MonoBehaviour
            QTEIcon.gameObject.SetActive(false);  
            QTEactive = false;
            active = false;
+           clicked = true;
            return true;    
         }
         return false;

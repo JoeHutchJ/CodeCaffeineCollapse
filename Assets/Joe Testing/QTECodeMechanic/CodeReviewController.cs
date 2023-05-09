@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class ReviewController : MonoBehaviour
 {
@@ -14,9 +15,13 @@ public class ReviewController : MonoBehaviour
 
     //start scroll.
 
+    public List<float> requests;
+
     public int numLines = 20;
 
     public float scrollSpeed = 0;
+
+    float QTEFrequency;
 
     float estimatedCodeLineHeight = 3.6202f;
 
@@ -28,11 +33,17 @@ public class ReviewController : MonoBehaviour
 
     public GameObject CodeLinePrefab;
 
+    public GameObject NoCodeToReviewPrefab;
+
     public RectTransform inBoundsline;
 
     public GameObject progressBar;
 
+    public TMP_Text RequestsCountElement;
+
     List<GameObject> codeLines;
+
+    int QTECount;
 
     float timeSincelastCheck = 0.0f;
      void Start()
@@ -41,8 +52,12 @@ public class ReviewController : MonoBehaviour
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
         progressBar = GetChildByName.Get(this.gameObject, "ProgressBar");
+        RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
+        requests.Add(0.0f); //this is test, this will be done using event, the float is the difficulty
+        requests.Add(0.5f);
+        requests.Add(1.0f);
         generateNew();
     }
 
@@ -58,10 +73,15 @@ public class ReviewController : MonoBehaviour
 
         OnKeyUp();
         progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
+        RequestsCountElement.text = requests.Count.ToString();
     }
 
     public void generateNew() {
-        //newDifficulty();
+        wipeContentbox();
+        if (requests.Count >= 1) {
+            newDifficulty(requests[0]);
+        
+        scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
         ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 70);
@@ -69,18 +89,27 @@ public class ReviewController : MonoBehaviour
             addToContent(Line);
 
         }
+        scrollManager.startScrolling();
+        } else {
+            Instantiate(NoCodeToReviewPrefab, CodeLinesLayout.transform);
+        }
 
 
     }
 
     public void newDifficulty(float difficulty) {
-        //input scroll speed & num lines here...
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 1.0f);
+        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 70);
+        QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
     }
 
     public void addToContent(string Line) {
         GameObject newCodeLine = Instantiate(CodeLinePrefab, CodeLinesLayout.transform);
-        newCodeLine.GetComponent<CodeLine>().Setup(Line);
+        newCodeLine.GetComponent<ReviewCodeLine>().Setup(Line, QTEFrequency);
+        if (newCodeLine.GetComponent<ReviewCodeLine>().QTEactive) {
+            QTECount++;
+        }
         codeLines.Add(newCodeLine);
 
     }
@@ -93,7 +122,7 @@ public class ReviewController : MonoBehaviour
 
     public void checkCodeLine(GameObject line) {
         RectTransform rectTransform = line.GetComponent<RectTransform>();
-        CodeLine codeLine = line.GetComponent<CodeLine>();
+        ReviewCodeLine codeLine = line.GetComponent<ReviewCodeLine>();
            if (LineIntersect(inBoundsline, rectTransform)) { 
             codeLine.inBounds();
         } else {
@@ -120,7 +149,7 @@ public class ReviewController : MonoBehaviour
 
     public bool keyPressed(QTEKEY key) {
         foreach (GameObject line in codeLines) {
-            CodeLine codeLine = line.GetComponent<CodeLine>();
+            ReviewCodeLine codeLine = line.GetComponent<ReviewCodeLine>();
             if (codeLine.active) {
                 if (codeLine.QTEactive) {
                         if (codeLine.QTEPressed(key)) {
@@ -153,6 +182,37 @@ public class ReviewController : MonoBehaviour
                 keyPressed(QTEKEY.EASTD);
         }
         
+    }
+
+    void wipeContentbox() {
+        foreach (Transform child in CodeLinesLayout.transform) {
+            Destroy(child.gameObject);
+        }
+    }
+
+    int QTEClicked() {
+        int count = 0;
+        foreach (GameObject obj in codeLines) {
+            if (obj.GetComponent<ReviewCodeLine>().clicked) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    public void completeCurrent() {
+        wipeContentbox();
+        progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
+        if (requests.Count > 0 ) {
+        requests.Remove(requests[0]);
+        }
+        Debug.Log("Percentage: " + (float)QTEClicked() / (float)QTECount * 100 + "%"); //testing this will go
+        QTECount = 0;
+        codeLines.Clear();
+        scrollManager.resetScrolling();
+        generateNew();
+
     }
 
 
