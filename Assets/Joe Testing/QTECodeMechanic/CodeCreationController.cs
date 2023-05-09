@@ -42,6 +42,7 @@ public class CodeCreationController : MonoBehaviour
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
         progressBar = GetChildByName.Get(this.gameObject, "ProgressBar");
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
+        inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
         generateNew();
@@ -55,10 +56,14 @@ public class CodeCreationController : MonoBehaviour
             checkCodeLines(codeLines);
         }
         timeSincelastCheck += Time.deltaTime;
+
+
+         progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
+        RequestsCountElement.text = requests.Count.ToString();
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 1.0f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.3f);
         numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 70);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
@@ -68,7 +73,7 @@ public class CodeCreationController : MonoBehaviour
         wipeContentbox();
         if (requests.Count >= 1) {
             newDifficulty(requests[0]);
-        
+        ContentBox.position = new Vector3(ContentBox.position.x,ContentBox.position.y-20,ContentBox.position.z);
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
@@ -131,6 +136,26 @@ public class CodeCreationController : MonoBehaviour
     void wipeContentbox() {
         foreach (Transform child in CodeLinesLayout.transform) {
             Destroy(child.gameObject);
+        }
+    }
+
+    CreateCodeLine firstActivenonFinished() {
+        foreach (GameObject line in codeLines) {
+            CreateCodeLine createCodeLine = line.GetComponent<CreateCodeLine>();
+            if (createCodeLine.activeNonfinished()) {
+                return createCodeLine;
+            }
+        }
+        return null;
+    }
+
+
+    public void onKeyUp() {
+
+        CreateCodeLine codeLine = firstActivenonFinished();
+        if (codeLine != null) {
+
+            codeLine.addLetter();
         }
     }
 }

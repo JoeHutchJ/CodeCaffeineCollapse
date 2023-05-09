@@ -34,12 +34,8 @@ public class CreateCodeLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         textBox.text = displaytext;
-        if (timeSince > 0.3) {
-        addLetter();
-        timeSince = 0;
-        }
-        timeSince += Time.deltaTime;
     }
 
     public void Setup(string _text, float frequency) {
@@ -60,12 +56,20 @@ public class CreateCodeLine : MonoBehaviour
     }
 
     public void addLetter() {
-        
             if (currentCharindex >= text.Length) {
                 finished = true;
             } else {
+                if (Char.IsWhiteSpace(text[currentCharindex]) ) {
+                    Debug.Log("space");
+                    displaytext += text[currentCharindex];
+                    currentCharindex++;
+                    addLetter();
+                } else {
             displaytext += text[currentCharindex];
+            
             currentCharindex++;
+            }
+
             }
         
         
@@ -77,6 +81,12 @@ public class CreateCodeLine : MonoBehaviour
 
     public void inBounds() {
         active = true;
+
+        
+    }
+
+    public bool activeNonfinished() {
+        return (active && !finished);
 
         
     }

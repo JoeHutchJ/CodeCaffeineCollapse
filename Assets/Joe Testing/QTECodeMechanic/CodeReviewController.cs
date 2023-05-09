@@ -53,6 +53,7 @@ public class ReviewController : MonoBehaviour
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
         progressBar = GetChildByName.Get(this.gameObject, "ProgressBar");
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
+        inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
         requests.Add(0.0f); //this is test, this will be done using event, the float is the difficulty
