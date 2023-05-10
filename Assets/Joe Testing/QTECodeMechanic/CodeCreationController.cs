@@ -23,6 +23,8 @@ public class CodeCreationController : MonoBehaviour
 
     public GameObject NoMoreCodingRequests;
 
+    public GameObject BufferPrefab;
+
     public RectTransform inBoundsline;
 
     public GameObject progressBar;
@@ -32,6 +34,8 @@ public class CodeCreationController : MonoBehaviour
     float timeSincelastCheck = 0;
 
     float estimatedCodeLineHeight = 3.6202f;
+
+    CreateCodeLine selectedLine;
 
     List<GameObject> codeLines;
     // Start is called before the first frame update
@@ -54,6 +58,7 @@ public class CodeCreationController : MonoBehaviour
         if (timeSincelastCheck > 0.5) {
             timeSincelastCheck = 0;
             checkCodeLines(codeLines);
+            selectedLine = firstActivenonFinished();
         }
         timeSincelastCheck += Time.deltaTime;
 
@@ -78,6 +83,7 @@ public class CodeCreationController : MonoBehaviour
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
         ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 70);
+        Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
             addToContent(Line);
 
@@ -140,22 +146,29 @@ public class CodeCreationController : MonoBehaviour
     }
 
     CreateCodeLine firstActivenonFinished() {
+        CreateCodeLine first = null;
+        bool firstGot = false;
         foreach (GameObject line in codeLines) {
             CreateCodeLine createCodeLine = line.GetComponent<CreateCodeLine>();
             if (createCodeLine.activeNonfinished()) {
-                return createCodeLine;
+                if (!firstGot) {
+                first = createCodeLine;
+                createCodeLine.selected = true;
+                firstGot = true;
+                } else {
+                    createCodeLine.selected = false;
+                }
+            } else {
+                createCodeLine.selected = false;
             }
         }
-        return null;
+        return first;
     }
 
 
     public void onKeyUp() {
 
-        CreateCodeLine codeLine = firstActivenonFinished();
-        if (codeLine != null) {
+        
 
-            codeLine.addLetter();
-        }
     }
 }
