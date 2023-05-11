@@ -5,6 +5,8 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 
+
+
 public class CreateCodeLine : MonoBehaviour
 {
     public bool active;
@@ -18,7 +20,7 @@ public class CreateCodeLine : MonoBehaviour
 
     public Transform QTEs;
 
-    public List<int> QTEIndexes;
+    public List<QTEIcon> QTEIcons;
 
     public bool selected;
 
@@ -42,7 +44,7 @@ public class CreateCodeLine : MonoBehaviour
         textBox = transform.Find("Text").GetComponent<TMP_Text>();
         QTEs = transform.Find("QTEs");
         setTypeSpeed(4.0f);
-        QTEIndexes = new List<int>();
+        QTEIcons = new List<QTEIcon>();
         SetupQTEs();
     }
 
@@ -91,6 +93,7 @@ public class CreateCodeLine : MonoBehaviour
                 if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f) {
                     SetupQTE(CalculateLengthOfText(), i);
                     sinceLastQTE = 0;
+                    break;
                 }
              }  
              sinceLastQTE++;
@@ -108,17 +111,26 @@ public class CreateCodeLine : MonoBehaviour
     }
 
     public void SetupQTE(float widthOftext, int index) {
+
         float xPos = widthOftext - (GetComponent<RectTransform>().sizeDelta.x / 2);
+        //Debug.Log(widthOftext + " xPos " + xPos);
+        foreach (QTEIcon QTE in QTEIcons) {
+            if (QTE.charIndex == index) {
+                return;
+            }
+        }
         GameObject qte = Instantiate(QTEIcon, QTEs);
-        RectTransform rect = qte.GetComponent<RectTransform>();
-        rect.localPosition = new Vector3(xPos, 0, 0);
-        QTEIndexes.Add(currentCharindex);
+        QTEIcon qteIcon = qte.GetComponent<QTEIcon>();
+        qteIcon.Setup(index);
+        qteIcon.setRectPos(xPos);
+        QTEIcons.Add(qteIcon);
+
 
     }
 
     public bool isQTE(int index) {
-        foreach (int i in  QTEIndexes) {
-            if (i == index) {
+        foreach (QTEIcon i in  QTEIcons) {
+            if (i.charIndex == index) {
                 return true;
             }
         }
@@ -132,39 +144,30 @@ public class CreateCodeLine : MonoBehaviour
 
     public void addLetter() {
         int range = 10;
-        /*if (isQTE(currentCharindex)) {
+        if (isQTE(currentCharindex)) {
 
-        } else {*/
-            for (int i = 0; i < QTEIndexes.Count; i++) {
-                if (indexWithinRange(currentCharindex, QTEIndexes[i], range)) {
-                    Transform QTEObj =  QTEs.GetChild(i);
+        } else {
+            for (int i = 0; i < QTEIcons.Count; i++) {
+                if (indexWithinRange(currentCharindex, QTEIcons[i].charIndex, range)) {
+
+                    float howClose = 1 -  Mathf.Abs(QTEIcons[i].charIndex - currentCharindex) / (float)range;
+
+                    QTEIcon QTEObj =  QTEs.GetChild(i).GetComponent<QTEIcon>();
                     QTEObj.gameObject.SetActive(true);
-                    UsefulFunctions.HideAllChildren(QTEObj, false);
-                    float howClose = 1 -  Mathf.Abs(QTEIndexes[i] - currentCharindex) / (float)range;
-                    Color tempColor = QTEObj.Find("Image").GetComponent<Image>().color;
-                    tempColor.a = Mathf.Lerp(0,1, howClose);
-
-                    QTEObj.Find("Image").GetComponent<Image>().color = tempColor;
-
-                    tempColor =  QTEObj.Find("Text").GetComponent<TMP_Text>().color;
-                    tempColor.a = Mathf.Lerp(0,1, howClose);
-                    QTEObj.Find("Text").GetComponent<TMP_Text>().color = tempColor;
+                    QTEObj.setOpacity(Mathf.Lerp(0,1, howClose));
+                    UsefulFunctions.HideAllChildren(QTEObj.transform, false);
 
                 } else {
-                    Transform QTEObj =  QTEs.GetChild(i);
-                    Color tempColor = QTEObj.Find("Image").GetComponent<Image>().color;
-                    tempColor.a = 0;
-
-                    QTEObj.Find("Image").GetComponent<Image>().color = tempColor;
-
-                    tempColor =  QTEObj.Find("Text").GetComponent<TMP_Text>().color;
-                    tempColor.a = 0;
-                    QTEObj.Find("Text").GetComponent<TMP_Text>().color = tempColor;
+                    QTEIcon QTEObj =  QTEs.GetChild(i).GetComponent<QTEIcon>();
+                    QTEObj.setOpacity(0);
+                    UsefulFunctions.HideAllChildren(QTEObj.transform, true);
+                    
                 }
             }
 
             if (currentCharindex >= text.Length) {
                 finished = true;
+                selected = false;
             } else {
                 if (Char.IsWhiteSpace(text[currentCharindex]) ) {
                     displaytext += text[currentCharindex];
@@ -179,9 +182,23 @@ public class CreateCodeLine : MonoBehaviour
 
             }
         
+        }
    
         
         
+    }
+
+    public bool QTEPressed(QTEKEY key) {
+        foreach (QTEIcon QTE in QTEIcons) {
+                if (indexWithinRange(currentCharindex, QTE.charIndex, 10)) {
+                        if (key == QTE.key) {
+                            QTEIcons.Remove(QTE);
+                            return true;
+                        }
+                        
+                    }
+                }
+        return false;
     }
 
     public void outBounds() {
@@ -215,12 +232,15 @@ public class CreateCodeLine : MonoBehaviour
             if (!Char.IsWhiteSpace(c) ) {
                 break;
             } else {
+                
                 totalLength += 7;
             }
 
          }
 
          totalLength += textBox.textBounds.size.x;
+
+         Debug.Log(totalLength);
 
          return totalLength;
  

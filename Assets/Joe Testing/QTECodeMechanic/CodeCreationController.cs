@@ -65,6 +65,8 @@ public class CodeCreationController : MonoBehaviour
 
          progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
         RequestsCountElement.text = requests.Count.ToString();
+
+        OnKeyUp();
     }
 
     public void newDifficulty(float difficulty) {
@@ -166,9 +168,24 @@ public class CodeCreationController : MonoBehaviour
     }
 
 
-    public void onKeyUp() {
-
+    public void keyPressed(QTEKEY key) {
         
+        Debug.Log(selectedLine.QTEPressed(key));
 
+    }
+        
+    void OnKeyUp() {
+        
+        if (Input.GetKeyUp("w")) {
+                keyPressed(QTEKEY.NORTHW);
+        } else if (Input.GetKeyUp("a")) {
+                keyPressed(QTEKEY.WESTA);
+
+        } else if (Input.GetKeyUp("s")) {
+                keyPressed(QTEKEY.SOUTHS);
+        } else if (Input.GetKeyUp("d")) {
+                keyPressed(QTEKEY.EASTD);
+        }
+        
     }
 }
