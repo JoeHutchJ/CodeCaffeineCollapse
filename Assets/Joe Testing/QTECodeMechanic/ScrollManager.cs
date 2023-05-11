@@ -29,6 +29,14 @@ public class ScrollManager : MonoBehaviour
         }
     }
 
+    public void setScrollSpeed(float speed) {
+        scrollSpeed = speed;
+    }
+
+    public float getScrollSpeed() {
+        return scrollSpeed;
+    }
+
     public float getScrollValue() {
         return scrollbar.value;
     }

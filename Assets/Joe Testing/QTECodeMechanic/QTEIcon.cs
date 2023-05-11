@@ -11,6 +11,7 @@ public class QTEIcon : MonoBehaviour
 
     public Image imageObj;
 
+
     public TMP_Text textBox;
 
     // Start is called before the first frame update

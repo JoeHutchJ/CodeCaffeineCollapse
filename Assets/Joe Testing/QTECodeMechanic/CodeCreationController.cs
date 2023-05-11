@@ -31,6 +31,8 @@ public class CodeCreationController : MonoBehaviour
 
     public TMP_Text RequestsCountElement;
 
+    
+
     float timeSincelastCheck = 0;
 
     float estimatedCodeLineHeight = 3.6202f;
@@ -38,6 +40,10 @@ public class CodeCreationController : MonoBehaviour
     CreateCodeLine selectedLine;
 
     List<GameObject> codeLines;
+
+    float typeSpeed = 4.0f;
+
+    int combo;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +55,7 @@ public class CodeCreationController : MonoBehaviour
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
+        requests.Add(0.5f);
         generateNew();
     }
 
@@ -59,6 +66,11 @@ public class CodeCreationController : MonoBehaviour
             timeSincelastCheck = 0;
             checkCodeLines(codeLines);
             selectedLine = firstActivenonFinished();
+            if (selectedLine != null) {
+            selectedLine.setTypeSpeed(typeSpeed);
+            } else {
+                
+            }
         }
         timeSincelastCheck += Time.deltaTime;
 
@@ -71,7 +83,8 @@ public class CodeCreationController : MonoBehaviour
 
     public void newDifficulty(float difficulty) {
         scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.3f);
-        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 70);
+        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 5, 20);
+        Debug.Log(numLines);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
     }
@@ -169,9 +182,33 @@ public class CodeCreationController : MonoBehaviour
 
 
     public void keyPressed(QTEKEY key) {
-        
-        Debug.Log(selectedLine.QTEPressed(key));
+        float val = selectedLine.QTEPressed(key);
+        float newSpeed = typeSpeed;
+        if (val != -1.0f) {
+            if (val == 1.0f) {
+                combo++;
+                newSpeed += 1.0f;
+            } else if (val > 0.7f) {
+                combo = 0;
+                newSpeed += 0.5f;
+            } else if (val > 0.4f) {
+                combo = 0;
+                //newSpeed += 0.1f;
+            } else if (val >= 0 ) {
+                combo = 0;
+                newSpeed = 4.0f;
+            }
+               
+            updateTypeSpeed(newSpeed + (combo * 0.2f));
+            
+        }
 
+    }
+
+    public void updateTypeSpeed(float speed) {
+        Debug.Log(speed);
+        typeSpeed = speed;
+        selectedLine.setTypeSpeed(typeSpeed);
     }
         
     void OnKeyUp() {
@@ -187,5 +224,27 @@ public class CodeCreationController : MonoBehaviour
                 keyPressed(QTEKEY.EASTD);
         }
         
+    }
+
+    public void completeCurrent() {
+        wipeContentbox();
+        progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
+        if (requests.Count > 0 ) {
+        requests.Remove(requests[0]);
+        }
+        /*Debug.Log("Percentage: " + (float)QTEClicked() / (float)QTECount * 100 + "%"); //testing this will go
+        QTECount = 0;*/
+        int count = 0;
+        foreach (GameObject line in codeLines) {
+            CreateCodeLine codeLine = line.GetComponent<CreateCodeLine>();
+            if (codeLine.finished) {
+                count++;
+            }
+        }
+        Debug.Log("Percentage: " + (float)count / (float)codeLines.Count * 100 + "%");
+        codeLines.Clear();
+        scrollManager.resetScrolling();
+        generateNew();
+
     }
 }

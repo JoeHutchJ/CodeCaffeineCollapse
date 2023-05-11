@@ -16,6 +16,8 @@ public class CreateCodeLine : MonoBehaviour
 
     public TMP_Text QTEtextBox;
 
+    public Image Background;
+
     public GameObject QTEIcon;
 
     public Transform QTEs;
@@ -37,13 +39,15 @@ public class CreateCodeLine : MonoBehaviour
 
     float timeSince = 0;
 
+    float timePastQTE = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
         textBox = transform.Find("Text").GetComponent<TMP_Text>();
+        Background = transform.Find("Background").GetComponent<Image>();
         QTEs = transform.Find("QTEs");
-        setTypeSpeed(4.0f);
         QTEIcons = new List<QTEIcon>();
         SetupQTEs();
     }
@@ -51,16 +55,26 @@ public class CreateCodeLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!finished && displaytext != "") {
+            Background.color = new Color(1,0f,0,1.0f); 
+        }
         if (selected) {
-                
+            Background.color = new Color(0,1.0f,0,0.5f);        
             if (timeSince >= typeInterval) {
                 timeSince = 0;
-                addLetter();
+                addLetter(true);
             } else {
                 timeSince += Time.deltaTime;
             }
         }
+        if (finished) {
+            Background.color = new Color(0,1.0f,0,1.0f); 
+        }
         textBox.text = displaytext;
+
+        if (isQTE(currentCharindex)) {
+            timePastQTE += Time.deltaTime;
+        }
     
     }
 
@@ -69,8 +83,9 @@ public class CreateCodeLine : MonoBehaviour
         textBox = transform.Find("Text").GetComponent<TMP_Text>();
         QTEs = transform.Find("QTEs");
         text = _text;
+
         
-        //textBox.text = text;
+        
 
         if (text.Contains("}")) {
 
@@ -85,15 +100,14 @@ public class CreateCodeLine : MonoBehaviour
         int sinceLastQTE = 0;
 
         for (int i=0; i < text.Length; i++) {
-            if (i > 10) {
-            addLetter();
+            addLetter(false);
+            if (i > 5) {
             textBox.text = displaytext;
             textBox.ForceMeshUpdate(true);
              if (Char.IsWhiteSpace(text[i]) && sinceLastQTE >= 7) {
                 if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f) {
                     SetupQTE(CalculateLengthOfText(), i);
                     sinceLastQTE = 0;
-                    break;
                 }
              }  
              sinceLastQTE++;
@@ -105,7 +119,9 @@ public class CreateCodeLine : MonoBehaviour
         textBox.text = "";
         currentCharindex = 0;
         finished = false;
-        UsefulFunctions.HideAllChildren( QTEs, true);
+        foreach (Transform child in QTEs) {
+        UsefulFunctions.HideAllChildren( child, true);
+        }
 
 
     }
@@ -142,9 +158,31 @@ public class CreateCodeLine : MonoBehaviour
 
     }
 
-    public void addLetter() {
+    public float indexCloseness(int index, int target, int range) {
+        float tempTimepastQTE = timePastQTE;
+        timePastQTE = 0;
+        if (indexWithinRange(index, target, range)) {
+            if (index == target) {
+                if (tempTimepastQTE < 0.5f) {
+                return 1;
+                } else {
+                    if (tempTimepastQTE / 5.0f < 1) {
+                        return 1 - (tempTimepastQTE / 5.0f);
+                    } else {
+                        return 0;
+                    }
+                }
+            }
+            return 1-(float)Mathf.Abs(target - index) / (float)range;
+        }
+        return -1.0f;
+
+    }
+
+    public void addLetter(bool skipWhiteSpace) {
         int range = 10;
         if (isQTE(currentCharindex)) {
+        
 
         } else {
             for (int i = 0; i < QTEIcons.Count; i++) {
@@ -152,15 +190,12 @@ public class CreateCodeLine : MonoBehaviour
 
                     float howClose = 1 -  Mathf.Abs(QTEIcons[i].charIndex - currentCharindex) / (float)range;
 
-                    QTEIcon QTEObj =  QTEs.GetChild(i).GetComponent<QTEIcon>();
-                    QTEObj.gameObject.SetActive(true);
-                    QTEObj.setOpacity(Mathf.Lerp(0,1, howClose));
-                    UsefulFunctions.HideAllChildren(QTEObj.transform, false);
+                    QTEIcons[i].setOpacity(Mathf.Lerp(0,1, howClose));
+                    UsefulFunctions.HideAllChildren(QTEIcons[i].transform, false);
 
                 } else {
-                    QTEIcon QTEObj =  QTEs.GetChild(i).GetComponent<QTEIcon>();
-                    QTEObj.setOpacity(0);
-                    UsefulFunctions.HideAllChildren(QTEObj.transform, true);
+                    QTEIcons[i].setOpacity(0);
+                    UsefulFunctions.HideAllChildren(QTEIcons[i].transform, true);
                     
                 }
             }
@@ -169,16 +204,23 @@ public class CreateCodeLine : MonoBehaviour
                 finished = true;
                 selected = false;
             } else {
+                if (skipWhiteSpace) {
                 if (Char.IsWhiteSpace(text[currentCharindex]) ) {
                     displaytext += text[currentCharindex];
                     currentCharindex++;
-                    addLetter();
+                    addLetter(true);
+                    
                 } else {
             displaytext += text[currentCharindex];
             
             currentCharindex++;
             
+            } } else {
+                displaytext += text[currentCharindex];
+            
+                currentCharindex++;
             }
+
 
             }
         
@@ -188,17 +230,23 @@ public class CreateCodeLine : MonoBehaviour
         
     }
 
-    public bool QTEPressed(QTEKEY key) {
+    public float QTEPressed(QTEKEY key) {
         foreach (QTEIcon QTE in QTEIcons) {
                 if (indexWithinRange(currentCharindex, QTE.charIndex, 10)) {
                         if (key == QTE.key) {
-                            QTEIcons.Remove(QTE);
-                            return true;
+                            removeQTE(QTE);
+                            
+                            return indexCloseness(currentCharindex, QTE.charIndex, 10);
                         }
                         
                     }
                 }
-        return false;
+        return -1.0f;
+    }
+
+    public void removeQTE(QTEIcon QTE) {
+        UsefulFunctions.HideAllChildren(QTE.transform, true);
+        QTEIcons.Remove(QTE);
     }
 
     public void outBounds() {
@@ -228,7 +276,7 @@ public class CreateCodeLine : MonoBehaviour
  
          TMP_CharacterInfo [] chars = textBox.textInfo.characterInfo;
 
-         foreach (Char c in displaytext) {
+         /*(foreach (Char c in displaytext) {
             if (!Char.IsWhiteSpace(c) ) {
                 break;
             } else {
@@ -236,11 +284,9 @@ public class CreateCodeLine : MonoBehaviour
                 totalLength += 7;
             }
 
-         }
+         }*/
 
-         totalLength += textBox.textBounds.size.x;
-
-         Debug.Log(totalLength);
+         totalLength += textBox.GetRenderedValues(false).x;
 
          return totalLength;
  
