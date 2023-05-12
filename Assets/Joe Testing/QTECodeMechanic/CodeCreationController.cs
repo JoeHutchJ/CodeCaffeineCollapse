@@ -23,6 +23,8 @@ public class CodeCreationController : MonoBehaviour
 
     public GameObject NoMoreCodingRequests;
 
+    public GameObject nextTaskbuttonPrefab;
+
     public GameObject BufferPrefab;
 
     public RectTransform inBoundsline;
@@ -44,6 +46,10 @@ public class CodeCreationController : MonoBehaviour
     float typeSpeed = 4.0f;
 
     int combo;
+
+    public bool disabled;
+
+    public bool started;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +62,12 @@ public class CodeCreationController : MonoBehaviour
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
         requests.Add(0.5f);
-        generateNew();
+        displayIntermediate();
+        
+        
+        
+        //scrollManager.setScrollSpeed()
+        
     }
 
     // Update is called once per frame
@@ -79,11 +90,13 @@ public class CodeCreationController : MonoBehaviour
         RequestsCountElement.text = requests.Count.ToString();
 
         OnKeyUp();
+
+
     }
 
     public void newDifficulty(float difficulty) {
         scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.3f);
-        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 5, 20);
+        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 5, 10);
         Debug.Log(numLines);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
@@ -97,15 +110,13 @@ public class CodeCreationController : MonoBehaviour
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
-        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 70);
+        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 5);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
             addToContent(Line);
 
         }
         scrollManager.startScrolling();
-        } else {
-            Instantiate(NoMoreCodingRequests, CodeLinesLayout.transform);
         }
 
 
@@ -226,6 +237,17 @@ public class CodeCreationController : MonoBehaviour
         
     }
 
+    public void displayIntermediate() {
+        if (requests.Count > 0) {
+            Instantiate(nextTaskbuttonPrefab, CodeLinesLayout.transform);
+
+        } else {
+            Instantiate(NoMoreCodingRequests, CodeLinesLayout.transform);
+        }
+        
+
+    }
+
     public void completeCurrent() {
         wipeContentbox();
         progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
@@ -244,7 +266,7 @@ public class CodeCreationController : MonoBehaviour
         Debug.Log("Percentage: " + (float)count / (float)codeLines.Count * 100 + "%");
         codeLines.Clear();
         scrollManager.resetScrolling();
-        generateNew();
+        displayIntermediate();
 
     }
 }

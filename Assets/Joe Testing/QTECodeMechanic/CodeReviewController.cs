@@ -35,6 +35,8 @@ public class ReviewController : MonoBehaviour
 
     public GameObject NoCodeToReviewPrefab;
 
+    public GameObject nextTaskbuttonPrefab;
+
     public RectTransform inBoundsline;
 
     public GameObject progressBar;
@@ -46,8 +48,18 @@ public class ReviewController : MonoBehaviour
     int QTECount;
 
     float timeSincelastCheck = 0.0f;
+
+    bool disabled = false;
+
+    bool started = false;
+
      void Start()
     {
+        started = true;
+        codeLines = new List<GameObject>();
+        requests.Add(0.0f); //this is test, this will be done using event, the float is the difficulty
+        requests.Add(0.5f);
+        requests.Add(1.0f);
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
@@ -55,11 +67,10 @@ public class ReviewController : MonoBehaviour
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
-        codeLines = new List<GameObject>();
-        requests.Add(0.0f); //this is test, this will be done using event, the float is the difficulty
-        requests.Add(0.5f);
-        requests.Add(1.0f);
-        generateNew();
+        displayIntermediate();
+        
+        
+        
     }
 
     // Update is called once per frame
@@ -75,6 +86,7 @@ public class ReviewController : MonoBehaviour
         OnKeyUp();
         progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
         RequestsCountElement.text = requests.Count.ToString();
+        
     }
 
     public void generateNew() {
@@ -91,9 +103,9 @@ public class ReviewController : MonoBehaviour
 
         }
         scrollManager.startScrolling();
-        } else {
-            Instantiate(NoCodeToReviewPrefab, CodeLinesLayout.transform);
-        }
+        } 
+            
+        
 
 
     }
@@ -201,6 +213,17 @@ public class ReviewController : MonoBehaviour
         return count;
     }
 
+    public void displayIntermediate() {
+        if (requests.Count > 0) {
+            Instantiate(nextTaskbuttonPrefab, CodeLinesLayout.transform);
+
+        } else {
+            Instantiate(NoCodeToReviewPrefab, CodeLinesLayout.transform);
+        }
+        
+
+    }
+
 
     public void completeCurrent() {
         wipeContentbox();
@@ -212,7 +235,7 @@ public class ReviewController : MonoBehaviour
         QTECount = 0;
         codeLines.Clear();
         scrollManager.resetScrolling();
-        generateNew();
+        displayIntermediate();
 
     }
 

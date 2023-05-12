@@ -52,6 +52,10 @@ public class ScrollManager : MonoBehaviour
 
     public void resetScrolling() {
         active = false;
+        if (scrollbar != null) {
         scrollbar.value = 1;
+        } else {
+            Start();
+        }
     }
 }
