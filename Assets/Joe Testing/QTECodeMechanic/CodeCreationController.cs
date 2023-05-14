@@ -131,7 +131,9 @@ public class CodeCreationController : MonoBehaviour
 
     public void checkCodeLines(List<GameObject> lines) {
         foreach (GameObject line in lines) {
+            if (line != null) {
             checkCodeLine(line);
+            }
         }
     }
 
