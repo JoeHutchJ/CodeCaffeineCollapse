@@ -41,6 +41,7 @@ public class CreateCodeLine : MonoBehaviour
 
     float timePastQTE = 0;
 
+    float textTotallength;
 
     // Start is called before the first frame update
     void Start()
@@ -114,7 +115,7 @@ public class CreateCodeLine : MonoBehaviour
             }
 
         }
-
+        textTotallength = textBox.GetRenderedValues(false).x;
         displaytext = "";
         textBox.text = "";
         currentCharindex = 0;
@@ -129,7 +130,6 @@ public class CreateCodeLine : MonoBehaviour
     public void SetupQTE(float widthOftext, int index) {
 
         float xPos = widthOftext - (GetComponent<RectTransform>().sizeDelta.x / 2);
-        //Debug.Log(widthOftext + " xPos " + xPos);
         foreach (QTEIcon QTE in QTEIcons) {
             if (QTE.charIndex == index) {
                 return;
@@ -287,6 +287,8 @@ public class CreateCodeLine : MonoBehaviour
          }*/
 
          totalLength += textBox.GetRenderedValues(false).x;
+
+         //Debug.Log(totalLength + " " + textBox.bounds.size.x);
 
          return totalLength;
  

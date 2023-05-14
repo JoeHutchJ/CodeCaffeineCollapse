@@ -97,7 +97,6 @@ public class CodeCreationController : MonoBehaviour
     public void newDifficulty(float difficulty) {
         scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.3f);
         numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 5, 10);
-        Debug.Log(numLines);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
     }
@@ -132,7 +131,9 @@ public class CodeCreationController : MonoBehaviour
 
     public void checkCodeLines(List<GameObject> lines) {
         foreach (GameObject line in lines) {
+            if (line != null) {
             checkCodeLine(line);
+            }
         }
     }
 
