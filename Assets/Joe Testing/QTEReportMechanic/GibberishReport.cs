@@ -4,12 +4,12 @@ using UnityEngine;
 using System;
 using System.Text;
 
-public class GibberishReport : MonoBehaviour
+public static class GibberishReport
 {
-    public int numberOfLines = 40; // Number of lines to generate
+    public static int numberOfLines = 40; // Number of lines to generate
 
-    public int numSections = 4;
-    string[] sectionTitles = new string[]
+    public static int numSections = 4;
+    static string[] sectionTitles = new string[]
 {
     "Introduction",
     "Features and Functionality",
@@ -21,7 +21,7 @@ public class GibberishReport : MonoBehaviour
     "Compatibility"
 };
 
-string[] sectionContent = new string[]
+static string[] sectionContent = new string[]
 {
     "This report presents an evaluation of the Co-Lapse programming software, aimed at analyzing its features, performance, and suitability for development projects. The software was tested extensively over a two-week period, and the following sections outline our findings and recommendations.",
     "Co-Lapse programming software offers a comprehensive set of features essential for modern software development. It includes a robust code editor with syntax highlighting, auto-completion, and code folding capabilities. These features enhance code readability and streamline the development process, allowing developers to write clean and efficient code. Additionally, the software supports version control integration, enabling seamless collaboration and efficient management of code changes. Co-Lapse also provides powerful debugging tools, empowering developers to identify and resolve issues quickly. Furthermore, the software supports a wide range of programming languages, making it versatile and suitable for diverse development projects.",
@@ -34,14 +34,8 @@ string[] sectionContent = new string[]
 
 };
 
-     // List to store paraphrased sentences
 
-    private void Start()
-    {
-        GenerateTechnicalReport(numSections);
-    }
-
-    private string newSection() {
+    private static string newSection() {
         StringBuilder text = new StringBuilder();
         int index = UnityEngine.Random.Range(0, sectionTitles.Length);
         string sectionTitle = sectionTitles[index];
@@ -52,14 +46,14 @@ string[] sectionContent = new string[]
 
     }
 
-    private void GenerateTechnicalReport(int numSections)
+    public static string Generate(int numSections)
     {
         StringBuilder text = new StringBuilder();
         for (int i = 0; i < numSections; i++)
         {
             text.Append(newSection());
         }
-        Debug.Log(text.ToString());
+        return text.ToString();
     }
 
    
