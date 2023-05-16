@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
+using System.Text;
 
 public class ReportCreationController : MonoBehaviour
 {
     public List<float> requests;
 
-    public int numSections = 4;
+    public int numSections = 1;
 
     public float scrollSpeed = 0;
 
@@ -19,7 +20,7 @@ public class ReportCreationController : MonoBehaviour
 
     public ScrollManager scrollManager;
 
-    public GameObject CodeLinePrefab;
+    public GameObject ReportLinePrefab;
 
     public GameObject NoMoreCodingRequests;
 
@@ -39,9 +40,9 @@ public class ReportCreationController : MonoBehaviour
 
     float estimatedCodeLineHeight = 3.6202f;
 
-    CreateCodeLine selectedLine;
+    ReportLine selectedLine;
 
-    List<GameObject> codeLines;
+    public List<GameObject> codeLines;
 
     float typeSpeed = 4.0f;
 
@@ -50,6 +51,8 @@ public class ReportCreationController : MonoBehaviour
     public bool disabled;
 
     public bool started;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +62,7 @@ public class ReportCreationController : MonoBehaviour
         progressBar = GetChildByName.Get(this.gameObject, "ProgressBar");
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
-        //estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
+        estimatedCodeLineHeight = ReportLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
         requests.Add(0.5f);
         displayIntermediate();
@@ -101,32 +104,53 @@ public class ReportCreationController : MonoBehaviour
 
     }
 
-    public void testLines(string String) {
-        TMP_Text testText = GetChildByName.Get(this.gameObject, "CreateCodeLine").GetComponentInChildren<TMP_Text>();
+    public string[] testLines(string String) {
+        /*TMP_Text testText = GetChildByName.Get(this.gameObject, "CreateCodeLine").GetComponentInChildren<TMP_Text>();
+        //testText.margin = new Vector4(-0.0513648987f,3.59532309f,0.0492095947f,3.60936546f);
+        StringBuilder stringBuilder = new StringBuilder();
         int charIndex;
+        int recentWordindex = -1;
         string displaytext = "";
+        int displaytextstartIndex = 0;
         for (int i = 0; i < String.Length; i++) {
-
+            Debug.Log(testText.textBounds.size.y + " " + testText.GetRenderedValues().y);
+            testText.ForceMeshUpdate(true);
             displaytext += String[i];
             testText.text = displaytext;
-            testText.ForceMeshUpdate(true);
-            if (testText.isTextOverflowing) {
-                Debug.Log("overflowing");
+            
+            if (char.IsWhiteSpace(String[i])) {
+                Debug.Log("whitespace");
+                recentWordindex = i;
             }
-        }
+            if (testText.isTextOverflowing) {
+                     Debug.Log("overflowing");
+                    stringBuilder.AppendLine(displaytext);
+                    displaytext = "";
+
+                    testText.text = displaytext;
+                    recentWordindex = -1;
+                }*/
+
+        GameObject newCodeLine = Instantiate(ReportLinePrefab, CodeLinesLayout.transform);
+        string[] array = newCodeLine.GetComponent<ReportLine>().testLines(String);
+        //newCodeLine.GetComponent<ReportLine>().testing = true;         
+        return array;      
+
+        
+
+
 
     }
 
     public void generateNew() {
-        //wipeContentbox();
+        wipeContentbox();
         if (requests.Count >= 1) {
             newDifficulty(requests[0]);
         ContentBox.position = new Vector3(ContentBox.position.x,ContentBox.position.y-20,ContentBox.position.z);
         scrollManager.resetScrolling();
         string CodeString = GibberishReport.Generate(numSections);
-        testLines(CodeString);
-        /*
-        string[] LineArray = CodeString.Split("\n");
+        string[] LineArray = testLines(CodeString);
+        wipeContentbox();
         ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 5);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
@@ -135,7 +159,7 @@ public class ReportCreationController : MonoBehaviour
         }
         scrollManager.startScrolling();
 
-        */
+        
         }
         
 
@@ -145,8 +169,8 @@ public class ReportCreationController : MonoBehaviour
 
 
     public void addToContent(string Line) {
-        GameObject newCodeLine = Instantiate(CodeLinePrefab, CodeLinesLayout.transform);
-        newCodeLine.GetComponent<CreateCodeLine>().Setup(Line, QTEFrequency);
+        GameObject newCodeLine = Instantiate(ReportLinePrefab, CodeLinesLayout.transform);
+        newCodeLine.GetComponent<ReportLine>().Setup(Line, QTEFrequency);
         codeLines.Add(newCodeLine);
 
     }
@@ -161,7 +185,7 @@ public class ReportCreationController : MonoBehaviour
 
     public void checkCodeLine(GameObject line) {
         RectTransform rectTransform = line.GetComponent<RectTransform>();
-        CreateCodeLine codeLine = line.GetComponent<CreateCodeLine>();
+        ReportLine codeLine = line.GetComponent<ReportLine>();
            if (LineIntersect(inBoundsline, rectTransform)) { 
             codeLine.inBounds();
         } else {
@@ -194,11 +218,11 @@ public class ReportCreationController : MonoBehaviour
         }
     }
 
-    CreateCodeLine firstActivenonFinished() {
-        CreateCodeLine first = null;
+    ReportLine firstActivenonFinished() {
+        ReportLine first = null;
         bool firstGot = false;
         foreach (GameObject line in codeLines) {
-            CreateCodeLine createCodeLine = line.GetComponent<CreateCodeLine>();
+            ReportLine createCodeLine = line.GetComponent<ReportLine>();
             if (createCodeLine.activeNonfinished()) {
                 if (!firstGot) {
                 first = createCodeLine;
@@ -281,7 +305,7 @@ public class ReportCreationController : MonoBehaviour
         QTECount = 0;*/
         int count = 0;
         foreach (GameObject line in codeLines) {
-            CreateCodeLine codeLine = line.GetComponent<CreateCodeLine>();
+            ReportLine codeLine = line.GetComponent<ReportLine>();
             if (codeLine.finished) {
                 count++;
             }
