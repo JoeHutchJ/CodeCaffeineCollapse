@@ -11,6 +11,9 @@ public class computerController : MonoBehaviour
 
     public GameObject Email;
 
+    public GameObject ReportCreation;
+
+
     Transform currentTab;
 
     Transform[] tabs;
@@ -49,5 +52,9 @@ public class computerController : MonoBehaviour
 
     public void ClickCodeReviewTab() {
         createTab(CodeReview);
+    }
+
+    public void ClickReportCreationTab() {
+        createTab(ReportCreation);
     }
 }

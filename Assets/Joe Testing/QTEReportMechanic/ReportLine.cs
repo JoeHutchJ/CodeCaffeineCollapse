@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 
 
-public class CreateCodeLine : MonoBehaviour
+public class ReportLine : MonoBehaviour
 {
     public bool active;
 
@@ -26,7 +26,7 @@ public class CreateCodeLine : MonoBehaviour
 
     public bool selected;
 
-    public float typeSpeed; //letters per second
+    public float typeSpeed = 5.0f; //letters per second
 
     public float typeInterval;
 
@@ -40,6 +40,8 @@ public class CreateCodeLine : MonoBehaviour
     float timeSince = 0;
 
     float timePastQTE = 0;
+
+    public bool testing;
 
     float textTotallength;
 
@@ -56,6 +58,7 @@ public class CreateCodeLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!testing) {
         if (!finished && displaytext != "") {
             Background.color = new Color(1,0f,0,1.0f); 
         }
@@ -76,6 +79,21 @@ public class CreateCodeLine : MonoBehaviour
         if (isQTE(currentCharindex)) {
             timePastQTE += Time.deltaTime;
         }
+        } else {
+            if (timeSince >= typeInterval) {
+                timeSince = 0;
+                //testLines(text);
+            }
+            
+
+
+        }
+
+        if (textBox.isTextOverflowing) {
+            //Debug.Log("overflowing");
+        }
+
+        
     
     }
 
@@ -216,7 +234,7 @@ public class CreateCodeLine : MonoBehaviour
             currentCharindex++;
 
             if (textBox.isTextOverflowing) {
-                Debug.Log("overflow");
+                //Debug.Log("overflow");
             }
             
             } } else {
@@ -232,6 +250,58 @@ public class CreateCodeLine : MonoBehaviour
    
         
         
+    }
+
+    public string[] testLines(string _text) {
+        Start();
+        List<string> lines = new List<string>();
+        textBox = transform.Find("Text").GetComponent<TMP_Text>();
+        testing = true;
+        text = _text;
+        string currentWord = "";
+        currentCharindex = 0;
+        while (currentCharindex <= text.Length - 2) {
+        
+        addLetter(false);
+        textBox.text = displaytext;
+        textBox.ForceMeshUpdate(true);
+        if (currentCharindex > 0 && currentCharindex < text.Length - 1 ) {
+            if (Char.IsWhiteSpace(text[currentCharindex-1]) && !Char.IsWhiteSpace(text[currentCharindex])) {
+                currentWord += text[currentCharindex];
+            } else if (Char.IsWhiteSpace(text[currentCharindex])) {
+                currentWord = "";
+            } else {
+                if (currentWord != "") {
+                    currentWord += text[currentCharindex];
+                }
+            }
+
+            
+        }
+
+        
+
+
+        if (textBox.isTextOverflowing) {
+            //Debug.Log("display text" + displaytext);
+            
+            displaytext = displaytext.Remove(displaytext.Length-currentWord.Length, currentWord.Length);
+            lines.Add(displaytext);
+            displaytext = "";
+            displaytext += currentWord;
+            currentWord = "";
+            currentCharindex++;
+            //displaytext += finalChar;
+            textBox.text = displaytext;
+
+        }
+
+        }
+
+
+        return lines.ToArray();
+        
+
     }
 
     public float QTEPressed(QTEKEY key) {
