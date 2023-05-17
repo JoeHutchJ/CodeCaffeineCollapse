@@ -6,8 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Email", menuName = "ScriptableObjects/Email")] //custom inspector
 public class Email : ScriptableObject
 {
-    public string Author;
-    public Texture2D icon;
+    public Author Author;
     public string Subject;
 
     public string Message;

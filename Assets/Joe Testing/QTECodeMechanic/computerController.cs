@@ -57,4 +57,8 @@ public class computerController : MonoBehaviour
     public void ClickReportCreationTab() {
         createTab(ReportCreation);
     }
+
+    public void ClickEmailTab() {
+        createTab(Email);
+    }
 }
