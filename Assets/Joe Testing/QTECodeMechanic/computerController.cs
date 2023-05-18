@@ -67,6 +67,7 @@ public class computerController : MonoBehaviour
     }
 
     void populateEmails(int num) {
+        emails = new List<Email>();
         for (int i = 0; i < num; i++) {
             EmailSentiment sentiment;
             TaskType type;
