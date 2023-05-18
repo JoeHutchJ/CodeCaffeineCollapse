@@ -27,7 +27,7 @@ public class EmailManager : MonoBehaviour
 
     public int currentEmailID;
 
-
+    public GameObject placeholderPrefab;
 
     public float estimatedEmailHeight; 
 
@@ -40,9 +40,10 @@ public class EmailManager : MonoBehaviour
         Body = GetChildByName.Get(this.gameObject, "Email Body").transform;
         estimatedEmailHeight = emailSummaryPrefab.GetComponent<RectTransform>().sizeDelta.y;
         wipeEmails();
+        wipeBody(true);
         for (int i = 0; i < 15; i++) {
 
-            Email email = EmailBuilder.newEmail(UnityEngine.Random.value < .5 ? EmailSentiment.INQUIRY: EmailSentiment.INQUIRY, TaskType.REVIEW);
+            Email email = EmailBuilder.newEmail(UnityEngine.Random.value < .5 ? EmailSentiment.SPAM: EmailSentiment.SPAM, TaskType.REVIEW);
             
             newEmailSummary(email);
         }
@@ -68,19 +69,20 @@ public class EmailManager : MonoBehaviour
     }
 
     void wipeEmails() {
-        foreach (Transform child in content) {
-            Destroy(child.gameObject);
-        }
+         UsefulFunctions.deleteAllchildren(content);
+          
     }
 
-    void wipeBody() {
-        foreach (Transform child in Body) {
-            Destroy(child.gameObject);
+    void wipeBody(bool placeholder) {
+        UsefulFunctions.deleteAllchildren(Body);
+        if (placeholder) {
+        Instantiate(placeholderPrefab, Body);
         }
     }
 
     public void Display(Email email) {
-        wipeBody();
+        if (email != null) {
+        wipeBody(false);
         currentEmailID = email.id;
         currentReply = null;
         GameObject obj = Instantiate(EmailMessagePrefab, Body);
@@ -91,6 +93,11 @@ public class EmailManager : MonoBehaviour
         }
         obj.GetComponent<EmailMessage>().Setup(email, this);
         currentMessage = obj.GetComponent<EmailMessage>();
+        } else {
+
+            UsefulFunctions.deleteAllchildren(Body);
+
+        }
 
 
         
@@ -105,14 +112,32 @@ public class EmailManager : MonoBehaviour
     }
 
     public void emailReplied() {
-        //currentReply.Replied();
-        Debug.Log("YEP REPLIED");
+        getEmailbyId(currentEmailID).replied = true;
+        updateEmails(getEmailbyId(currentEmailID));
     }
 
     public void markRead() {
-        Debug.Log("Marked read");
+
         getEmailbyId(currentEmailID).read = true;
         updateEmails(getEmailbyId(currentEmailID));
+    }
+
+    public void deleteSpam() {
+        foreach(EmailSummary em in emailSummarys) {
+            if (em.email.id == currentEmailID) {
+            Destroy(em.gameObject);
+            } 
+        }
+        Email toDelete = new Email();
+        foreach(Email em in emails) {
+            if (em.id == currentEmailID) {
+                toDelete = em;
+            }
+        }
+        emails.Remove(toDelete);
+
+        currentEmailID = -1;
+        wipeBody(true);
     }
 
     public void updateEmails(Email newEmail) {

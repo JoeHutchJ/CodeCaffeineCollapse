@@ -62,6 +62,8 @@ MonoBehaviour:
   emailSummarys: []
   currentMessage: {fileID: 0}
   currentReply: {fileID: 0}
+  currentEmailID: 0
+  placeholderPrefab: {fileID: 809183705343260000, guid: e6079d88bfed2fb44bb79f3bb4b47fad, type: 3}
   estimatedEmailHeight: 0
 --- !u!114 &2966223398145414256
 MonoBehaviour:

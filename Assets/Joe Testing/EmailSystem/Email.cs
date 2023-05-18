@@ -19,6 +19,8 @@ public class Email
 
     public bool read;
 
+    public bool replied;
+
     public bool spam; //ie not important / related to a task.
     // Start is called before the first frame update
     public TaskType taskType;

@@ -20,6 +20,13 @@ public static class UsefulFunctions
     }
 
 
+
+    }
+
+    public static void deleteAllchildren(Transform trans) {
+        foreach (Transform child in trans) {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     public static Transform FindParent(Transform trans, string name) {

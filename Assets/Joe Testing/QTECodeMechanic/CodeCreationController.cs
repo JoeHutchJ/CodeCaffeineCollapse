@@ -80,7 +80,8 @@ public class CodeCreationController : MonoBehaviour
             if (selectedLine != null) {
             selectedLine.setTypeSpeed(typeSpeed);
             } else {
-                
+                scrollManager.addToscrolling((1.0f + (40.0f / (codeLines.Count * estimatedCodeLineHeight))) / (float)codeLines.Count);
+                selectedLine = firstActivenonFinished();
             }
         }
         timeSincelastCheck += Time.deltaTime;
@@ -194,6 +195,7 @@ public class CodeCreationController : MonoBehaviour
 
 
     public void keyPressed(QTEKEY key) {
+        if (selectedLine != null) {
         float val = selectedLine.QTEPressed(key);
         float newSpeed = typeSpeed;
         if (val != -1.0f) {
@@ -213,6 +215,8 @@ public class CodeCreationController : MonoBehaviour
                
             updateTypeSpeed(newSpeed + (combo * 0.2f));
             
+        }
+
         }
 
     }
@@ -272,7 +276,9 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void anyKeyPressed() {
+        if (selectedLine != null) {
         selectedLine.keyPressed();
+        }
 
     }
 }

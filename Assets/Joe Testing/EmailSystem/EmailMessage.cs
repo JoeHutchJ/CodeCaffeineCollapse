@@ -29,9 +29,13 @@ public class EmailMessage : MonoBehaviour
     }
 
     public void MarkedRead() {
+        if (!email.spam) {
         email.read = true;
         manager.markRead();
         enableButton(btn, false);
+        } else {
+            manager.deleteSpam();
+        }
 
     }
 
@@ -47,6 +51,10 @@ public class EmailMessage : MonoBehaviour
         GetChildByName.Get(this.gameObject, "From").GetComponent<TMP_Text>().text = "From: " + email.Author.name;
         GetChildByName.Get(this.gameObject, "Subject").GetComponent<TMP_Text>().text = email.Subject;
         GetChildByName.Get(this.gameObject, "Message").GetComponent<TMP_Text>().text = email.Message;
+
+        if (email.spam) {
+            GetChildByName.Get(this.gameObject, "ButtonText").GetComponent<TMP_Text>().text = "Delete";
+        }
 
     }
 }

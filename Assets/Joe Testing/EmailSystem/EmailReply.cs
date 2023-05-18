@@ -57,10 +57,17 @@ public class EmailReply : MonoBehaviour
     }
 
     public void Setup(Email _email, EmailManager mngr) {
+        Start();
         email = _email;
         active = true;
         replyText = email.replyMessage;
         manager = mngr;
+
+        if (email.replied) {
+            textBox.text = email.replyMessage;
+            active = false;
+            Instantiate(sentPrefab, GetChildByName.Get(this.gameObject,"body").transform);
+        }
     }
 
     public void AddLetter(int count) {

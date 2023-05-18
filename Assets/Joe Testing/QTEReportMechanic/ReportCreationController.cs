@@ -64,7 +64,7 @@ public class ReportCreationController : MonoBehaviour
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = ReportLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
-        requests.Add(0.5f);
+        requests.Add(0.2f);
         displayIntermediate();
         
         
@@ -83,7 +83,8 @@ public class ReportCreationController : MonoBehaviour
             if (selectedLine != null) {
             selectedLine.setTypeSpeed(typeSpeed);
             } else {
-                
+                scrollManager.addToscrolling((1.0f + (40.0f / (codeLines.Count * estimatedCodeLineHeight))) / (float)codeLines.Count);
+                selectedLine = firstActivenonFinished();
             }
         }
         timeSincelastCheck += Time.deltaTime;
@@ -94,7 +95,7 @@ public class ReportCreationController : MonoBehaviour
 
         OnKeyUp();
 
-        
+
 
 
     }
@@ -242,6 +243,7 @@ public class ReportCreationController : MonoBehaviour
 
 
     public void keyPressed(QTEKEY key) {
+        if (selectedLine != null) {
         float val = selectedLine.QTEPressed(key);
         float newSpeed = typeSpeed;
         if (val != -1.0f) {
@@ -261,6 +263,7 @@ public class ReportCreationController : MonoBehaviour
                
             updateTypeSpeed(newSpeed + (combo * 0.2f));
             
+        }
         }
 
     }
