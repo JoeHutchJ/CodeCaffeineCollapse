@@ -52,10 +52,13 @@ public class ReportCreationController : MonoBehaviour
 
     public bool started;
 
+    bool active = false;
+
     
     // Start is called before the first frame update
     void Start()
     {
+        if (!started) {
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
@@ -64,9 +67,14 @@ public class ReportCreationController : MonoBehaviour
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = ReportLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
+        if (requests != null) {
+            if (requests.Count <= 0) {
         requests = new List<float>();
+        }
+        }
         //requests.Add(0.2f);
         displayIntermediate();
+        }
         
         
         
@@ -102,7 +110,11 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void AddRequest(float val) {
+        Start();
         requests.Add(val);
+        if (!active) {
+            displayIntermediate();
+        }
     }
 
     public int getRequests() {
@@ -159,6 +171,7 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void generateNew() {
+        active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
             newDifficulty(requests[0]);
@@ -310,11 +323,19 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void displayIntermediate() {
+        active = false;
+        Debug.Log(requests.Count);
         if (requests.Count > 0) {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
+                wipeContentbox();
             Instantiate(nextTaskbuttonPrefab, CodeLinesLayout.transform);
+            
 
-        } else {
+        } } else {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NoCodeToReview(Clone)")) {
+                wipeContentbox();
             Instantiate(NoMoreCodingRequests, CodeLinesLayout.transform);
+            }
         }
         
 

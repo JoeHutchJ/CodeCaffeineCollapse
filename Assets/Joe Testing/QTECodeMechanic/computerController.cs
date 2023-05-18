@@ -42,6 +42,8 @@ public class computerController : MonoBehaviour
         CodingRequests.Add(0.5f);
 
         ReviewRequests.Add(0.5f);
+
+        ReportRequests.Add(0.5f);
         
         
 
@@ -111,21 +113,21 @@ public class computerController : MonoBehaviour
                     break;
                 case "CodeCreation":
                     if (isCurrentTab(tab.tag)) {
-                        currentWindow.GetComponent<CodeCreationController>().getRequests();
+                        tab.GetComponent<TopTab>().setNotif(currentWindow.GetComponent<CodeCreationController>().getRequests());
                     } else {
                     tab.GetComponent<TopTab>().setNotif(CodingRequests.Count);
                     }
                     break;
                 case "CodeReview":
                 if (isCurrentTab(tab.tag)) {
-                        currentWindow.GetComponent<ReviewController>().getRequests();
+                        tab.GetComponent<TopTab>().setNotif(currentWindow.GetComponent<ReviewController>().getRequests());
                     } else {
                     tab.GetComponent<TopTab>().setNotif(ReviewRequests.Count);
                     }
                     break;
                 case "ReportCreation":
                 if (isCurrentTab(tab.tag)) {
-                        currentWindow.GetComponent<ReportCreationController>().getRequests();
+                        tab.GetComponent<TopTab>().setNotif(currentWindow.GetComponent<ReportCreationController>().getRequests());
                     } else {
                     tab.GetComponent<TopTab>().setNotif(ReportRequests.Count);
                     }
