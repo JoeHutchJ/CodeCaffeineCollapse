@@ -27,6 +27,25 @@ public class EmailSummary : MonoBehaviour
         GetChildByName.Get(this.gameObject, "Icon").GetComponent<Image>().sprite = UsefulFunctions.TextureToSprite(email.Author.icon);
         GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().text = email.Author.name;
 
+        if (!email.read) {
+            GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Underline;
+        } else {
+            GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
+        }
+
+    }
+
+    public void Reset(Email _email) {
+        email = _email;
+        GetChildByName.Get(this.gameObject, "Icon").GetComponent<Image>().sprite = UsefulFunctions.TextureToSprite(email.Author.icon);
+        GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().text = email.Author.name;
+
+        if (!email.read) {
+            GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Underline;
+        } else {
+            GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
+        }
+
     }
 
     public void Clicked() {

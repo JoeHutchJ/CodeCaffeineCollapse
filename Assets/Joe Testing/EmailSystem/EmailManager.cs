@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class EmailManager : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class EmailManager : MonoBehaviour
 
     public List<EmailSummary> emailSummarys;
 
+    public EmailMessage currentMessage;
+
+    public EmailReply currentReply;
+
+    public int currentEmailID;
+
+
+
+    public float estimatedEmailHeight; 
+
     
     // Start is called before the first frame update
     void Start()
@@ -27,13 +38,20 @@ public class EmailManager : MonoBehaviour
         emails = new List<Email>();
         content = GetChildByName.Get(this.gameObject,"Content").transform;
         Body = GetChildByName.Get(this.gameObject, "Email Body").transform;
+        estimatedEmailHeight = emailSummaryPrefab.GetComponent<RectTransform>().sizeDelta.y;
         wipeEmails();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 15; i++) {
 
-            Email email = EmailBuilder.newEmail(UnityEngine.Random.value < .5 ? EmailSentiment.SPAM: EmailSentiment.SPAM);
+            Email email = EmailBuilder.newEmail(UnityEngine.Random.value < .5 ? EmailSentiment.INQUIRY: EmailSentiment.INQUIRY, TaskType.REVIEW);
             
             newEmailSummary(email);
         }
+       
+        content.GetComponent<RectTransform>().sizeDelta = new Vector2(content.GetComponent<RectTransform>().sizeDelta.x, emailSummarys.Count * estimatedEmailHeight);
+        Scrollbar scrollbar = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<Scrollbar>();
+        scrollbar.value = 1;
+        
+        GetChildByName.Get(this.gameObject,"Scroll View").GetComponent<ScrollRect>().scrollSensitivity = 16.0f;
     }
 
     // Update is called once per frame
@@ -63,14 +81,55 @@ public class EmailManager : MonoBehaviour
 
     public void Display(Email email) {
         wipeBody();
+        currentEmailID = email.id;
+        currentReply = null;
         GameObject obj = Instantiate(EmailMessagePrefab, Body);
         if (email.reply) {
             GameObject replyObj = Instantiate(ReplyMessagePrefab, Body);
-            replyObj.GetComponent<EmailReply>().Setup(email);
+            replyObj.GetComponent<EmailReply>().Setup(email, this);
+            currentReply = replyObj.GetComponent<EmailReply>();
         }
-        obj.GetComponent<EmailMessage>().Setup(email);
+        obj.GetComponent<EmailMessage>().Setup(email, this);
+        currentMessage = obj.GetComponent<EmailMessage>();
 
 
         
+    }
+
+    public void keyPressed() {
+        if (currentReply != null) {
+            currentReply.AddLetter(0);
+        }
+
+
+    }
+
+    public void emailReplied() {
+        //currentReply.Replied();
+        Debug.Log("YEP REPLIED");
+    }
+
+    public void markRead() {
+        Debug.Log("Marked read");
+        getEmailbyId(currentEmailID).read = true;
+        updateEmails(getEmailbyId(currentEmailID));
+    }
+
+    public void updateEmails(Email newEmail) {
+        foreach (EmailSummary sum in emailSummarys) {
+           if (sum.email.id == newEmail.id) {
+            sum.Reset(newEmail);
+           }
+        }
+
+    }
+
+    public Email getEmailbyId(int id) {
+        foreach (Email e in emails) {
+            if (e.id == id) {
+                return e;
+            }
+        }
+        return null;
     }
 }

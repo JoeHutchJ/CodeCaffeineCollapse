@@ -270,4 +270,9 @@ public class CodeCreationController : MonoBehaviour
         displayIntermediate();
 
     }
+
+    public void anyKeyPressed() {
+        selectedLine.keyPressed();
+
+    }
 }

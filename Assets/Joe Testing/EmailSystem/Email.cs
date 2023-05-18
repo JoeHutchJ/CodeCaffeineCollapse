@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Email", menuName = "ScriptableObjects/Email")] //custom inspector
-public class Email : ScriptableObject
+
+public class Email
 {
+    public int id;
     public Author Author;
     public string Subject;
 
@@ -19,6 +21,7 @@ public class Email : ScriptableObject
 
     public bool spam; //ie not important / related to a task.
     // Start is called before the first frame update
+    public TaskType taskType;
     void Start()
     {
         

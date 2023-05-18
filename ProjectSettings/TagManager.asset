@@ -7,6 +7,7 @@ TagManager:
   - CodeCreation
   - CodeReview
   - ReportCreation
+  - EmailTab
   layers:
   - Default
   - TransparentFX

@@ -94,11 +94,13 @@ public class ReportCreationController : MonoBehaviour
 
         OnKeyUp();
 
+        
+
 
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.3f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.3f, 0.7f);
         numSections = (int)UsefulFunctions.Remap(difficulty, 0, 1, 1, 5);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
@@ -151,7 +153,7 @@ public class ReportCreationController : MonoBehaviour
         string CodeString = GibberishReport.Generate(numSections);
         string[] LineArray = testLines(CodeString);
         wipeContentbox();
-        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 5);
+        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 50);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
             addToContent(Line);
@@ -282,6 +284,13 @@ public class ReportCreationController : MonoBehaviour
                 keyPressed(QTEKEY.EASTD);
         }
         
+    }
+
+    public void anyKeyPressed() {
+        if (selectedLine != null) {
+        selectedLine.keyPressed();
+        }
+
     }
 
     public void displayIntermediate() {

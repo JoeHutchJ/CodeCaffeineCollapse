@@ -45,6 +45,8 @@ public class ReportLine : MonoBehaviour
 
     float textTotallength;
 
+    public int letterPers = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,12 +66,12 @@ public class ReportLine : MonoBehaviour
         }
         if (selected) {
             Background.color = new Color(0,1.0f,0,0.5f);        
-            if (timeSince >= typeInterval) {
+            /*if (timeSince >= typeInterval) {
                 timeSince = 0;
                 addLetter(true);
             } else {
                 timeSince += Time.deltaTime;
-            }
+            }*/
         }
         if (finished) {
             Background.color = new Color(0,1.0f,0,1.0f); 
@@ -194,6 +196,13 @@ public class ReportLine : MonoBehaviour
             return 1-(float)Mathf.Abs(target - index) / (float)range;
         }
         return -1.0f;
+
+    }
+
+    public void keyPressed() {
+        for (int i = 0; i < letterPers; i++) {
+            addLetter(true);
+        }
 
     }
 
@@ -377,4 +386,6 @@ public class ReportLine : MonoBehaviour
  
          return totalLength;*/
      }
+
+
 }

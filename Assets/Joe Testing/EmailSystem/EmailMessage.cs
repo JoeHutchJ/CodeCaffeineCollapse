@@ -7,10 +7,19 @@ using TMPro;
 public class EmailMessage : MonoBehaviour
 {
     public Email email;
+
+    EmailManager manager;
+
+    Button btn;
     // Start is called before the first frame update
     void Start()
     {
-        
+        btn = GetChildByName.Get(this.gameObject, "MarkRead").GetComponent<Button>();
+        if (email != null) {
+        if (email.read) {
+            enableButton(btn, false);
+        }
+        }
     }
 
     // Update is called once per frame
@@ -21,11 +30,19 @@ public class EmailMessage : MonoBehaviour
 
     public void MarkedRead() {
         email.read = true;
+        manager.markRead();
+        enableButton(btn, false);
 
     }
 
-    public void Setup(Email _email) {
+    void enableButton(Button button, bool enable) {
+        button.enabled = enable;
+        button.interactable = enable;
+    }
+
+    public void Setup(Email _email,EmailManager mnger ) {
         email = _email;
+        manager = mnger;
         GetChildByName.Get(this.gameObject, "Image").GetComponent<Image>().sprite = UsefulFunctions.TextureToSprite(email.Author.icon);
         GetChildByName.Get(this.gameObject, "From").GetComponent<TMP_Text>().text = "From: " + email.Author.name;
         GetChildByName.Get(this.gameObject, "Subject").GetComponent<TMP_Text>().text = email.Subject;
