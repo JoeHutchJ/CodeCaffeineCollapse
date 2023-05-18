@@ -49,7 +49,7 @@ public class computerController : MonoBehaviour
 
 
         if (emails.Count <= 0) {
-        populateEmails();
+        populateEmails(15);
         }
 
         createTab(Email); 
@@ -66,14 +66,44 @@ public class computerController : MonoBehaviour
         updateTabs();
     }
 
-    void populateEmails() {
-        for (int i = 0; i < 15; i++) {
+    void populateEmails(int num) {
+        for (int i = 0; i < num; i++) {
+            EmailSentiment sentiment;
+            TaskType type;
+            float random = UnityEngine.Random.Range(0.0f,1.0f);
 
-            Email email = EmailBuilder.newEmail(UnityEngine.Random.value < .5 ? EmailSentiment.POSITIVE: EmailSentiment.NEGATIVE, TaskType.REVIEW);
+            if (random <= 0.5f) {
+            float random2 = UnityEngine.Random.Range(0.0f,1.0f);
+            if (random2 < 0.25f) {
+                type = TaskType.CODING;
+            } else if (random2 >= 0.25f && random2 < 0.5f) {
+                type = TaskType.REVIEW;
+            } else if (random2 >= 0.5f && random2 < 0.75f) {
+                type= TaskType.REPORT;
+            } else {
+                type = TaskType.BUILD;
+            }
+
+            if (UnityEngine.Random.Range(0.0f,1.0f) > 0.5f) {
+                sentiment = EmailSentiment.POSITIVE;
+            } else {
+                sentiment = EmailSentiment.NEGATIVE;
+            }
+
+        } else if (random > 0.5f && random <= 0.75f) {
+            sentiment = EmailSentiment.SPAM;
+            type = TaskType.EMAIL;
+        } else {
+            sentiment = EmailSentiment.INQUIRY;
+            type = TaskType.EMAIL;
+        }
+
+            Email email = EmailBuilder.newEmail(sentiment, type);
             
             emails.Add(email);
         }
-        //add weighting for start emails.
+        
+        
 
 
 
@@ -147,7 +177,7 @@ public class computerController : MonoBehaviour
         switch (currentWindow.tag) {  
                 case "EmailTab":
                 if (emails.Count <= 0) {
-                    populateEmails(); 
+                    populateEmails(15); 
                 }
                     currentWindow.GetComponent<EmailManager>().setEmails(emails);
                     break;
