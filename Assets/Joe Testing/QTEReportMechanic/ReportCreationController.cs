@@ -52,10 +52,13 @@ public class ReportCreationController : MonoBehaviour
 
     public bool started;
 
+    bool active = false;
+
     
     // Start is called before the first frame update
     void Start()
     {
+        if (!started) {
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
@@ -64,8 +67,14 @@ public class ReportCreationController : MonoBehaviour
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = ReportLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
-        requests.Add(0.5f);
+        if (requests != null) {
+            if (requests.Count <= 0) {
+        requests = new List<float>();
+        }
+        }
+        //requests.Add(0.2f);
         displayIntermediate();
+        }
         
         
         
@@ -83,7 +92,8 @@ public class ReportCreationController : MonoBehaviour
             if (selectedLine != null) {
             selectedLine.setTypeSpeed(typeSpeed);
             } else {
-                
+                scrollManager.addToscrolling((1.0f + (40.0f / (codeLines.Count * estimatedCodeLineHeight))) / (float)codeLines.Count);
+                selectedLine = firstActivenonFinished();
             }
         }
         timeSincelastCheck += Time.deltaTime;
@@ -95,10 +105,28 @@ public class ReportCreationController : MonoBehaviour
         OnKeyUp();
 
 
+
+
+    }
+
+    public void AddRequest(float val) {
+        Start();
+        requests.Add(val);
+        if (!active) {
+            displayIntermediate();
+        }
+    }
+
+    public int getRequests() {
+        if (requests.Count > 0) {
+        return requests.Count;
+        } else {
+            return 0;
+        }
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.3f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.3f, 0.7f);
         numSections = (int)UsefulFunctions.Remap(difficulty, 0, 1, 1, 5);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
@@ -143,6 +171,7 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void generateNew() {
+        active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
             newDifficulty(requests[0]);
@@ -151,7 +180,7 @@ public class ReportCreationController : MonoBehaviour
         string CodeString = GibberishReport.Generate(numSections);
         string[] LineArray = testLines(CodeString);
         wipeContentbox();
-        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 5);
+        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 50);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
             addToContent(Line);
@@ -240,6 +269,7 @@ public class ReportCreationController : MonoBehaviour
 
 
     public void keyPressed(QTEKEY key) {
+        if (selectedLine != null) {
         float val = selectedLine.QTEPressed(key);
         float newSpeed = typeSpeed;
         if (val != -1.0f) {
@@ -259,6 +289,7 @@ public class ReportCreationController : MonoBehaviour
                
             updateTypeSpeed(newSpeed + (combo * 0.2f));
             
+        }
         }
 
     }
@@ -284,12 +315,27 @@ public class ReportCreationController : MonoBehaviour
         
     }
 
-    public void displayIntermediate() {
-        if (requests.Count > 0) {
-            Instantiate(nextTaskbuttonPrefab, CodeLinesLayout.transform);
+    public void anyKeyPressed() {
+        if (selectedLine != null) {
+        selectedLine.keyPressed();
+        }
 
-        } else {
+    }
+
+    public void displayIntermediate() {
+        active = false;
+        Debug.Log(requests.Count);
+        if (requests.Count > 0) {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
+                wipeContentbox();
+            Instantiate(nextTaskbuttonPrefab, CodeLinesLayout.transform);
+            
+
+        } } else {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NoCodeToReview(Clone)")) {
+                wipeContentbox();
             Instantiate(NoMoreCodingRequests, CodeLinesLayout.transform);
+            }
         }
         
 

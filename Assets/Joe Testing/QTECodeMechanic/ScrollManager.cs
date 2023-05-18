@@ -58,4 +58,8 @@ public class ScrollManager : MonoBehaviour
             Start();
         }
     }
+
+    public void addToscrolling(float num) {
+        scrollbar.value -= num;
+    }
 }

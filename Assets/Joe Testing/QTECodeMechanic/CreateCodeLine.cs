@@ -43,6 +43,8 @@ public class CreateCodeLine : MonoBehaviour
 
     float textTotallength;
 
+    int lettersper = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,12 +63,12 @@ public class CreateCodeLine : MonoBehaviour
         }
         if (selected) {
             Background.color = new Color(0,1.0f,0,0.5f);        
-            if (timeSince >= typeInterval) {
+            /*if (timeSince >= typeInterval) {
                 timeSince = 0;
                 addLetter(true);
             } else {
                 timeSince += Time.deltaTime;
-            }
+            }*/
         }
         if (finished) {
             Background.color = new Color(0,1.0f,0,1.0f); 
@@ -306,5 +308,12 @@ public class CreateCodeLine : MonoBehaviour
          }
  
          return totalLength;*/
+     }
+
+     public void keyPressed() {
+        for (int i = 0; i < lettersper; i++) {
+            addLetter(true);
+        }
+
      }
 }

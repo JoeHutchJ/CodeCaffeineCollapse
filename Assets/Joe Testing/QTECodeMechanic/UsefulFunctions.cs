@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public static class UsefulFunctions
 {
@@ -19,6 +20,13 @@ public static class UsefulFunctions
     }
 
 
+
+    }
+
+    public static void deleteAllchildren(Transform trans) {
+        foreach (Transform child in trans) {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     public static Transform FindParent(Transform trans, string name) {
@@ -63,7 +71,16 @@ public static class UsefulFunctions
     return null; // Could not find a parent with given tag.
  }
 
+ public static Sprite TextureToSprite(Texture2D texture) {
+
+                 Rect rec = new Rect(0, 0, texture.width, texture.height);
+                 Sprite.Create(texture,rec,new Vector2(0,0),1);
+                 return Sprite.Create(texture,rec,new Vector2(0,0),.01f);
+                 
+    }
+ }
+
  
-}
+
 
 
