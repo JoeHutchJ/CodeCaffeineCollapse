@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Email", menuName = "ScriptableObjects/Email")] //custom inspector
+
 
 public class Email
 {

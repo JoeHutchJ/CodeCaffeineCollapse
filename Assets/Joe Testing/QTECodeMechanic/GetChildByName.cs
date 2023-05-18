@@ -33,4 +33,29 @@ public static class GetChildByName
          return null;
      }
  }
+
+
+ public static GameObject GetByTag(GameObject obj, string tag) {
+     Transform trans = obj.transform;
+     foreach (Transform child in trans) {
+        if (child.tag == tag) {
+            return child.gameObject;
+            } else {
+                if (child.childCount > 0) {
+                GameObject maybe = GetByTag(child.gameObject, tag);
+                if (maybe != null) {
+                    return maybe;
+                }
+            }
+        }
+     }
+
+
+    return null;
+
+ }
+
+ public static bool isInChilden(Transform trans, string name) {
+    return trans.Find(name) != null;
+ }
 }

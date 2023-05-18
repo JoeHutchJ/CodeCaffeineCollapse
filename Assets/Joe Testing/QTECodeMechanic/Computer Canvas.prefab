@@ -305,10 +305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23da9b14f59f8444e8a13fa07d3ede6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CodeReview: {fileID: 3133629873765766853, guid: 604e7d77da1695347b3384c514679990, type: 3}
+  CodeReview: {fileID: 3133629873765766853, guid: 6c95c30843267e447a35d93428b764c3, type: 3}
   CodeCreation: {fileID: 8161779703125465332, guid: 9a5baa4d9975f354a914b0b3d9db46f7, type: 3}
-  Email: {fileID: 0}
-  ReportCreation: {fileID: 0}
+  Email: {fileID: 874877871348347500, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
+  ReportCreation: {fileID: 8161779703125465332, guid: 4f42dc0d8a85f474f92c7df00d79ff4b, type: 3}
 --- !u!1 &9050470256417028839
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &25939891366289780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,6 +997,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3876995394838242745, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
+      propertyPath: m_fontSize
+      value: 12.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4271785370899861030, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1257,6 +1261,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7854806338618471832, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
+      propertyPath: m_fontSize
+      value: 12.9
+      objectReference: {fileID: 0}
     - target: {fileID: 7995967512440662304, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1312,8 +1320,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emailSummaryPrefab: {fileID: 0}
   content: {fileID: 0}
-  emails: []
+  EmailMessagePrefab: {fileID: 0}
+  ReplyMessagePrefab: {fileID: 0}
+  Body: {fileID: 0}
   emailSummarys: []
+  currentMessage: {fileID: 0}
+  currentReply: {fileID: 0}
+  currentEmailID: 0
+  placeholderPrefab: {fileID: 0}
+  estimatedEmailHeight: 0
 --- !u!224 &5061928643605253025 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7717513679839469263, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
@@ -1803,7 +1818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1905182657470937192, guid: 9a5baa4d9975f354a914b0b3d9db46f7, type: 3}
       propertyPath: m_Size
-      value: 0.5296934
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1905182657470937192, guid: 9a5baa4d9975f354a914b0b3d9db46f7, type: 3}
       propertyPath: m_Value

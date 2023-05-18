@@ -31,28 +31,34 @@ public class EmailManager : MonoBehaviour
 
     public float estimatedEmailHeight; 
 
+    bool startCalled = false;
+
     
     // Start is called before the first frame update
     void Start()
     {
+        if (!startCalled) {
+            startCalled = true;
+        if (emails == null) {
         emails = new List<Email>();
+        }
         content = GetChildByName.Get(this.gameObject,"Content").transform;
         Body = GetChildByName.Get(this.gameObject, "Email Body").transform;
         estimatedEmailHeight = emailSummaryPrefab.GetComponent<RectTransform>().sizeDelta.y;
         wipeEmails();
         wipeBody(true);
-        for (int i = 0; i < 15; i++) {
+        /*for (int i = 0; i < 15; i++) {
 
             Email email = EmailBuilder.newEmail(UnityEngine.Random.value < .5 ? EmailSentiment.SPAM: EmailSentiment.SPAM, TaskType.REVIEW);
             
             newEmailSummary(email);
-        }
+        }*/
        
-        content.GetComponent<RectTransform>().sizeDelta = new Vector2(content.GetComponent<RectTransform>().sizeDelta.x, emailSummarys.Count * estimatedEmailHeight);
         Scrollbar scrollbar = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<Scrollbar>();
         scrollbar.value = 1;
         
         GetChildByName.Get(this.gameObject,"Scroll View").GetComponent<ScrollRect>().scrollSensitivity = 16.0f;
+        } 
     }
 
     // Update is called once per frame
@@ -64,8 +70,20 @@ public class EmailManager : MonoBehaviour
     void newEmailSummary(Email email) {
         GameObject EmailObj = Instantiate(emailSummaryPrefab, content);
         EmailObj.GetComponent<EmailSummary>().Setup(email, this);
-        emails.Add(email);
         emailSummarys.Add(EmailObj.GetComponent<EmailSummary>());
+    }
+
+    void EmailSummarys(){
+        if (!startCalled) {
+            Start();
+        }
+        foreach(Email em in emails) {
+            newEmailSummary(em);
+        }
+
+        content.GetComponent<RectTransform>().sizeDelta = new Vector2(content.GetComponent<RectTransform>().sizeDelta.x, emailSummarys.Count * estimatedEmailHeight);
+        
+
     }
 
     void wipeEmails() {
@@ -156,5 +174,24 @@ public class EmailManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public int getUnreadEmails() {
+        int count = 0;
+        if (emails != null) {
+        foreach(Email email in emails) {
+            if (!email.read) {
+                count++;
+            }
+        }
+        }
+        return count;
+        
+    }
+
+    public void setEmails(List<Email> _emails) {
+        emails = new List<Email>();
+        emails = _emails;
+        EmailSummarys();
     }
 }

@@ -50,9 +50,17 @@ public class CodeCreationController : MonoBehaviour
     public bool disabled;
 
     public bool started;
+
+    bool active = false;
+
+    bool intermediateActive = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!started) {
+            started = true;
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
@@ -61,8 +69,16 @@ public class CodeCreationController : MonoBehaviour
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
-        requests.Add(0.5f);
+        if (requests != null) {
+            if (requests.Count <= 0) {
+        requests = new List<float>();
+        }
+        }
+        //requests.Add(0.5f);
         displayIntermediate();
+        } else {
+            
+        }
         
         
         
@@ -92,7 +108,22 @@ public class CodeCreationController : MonoBehaviour
 
         OnKeyUp();
 
+    }
 
+    public void AddRequest(float val) {
+        Start();
+        requests.Add(val);
+        if (!active) {
+            displayIntermediate();
+        }
+    }
+
+    public int getRequests() {
+        if (requests.Count > 0) {
+        return requests.Count;
+        } else {
+            return 0;
+        }
     }
 
     public void newDifficulty(float difficulty) {
@@ -103,6 +134,7 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void generateNew() {
+        active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
             newDifficulty(requests[0]);
@@ -243,15 +275,27 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void displayIntermediate() {
+        active = false;
+        Debug.Log(requests.Count);
         if (requests.Count > 0) {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
+                wipeContentbox();
             Instantiate(nextTaskbuttonPrefab, CodeLinesLayout.transform);
+            
 
-        } else {
+        } } else {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NoCodingRequests(Clone)")) {
+                wipeContentbox();
             Instantiate(NoMoreCodingRequests, CodeLinesLayout.transform);
+            }
         }
         
 
     }
+
+    
+
+
 
     public void completeCurrent() {
         wipeContentbox();

@@ -64,7 +64,8 @@ public class ReportCreationController : MonoBehaviour
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = ReportLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
         codeLines = new List<GameObject>();
-        requests.Add(0.2f);
+        requests = new List<float>();
+        //requests.Add(0.2f);
         displayIntermediate();
         
         
@@ -98,6 +99,18 @@ public class ReportCreationController : MonoBehaviour
 
 
 
+    }
+
+    public void AddRequest(float val) {
+        requests.Add(val);
+    }
+
+    public int getRequests() {
+        if (requests.Count > 0) {
+        return requests.Count;
+        } else {
+            return 0;
+        }
     }
 
     public void newDifficulty(float difficulty) {

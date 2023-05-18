@@ -52,14 +52,22 @@ public class ReviewController : MonoBehaviour
     bool disabled = false;
 
     bool started = false;
+    
+    bool active = false;
 
      void Start()
-    {
+    {   
+        if (!started) {
         started = true;
         codeLines = new List<GameObject>();
-        requests.Add(0.0f); //this is test, this will be done using event, the float is the difficulty
-        requests.Add(0.5f);
-        requests.Add(1.0f);
+        //requests.Add(0.0f); //this is test, this will be done using event, the float is the difficulty
+        //requests.Add(0.5f);
+        //requests.Add(1.0f);
+        if (requests != null) {
+            if (requests.Count <= 0) {
+        requests = new List<float>();
+        }
+        }
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
         scrollManager = GetChildByName.Get(this.gameObject, "Scrollbar Vertical").GetComponent<ScrollManager>();
@@ -67,7 +75,10 @@ public class ReviewController : MonoBehaviour
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
+
         displayIntermediate();
+
+        }
         
         
         
@@ -89,7 +100,25 @@ public class ReviewController : MonoBehaviour
         
     }
 
+    public void AddRequest(float val) {
+        Start();
+        requests.Add(val);
+        if (!active) {
+            displayIntermediate();
+        }
+    }
+
+    public int getRequests() {
+        if (requests.Count > 0) {
+        return requests.Count;
+        } else {
+            return 0;
+        }
+  
+    }
+
     public void generateNew() {
+        active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
             newDifficulty(requests[0]);
@@ -214,11 +243,19 @@ public class ReviewController : MonoBehaviour
     }
 
     public void displayIntermediate() {
+        active = false;
+        Debug.Log(requests.Count);
         if (requests.Count > 0) {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
+                wipeContentbox();
             Instantiate(nextTaskbuttonPrefab, CodeLinesLayout.transform);
+            
 
-        } else {
+        } } else {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NoCodeToReview(Clone)")) {
+                wipeContentbox();
             Instantiate(NoCodeToReviewPrefab, CodeLinesLayout.transform);
+            }
         }
         
 

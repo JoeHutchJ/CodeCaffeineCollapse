@@ -2544,6 +2544,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 879309881535445791, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: Notifs
+      objectReference: {fileID: 0}
     - target: {fileID: 931778285620233428, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2568,18 +2572,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1029679220805881267, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
-      propertyPath: Email
-      value: 
-      objectReference: {fileID: 874877871348347500, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
-    - target: {fileID: 1029679220805881267, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
-      propertyPath: CodeReview
-      value: 
-      objectReference: {fileID: 3133629873765766853, guid: 6c95c30843267e447a35d93428b764c3, type: 3}
-    - target: {fileID: 1029679220805881267, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
-      propertyPath: ReportCreation
-      value: 
-      objectReference: {fileID: 8161779703125465332, guid: 4f42dc0d8a85f474f92c7df00d79ff4b, type: 3}
     - target: {fileID: 1108368992155984561, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2800,6 +2792,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2256854964858427922, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: Notifs
+      objectReference: {fileID: 0}
     - target: {fileID: 2264302620447039703, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2824,6 +2820,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2573103585304554245, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: Notifs
+      objectReference: {fileID: 0}
     - target: {fileID: 2762835485974735954, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2835,6 +2835,10 @@ PrefabInstance:
     - target: {fileID: 2762835485974735954, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3053676995962206918, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: Notifs
       objectReference: {fileID: 0}
     - target: {fileID: 3211592480874397688, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3184,6 +3188,14 @@ PrefabInstance:
       propertyPath: m_DynamicPixelsPerUnit
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5727015181908615094, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: ReviewTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727015181908615094, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_TagString
+      value: CodeReview
+      objectReference: {fileID: 0}
     - target: {fileID: 5797930512856139265, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3259,6 +3271,14 @@ PrefabInstance:
     - target: {fileID: 6622283857764351508, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636172766736367291, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: ReportTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636172766736367291, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_TagString
+      value: ReportCreation
       objectReference: {fileID: 0}
     - target: {fileID: 6797698061036913367, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_fontSize
@@ -3404,6 +3424,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8331101063289810593, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: CodeTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331101063289810593, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_TagString
+      value: CodeCreation
+      objectReference: {fileID: 0}
     - target: {fileID: 8513311503028488152, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3459,6 +3487,14 @@ PrefabInstance:
     - target: {fileID: 8811000092972540653, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812228739309240162, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_Name
+      value: EmailTabButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812228739309240162, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      propertyPath: m_TagString
+      value: EmailTab
       objectReference: {fileID: 0}
     - target: {fileID: 8885692331326653086, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       propertyPath: m_AnchorMax.y
