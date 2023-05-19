@@ -15,7 +15,7 @@ public class ReviewController : MonoBehaviour
 
     //start scroll.
 
-    public List<float> requests;
+    public List<Task> requests;
 
     public int numLines = 20;
 
@@ -65,7 +65,7 @@ public class ReviewController : MonoBehaviour
         //requests.Add(1.0f);
         if (requests != null) {
             if (requests.Count <= 0) {
-        requests = new List<float>();
+        requests = new List<Task>();
         }
         }
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
@@ -100,9 +100,9 @@ public class ReviewController : MonoBehaviour
         
     }
 
-    public void AddRequest(float val) {
+    public void AddRequest(Task task) {
         Start();
-        requests.Add(val);
+        requests.Add(task);
         if (!active) {
             displayIntermediate();
         }
@@ -121,7 +121,7 @@ public class ReviewController : MonoBehaviour
         active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
-            newDifficulty(requests[0]);
+            newDifficulty(requests[0].difficulty);
         
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
@@ -268,7 +268,14 @@ public class ReviewController : MonoBehaviour
         if (requests.Count > 0 ) {
         requests.Remove(requests[0]);
         }
-        Debug.Log("Percentage: " + (float)QTEClicked() / (float)QTECount * 100 + "%"); //testing this will go
+        float percent = (float)QTEClicked() / (float)QTECount;
+        Debug.Log("Percentage: " + percent * 100 + "%"); //testing this will go
+        
+        requests[0].Complete(percent);
+        if (requests.Count > 0 ) {
+        requests.Remove(requests[0]);
+        }
+
         QTECount = 0;
         codeLines.Clear();
         scrollManager.resetScrolling();

@@ -20,11 +20,13 @@ public class computerController : MonoBehaviour
 
     List<Transform> Tabs;
 
-    List<float> CodingRequests;
-    List<float>ReviewRequests;
-    List<float>ReportRequests;
+    List<Task> CodingRequests;
+    List<Task>ReviewRequests;
+    List<Task>ReportRequests;
     
     List<Email>emails; 
+
+    public TaskEvent taskEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,16 +36,16 @@ public class computerController : MonoBehaviour
         }
 
         emails = new List<Email>();
-        CodingRequests = new List<float>();
-        ReviewRequests = new List<float>();
-        ReportRequests = new List<float>();
+        CodingRequests = new List<Task>();
+        ReviewRequests = new List<Task>();
+        ReportRequests = new List<Task>();
 
-        CodingRequests.Add(0.5f);
-        CodingRequests.Add(0.5f);
+        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent));
+        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent));
 
-        ReviewRequests.Add(0.5f);
+        ReviewRequests.Add(new Task(TaskType.REVIEW, 0.5f, null, null, 0, taskEvent));
 
-        ReportRequests.Add(0.5f);
+        ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent));
         
         
 
@@ -184,19 +186,19 @@ public class computerController : MonoBehaviour
                     break;
                 case "CodeCreation":
                     CodeCreationController create = currentWindow.GetComponent<CodeCreationController>();
-                    foreach (float request in CodingRequests) {
+                    foreach (Task request in CodingRequests) {
                         create.AddRequest(request);
                     }
                     break;
                 case "CodeReview":
                     ReviewController review = currentWindow.GetComponent<ReviewController>();
-                    foreach (float request in ReviewRequests) {
+                    foreach (Task request in ReviewRequests) {
                         review.AddRequest(request);
                     }
                     break;
                 case "ReportCreation":
                     ReportCreationController report = currentWindow.GetComponent<ReportCreationController>();
-                    foreach (float request in ReportRequests) {
+                    foreach (Task request in ReportRequests) {
                         report.AddRequest(request);
                     }
                     break;

@@ -7,7 +7,7 @@ using System.Text;
 
 public class ReportCreationController : MonoBehaviour
 {
-    public List<float> requests;
+    public List<Task> requests;
 
     public int numSections = 1;
 
@@ -69,7 +69,7 @@ public class ReportCreationController : MonoBehaviour
         codeLines = new List<GameObject>();
         if (requests != null) {
             if (requests.Count <= 0) {
-        requests = new List<float>();
+        requests = new List<Task>();
         }
         }
         //requests.Add(0.2f);
@@ -109,9 +109,9 @@ public class ReportCreationController : MonoBehaviour
 
     }
 
-    public void AddRequest(float val) {
+    public void AddRequest(Task task) {
         Start();
-        requests.Add(val);
+        requests.Add(task);
         if (!active) {
             displayIntermediate();
         }
@@ -174,7 +174,7 @@ public class ReportCreationController : MonoBehaviour
         active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
-            newDifficulty(requests[0]);
+            newDifficulty(requests[0].difficulty);
         ContentBox.position = new Vector3(ContentBox.position.x,ContentBox.position.y-20,ContentBox.position.z);
         scrollManager.resetScrolling();
         string CodeString = GibberishReport.Generate(numSections);
@@ -332,7 +332,7 @@ public class ReportCreationController : MonoBehaviour
             
 
         } } else {
-            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NoCodeToReview(Clone)")) {
+            if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NoReportRequests(Clone)")) {
                 wipeContentbox();
             Instantiate(NoMoreCodingRequests, CodeLinesLayout.transform);
             }
@@ -356,7 +356,14 @@ public class ReportCreationController : MonoBehaviour
                 count++;
             }
         }
-        Debug.Log("Percentage: " + (float)count / (float)codeLines.Count * 100 + "%");
+        float percent = (float)count / (float)codeLines.Count;
+        Debug.Log("Percentage: " + percent  * 100 + "%");
+        requests[0].Complete(percent);
+        if (requests.Count > 0 ) {
+            
+        requests.Remove(requests[0]);
+        }
+
         codeLines.Clear();
         scrollManager.resetScrolling();
         displayIntermediate();
