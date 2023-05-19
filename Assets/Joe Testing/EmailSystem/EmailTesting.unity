@@ -5475,6 +5475,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9a4ac4e0-8de2-4ddf-a7d1-3ddde9a89cdf
     m_ActionName: Main/AnyKey[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1617760376}
+        m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
+        m_MethodName: onSpaceBarPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4afffb5d-9ad7-4845-8623-7171b5879b2a
+    m_ActionName: Main/Spacebar[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main
@@ -5493,8 +5509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anyKeyPressed: {fileID: 11400000, guid: ca606bd14bf3e3541b92182e095a7fe0, type: 2}
-  playerControls: {fileID: 0}
-  playerInput: {fileID: 0}
+  spaceBarPressed: {fileID: 11400000, guid: bc12f905353e1fc4fb65d250113bd811, type: 2}
 --- !u!4 &1617760377
 Transform:
   m_ObjectHideFlags: 0
