@@ -62,12 +62,10 @@ public class Task
 
         if (name == null || name == "") {
             name = type.ToString();
-            Debug.Log(name);
         }
 
         if (prompt == null || prompt == "") {
             prompt = TaskInfo.promptDict[taskType];
-            Debug.Log(prompt);
         }
 
         if (timeLimit > 0) {

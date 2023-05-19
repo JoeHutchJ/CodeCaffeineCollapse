@@ -248,7 +248,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8.1
+  m_fontSize: 2
   m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -430,7 +430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1970367080960b840898958695320f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  email: {fileID: 0}
   emailManager: {fileID: 0}
 --- !u!114 &6983214796235310806
 MonoBehaviour:
@@ -453,10 +452,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
-    m_PressedColor: {r: 0.6792453, g: 0, b: 0, a: 1}
-    m_SelectedColor: {r: 0.3962264, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
+    m_HighlightedColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+    m_PressedColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+    m_SelectedColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
