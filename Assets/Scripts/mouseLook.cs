@@ -12,6 +12,7 @@ public class mouseLook : MonoBehaviour {
     }
 
 
+
     [SerializeField] private Vector2 acceleration;
     [SerializeField] private Vector2 sens;
     [SerializeField] private RotationDirection rotationDirections;
@@ -26,6 +27,7 @@ public class mouseLook : MonoBehaviour {
     private void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private float clampLookingangle(float angle)
