@@ -91,11 +91,16 @@ public class pickUpObject : MonoBehaviour
 
         if (pickupable.tag == "Pickupable") //must set tag of pickupable items in unity
         {
-            objInHand = pickupable;
             if(handFree)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    objInHand = pickupable;
+                    Interactable interactable = objInHand.GetComponent<Interactable>();
+                    if (interactable != null) {
+                        interactable.Interact();
+                    }
+
                     getPrevPosition(objInHand);
                     setParentClass(objInHand, NewParent);
                     handFree = false;

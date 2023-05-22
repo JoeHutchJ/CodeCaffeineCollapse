@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
 
     public InteractableType type;
 
-    public UnityAction action;
+    public UnityEvent action;
 
     public Vector3Event cameraMoveEvent;
 
@@ -34,10 +34,10 @@ public class Interactable : MonoBehaviour
                 cameraRotation = GetChildByName.Get(this.gameObject,"CameraPosition").transform.rotation;
                 break;
             case InteractableType.EQUIP:
-                action.Invoke();
+
                 break;
             case InteractableType.INTERACT:
-                action.Invoke();
+
                 break;
         }
     }
@@ -55,7 +55,6 @@ public class Interactable : MonoBehaviour
 
     public void Interact() {
         //do things
-        Debug.Log("interacted");
         switch (type) {
             case InteractableType.CAMERA:
                 //action.Invoke();
@@ -68,10 +67,14 @@ public class Interactable : MonoBehaviour
                 }
                 break;
             case InteractableType.EQUIP:
-                //action.Invoke();
+            if (action != null) {
+                action.Invoke();
+            }
                 break;
             case InteractableType.INTERACT:
-                //action.Invoke();
+                            if (action != null) {
+                action.Invoke();
+            }
                 break;
         }
 

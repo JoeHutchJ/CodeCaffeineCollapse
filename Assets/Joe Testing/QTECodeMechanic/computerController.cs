@@ -306,15 +306,16 @@ public class computerController : MonoBehaviour
         currentWindow = Instantiate(AuthenticationPrefab, transform).transform;
         currentTab = null;
         authenticated = false;
-        Debug.Log("authenticated: " + authenticated);
+        //Debug.Log("authenticated: " + authenticated);
 
     }
 
     public void Authenticate(bool auth) { 
+        Debug.Log("authenticated: " + authenticated);
         if (auth) {
         authenticated = true;
+        
         createTab(Email);
-        Debug.Log("authenticated: " + authenticated);
         } else {
             AuthenticateWindow();
         }
