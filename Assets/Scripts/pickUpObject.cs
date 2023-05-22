@@ -11,7 +11,10 @@ public class pickUpObject : MonoBehaviour
 
 
     private rayExample coll;
-    private Vector3 prevObject;
+    private Vector3 prevPosition;
+
+    private Vector3 prevRotation;
+
     private GameObject objInHand;
 
 
@@ -38,24 +41,30 @@ public class pickUpObject : MonoBehaviour
     {
 
         child.transform.parent = newParent.transform;
+
+        child.transform.localPosition = new Vector3(0,0,0);
         //Debug.Log(child.transform.parent.name);
 
-        child.transform.Translate(1, (float)0.7, 0);
+        //child.transform.Translate(1, (float)0.7, 0);
 
     }
 
     private void removeParentClass(GameObject child)
     {
         child.transform.parent = null;
-        child.transform.position = new Vector3(prevObject.x, prevObject.y, prevObject.z);
-        child.transform.rotation = new Quaternion(0, 0, 0,0);
+        child.transform.position = new Vector3(prevPosition.x, prevPosition.y, prevPosition.z);
+        child.transform.rotation = Quaternion.Euler(prevRotation);
+        //child.transform.rotation = new Quaternion(0, 0, 0,0);
     }
 
     private void getPrevPosition(GameObject pickupable)
     {
-        prevObject.x = pickupable.transform.position.x;
-        prevObject.y = pickupable.transform.position.y;
-        prevObject.z = pickupable.transform.position.z;
+        /*prevPosition.x = pickupable.transform.position.x;
+        prevPosition.y = pickupable.transform.position.y;
+        prevPosition.z = pickupable.transform.position.z;*/
+        prevPosition = pickupable.transform.position;
+
+        prevRotation = pickupable.transform.rotation.eulerAngles;
     }
 
 
@@ -82,11 +91,16 @@ public class pickUpObject : MonoBehaviour
 
         if (pickupable.tag == "Pickupable") //must set tag of pickupable items in unity
         {
-            objInHand = pickupable;
             if(handFree)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    objInHand = pickupable;
+                    Interactable interactable = objInHand.GetComponent<Interactable>();
+                    if (interactable != null) {
+                        interactable.Interact();
+                    }
+
                     getPrevPosition(objInHand);
                     setParentClass(objInHand, NewParent);
                     handFree = false;

@@ -24,10 +24,26 @@ public class mouseLook : MonoBehaviour {
     private Vector2 lastInputEvent;
     private float inputLagTimer;
 
+    [SerializeField] float moveSpeed;
+
+    public Transform cam;
+
+    bool rotationLocked = false;
+
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+       enableCursor(false);
+    }
+
+    public void enableCursor(bool enable) {
+        if (enable) {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+
+        } else {
+             Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     private float clampLookingangle(float angle)
@@ -60,7 +76,10 @@ public class mouseLook : MonoBehaviour {
 
     private void Update()
     {
+
+        if (!rotationLocked) {
         Vector2 TargetVelocity = GetInput() * sens;
+
 
 
         if((rotationDirections & RotationDirection.Horizontal) == 0)
@@ -80,6 +99,89 @@ public class mouseLook : MonoBehaviour {
         rotation.y = clampLookingangle(rotation.y);
 
         transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
+
+        }
     }
 
-}
+    public void moveTowardsPos(Vector3 pos) {
+        StartCoroutine(moveTowards(pos - getCamOffset()));
+
+    }
+
+
+    IEnumerator moveTowards(Vector3 target) {
+        float step = moveSpeed * Time.deltaTime;
+
+        while (!closeTo(transform.position, target)) {
+            transform.position = Vector3.MoveTowards(transform.position, target, step);
+            yield return null;
+
+
+        }
+
+        StopAllCoroutines();
+
+
+    }
+
+    public void rotateTowardsTarget(Vector3 rotation) {
+        //StartCoroutine(rotateTowards(rotation));
+        transform.rotation = Quaternion.Euler(rotation);
+
+    }
+
+     /*IEnumerator rotateTowards(Vector3 rotateTarget) {
+        float step = moveSpeed * Time.deltaTime;
+
+        while (!closeRotate(transform.rotation.eulerAngles, rotateTarget)) {
+            Vector3 prevRot = transform.rotation.eulerAngles;
+            Vector3 rot = Vector3.RotateTowards(transform.rotation.eulerAngles, rotateTarget, step, 0.0f);
+            /*Debug.Log(rot - prevRot);
+            Vector3 finalRot = new Vector3();
+            if (rotationDirections == RotationDirection.Horizontal) {
+                finalRot = new Vector3(prevRot.x, rot.y, prevRot.z);
+            } else if (rotationDirections == RotationDirection.Vertical) {
+                finalRot = new Vector3(rot.x, prevRot.y, prevRot.z);
+            }
+            //transform.rotation = Quaternion.Euler(rot);
+            yield return null;
+
+
+        }
+
+        StopAllCoroutines();
+
+
+    } */
+
+    bool closeTo(Vector3 pos, Vector3 target) {
+
+        if (Vector3.Distance(pos,target) < 40) {
+            return true;
+        }
+        return false;
+    }
+
+    bool closeRotate(Vector3 pos, Vector3 target) {
+        //Debug.Log(Quaternion.Angle(Quaternion.Euler(pos), Quaternion.Euler(target)));
+        if (Quaternion.Angle(Quaternion.Euler(pos), Quaternion.Euler(target)) < 5) {
+            
+            return true;
+        }
+        //Debug.Log("closerotate");
+        return false;
+    }
+
+    Vector3 getCamOffset() {
+        return cam.localPosition;
+    }
+
+    public void lockRotation(bool Lock) {
+        rotationLocked = Lock;
+        enableCursor(Lock);
+
+        }
+
+    }
+
+
