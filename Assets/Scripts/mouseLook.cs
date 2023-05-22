@@ -36,7 +36,6 @@ public class mouseLook : MonoBehaviour {
     }
 
     public void enableCursor(bool enable) {
-        Debug.Log("cursor " + enable);
         if (enable) {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
