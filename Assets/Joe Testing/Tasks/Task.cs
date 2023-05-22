@@ -71,6 +71,7 @@ public class Task
         if (timeLimit > 0) {
             timeTicking = false;
         }
+        
 
         timeStarted = Global.currentTime;
 

@@ -8,10 +8,14 @@ public class EmailSummary : MonoBehaviour
 {
     public Email email;
 
-    Color unread;
-    Color read;
+    public Color unread;
+    public Color read;
+
+    public Color selectedColour;
 
     public EmailManager emailManager;
+
+    public bool selected; 
     // Start is called before the first frame update
     void Start()
     {
@@ -25,26 +29,27 @@ public class EmailSummary : MonoBehaviour
     }
 
     public void Setup(Email _email, EmailManager manager) {
-        unread = new Color(255,114,144,255);
-        read = new Color(149,149,149,255);
+
         email = _email;
         emailManager = manager;
         GetChildByName.Get(this.gameObject, "Icon").GetComponent<Image>().sprite = UsefulFunctions.TextureToSprite(email.Author.icon);
-        GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().text = email.Author.name;
+        string info = email.Author.name + "/t" + email.Subject;
+        GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().text = info;
 
         if (!email.read) {
             //GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Underline;
             ColorBlock block = GetComponent<Button>().colors;
             block.normalColor = unread;
             GetComponent<Button>().colors = block;
-            Debug.Log(GetComponent<Button>().colors.normalColor == unread);
+           // Debug.Log(GetComponent<Button>().colors.normalColor == unread);
         } else {
             //GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
             ColorBlock block = GetComponent<Button>().colors;
             block.normalColor = read;
             GetComponent<Button>().colors = block;
-            Debug.Log(GetComponent<Button>().colors.normalColor == read);
+           // Debug.Log(GetComponent<Button>().colors.normalColor == read);
         }
+
         
 
     }
@@ -55,14 +60,36 @@ public class EmailSummary : MonoBehaviour
         GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().text = email.Author.name;
 
         if (!email.read) {
-            GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Underline;
+            //GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Underline;
+            ColorBlock block = GetComponent<Button>().colors;
+            block.normalColor = unread;
+            GetComponent<Button>().colors = block;
+           // Debug.Log(GetComponent<Button>().colors.normalColor == unread);
         } else {
-            GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
+            //GetChildByName.Get(this.gameObject, "AuthorText").GetComponent<TMP_Text>().fontStyle = FontStyles.Normal;
+            ColorBlock block = GetComponent<Button>().colors;
+            block.normalColor = read;
+            GetComponent<Button>().colors = block;
+           // Debug.Log(GetComponent<Button>().colors.normalColor == read);
         }
 
     }
 
     public void Clicked() {
-        emailManager.Display(email);
+        emailManager.Display(this);
+        Select(true);
+    }
+
+    public void Select(bool _selected) {
+        selected = _selected;
+
+        if (selected) {
+            ColorBlock block = GetComponent<Button>().colors;
+            block.normalColor = selectedColour;
+            GetComponent<Button>().colors = block;
+        } else {
+            Reset(email);
+        }
+
     }
 }

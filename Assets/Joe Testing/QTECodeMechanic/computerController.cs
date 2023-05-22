@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class computerController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class computerController : MonoBehaviour
 
     public GameObject ReportCreation;
 
+    public GameObject AuthenticationPrefab;
+
+    public bool authenticated = false;
 
     Transform currentWindow;
     Transform currentTab;
@@ -47,14 +51,14 @@ public class computerController : MonoBehaviour
 
         ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent));
         
-        
-
-
-        if (emails.Count <= 0) {
-        populateEmails(15);
+        if (!authenticated) {
+            AuthenticateWindow();
         }
 
-        createTab(Email); 
+        populateEmails(15);
+        
+        
+        //createTab(Email); 
 
 
     }
@@ -126,6 +130,7 @@ public class computerController : MonoBehaviour
     }
 
     public void createTab(GameObject obj) {
+        if (authenticated) {
         deleteTabs();
         currentWindow = Instantiate(obj, transform).transform;
         if (currentWindow.tag != "") {
@@ -135,6 +140,7 @@ public class computerController : MonoBehaviour
         }
         }
         populateWindow();
+        }
 
     }
 
@@ -172,8 +178,12 @@ public class computerController : MonoBehaviour
 
     }
 
+
     public bool isCurrentTab(string tag) {
+        if (currentTab != null) {
         return currentTab.tag == tag;
+        } 
+        return false;
     }
 
     public void populateWindow() {
@@ -207,6 +217,52 @@ public class computerController : MonoBehaviour
 
     }
 
+        public void updateWindow() {
+        switch (currentWindow.tag) {  
+                case "EmailTab":
+
+                    currentWindow.GetComponent<EmailManager>().setEmails(emails);
+                    break;
+                case "CodeCreation":
+                    CodeCreationController create = currentWindow.GetComponent<CodeCreationController>();
+                    int[] arr = getIdArray(CodingRequests);
+                    foreach (Task request in create.requests) {
+                        if (!arr.Contains(request.ID)) {
+                            create.requests.Remove(request);
+                        }
+                    }
+                    break;
+                case "CodeReview":
+                    ReviewController review = currentWindow.GetComponent<ReviewController>();
+                    int[] arr2 = getIdArray(ReviewRequests);
+                    foreach (Task request in review.requests) {
+                        if (!arr2.Contains(request.ID)) {
+                            review.requests.Remove(request);
+                        }
+                    }
+                    break;
+                case "ReportCreation":
+                    ReportCreationController report = currentWindow.GetComponent<ReportCreationController>();
+                    int[] arr3 = getIdArray(ReportRequests);
+                    foreach (Task request in report.requests) {
+                        if (!arr3.Contains(request.ID)) {
+                            report.requests.Remove(request);
+                        }
+                    }
+                    break;
+
+    }
+
+    }
+
+    public int[] getIdArray(List<Task> list) {
+        List<int>arr = new List<int>();
+        foreach (Task task in list) {
+            arr.Add(task.ID);
+        }
+        return arr.ToArray();
+    }
+
     public void ClickCodeCreationTab() {
         createTab(CodeCreation);
     }
@@ -223,6 +279,10 @@ public class computerController : MonoBehaviour
         createTab(Email);
     }
 
+    public void clickQuitButton() {
+
+    }
+
 
     public int getUnreadEmails() {
         if (currentWindow.tag == "EmailTab") {
@@ -237,5 +297,90 @@ public class computerController : MonoBehaviour
                 return count;
     }
         }
+
+
+    public void AuthenticateWindow() {
+        deleteTabs();
+        currentWindow = Instantiate(AuthenticationPrefab, transform).transform;
+        currentTab = null;
+        authenticated = false;
+        Debug.Log("authenticated: " + authenticated);
+
+    }
+
+    public void Authenticate(bool auth) { 
+        if (auth) {
+        authenticated = true;
+        createTab(Email);
+        Debug.Log("authenticated: " + authenticated);
+        } else {
+            AuthenticateWindow();
+        }
+    }
+
+
+
+
+    public  void newTask(Task task) {
+
+        switch (task.taskType) {
+            case TaskType.CODING:
+                CodingRequests.Add(task);
+                break;
+            case TaskType.REVIEW:
+                ReviewRequests.Add(task);
+                break;
+            case TaskType.REPORT:
+                ReportRequests.Add(task);
+                break;
+            case TaskType.AUTHENTICATE:
+                AuthenticateWindow();
+                break;
+
+        }
+    }
+
+    public void updateTask(Task task) {
+        Task removeTask = null;
+        switch (task.taskType) {
+            case TaskType.CODING:
+                foreach(Task tsk in CodingRequests) {
+                    if (task.ID == tsk.ID) {
+                        removeTask = tsk;
+                    }
+                }
+                if (removeTask != null) {
+                    CodingRequests.Remove(removeTask);
+                    updateWindow();
+                }
+                break;
+            case TaskType.REVIEW:
+                foreach(Task tsk in ReviewRequests) {
+                    if (task.ID == tsk.ID) {
+                        removeTask = tsk;
+                    }
+                }
+                if (removeTask != null) {
+                    ReviewRequests.Remove(removeTask);
+                    updateWindow();
+                }
+                break;
+            case TaskType.REPORT:
+                foreach(Task tsk in ReportRequests) {
+                    if (task.ID == tsk.ID) {
+                        removeTask = tsk;
+                    }
+                }
+                if (removeTask != null) {
+                    ReportRequests.Remove(removeTask);
+                    updateWindow();
+                }
+                break;
+            case TaskType.AUTHENTICATE:
+                
+                break;
+
+        }
+    }
  
 }

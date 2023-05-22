@@ -71,6 +71,8 @@ public class ReportCreationController : MonoBehaviour
             if (requests.Count <= 0) {
         requests = new List<Task>();
         }
+        } else {
+            requests = new List<Task>();
         }
         //requests.Add(0.2f);
         displayIntermediate();
@@ -324,7 +326,6 @@ public class ReportCreationController : MonoBehaviour
 
     public void displayIntermediate() {
         active = false;
-        Debug.Log(requests.Count);
         if (requests.Count > 0) {
             if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
                 wipeContentbox();

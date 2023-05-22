@@ -152,6 +152,9 @@ MonoBehaviour:
   intresponse:
     m_PersistentCalls:
       m_Calls: []
+  taskresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1516203856969390979
 GameObject:
   m_ObjectHideFlags: 0

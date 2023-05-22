@@ -5,6 +5,8 @@ using TMPro;
 public class TopTab : MonoBehaviour
 {
     bool notifHidden;
+
+    public bool noNotif;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class TopTab : MonoBehaviour
     }
 
     public void setNotif(int num) {
+        if (!noNotif) {
         if (num > 0) {
             if (notifHidden) {
                 GetChildByName.Get(this.gameObject, "Notifs").SetActive(true);
@@ -26,6 +29,7 @@ public class TopTab : MonoBehaviour
         } else {
             GetChildByName.Get(this.gameObject, "Notifs").SetActive(false);
             notifHidden = true;
+        }
         }
 
     }

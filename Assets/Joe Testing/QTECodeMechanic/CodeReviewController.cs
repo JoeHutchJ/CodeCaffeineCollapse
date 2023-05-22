@@ -67,6 +67,8 @@ public class ReviewController : MonoBehaviour
             if (requests.Count <= 0) {
         requests = new List<Task>();
         }
+        } else {
+            requests = new List<Task>();
         }
         CodeLinesLayout = GetChildByName.Get(this.gameObject, "CodeLinesLayout");
         ContentBox = GetChildByName.Get(this.gameObject, "Content").GetComponent<RectTransform>();
@@ -244,7 +246,6 @@ public class ReviewController : MonoBehaviour
 
     public void displayIntermediate() {
         active = false;
-        Debug.Log(requests.Count);
         if (requests.Count > 0) {
             if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
                 wipeContentbox();

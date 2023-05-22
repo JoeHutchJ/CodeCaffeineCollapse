@@ -73,6 +73,8 @@ public class CodeCreationController : MonoBehaviour
             if (requests.Count <= 0) {
         requests = new List<Task>();
         }
+        } else {
+            requests = new List<Task>();
         }
         //requests.Add(0.5f);
         displayIntermediate();
@@ -276,7 +278,6 @@ public class CodeCreationController : MonoBehaviour
 
     public void displayIntermediate() {
         active = false;
-        Debug.Log(requests.Count);
         if (requests.Count > 0) {
             if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
                 wipeContentbox();
