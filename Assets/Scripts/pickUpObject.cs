@@ -25,10 +25,13 @@ public class pickUpObject : MonoBehaviour
     {
 
         currColl = coll.hitColl;
+        if (currColl != null) {
         GameObject pickupable = currColl.gameObject; //will get the collider in front of the raycast and will find the gameobject from that
         //Debug.Log(pickupable);
 
         return pickupable;
+        } 
+        return null;
     }
 
     private void setParentClass(GameObject child, GameObject newParent)
@@ -63,6 +66,8 @@ public class pickUpObject : MonoBehaviour
     {
         GameObject pickupable = getGameObject();
 
+        if (pickupable != null) {
+
         if (handFree == false)
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -87,6 +92,8 @@ public class pickUpObject : MonoBehaviour
                     handFree = false;
                 }
             }
+        }
+
         }
 
     }
