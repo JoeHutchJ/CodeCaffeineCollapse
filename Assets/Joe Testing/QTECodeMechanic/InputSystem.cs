@@ -20,16 +20,18 @@ public class InputSystem : MonoBehaviour
     //Many public Events for all Inputs
 
     public Event anyKeyPressed;
+
+    public Event spaceBarPressed;
     
     ////////////////////////////////////
 
-    public InputActionAsset playerControls;
+    //public InputActionAsset playerControls;
 
-    public PlayerInput playerInput;
+    //public PlayerInput playerInput;
 
     void OnEnable()
     {
-        playerInput = GetComponent<PlayerInput>();
+        //playerInput = GetComponent<PlayerInput>();
         
         
     }
@@ -40,6 +42,13 @@ public class InputSystem : MonoBehaviour
         if (context.performed) {
 
             anyKeyPressed.Raise();
+        }
+    }
+
+    public void onSpaceBarPressed(InputAction.CallbackContext context) {
+
+        if (context.performed) {
+            spaceBarPressed.Raise();
         }
     }
 

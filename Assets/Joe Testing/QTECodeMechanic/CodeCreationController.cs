@@ -6,7 +6,7 @@ using TMPro;
 
 public class CodeCreationController : MonoBehaviour
 {
-    public List<float> requests;
+    public List<Task> requests;
 
     public int numLines = 20;
 
@@ -71,8 +71,10 @@ public class CodeCreationController : MonoBehaviour
         codeLines = new List<GameObject>();
         if (requests != null) {
             if (requests.Count <= 0) {
-        requests = new List<float>();
+        requests = new List<Task>();
         }
+        } else {
+            requests = new List<Task>();
         }
         //requests.Add(0.5f);
         displayIntermediate();
@@ -110,9 +112,9 @@ public class CodeCreationController : MonoBehaviour
 
     }
 
-    public void AddRequest(float val) {
+    public void AddRequest(Task task) {
         Start();
-        requests.Add(val);
+        requests.Add(task);
         if (!active) {
             displayIntermediate();
         }
@@ -137,7 +139,7 @@ public class CodeCreationController : MonoBehaviour
         active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
-            newDifficulty(requests[0]);
+            newDifficulty(requests[0].difficulty);
         ContentBox.position = new Vector3(ContentBox.position.x,ContentBox.position.y-20,ContentBox.position.z);
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
@@ -276,7 +278,6 @@ public class CodeCreationController : MonoBehaviour
 
     public void displayIntermediate() {
         active = false;
-        Debug.Log(requests.Count);
         if (requests.Count > 0) {
             if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
                 wipeContentbox();
@@ -300,9 +301,7 @@ public class CodeCreationController : MonoBehaviour
     public void completeCurrent() {
         wipeContentbox();
         progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
-        if (requests.Count > 0 ) {
-        requests.Remove(requests[0]);
-        }
+        
         /*Debug.Log("Percentage: " + (float)QTEClicked() / (float)QTECount * 100 + "%"); //testing this will go
         QTECount = 0;*/
         int count = 0;
@@ -312,7 +311,14 @@ public class CodeCreationController : MonoBehaviour
                 count++;
             }
         }
-        Debug.Log("Percentage: " + (float)count / (float)codeLines.Count * 100 + "%");
+
+        float percent = (float)count / (float)codeLines.Count;
+        Debug.Log("Percentage: " + percent  * 100 + "%");
+        requests[0].Complete(percent);
+        if (requests.Count > 0 ) {
+            
+            requests.Remove(requests[0]);
+        }
         codeLines.Clear();
         scrollManager.resetScrolling();
         displayIntermediate();

@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.735849, g: 0.12148449, b: 0.12148449, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -248,10 +248,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8.1
-  m_fontSizeBase: 8
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 2
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 2
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -430,8 +430,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1970367080960b840898958695320f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  email: {fileID: 0}
+  unread: {r: 1, g: 0.34469408, b: 0.3254717, a: 1}
+  read: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  selectedColour: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   emailManager: {fileID: 0}
+  selected: 0
 --- !u!114 &6983214796235310806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,10 +456,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
-    m_PressedColor: {r: 0.6792453, g: 0, b: 0, a: 1}
-    m_SelectedColor: {r: 0.3962264, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
+    m_HighlightedColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+    m_PressedColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+    m_SelectedColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

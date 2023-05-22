@@ -12,7 +12,7 @@ using System;
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
-public enum eventTypeenum {Vector2, Event, Boolean, String, Int};
+public enum eventTypeenum {Vector2, Event, Boolean, String, Int, Task};
 
 
 
@@ -48,6 +48,8 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     public UnityEvent<String> stringresponse;
 
     public UnityEvent<int> intresponse;
+
+    public UnityEvent<Task> taskresponse;
     
 
 
@@ -76,6 +78,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
         case eventTypeenum.Int:
             IntEvent tempIntEvent = (IntEvent)_Event;
             tempIntEvent.Register(new Action<int>(EnactEvent));
+            break;  
+        case eventTypeenum.Task:
+            TaskEvent tempTaskEvent = (TaskEvent)_Event;
+            tempTaskEvent.Register(new Action<Task>(EnactEvent));
             break;  
         case eventTypeenum.Event:
             Event tempEvent = (Event)_Event;
@@ -113,6 +119,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
 
     public void EnactEvent(int Int) {
         intresponse.Invoke(Int);
+    }
+
+    public void EnactEvent(Task task) {
+        taskresponse.Invoke(task);
     }
 
 

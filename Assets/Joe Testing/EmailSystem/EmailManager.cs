@@ -21,6 +21,8 @@ public class EmailManager : MonoBehaviour
 
     public List<EmailSummary> emailSummarys;
 
+    public EmailSummary currentSummary;
+
     public EmailMessage currentMessage;
 
     public EmailReply currentReply;
@@ -98,8 +100,13 @@ public class EmailManager : MonoBehaviour
         }
     }
 
-    public void Display(Email email) {
+    public void Display(EmailSummary emailSum) {
+        Email email = emailSum.email;
         if (email != null) {
+            if (currentSummary != null) {
+                currentSummary.Select(false);
+            }
+            currentSummary = emailSum;
         wipeBody(false);
         currentEmailID = email.id;
         currentReply = null;
@@ -193,5 +200,16 @@ public class EmailManager : MonoBehaviour
         emails = new List<Email>();
         emails = _emails;
         EmailSummarys();
+    }
+
+    public void deselectEmailSummary(Email em) {
+        foreach (EmailSummary sum in emailSummarys ) {
+            if (sum.email.id != em.id) {
+                sum.Select(false);
+            } else {
+                sum.Select(true);
+            }
+        }
+
     }
 }
