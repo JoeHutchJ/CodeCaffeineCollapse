@@ -12,7 +12,7 @@ using System;
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
-public enum eventTypeenum {Vector2, Event, Boolean, String, Int, Task};
+public enum eventTypeenum {Vector2, Event, Boolean, String, Int, Task, Vector3};
 
 
 
@@ -50,6 +50,8 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     public UnityEvent<int> intresponse;
 
     public UnityEvent<Task> taskresponse;
+
+    public UnityEvent<Vector3> Vector3response;
     
 
 
@@ -83,10 +85,15 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
             TaskEvent tempTaskEvent = (TaskEvent)_Event;
             tempTaskEvent.Register(new Action<Task>(EnactEvent));
             break;  
+        case eventTypeenum.Vector3:
+            Vector3Event tempVec3Event = (Vector3Event)_Event;
+            tempVec3Event.Register(new Action<Vector3>(EnactEvent));
+            break;
         case eventTypeenum.Event:
             Event tempEvent = (Event)_Event;
             tempEvent.Register(new Action(EnactEvent));
             break;
+        
 
         }
         }
@@ -123,6 +130,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
 
     public void EnactEvent(Task task) {
         taskresponse.Invoke(task);
+    }
+
+    public void EnactEvent(Vector3 vec) {
+        Vector3response.Invoke(vec);
     }
 
 

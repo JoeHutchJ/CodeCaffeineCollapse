@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59dc2d35c413160449658ab3d8fd75ca
+guid: fda8594737978054c825a29fba2504e1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: handle
-    second: {fileID: 2100000, guid: 902c311f106a4d040a73aa854495ffd0, type: 2}
+      name: Material.001
+    second: {fileID: 2100000, guid: ec9234b2b41daac46aa309226553de30, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: wood
-    second: {fileID: 2100000, guid: 4eb71df280640c84fb30f13c96247d5c, type: 2}
+      name: Material.002
+    second: {fileID: 2100000, guid: 8a029439325716c4897072e5333b828a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: cea3cbc2455a0714187b353905b5733b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
