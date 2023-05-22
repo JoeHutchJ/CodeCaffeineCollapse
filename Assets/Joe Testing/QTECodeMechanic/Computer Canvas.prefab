@@ -697,6 +697,9 @@ MonoBehaviour:
   taskresponse:
     m_PersistentCalls:
       m_Calls: []
+  Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &879309881535445791
 GameObject:
   m_ObjectHideFlags: 0
@@ -4462,7 +4465,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6297014570933565315}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.4999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7966,6 +7969,7 @@ MonoBehaviour:
   AuthenticationPrefab: {fileID: 0}
   authenticated: 0
   taskEvent: {fileID: 0}
+  resetToDeskviewEvent: {fileID: 11400000, guid: 3a7a0cff59472c447bca0d207957b138, type: 2}
 --- !u!114 &568983286904290652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8008,6 +8012,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   taskresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Vector3response:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8714099253356019907
@@ -8553,6 +8560,34 @@ PrefabInstance:
     - target: {fileID: 890825462385904815, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
       propertyPath: m_ChildControlWidth
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 916261368620291574, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 916261368620291574, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 916261368620291574, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1029679220805881267}
+    - target: {fileID: 916261368620291574, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 916261368620291574, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: clickQuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 916261368620291574, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: computerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 916261368620291574, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4009921279938745580, guid: bb8d550ea8ee3384590c83b853742687, type: 3}
       propertyPath: m_Pivot.x

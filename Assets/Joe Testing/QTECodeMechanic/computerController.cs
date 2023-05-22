@@ -31,6 +31,8 @@ public class computerController : MonoBehaviour
     List<Email>emails; 
 
     public TaskEvent taskEvent;
+
+    public Event resetToDeskviewEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -280,7 +282,7 @@ public class computerController : MonoBehaviour
     }
 
     public void clickQuitButton() {
-
+        resetToDeskviewEvent.Raise();
     }
 
 

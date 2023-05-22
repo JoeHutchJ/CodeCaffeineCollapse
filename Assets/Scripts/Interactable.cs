@@ -14,7 +14,15 @@ public class Interactable : MonoBehaviour
 
     public Vector3Event cameraMoveEvent;
 
-    public Vector3 cameraPosition;
+    public Vector3Event cameraRotationEvent;
+
+    public BoolEvent lockCameraRotation; 
+
+    Vector3 cameraPosition;
+    Quaternion cameraRotation;
+
+    public bool lockRotation;
+    
     
 
     // Start is called before the first frame update
@@ -23,6 +31,7 @@ public class Interactable : MonoBehaviour
         switch (type) {
             case InteractableType.CAMERA:
                 cameraPosition = GetChildByName.Get(this.gameObject,"CameraPosition").transform.position;
+                cameraRotation = GetChildByName.Get(this.gameObject,"CameraPosition").transform.rotation;
                 break;
             case InteractableType.EQUIP:
                 action.Invoke();
@@ -46,17 +55,23 @@ public class Interactable : MonoBehaviour
 
     public void Interact() {
         //do things
-
+        Debug.Log("interacted");
         switch (type) {
             case InteractableType.CAMERA:
-                action.Invoke();
+                //action.Invoke();
                 cameraMoveEvent.Raise(cameraPosition);
+                if (cameraRotationEvent != null && cameraRotation != null) {
+                cameraRotationEvent.Raise(cameraRotation.eulerAngles);
+                }
+                if (lockCameraRotation != null) {
+                    lockCameraRotation.Raise(lockRotation);
+                }
                 break;
             case InteractableType.EQUIP:
-                action.Invoke();
+                //action.Invoke();
                 break;
             case InteractableType.INTERACT:
-                action.Invoke();
+                //action.Invoke();
                 break;
         }
 

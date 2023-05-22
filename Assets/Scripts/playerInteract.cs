@@ -12,7 +12,7 @@ public class playerInteract : MonoBehaviour
     [SerializeField] float moveSpeed = 8.0f;
     [SerializeField] private Collider currColl;
 
-    private rayExample coll;
+    public rayExample coll;
 
     private void Start()
     {
@@ -27,8 +27,10 @@ public class playerInteract : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             currColl = coll.hitColl;
-            Debug.Log(currColl);
-        }
+            //Debug.Log(currColl);
+        
+
+        if (currColl != null) {
 
         /*if(currColl.name == "Desk")
         {
@@ -45,5 +47,11 @@ public class playerInteract : MonoBehaviour
         if (obj != null) {
             obj.Interact();
         }
+
+        }
     }
+
+    }
+
+
 }
