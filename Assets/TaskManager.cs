@@ -35,6 +35,8 @@ public class TaskManager : MonoBehaviour
 
     public TaskEvent taskEvent;
 
+    public TaskEvent receiptEvent;
+
     public bool seeAll = false;
 
     void Start()
@@ -190,12 +192,21 @@ public class TaskManager : MonoBehaviour
         toChange = task;
         }
 
+        if (!task.active) {
+            receiptEvent.Raise(task);
+        }
+
         
 
         //if not active, then send to receipt printer. 
 
 
         addTasktoUI(task, seeAll);
+
+        
+    }
+
+    public void completeTask(Task task, TaskContainer container) {
 
         
     }

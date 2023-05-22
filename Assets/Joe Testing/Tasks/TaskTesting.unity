@@ -513,6 +513,7 @@ MonoBehaviour:
   XMoreTasks: {fileID: 397777174000852153, guid: 8d441ce117bb32449aaa7316e12e6378, type: 3}
   taskContent: {fileID: 0}
   taskEvent: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+  receiptEvent: {fileID: 11400000, guid: b9e88146e06925b4799a9e59cb946043, type: 2}
   seeAll: 0
 --- !u!114 &41718602
 MonoBehaviour:
@@ -1801,6 +1802,14 @@ PrefabInstance:
       propertyPath: m_PlayAutomatically
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1827226128182048838, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+    - target: {fileID: 2223639932434330405, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 9067093048684652814, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4311514775028298988, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
@@ -7761,6 +7770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskInfoEvent: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
   anim: {fileID: 0}
+  def: {fileID: 1827226128182048838, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+  stopped: {fileID: 9067093048684652814, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
 --- !u!114 &2010647203
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -325,7 +325,7 @@ public class computerController : MonoBehaviour
 
 
     public  void newTask(Task task) {
-
+        if (task.active) {
         switch (task.taskType) {
             case TaskType.CODING:
                 CodingRequests.Add(task);
@@ -341,14 +341,19 @@ public class computerController : MonoBehaviour
                 break;
 
         }
+        }
     }
 
     public void updateTask(Task task) {
+        if (task.active) {
         Task removeTask = null;
         switch (task.taskType) {
             case TaskType.CODING:
                 foreach(Task tsk in CodingRequests) {
                     if (task.ID == tsk.ID) {
+                        if (task.complete) {
+                            taskEvent.Raise(task);
+                        }
                         removeTask = tsk;
                     }
                 }
@@ -360,6 +365,9 @@ public class computerController : MonoBehaviour
             case TaskType.REVIEW:
                 foreach(Task tsk in ReviewRequests) {
                     if (task.ID == tsk.ID) {
+                        if (task.complete) {
+                            taskEvent.Raise(task);
+                        }
                         removeTask = tsk;
                     }
                 }
@@ -371,6 +379,9 @@ public class computerController : MonoBehaviour
             case TaskType.REPORT:
                 foreach(Task tsk in ReportRequests) {
                     if (task.ID == tsk.ID) {
+                        if (task.complete) {
+                            taskEvent.Raise(task);
+                        }
                         removeTask = tsk;
                     }
                 }
@@ -384,6 +395,7 @@ public class computerController : MonoBehaviour
                 break;
 
         }
+    }
     }
  
 }

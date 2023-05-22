@@ -4465,7 +4465,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6297014570933565315}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.4999997
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7895,6 +7895,8 @@ GameObject:
   - component: {fileID: 1315234435639470920}
   - component: {fileID: 1029679220805881267}
   - component: {fileID: 568983286904290652}
+  - component: {fileID: 5946621279252838729}
+  - component: {fileID: 1263746241184239281}
   m_Layer: 5
   m_Name: Computer UI
   m_TagString: Untagged
@@ -8014,6 +8016,100 @@ MonoBehaviour:
   taskresponse:
     m_PersistentCalls:
       m_Calls: []
+  Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5946621279252838729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623360899765202687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Event: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+  eventType: 1
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+  vector2response:
+    m_PersistentCalls:
+      m_Calls: []
+  boolresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  stringresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  intresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  taskresponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1029679220805881267}
+        m_TargetAssemblyTypeName: computerController, Assembly-CSharp
+        m_MethodName: newTask
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1263746241184239281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623360899765202687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Event: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+  eventType: 1
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+  vector2response:
+    m_PersistentCalls:
+      m_Calls: []
+  boolresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  stringresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  intresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  taskresponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1029679220805881267}
+        m_TargetAssemblyTypeName: computerController, Assembly-CSharp
+        m_MethodName: updateTask
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Vector3response:
     m_PersistentCalls:
       m_Calls: []
@@ -8351,7 +8447,7 @@ RectTransform:
   m_Children:
   - {fileID: 4681447491030248720}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 44.488, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8402,7 +8498,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 100
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &25939891366289780
 MonoBehaviour:
   m_ObjectHideFlags: 0

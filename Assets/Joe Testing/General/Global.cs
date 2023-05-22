@@ -9,9 +9,17 @@ public static class Global
 
     public static float caffeine;
 
+    public static int jobQuota;
+
+    public static int jobQuotaPoints;
+
 
     public static void Update() {
         currentTime += Time.deltaTime;
+    }
+
+    public static void AddPoints(int num) {
+        jobQuotaPoints += num;
     }
 
 

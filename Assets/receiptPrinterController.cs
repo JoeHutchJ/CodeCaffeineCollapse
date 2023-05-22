@@ -17,6 +17,10 @@ public class receiptPrinterController : MonoBehaviour
 
     public Animation anim;
 
+    public AnimationClip def;
+
+    public AnimationClip stopped;
+
     bool animActive;
     // Start is called before the first frame update
     void Start()
@@ -42,12 +46,13 @@ public class receiptPrinterController : MonoBehaviour
             if (!anim.isPlaying) {
                 sendTask(currentTask);
                 animActive = false;
-                anim.Stop();
                 
             }
         } else {
             if (interactableTask == null) {
+                if (taskQueue.Count > 0) {
                 nextTask();
+                }
             }
         }
     }
@@ -64,6 +69,7 @@ public class receiptPrinterController : MonoBehaviour
         taskQueue.Remove(taskQueue[0]);
         currentTask = task;
         animActive = true;
+        anim.clip = def;
         anim.Play();
         }
 
@@ -80,6 +86,10 @@ public class receiptPrinterController : MonoBehaviour
         taskInfoEvent.Raise(interactableTask);
         interactableTask = null;
         }
+        anim.clip = stopped;
+        //anim.playAutomatically = true;
+        anim.Play();
+        anim.Stop();
     }
 
      public Task newTask(TaskType type, float difficulty, int timeLimit, bool active) {
