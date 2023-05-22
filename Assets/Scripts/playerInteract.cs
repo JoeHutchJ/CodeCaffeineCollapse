@@ -30,7 +30,7 @@ public class playerInteract : MonoBehaviour
             Debug.Log(currColl);
         }
 
-        if(currColl.name == "Desk")
+        /*if(currColl.name == "Desk")
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, deskPos, inc);
         }
@@ -38,6 +38,12 @@ public class playerInteract : MonoBehaviour
         if(currColl.name == "kitchen")
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, ktchPos, inc);
+        }*/
+
+        Interactable obj = currColl.gameObject.GetComponent<Interactable>();
+
+        if (obj != null) {
+            obj.Interact();
         }
     }
 }
