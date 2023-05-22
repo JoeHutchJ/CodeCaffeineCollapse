@@ -46,12 +46,12 @@ public class computerController : MonoBehaviour
         ReviewRequests = new List<Task>();
         ReportRequests = new List<Task>();
 
-        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent));
-        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent));
+        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent, true));
+        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent, true));
 
-        ReviewRequests.Add(new Task(TaskType.REVIEW, 0.5f, null, null, 0, taskEvent));
+        ReviewRequests.Add(new Task(TaskType.REVIEW, 0.5f, null, null, 0, taskEvent, true));
 
-        ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent));
+        ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent, true));
         
         if (!authenticated) {
             AuthenticateWindow();
