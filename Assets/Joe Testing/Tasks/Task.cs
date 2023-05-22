@@ -111,5 +111,9 @@ public class Task
         return 1.0f - ((Global.currentTime - timeStarted) / timeLimit);
     }
 
+    public void ResetTime() {
+       timeStarted = Global.currentTime;
+    }
+
 
 }

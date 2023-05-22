@@ -486,6 +486,7 @@ GameObject:
   - component: {fileID: 41718603}
   - component: {fileID: 41718602}
   - component: {fileID: 41718601}
+  - component: {fileID: 41718606}
   m_Layer: 5
   m_Name: TaskManager
   m_TagString: Untagged
@@ -505,12 +506,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b077f33a3686d4198dd2aa2fa9fd16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instantiatedTasks: []
   randomActive: 0
   taskUI: {fileID: 5528973643335481982, guid: f5a4fba5c7e1e7644bf32f85e18bb34d, type: 3}
   taskUITime: {fileID: 3383641664004438414, guid: c2c755c3f885dba40b52b94026936090, type: 3}
   XMoreTasks: {fileID: 397777174000852153, guid: 8d441ce117bb32449aaa7316e12e6378, type: 3}
   taskContent: {fileID: 0}
   taskEvent: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+  seeAll: 0
 --- !u!114 &41718602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,6 +597,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &41718606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41718600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Event: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+  eventType: 5
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+  vector2response:
+    m_PersistentCalls:
+      m_Calls: []
+  boolresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  stringresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  intresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  taskresponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 41718601}
+        m_TargetAssemblyTypeName: TaskManager, Assembly-CSharp
+        m_MethodName: AddTask
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &67820779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,15 +1755,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5649223
+      value: -3.508
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14307852
+      value: -0.256
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.66261005
+      value: -0.549
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1747,12 +1797,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: receipt printer (with baking animation)
       objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4311514775028298988, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
     - {fileID: 5994721076960434074, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2010647202}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2010647201}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2010647204}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2010647203}
   m_SourcePrefab: {fileID: 100100000, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
 --- !u!1 &338869939
 GameObject:
@@ -2551,7 +2617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639466030
@@ -2574,9 +2640,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fb520d0f37f0b9e4d8d103c903d30ec9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8317acb398ed0d4d89acf29bf65e6f0, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2775,8 +2841,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.8466034, y: -52.439606}
-  m_SizeDelta: {x: 260.6718, y: 377.7272}
+  m_AnchoredPosition: {x: -2.8466034, y: -38.65207}
+  m_SizeDelta: {x: 260.6718, y: 415.2184}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &738259095
 MonoBehaviour:
@@ -5787,6 +5853,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408891798}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1415412251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+  m_PrefabInstance: {fileID: 275795407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1419097797
 GameObject:
   m_ObjectHideFlags: 0
@@ -7629,6 +7700,120 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
   m_PrefabInstance: {fileID: 275795407}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2010647201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415412251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Event: {fileID: 11400000, guid: b9e88146e06925b4799a9e59cb946043, type: 2}
+  eventType: 5
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+  vector2response:
+    m_PersistentCalls:
+      m_Calls: []
+  boolresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  stringresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  intresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  taskresponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2010647202}
+        m_TargetAssemblyTypeName: receiptPrinterController, Assembly-CSharp
+        m_MethodName: AddTask
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2010647202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415412251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7450a7d078b65974090f44b06a56ef94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskInfoEvent: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+  anim: {fileID: 0}
+--- !u!114 &2010647203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415412251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65dc5fa8bfd2294197204081bc23815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2010647202}
+        m_TargetAssemblyTypeName: receiptPrinterController, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  cameraMoveEvent: {fileID: 0}
+  cameraRotationEvent: {fileID: 0}
+  lockCameraRotation: {fileID: 0}
+  lockRotation: 0
+--- !u!65 &2010647204
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415412251}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.023908729, y: 0.01624658, z: 0.03923669}
+  m_Center: {x: 0.0006996222, y: 0.0013425774, z: 0.00093572674}
 --- !u!1 &2012368407
 GameObject:
   m_ObjectHideFlags: 0
@@ -8420,6 +8605,10 @@ PrefabInstance:
     - target: {fileID: 397777174000852153, guid: 8d441ce117bb32449aaa7316e12e6378, type: 3}
       propertyPath: m_Name
       value: X More Tasks
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028871058938963692, guid: 8d441ce117bb32449aaa7316e12e6378, type: 3}
+      propertyPath: m_fontSize
+      value: 30.65
       objectReference: {fileID: 0}
     - target: {fileID: 8876267049932673384, guid: 8d441ce117bb32449aaa7316e12e6378, type: 3}
       propertyPath: m_Pivot.x
