@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Sirenix.OdinInspector;
+
 public class ConversationHolder : MonoBehaviour
 {
 
     public ConversationEvent ConvEvent;
 
-    public Conversation convo;
+    [SerializeField, InlineEditor] public Conversation convo;
 
     AudioSource audio;
 

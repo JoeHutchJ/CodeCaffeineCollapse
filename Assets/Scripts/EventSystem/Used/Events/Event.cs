@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+using Sirenix.OdinInspector;
+
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
@@ -12,6 +14,7 @@ using System;
 
 [CreateAssetMenu(fileName = "New Event", menuName = "ScriptableObjects/Events")] //custom inspector
 //Adds a folder when I right-click, to create a "New Event", among other events.
+
 public class Event: BaseEvent 
 {
 

@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
-public class Email
+[CreateAssetMenu(fileName = "New Email", menuName = "ScriptableObjects/Email")] //custom inspector
+public class Email : ScriptableObject
 {
     public int id;
     public Author Author;

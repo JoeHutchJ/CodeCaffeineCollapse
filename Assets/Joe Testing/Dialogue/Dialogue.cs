@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+
+using Sirenix.OdinInspector;
+
 public static class DialogueInfo {
 
     public static List<Response> getResponses(bool skippable, int num) {
 
-    Object[] responseobjs = Resources.LoadAll("Responses");
+    UnityEngine.Object[] responseobjs = Resources.LoadAll("Responses");
     List<Response> allResponses = new List<Response>();
-    Debug.Log("Count : " + allResponses.Count);
     List<Response> responses = new List<Response>();
 
-    foreach (Object obj in responseobjs) {
+    foreach (UnityEngine.Object obj in responseobjs) {
         allResponses.Add((Response)obj);
 
     }
@@ -55,10 +58,11 @@ public enum ResponseType {AFFIRM, NEGATIVE };
 
 
 [CreateAssetMenu(fileName = "New Dialogue", menuName = "ScriptableObjects/Dialogue")] //custom inspector
-public class Dialogue : ScriptableObject
+[Serializable]
+public class Dialogue : SerializedScriptableObject
 {
-
-    public string dialogue;
+    [SerializeReference]
+    [SerializeField] public string dialogue;
     public AudioClip audio;
 
     public bool skippable;
@@ -78,9 +82,10 @@ public class Dialogue : ScriptableObject
 
 
 [CreateAssetMenu(fileName = "Conversation", menuName = "ScriptableObjects/Conversation")] //custom inspector
-public class Conversation: ScriptableObject {
-
-    public List<Dialogue> dialogues;
+[Serializable]
+public class Conversation: SerializedScriptableObject {
+    [SerializeReference]
+    [SerializeField, InlineEditor] public List<Dialogue> dialogues;
 
     public string name; 
 
