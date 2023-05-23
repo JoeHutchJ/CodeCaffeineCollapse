@@ -25,6 +25,7 @@ public class computerController : MonoBehaviour
     List<Transform> Tabs;
 
     List<Task> CodingRequests;
+    
     List<Task>ReviewRequests;
     List<Task>ReportRequests;
     
@@ -46,12 +47,12 @@ public class computerController : MonoBehaviour
         ReviewRequests = new List<Task>();
         ReportRequests = new List<Task>();
 
-        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent));
-        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent));
+        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent, true));
+        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent, true));
 
-        ReviewRequests.Add(new Task(TaskType.REVIEW, 0.5f, null, null, 0, taskEvent));
+        ReviewRequests.Add(new Task(TaskType.REVIEW, 0.5f, null, null, 0, taskEvent, true));
 
-        ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent));
+        ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent, true));
         
         if (!authenticated) {
             AuthenticateWindow();
@@ -325,7 +326,7 @@ public class computerController : MonoBehaviour
 
 
     public  void newTask(Task task) {
-
+        if (task.active) {
         switch (task.taskType) {
             case TaskType.CODING:
                 CodingRequests.Add(task);
@@ -341,14 +342,19 @@ public class computerController : MonoBehaviour
                 break;
 
         }
+        }
     }
 
     public void updateTask(Task task) {
+        if (task.active) {
         Task removeTask = null;
         switch (task.taskType) {
             case TaskType.CODING:
                 foreach(Task tsk in CodingRequests) {
                     if (task.ID == tsk.ID) {
+                        if (task.complete) {
+                            taskEvent.Raise(task);
+                        }
                         removeTask = tsk;
                     }
                 }
@@ -360,6 +366,9 @@ public class computerController : MonoBehaviour
             case TaskType.REVIEW:
                 foreach(Task tsk in ReviewRequests) {
                     if (task.ID == tsk.ID) {
+                        if (task.complete) {
+                            taskEvent.Raise(task);
+                        }
                         removeTask = tsk;
                     }
                 }
@@ -371,6 +380,9 @@ public class computerController : MonoBehaviour
             case TaskType.REPORT:
                 foreach(Task tsk in ReportRequests) {
                     if (task.ID == tsk.ID) {
+                        if (task.complete) {
+                            taskEvent.Raise(task);
+                        }
                         removeTask = tsk;
                     }
                 }
@@ -384,6 +396,59 @@ public class computerController : MonoBehaviour
                 break;
 
         }
+    }
+    }
+
+    public Task getTaskbyId(int id) {
+        foreach(Task task in CodingRequests) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        foreach(Task task in ReviewRequests) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        foreach(Task task in ReportRequests) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        return null;
+    }
+
+    public void removeTaskbyId(int id) {
+        List<Task> listToremove = null;
+        Task toRemove = null;
+        foreach(Task task in CodingRequests) {
+            if (task.ID == id) {
+                listToremove = CodingRequests;
+                toRemove = task;
+            }
+        }
+        foreach(Task task in ReviewRequests) {
+            if (task.ID == id) {
+                                listToremove = ReviewRequests;
+                toRemove = task;
+            }
+        }
+        foreach(Task task in ReportRequests) {
+            if (task.ID == id) {
+                                listToremove = ReportRequests;
+                toRemove = task;
+            }
+        }
+
+        if (listToremove != null && toRemove != null) {
+            listToremove.Remove(toRemove);
+        }
+    }
+
+
+    public void CompleteTask(Task task) {
+        removeTaskbyId(task.ID);
+
     }
  
 }

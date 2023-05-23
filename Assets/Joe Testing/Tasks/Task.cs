@@ -17,6 +17,10 @@ public static class TaskInfo {
 
     };
 
+    public static int getPoint(float difficulty) {
+        return (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 100);
+    }
+
 }
 
 
@@ -43,20 +47,22 @@ public class Task
 
     public float completePercent;
 
+    public int points;
+
     public bool expired;
 
     public bool active; //is displayed / able to completed by user...
 
-    public TaskEvent Event; 
+    public TaskEvent CompleteEvent; 
 
-    public Task(TaskType type, float _difficulty, string _name, string _prompt, float _timeLimit, TaskEvent _event) {
+    public Task(TaskType type, float _difficulty, string _name, string _prompt, float _timeLimit, TaskEvent _event, bool _active) {
         taskType = type;
         difficulty = _difficulty;
         name = _name;
         prompt = _prompt;
         timeLimit = _timeLimit;
-
-        Event = _event;
+        active = _active;
+        CompleteEvent = _event;
         TaskInfo.currentId++;
         ID = TaskInfo.currentId;
 
@@ -69,11 +75,13 @@ public class Task
         }
 
         if (timeLimit > 0) {
-            timeTicking = false;
-        }
+            timeTicking = true;
+        } 
         
+        points = TaskInfo.getPoint(difficulty);
 
         timeStarted = Global.currentTime;
+
 
         
 
@@ -93,10 +101,24 @@ public class Task
     }
 
     public void Complete(float percent) {
+        Debug.Log("complete");
         complete = true;
         completePercent = percent;
 
-        Event.Raise(this);
+        CompleteEvent.Raise(this);
+    }
+
+    public float GetTimeElapsed() {
+        return 1.0f - ((Global.currentTime - timeStarted) / timeLimit);
+    }
+
+    public void ResetTime() {
+       timeStarted = Global.currentTime;
+    }
+
+    public int getPoints() {
+
+        return (int)(completePercent * points);
     }
 
 

@@ -112,10 +112,12 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void AddRequest(Task task) {
+        if (task.taskType == TaskType.REPORT && task.active) {
         Start();
         requests.Add(task);
         if (!active) {
             displayIntermediate();
+        }
         }
     }
 

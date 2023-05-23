@@ -103,10 +103,12 @@ public class ReviewController : MonoBehaviour
     }
 
     public void AddRequest(Task task) {
+        if (task.taskType == TaskType.REVIEW && task.active) {
         Start();
         requests.Add(task);
         if (!active) {
             displayIntermediate();
+        }
         }
     }
 

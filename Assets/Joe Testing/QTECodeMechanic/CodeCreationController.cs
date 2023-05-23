@@ -113,10 +113,12 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void AddRequest(Task task) {
+        if (task.taskType == TaskType.CODING && task.active) {
         Start();
         requests.Add(task);
         if (!active) {
             displayIntermediate();
+        }
         }
     }
 
