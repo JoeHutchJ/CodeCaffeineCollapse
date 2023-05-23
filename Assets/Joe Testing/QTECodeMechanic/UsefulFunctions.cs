@@ -78,7 +78,22 @@ public static class UsefulFunctions
                  return Sprite.Create(texture,rec,new Vector2(0,0),.01f);
                  
     }
- }
+ 
+
+
+
+ public static List<T> Shuffle<T>(List<T> ts) { //https://forum.unity.com/threads/clever-way-to-shuffle-a-list-t-in-one-line-of-c-code.241052/
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i) {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+        return ts;
+    }
+}
 
  
 

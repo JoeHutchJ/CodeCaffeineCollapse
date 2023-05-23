@@ -348,7 +348,6 @@ GameObject obj = Instantiate(taskUITime, taskContent);
     public void updateQuotaBar() {
         Image fill = GetChildByName.Get(gameObject,"QuotaBarFill").GetComponent<Image>();
         fill.fillAmount = Global.QuotaPercent();
-        Debug.Log(fill.fillAmount + " " + Global.QuotaPercent());
 
     }
 }
