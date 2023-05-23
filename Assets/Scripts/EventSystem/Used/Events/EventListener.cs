@@ -12,7 +12,7 @@ using System;
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
-public enum eventTypeenum {Vector2, Event, Boolean, String, Int, Task, Vector3, Conversation};
+public enum eventTypeenum {Vector2, Event, Boolean, String, Int, Task, Vector3, Conversation, Email};
 
 
 
@@ -54,6 +54,8 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     public UnityEvent<Vector3> Vector3response;
 
     public UnityEvent<Conversation> Conversationresponse;
+
+    public UnityEvent<Email> Emailresponse;
     
 
 
@@ -94,6 +96,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
         case eventTypeenum.Conversation:
             ConversationEvent tempConvEvent = (ConversationEvent)_Event;
             tempConvEvent.Register(new Action<Conversation>(EnactEvent));
+            break;
+        case eventTypeenum.Email:
+            EmailEvent tempEmailEvent = (EmailEvent)_Event;
+            tempEmailEvent.Register(new Action<Email>(EnactEvent));
             break;
         case eventTypeenum.Event:
             Event tempEvent = (Event)_Event;
@@ -144,6 +150,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
 
     public void EnactEvent(Conversation CONV) {
         Conversationresponse.Invoke(CONV);
+    }
+
+    public void EnactEvent(Email CONV) {
+        Emailresponse.Invoke(CONV);
     }
 
 
