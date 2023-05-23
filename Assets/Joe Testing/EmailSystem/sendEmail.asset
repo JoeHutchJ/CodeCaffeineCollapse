@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1137305049, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
-  m_Name: InspectorConfig
+  m_Script: {fileID: 11500000, guid: daa0659c6c3bf4b4096bd40e414e9ebe, type: 3}
+  m_Name: sendEmail
   m_EditorClassIdentifier: 
-  enableOdinInInspector: 0
-  defaultEditorBehaviour: 15
-  processMouseMoveInInspector: 1
-  drawingConfig:
-    configs: []

@@ -413,6 +413,7 @@ MonoBehaviour:
   timeTask: 0
   height: 140
   expiredColour: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
+  completeColour: {r: 0, g: 0.5294118, b: 0.07058824, a: 1}
 --- !u!1 &6339715945059483692
 GameObject:
   m_ObjectHideFlags: 0

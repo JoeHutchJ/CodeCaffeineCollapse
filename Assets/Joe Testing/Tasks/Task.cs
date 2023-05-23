@@ -92,7 +92,7 @@ public class Task
 
     public void Update() {
         //timeElapsed +=  Time.deltaTime;
-        if (timeTicking) {
+        if (timeTicking && !complete) {
         if (Global.currentTime - timeStarted >= timeLimit ) {
             expired = true;
 

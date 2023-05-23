@@ -347,9 +347,6 @@ public class ReportCreationController : MonoBehaviour
     public void completeCurrent() {
         wipeContentbox();
         progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
-        if (requests.Count > 0 ) {
-        requests.Remove(requests[0]);
-        }
         /*Debug.Log("Percentage: " + (float)QTEClicked() / (float)QTECount * 100 + "%"); //testing this will go
         QTECount = 0;*/
         int count = 0;

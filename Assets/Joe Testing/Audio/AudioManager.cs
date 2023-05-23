@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public float randomRange;
 
     float timeElapsed;
+    
     // Start is called before the first frame update
     void Start()
     {

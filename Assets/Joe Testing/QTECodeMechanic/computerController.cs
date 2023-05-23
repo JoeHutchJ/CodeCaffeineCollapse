@@ -34,6 +34,8 @@ public class computerController : MonoBehaviour
     public TaskEvent taskEvent;
 
     public Event resetToDeskviewEvent;
+
+    AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,17 +44,19 @@ public class computerController : MonoBehaviour
             Tabs.Add(child);
         }
 
+        audioManager = GetComponent<AudioManager>();
+
         emails = new List<Email>();
         CodingRequests = new List<Task>();
         ReviewRequests = new List<Task>();
         ReportRequests = new List<Task>();
 
-        CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent, true));
+        /*CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent, true));
         CodingRequests.Add(new Task(TaskType.CODING, 0.5f, null, null, 0, taskEvent, true));
 
         ReviewRequests.Add(new Task(TaskType.REVIEW, 0.5f, null, null, 0, taskEvent, true));
 
-        ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent, true));
+        ReportRequests.Add(new Task(TaskType.REPORT, 0.5f, null, null, 0, taskEvent, true));*/
         
         if (!authenticated) {
             AuthenticateWindow();
@@ -117,6 +121,13 @@ public class computerController : MonoBehaviour
 
 
 
+    }
+
+    public void addEmail(Email email) {
+        emails.Add(email);
+        updateTabs();
+        updateWindow();
+        audioManager.Play("Notification");
     }
 
 
