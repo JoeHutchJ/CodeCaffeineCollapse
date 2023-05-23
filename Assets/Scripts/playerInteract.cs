@@ -22,13 +22,14 @@ public class playerInteract : MonoBehaviour
 
     private void Update()
     {
+        
         var inc = moveSpeed * Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0))
         {
             currColl = coll.hitColl;
             //Debug.Log(currColl);
-        
+        if (!Global.cursorMode) {
 
         if (currColl != null) {
 
@@ -41,13 +42,13 @@ public class playerInteract : MonoBehaviour
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, ktchPos, inc);
         }*/
-
         Interactable obj = currColl.gameObject.GetComponent<Interactable>();
 
         if (obj != null) {
             obj.Interact();
         }
 
+        }
         }
     }
 

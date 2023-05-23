@@ -24,6 +24,12 @@ public class DialogueManager : MonoBehaviour
 
     bool dialoguePlaying = false;
 
+    bool responseSelected = false;
+
+    bool responsePlaying = false;
+
+    Response currentResponse;
+
     public BoolEvent lockMouseEvent;
 
     public Vector3Event cameraRotationEvent;
@@ -55,6 +61,14 @@ public class DialogueManager : MonoBehaviour
                 dialoguePlaying = false;
             }
         }
+
+        if (responsePlaying) {
+            if (!currentConversation.audioSource.isPlaying) {
+                responsePlaying = false;
+                SelectResponse(currentResponse);
+            }
+
+        }
     }
 
     public void WipeAll() {
@@ -85,6 +99,7 @@ public class DialogueManager : MonoBehaviour
             setDialogue(currentDialogue);
             
         } else {
+            lockMouseEvent.Raise(false);
             WipeAll();
         }
 
@@ -132,12 +147,34 @@ public class DialogueManager : MonoBehaviour
         currentConversation = null;
         dialogueIndex = 0;
         currentDialogue = null;
+        lockMouseEvent.Raise(false);
         WipeAll();
 
     }
 
     public void SelectResponse(Response response) {
+        if (!responseSelected) {
+        responseSelected = true;
+        currentResponse = response;
+        if (response.responseAudio != null) {
+            currentConversation.audioSource.clip = response.responseAudio;
+            currentConversation.audioSource.Play();
+            responsePlaying = true;
+            WipeAll();
+
+        } else {
         if (response.type == ResponseType.AFFIRM) {
+            nextDialogue();
+
+        } else {
+            skipConversation();
+        }
+        }
+
+    } else {
+        currentResponse = null;
+        responseSelected = false;
+         if (response.type == ResponseType.AFFIRM) {
             nextDialogue();
 
         } else {
@@ -145,11 +182,15 @@ public class DialogueManager : MonoBehaviour
         }
 
     }
+    }
+    
 
     public void recieveConversation(Conversation convo) {
         currentConversation = convo;
         dialogueIndex = 0;
         currentDialogue = null;
+        lockMouseEvent.Raise(true);
+        cameraRotationEvent.Raise(Quaternion.LookRotation(convo.source - Camera.main.transform.position, Vector3.up).eulerAngles);
         nextDialogue();
 
     }

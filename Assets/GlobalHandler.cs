@@ -25,4 +25,8 @@ public class GlobalHandler : MonoBehaviour
 
 
     }
+
+    public void setCursorMode(bool locked) {
+        Global.cursorMode = locked;
+    }
 }

@@ -21,7 +21,7 @@ public class ConversationHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Send();
+        //Send();
     }
 
     public void Send() {
@@ -33,5 +33,9 @@ public class ConversationHolder : MonoBehaviour
         }
 
 
+    }
+
+    public void Interact() {
+        Send();
     }
 }

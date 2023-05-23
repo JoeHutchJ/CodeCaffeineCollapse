@@ -13,6 +13,8 @@ public static class Global
 
     public static int jobQuotaPoints;
 
+    public static bool cursorMode = false;
+
 
     public static void Update() {
         currentTime += Time.deltaTime;
@@ -32,6 +34,7 @@ public static class Global
         return amount;
         }
     }
+
 
 
 
