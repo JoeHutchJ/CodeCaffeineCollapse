@@ -12,6 +12,8 @@ public class TaskContainer : MonoBehaviour
     public int height;
 
     public Color expiredColour;
+
+    public Color completeColour;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,11 @@ public class TaskContainer : MonoBehaviour
 
     public void setExpired() {
         GetComponent<Image>().color = expiredColour;
+
+    }
+
+    public void setComplete() {
+        GetComponent<Image>().color = completeColour;
 
     }
 }

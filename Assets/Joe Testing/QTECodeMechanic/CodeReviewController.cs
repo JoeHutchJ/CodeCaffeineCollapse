@@ -269,12 +269,13 @@ public class ReviewController : MonoBehaviour
         wipeContentbox();
         progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
         if (requests.Count > 0 ) {
+            float percent = (float)QTEClicked() / (float)QTECount;
+            requests[0].Complete(percent);
         requests.Remove(requests[0]);
         }
-        float percent = (float)QTEClicked() / (float)QTECount;
-        Debug.Log("Percentage: " + percent * 100 + "%"); //testing this will go
+        //Debug.Log("Percentage: " + percent * 100 + "%"); //testing this will go
         
-        requests[0].Complete(percent);
+        
         if (requests.Count > 0 ) {
         requests.Remove(requests[0]);
         }

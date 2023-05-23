@@ -37,6 +37,10 @@ public class TaskManager : MonoBehaviour
 
     public TaskEvent receiptEvent;
 
+    public EmailEvent sendEmailEvent;
+
+    AudioManager audioManager;
+
     public bool seeAll = false;
 
     void Start()
@@ -48,6 +52,8 @@ public class TaskManager : MonoBehaviour
         taskUIheight = taskUI.GetComponent<TaskContainer>().height;
         taskUItimeHeight = taskUITime.GetComponent<TaskContainer>().height;
         taskContentHeight = taskContent.GetComponent<RectTransform>().sizeDelta.y;
+        audioManager = GetComponent<AudioManager>();
+    
         clearAlltasks();
 
         
@@ -128,11 +134,14 @@ public class TaskManager : MonoBehaviour
             task.Update();
             if (task.expired) {
                 toDelete.Add(task);
+            } 
+            if (task.complete) {
+                toDelete.Add(task);
             }
         }
         foreach(Task task in toDelete.ToArray()) {
             tasks.Remove(task);
-            UpdateAllTasks();
+            //UpdateAllTasks();
         }
         foreach (TaskContainer task in instantiatedTasks) {
             if (task != null) {
@@ -141,7 +150,13 @@ public class TaskManager : MonoBehaviour
                 if (task.task.expired) {
                     task.setExpired();
                     StartCoroutine(DestroyAfterDelay(task.transform, 3));
-                } else {
+                } else if (task.task.complete) {
+                    task.setComplete();
+                    StartCoroutine(DestroyAfterDelay(task.transform, 3));
+
+                }
+                
+                else {
                     task.SetTimeBar(task.task.GetTimeElapsed());
                 }
             }
@@ -168,7 +183,7 @@ public class TaskManager : MonoBehaviour
         }*/
         clearAlltasks();
         UpdateAllTasks();
-        StopAllCoroutines();
+        //StopAllCoroutines();
     }
 
     public void UpdateAllTasks() {
@@ -210,17 +225,34 @@ public class TaskManager : MonoBehaviour
 
     public void completeTask(Task task) {
         if (task.complete) {
-            Debug.Log(task.getPoints());
-            Global.AddPoints(task.getPoints());      
+            Global.AddPoints(task.getPoints());   
+            StartCoroutine(sendEmail(task.taskType, task.completePercent));
+            audioManager.Play("Task Complete");
+
 
         }
         
     }
 
-    public void sendEmail(TaskType type, float percent) {
+    IEnumerator sendEmail(TaskType type, float percent) {
+        EmailSentiment sentiment = EmailSentiment.POSITIVE;
+        if (percent > 0.5) {
+            sentiment = EmailSentiment.POSITIVE;
+        } else {
+            sentiment = EmailSentiment.NEGATIVE;
+        }
+        Email email = EmailBuilder.newEmail(sentiment, type);
+
+        yield return new WaitForSeconds(5.0f);
         
+        sendEmailEvent.Raise(email);
+
+
+        //StopAllCoroutines();
 
     }
+
+
 
 
     public void addTasktoUI(Task task, bool seeAll) {    

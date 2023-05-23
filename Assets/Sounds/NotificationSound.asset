@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1137305049, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
-  m_Name: InspectorConfig
+  m_Script: {fileID: 11500000, guid: 5f9e54e378912f140a446d5bccb6a4a2, type: 3}
+  m_Name: NotificationSound
   m_EditorClassIdentifier: 
-  enableOdinInInspector: 0
-  defaultEditorBehaviour: 15
-  processMouseMoveInInspector: 1
-  drawingConfig:
-    configs: []
+  clip: {fileID: 8300000, guid: e43115ac54f4ebf4b8b37e875749bada, type: 3}
+  name: Notification
+  loop: 0
+  relativeVolume: 0.5
+  spatial: 0
+  range: 0

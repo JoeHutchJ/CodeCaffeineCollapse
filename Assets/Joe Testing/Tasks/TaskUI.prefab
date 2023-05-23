@@ -413,4 +413,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTask: 0
   height: 100
-  expiredColour: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 0}
+  expiredColour: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
+  completeColour: {r: 0, g: 0.5283019, b: 0.067149185, a: 1}

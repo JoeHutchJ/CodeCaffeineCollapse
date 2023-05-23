@@ -93,6 +93,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void nextDialogue() {
+        if (currentConversation != null) {
         if (dialogueIndex + 1 <= currentConversation.dialogues.Count) {
             currentDialogue = currentConversation.dialogues[dialogueIndex];
             dialogueIndex++;
@@ -101,6 +102,7 @@ public class DialogueManager : MonoBehaviour
         } else {
             lockMouseEvent.Raise(false);
             WipeAll();
+        }
         }
 
     }
