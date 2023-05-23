@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.05519867, y: -4.9813995}
+  m_AnchoredPosition: {x: 0.05517578, y: -4.9813843}
   m_SizeDelta: {x: -14.4435, y: -9.9628}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1992024383321689510
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.7
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 22.6122, y: 9.9836}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150.8675, y: 66.6105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2968027164634066406
@@ -257,7 +257,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5484822716385183860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4729183295412945948}
+        m_TargetAssemblyTypeName: ResponseContainer, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4729183295412945948
 MonoBehaviour:
   m_ObjectHideFlags: 0

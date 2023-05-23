@@ -6,7 +6,7 @@ public static class DialogueInfo {
 
     public static List<Response> getResponses(bool skippable, int num) {
 
-    Object[] responseobjs = Resources.LoadAll("Responses",typeof(Response));
+    Object[] responseobjs = Resources.LoadAll("Responses");
     List<Response> allResponses = new List<Response>();
     Debug.Log("Count : " + allResponses.Count);
     List<Response> responses = new List<Response>();
@@ -54,18 +54,6 @@ public static class DialogueInfo {
 public enum ResponseType {AFFIRM, NEGATIVE };
 
 
-[CreateAssetMenu(fileName = "New Response", menuName = "ScriptableObjects/Response")]
-public class Response: ScriptableObject {
-
-    public string responseText;
-
-    public AudioClip responseAudio;
-    public ResponseType type;
-
-
-
-}
-
 [CreateAssetMenu(fileName = "New Dialogue", menuName = "ScriptableObjects/Dialogue")] //custom inspector
 public class Dialogue : ScriptableObject
 {
@@ -96,7 +84,9 @@ public class Conversation: ScriptableObject {
 
     public string name; 
 
-    public AudioSource source;
+    public AudioSource audioSource;
+
+    public Vector3 source;
 
 
 

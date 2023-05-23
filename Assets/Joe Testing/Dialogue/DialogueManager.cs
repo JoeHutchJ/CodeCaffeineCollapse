@@ -21,13 +21,25 @@ public class DialogueManager : MonoBehaviour
     List<ResponseContainer>instantiatedResponses;
 
     public GameObject responsePrefab;
+
+    bool dialoguePlaying = false;
+
+    public BoolEvent lockMouseEvent;
+
+    public Vector3Event cameraRotationEvent;
+
+    // 
+
     void Start()
     {
         responsesBox = GetChildByName.Get(gameObject, "Responses").transform;
         dialogueBox =  GetChildByName.Get(gameObject, "Dialogue").transform;
         skipButton =  GetChildByName.Get(gameObject, "SkipDialogue").transform;
         instantiatedResponses = new List<ResponseContainer>();
-        nextDialogue();
+        WipeAll();
+        if (currentConversation != null && dialogueIndex == 0) {
+        //nextDialogue();
+        }
     }
 
     // Update is called once per frame
@@ -36,10 +48,18 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetKeyUp("f")) {
             nextDialogue();
         }
+
+        if (dialoguePlaying) {
+            if (!currentConversation.audioSource.isPlaying) {
+                setResponses(currentDialogue);
+                dialoguePlaying = false;
+            }
+        }
     }
 
     public void WipeAll() {
         GetChildByName.Get(gameObject,"DialogueText").GetComponent<TMP_Text>().text = "";
+        hideMain(true);
         WipeResponses();
 
     }
@@ -54,11 +74,16 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public void hideMain(bool hide) {
+        dialogueBox.gameObject.SetActive(!hide);
+    }
+
     public void nextDialogue() {
         if (dialogueIndex + 1 <= currentConversation.dialogues.Count) {
             currentDialogue = currentConversation.dialogues[dialogueIndex];
             dialogueIndex++;
             setDialogue(currentDialogue);
+            
         } else {
             WipeAll();
         }
@@ -67,11 +92,20 @@ public class DialogueManager : MonoBehaviour
 
     public void setDialogue(Dialogue dialogue) {
         WipeAll();
+        hideMain(false);
         GetChildByName.Get(gameObject,"DialogueText").GetComponent<TMP_Text>().text = dialogue.dialogue;
 
         hideSkip(!dialogue.skippable);
 
+        if (currentDialogue.audio != null) {
+
+        currentConversation.audioSource.clip = currentDialogue.audio;
+                currentConversation.audioSource.Play();
+                dialoguePlaying = true;
+        } else {
+
         setResponses(dialogue);
+        }
 
 
     }
@@ -79,9 +113,7 @@ public class DialogueManager : MonoBehaviour
     public void setResponses(Dialogue dialogue) {
         if (dialogue.respondable) {
             dialogue.populateResponses();
-            Debug.Log(dialogue.responses.Length);
             foreach(Response response in dialogue.responses) {
-                Debug.Log(response.responseText);
                 addResponse(response);
             }
         }
@@ -91,8 +123,34 @@ public class DialogueManager : MonoBehaviour
     public void addResponse(Response response) {
 
         GameObject obj = Instantiate(responsePrefab, responsesBox);
-        obj.GetComponent<ResponseContainer>().Setup(response);
+        obj.GetComponent<ResponseContainer>().Setup(response, this);
         instantiatedResponses.Add(obj.GetComponent<ResponseContainer>());
+
+    }
+
+    public void skipConversation() {
+        currentConversation = null;
+        dialogueIndex = 0;
+        currentDialogue = null;
+        WipeAll();
+
+    }
+
+    public void SelectResponse(Response response) {
+        if (response.type == ResponseType.AFFIRM) {
+            nextDialogue();
+
+        } else {
+            skipConversation();
+        }
+
+    }
+
+    public void recieveConversation(Conversation convo) {
+        currentConversation = convo;
+        dialogueIndex = 0;
+        currentDialogue = null;
+        nextDialogue();
 
     }
 }

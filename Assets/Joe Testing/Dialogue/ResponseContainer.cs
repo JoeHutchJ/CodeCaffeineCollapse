@@ -6,6 +6,8 @@ using TMPro;
 public class ResponseContainer : MonoBehaviour
 {
     Response response;
+
+    DialogueManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +20,15 @@ public class ResponseContainer : MonoBehaviour
         
     }
 
-    public void Setup(Response _response) {
+    public void Setup(Response _response, DialogueManager _manager) {
         response = _response;
+        manager = _manager;
         TMP_Text textBox = transform.Find("ResponseText").GetComponent<TMP_Text>();
         textBox.text = response.responseText;
+    }
+
+    public void Select() {
+        manager.SelectResponse(response);
+
     }
 }
