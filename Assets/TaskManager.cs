@@ -211,10 +211,15 @@ public class TaskManager : MonoBehaviour
     public void completeTask(Task task) {
         if (task.complete) {
             Debug.Log(task.getPoints());
-            Global.AddPoints(task.getPoints())
-    ;
+            Global.AddPoints(task.getPoints())      
+
         }
         
+    }
+
+    public void sendEmail(TaskType type, float percent) {
+        
+
     }
 
 
