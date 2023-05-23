@@ -23,12 +23,15 @@ public class receiptPrinterController : MonoBehaviour
 
     public AnimationClip stopped;
 
+    public AudioManager audioManager;
+
     bool animActive;
     // Start is called before the first frame update
     void Start()
     {
         taskQueue = new List<Task>();
         anim = GetComponent<Animation>();
+        audioManager = GetComponent<AudioManager>();
 
         AddTask(newTask(TaskType.CODING, 0.5f, 10, true));
 
@@ -73,6 +76,7 @@ public class receiptPrinterController : MonoBehaviour
         animActive = true;
         anim.clip = def;
         anim.Play();
+        audioManager.Play();
         }
 
     }

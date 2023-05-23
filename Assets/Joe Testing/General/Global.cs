@@ -15,6 +15,8 @@ public static class Global
 
     public static bool cursorMode = false;
 
+    public static float volume = 1.0f;
+
 
     public static void Update() {
         currentTime += Time.deltaTime;
