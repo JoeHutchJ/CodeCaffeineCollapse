@@ -8,7 +8,6 @@ public static class DialogueInfo {
 
     Object[] responseobjs = Resources.LoadAll("Responses");
     List<Response> allResponses = new List<Response>();
-    Debug.Log("Count : " + allResponses.Count);
     List<Response> responses = new List<Response>();
 
     foreach (Object obj in responseobjs) {
@@ -68,7 +67,6 @@ public class Dialogue : ScriptableObject
     public Response[] responses; 
     
     public void populateResponses() {
-        Debug.Log(respondable);
         if (respondable) {
              responses = DialogueInfo.getResponses(skippable, 3).ToArray();
         }
