@@ -73,6 +73,7 @@ public class pickUpObject : MonoBehaviour
 
     private void Update()
     {
+        if (!Global.cursorMode) {
         GameObject pickupable = getGameObject();
 
         if (pickupable != null) {
@@ -107,6 +108,8 @@ public class pickUpObject : MonoBehaviour
                 }
             }
         }
+
+    }
 
     }
 
