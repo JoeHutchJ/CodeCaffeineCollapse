@@ -9,6 +9,8 @@ public class receiptPrinterController : MonoBehaviour
 
     public TaskEvent taskInfoEvent;
 
+    public TaskEvent completeEvent;
+
     public List<Task> taskQueue;
 
     public Task currentTask;
@@ -94,7 +96,7 @@ public class receiptPrinterController : MonoBehaviour
 
      public Task newTask(TaskType type, float difficulty, int timeLimit, bool active) {
 
-        return new Task(type, difficulty, "", "", timeLimit, taskInfoEvent, active);
+        return new Task(type, difficulty, "", "", timeLimit, completeEvent, active);
 
      }
 }

@@ -63,6 +63,8 @@ public class TaskManager : MonoBehaviour
             seeAll = !seeAll;
             UpdateAllTasks();
         }
+
+        updateQuotaBar();
     }
 
     public void clearAlltasks() {
@@ -206,8 +208,12 @@ public class TaskManager : MonoBehaviour
         
     }
 
-    public void completeTask(Task task, TaskContainer container) {
-
+    public void completeTask(Task task) {
+        if (task.complete) {
+            Debug.Log(task.getPoints());
+            Global.AddPoints(task.getPoints())
+    ;
+        }
         
     }
 
@@ -337,5 +343,12 @@ GameObject obj = Instantiate(taskUITime, taskContent);
 
 
         }*/
+    }
+
+    public void updateQuotaBar() {
+        Image fill = GetChildByName.Get(gameObject,"QuotaBarFill").GetComponent<Image>();
+        fill.fillAmount = Global.QuotaPercent();
+        Debug.Log(fill.fillAmount + " " + Global.QuotaPercent());
+
     }
 }

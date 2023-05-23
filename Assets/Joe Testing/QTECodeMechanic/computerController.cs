@@ -25,6 +25,7 @@ public class computerController : MonoBehaviour
     List<Transform> Tabs;
 
     List<Task> CodingRequests;
+    
     List<Task>ReviewRequests;
     List<Task>ReportRequests;
     
@@ -396,6 +397,58 @@ public class computerController : MonoBehaviour
 
         }
     }
+    }
+
+    public Task getTaskbyId(int id) {
+        foreach(Task task in CodingRequests) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        foreach(Task task in ReviewRequests) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        foreach(Task task in ReportRequests) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        return null;
+    }
+
+    public void removeTaskbyId(int id) {
+        List<Task> listToremove = null;
+        Task toRemove = null;
+        foreach(Task task in CodingRequests) {
+            if (task.ID == id) {
+                listToremove = CodingRequests;
+                toRemove = task;
+            }
+        }
+        foreach(Task task in ReviewRequests) {
+            if (task.ID == id) {
+                                listToremove = ReviewRequests;
+                toRemove = task;
+            }
+        }
+        foreach(Task task in ReportRequests) {
+            if (task.ID == id) {
+                                listToremove = ReportRequests;
+                toRemove = task;
+            }
+        }
+
+        if (listToremove != null && toRemove != null) {
+            listToremove.Remove(toRemove);
+        }
+    }
+
+
+    public void CompleteTask(Task task) {
+        removeTaskbyId(task.ID);
+
     }
  
 }

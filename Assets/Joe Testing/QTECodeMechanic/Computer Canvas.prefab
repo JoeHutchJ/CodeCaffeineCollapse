@@ -7968,9 +7968,9 @@ MonoBehaviour:
   CodeCreation: {fileID: 8161779703125465332, guid: 9a5baa4d9975f354a914b0b3d9db46f7, type: 3}
   Email: {fileID: 874877871348347500, guid: a60d8eb3dbfebd04fb8cdba8f6841b55, type: 3}
   ReportCreation: {fileID: 8161779703125465332, guid: 4f42dc0d8a85f474f92c7df00d79ff4b, type: 3}
-  AuthenticationPrefab: {fileID: 0}
+  AuthenticationPrefab: {fileID: 6725140560880498196, guid: eaa37f7adaed0af4d80f175759e1cf58, type: 3}
   authenticated: 0
-  taskEvent: {fileID: 0}
+  taskEvent: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
   resetToDeskviewEvent: {fileID: 11400000, guid: 3a7a0cff59472c447bca0d207957b138, type: 2}
 --- !u!114 &568983286904290652
 MonoBehaviour:

@@ -53,7 +53,7 @@ public class Task
 
     public bool active; //is displayed / able to completed by user...
 
-    public TaskEvent Event; 
+    public TaskEvent CompleteEvent; 
 
     public Task(TaskType type, float _difficulty, string _name, string _prompt, float _timeLimit, TaskEvent _event, bool _active) {
         taskType = type;
@@ -62,7 +62,7 @@ public class Task
         prompt = _prompt;
         timeLimit = _timeLimit;
         active = _active;
-        Event = _event;
+        CompleteEvent = _event;
         TaskInfo.currentId++;
         ID = TaskInfo.currentId;
 
@@ -101,10 +101,11 @@ public class Task
     }
 
     public void Complete(float percent) {
+        Debug.Log("complete");
         complete = true;
         completePercent = percent;
 
-        Event.Raise(this);
+        CompleteEvent.Raise(this);
     }
 
     public float GetTimeElapsed() {
@@ -113,6 +114,11 @@ public class Task
 
     public void ResetTime() {
        timeStarted = Global.currentTime;
+    }
+
+    public int getPoints() {
+
+        return (int)(completePercent * points);
     }
 
 
