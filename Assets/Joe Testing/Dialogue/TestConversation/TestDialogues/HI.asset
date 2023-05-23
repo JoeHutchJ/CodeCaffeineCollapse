@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: Hi this is a dialogue
   audio: {fileID: 8300000, guid: a222e86026e7f3e45991dd6ac357d9f0, type: 3}
-  skippable: 1
+  skippable: 0
   respondable: 1
   responses:
-  - {fileID: 11400000, guid: 0aa83c1035fdbdc45a3d262bc0f77734, type: 2}
+  - {fileID: 11400000, guid: e9f790efcbd057145b1b8efca0ab4664, type: 2}
   - {fileID: 11400000, guid: 6c80bbba954c62442bf0c6a5333b83b4, type: 2}
   - {fileID: 11400000, guid: d334a586c994ebe478e86d8790f291f2, type: 2}

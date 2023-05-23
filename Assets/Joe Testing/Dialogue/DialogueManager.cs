@@ -144,11 +144,18 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void skipConversation() {
+        if (currentDialogue.skippable) {
+            currentConversation.audioSource.Stop();
         currentConversation = null;
         dialogueIndex = 0;
         currentDialogue = null;
         lockMouseEvent.Raise(false);
+        
+        dialoguePlaying = false;
+        responsePlaying = false;
+        currentResponse = null;
         WipeAll();
+        }
 
     }
 

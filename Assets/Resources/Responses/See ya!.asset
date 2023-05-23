@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: See ya!
   m_EditorClassIdentifier: Assembly-CSharp::Response
   responseText: See ya!
-  responseAudio: {fileID: 0}
+  responseAudio: {fileID: 8300000, guid: 21e615384f69ca943bc8a2be183b161d, type: 3}
   type: 1
