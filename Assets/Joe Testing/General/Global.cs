@@ -17,6 +17,8 @@ public static class Global
 
     public static float volume = 1.0f;
 
+    public static GameObject ObjInHand;
+
 
     public static void Update() {
         currentTime += Time.deltaTime;
@@ -35,6 +37,15 @@ public static class Global
         } else {
         return amount;
         }
+    }
+
+    public static void setObjinHand(Pickupable obj) {
+        if (obj == null) {
+            ObjInHand = null;
+        } else {
+        ObjInHand = obj.gameObject;
+        }
+
     }
 
 
