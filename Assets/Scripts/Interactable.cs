@@ -30,6 +30,7 @@ public class interactable : MonoBehaviour
     private GameObject GetArea()
     {
         GameObject gmeArea = gameArea.getArea();
+        Debug.Log("game area : " + gameArea);
         return gmeArea;
     }
 
@@ -53,8 +54,11 @@ public class interactable : MonoBehaviour
     {
         if (area.name == "KitchenBox")
         {
+            Debug.Log("kitchenbox");
+            if (obj != null) {
             if (obj.name == "mug")
             {
+                Debug.Log("mug");
                 pickupable mug = obj.GetComponent<pickupable>();
                 if (mug.isReady)
                 {
@@ -72,6 +76,8 @@ public class interactable : MonoBehaviour
         }
     }
 
+    }
+
     private void getReadyCoffee()
     {
         startTimer = false;
@@ -86,6 +92,7 @@ public class interactable : MonoBehaviour
 
     private void OnMouseOver()
     {
+        Debug.Log("mouse over");
         GameObject obj = GetObjectInHand();
         GameObject area = GetArea();
         validateCoffee(obj, area);

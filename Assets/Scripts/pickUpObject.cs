@@ -114,12 +114,15 @@ public class pickUpObject : MonoBehaviour
             if(handFree)
             {
                 objInHand = pickupable;
+                if (objInHand.GetComponent<pickupable>() != null) {
                 if (objInHand.GetComponent<pickupable>().canPickUp == true)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         pickUp();
                     }
+                }
+
                 }
             }
         }
