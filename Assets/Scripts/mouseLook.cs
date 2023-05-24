@@ -28,6 +28,10 @@ public class mouseLook : MonoBehaviour {
 
     public Transform cam;
 
+    bool cameraMoving;
+
+    Vector3 movementTarget = new Vector3(0,0,0);
+
     bool rotationLocked = false;
 
     private void Start()
@@ -101,10 +105,33 @@ public class mouseLook : MonoBehaviour {
         transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
 
         }
+
+        if (cameraMoving) {
+            if (movementTarget != null) {
+            moveTowardsPos(movementTarget);
+            }
+
+        }
     }
 
     public void moveTowardsPos(Vector3 pos) {
-        StartCoroutine(moveTowards(pos - getCamOffset()));
+        cameraMoving = true;
+        if (movementTarget == new Vector3(0,0,0)) {
+            movementTarget = pos - getCamOffset();
+        }
+            
+        //StartCoroutine(moveTowards(pos - getCamOffset()));
+        float step = moveSpeed * Time.deltaTime;
+
+        if (!closeTo(transform.position, movementTarget)) {
+            transform.position = Vector3.MoveTowards(transform.position, movementTarget, step);
+
+
+
+        } else {
+            cameraMoving = false;
+            movementTarget = new Vector3(0,0,0);
+        }
 
     }
 

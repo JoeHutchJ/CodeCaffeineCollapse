@@ -118,6 +118,7 @@ public class AudioManager : MonoBehaviour
         src.spatialBlend = 1;
         src.rolloffMode = AudioRolloffMode.Linear;
         src.maxDistance = clip.range;
+        src.dopplerLevel = 0;
         }
         
 
