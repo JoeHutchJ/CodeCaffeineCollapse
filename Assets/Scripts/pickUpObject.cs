@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class pickUpObject : MonoBehaviour
@@ -11,11 +12,9 @@ public class pickUpObject : MonoBehaviour
 
 
     private rayExample coll;
-    private Vector3 prevPosition;
-
-    private Vector3 prevRotation;
-
+    private Vector3 prevObject;
     private GameObject objInHand;
+    private Vector3 DeskPos;
 
 
     private void Start()
@@ -24,67 +23,87 @@ public class pickUpObject : MonoBehaviour
         handFree = true;
     }
 
+    public GameObject getObjectInHand()
+    {
+        return objInHand;
+    }
+
     private GameObject getGameObject()
     {
 
         currColl = coll.hitColl;
-        if (currColl != null) {
         GameObject pickupable = currColl.gameObject; //will get the collider in front of the raycast and will find the gameobject from that
         //Debug.Log(pickupable);
 
         return pickupable;
-        } 
-        return null;
     }
+
+
+
+
 
     private void setParentClass(GameObject child, GameObject newParent)
     {
-
         child.transform.parent = newParent.transform;
+        child.transform.localPosition = new Vector3(-0.5f,-0.1f,1.0f);
+        child.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
-        child.transform.localPosition = new Vector3(0,0,0);
-        //Debug.Log(child.transform.parent.name);
-
-        //child.transform.Translate(1, (float)0.7, 0);
 
     }
 
     private void removeParentClass(GameObject child)
     {
         child.transform.parent = null;
-        child.transform.position = new Vector3(prevPosition.x, prevPosition.y, prevPosition.z);
-        child.transform.rotation = Quaternion.Euler(prevRotation);
-        //child.transform.rotation = new Quaternion(0, 0, 0,0);
+        child.transform.position = new Vector3(prevObject.x, prevObject.y, prevObject.z);
+        child.transform.rotation = new Quaternion(0, 0, 0,0);
     }
 
-    private void getPrevPosition(GameObject pickupable)
+
+
+
+
+    private void getPrevPosition(GameObject pickUpable)
     {
-        /*prevPosition.x = pickupable.transform.position.x;
-        prevPosition.y = pickupable.transform.position.y;
-        prevPosition.z = pickupable.transform.position.z;*/
-        prevPosition = pickupable.transform.position;
-
-        prevRotation = pickupable.transform.rotation.eulerAngles;
+        
+        pickupable pos = pickUpable.GetComponent<pickupable>();
+        pos.getPosition();
+        prevObject = pos.prevPos;
     }
 
+    public void changePutDownPos(Vector3 newPos)
+    {
+        prevObject = newPos;
+    }
+
+
+
+
+    public void putDown()
+    {
+        removeParentClass(objInHand);
+        handFree = true;
+        objInHand = null;
+    }
+
+    public void pickUp()
+    {
+        getPrevPosition(objInHand);
+        setParentClass(objInHand, NewParent);
+        handFree = false;
+    }
 
 
 
 
     private void Update()
     {
-        if (!Global.cursorMode) {
         GameObject pickupable = getGameObject();
-
-        if (pickupable != null) {
 
         if (handFree == false)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                removeParentClass(objInHand);
-                handFree = true;
-                objInHand = null;
+                putDown();
             }
 
         }
@@ -94,24 +113,17 @@ public class pickUpObject : MonoBehaviour
         {
             if(handFree)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                objInHand = pickupable;
+                if (objInHand.GetComponent<pickupable>().canPickUp == true)
                 {
-                    objInHand = pickupable;
-                    Interactable interactable = objInHand.GetComponent<Interactable>();
-                    if (interactable != null) {
-                        interactable.Interact();
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        pickUp();
                     }
-
-                    getPrevPosition(objInHand);
-                    setParentClass(objInHand, NewParent);
-                    handFree = false;
                 }
             }
         }
 
-    }
-
-    }
 
     }
 
