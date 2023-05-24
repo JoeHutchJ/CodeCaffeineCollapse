@@ -55,6 +55,8 @@ public class CodeCreationController : MonoBehaviour
 
     bool intermediateActive = false;
 
+    AudioManager audioManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +70,7 @@ public class CodeCreationController : MonoBehaviour
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
+        audioManager = GetComponent<AudioManager>();
         codeLines = new List<GameObject>();
         if (requests != null) {
             if (requests.Count <= 0) {
@@ -235,6 +238,7 @@ public class CodeCreationController : MonoBehaviour
         float val = selectedLine.QTEPressed(key);
         float newSpeed = typeSpeed;
         if (val != -1.0f) {
+            audioManager.Play("QTEComplete");
             if (val == 1.0f) {
                 combo++;
                 newSpeed += 1.0f;

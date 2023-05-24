@@ -55,6 +55,7 @@ public class ReviewController : MonoBehaviour
     
     bool active = false;
 
+    AudioManager audioManager;
      void Start()
     {   
         if (!started) {
@@ -76,6 +77,7 @@ public class ReviewController : MonoBehaviour
         progressBar = GetChildByName.Get(this.gameObject, "ProgressBar");
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
+        audioManager = GetComponent<AudioManager>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
 
         displayIntermediate();
@@ -199,6 +201,7 @@ public class ReviewController : MonoBehaviour
             if (codeLine.active) {
                 if (codeLine.QTEactive) {
                         if (codeLine.QTEPressed(key)) {
+                            audioManager.Play("QTEComplete");
                             return true;
                         }
                         return false;

@@ -700,6 +700,12 @@ MonoBehaviour:
   Vector3response:
     m_PersistentCalls:
       m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &879309881535445791
 GameObject:
   m_ObjectHideFlags: 0
@@ -8019,6 +8025,12 @@ MonoBehaviour:
   Vector3response:
     m_PersistentCalls:
       m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5946621279252838729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8066,6 +8078,12 @@ MonoBehaviour:
   Vector3response:
     m_PersistentCalls:
       m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1263746241184239281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8111,6 +8129,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8714099253356019907
@@ -8498,7 +8522,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 100
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &25939891366289780
 MonoBehaviour:
   m_ObjectHideFlags: 0
