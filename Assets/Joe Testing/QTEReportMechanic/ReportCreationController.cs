@@ -11,6 +11,10 @@ public class ReportCreationController : MonoBehaviour
 
     public int numSections = 1;
 
+    public int numLines = 0;
+
+    int totalLines;
+
     public float scrollSpeed = 0;
 
     float QTEFrequency;
@@ -54,6 +58,8 @@ public class ReportCreationController : MonoBehaviour
 
     bool active = false;
 
+    AudioManager audioManager;
+
     
     // Start is called before the first frame update
     void Start()
@@ -66,6 +72,7 @@ public class ReportCreationController : MonoBehaviour
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = ReportLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
+        audioManager = GetComponent<AudioManager>();
         codeLines = new List<GameObject>();
         if (requests != null) {
             if (requests.Count <= 0) {
@@ -130,8 +137,9 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.3f, 0.7f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.5f);
         numSections = (int)UsefulFunctions.Remap(difficulty, 0, 1, 1, 5);
+        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 5, 15);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
     }
@@ -175,6 +183,7 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void generateNew() {
+        totalLines = 0;
         active = true;
         wipeContentbox();
         if (requests.Count >= 1) {
@@ -187,9 +196,14 @@ public class ReportCreationController : MonoBehaviour
         ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 50);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
+            if (!lineCount()) {
             addToContent(Line);
+            totalLines++;
+            }
 
         }
+
+        Debug.Log(totalLines + " " + numLines);
         scrollManager.startScrolling();
 
         
@@ -198,6 +212,10 @@ public class ReportCreationController : MonoBehaviour
 
 
 
+    }
+
+    public bool lineCount() {
+        return (totalLines > numLines);
     }
 
 
@@ -277,6 +295,7 @@ public class ReportCreationController : MonoBehaviour
         float val = selectedLine.QTEPressed(key);
         float newSpeed = typeSpeed;
         if (val != -1.0f) {
+            audioManager.Play("QTEComplete");
             if (val == 1.0f) {
                 combo++;
                 newSpeed += 1.0f;
@@ -299,7 +318,6 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void updateTypeSpeed(float speed) {
-        Debug.Log(speed);
         typeSpeed = speed;
         selectedLine.setTypeSpeed(typeSpeed);
     }

@@ -55,6 +55,8 @@ public class CodeCreationController : MonoBehaviour
 
     bool intermediateActive = false;
 
+    AudioManager audioManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +70,7 @@ public class CodeCreationController : MonoBehaviour
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
+        audioManager = GetComponent<AudioManager>();
         codeLines = new List<GameObject>();
         if (requests != null) {
             if (requests.Count <= 0) {
@@ -131,8 +134,9 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.3f);
-        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 5, 10);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.2f, 0.7f);
+        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 20);
+        Debug.Log(numLines + " " + difficulty);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
     }
@@ -146,7 +150,8 @@ public class CodeCreationController : MonoBehaviour
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
-        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 5);
+        Debug.Log("lines: " + LineArray.Length + " " + numLines);
+        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 30);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
             addToContent(Line);
@@ -235,6 +240,7 @@ public class CodeCreationController : MonoBehaviour
         float val = selectedLine.QTEPressed(key);
         float newSpeed = typeSpeed;
         if (val != -1.0f) {
+            audioManager.Play("QTEComplete");
             if (val == 1.0f) {
                 combo++;
                 newSpeed += 1.0f;
@@ -258,7 +264,6 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void updateTypeSpeed(float speed) {
-        Debug.Log(speed);
         typeSpeed = speed;
         selectedLine.setTypeSpeed(typeSpeed);
     }

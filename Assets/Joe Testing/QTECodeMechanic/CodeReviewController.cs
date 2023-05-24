@@ -54,7 +54,9 @@ public class ReviewController : MonoBehaviour
     bool started = false;
     
     bool active = false;
+    
 
+    AudioManager audioManager;
      void Start()
     {   
         if (!started) {
@@ -76,6 +78,7 @@ public class ReviewController : MonoBehaviour
         progressBar = GetChildByName.Get(this.gameObject, "ProgressBar");
         RequestsCountElement = GetChildByName.Get(this.gameObject, "RequestsCount").GetComponent<TMP_Text>();
         inBoundsline = GetChildByName.Get(this.gameObject, "InBounds").GetComponent<RectTransform>();
+        audioManager = GetComponent<AudioManager>();
         estimatedCodeLineHeight = CodeLinePrefab.GetComponent<RectTransform>().sizeDelta.y;
 
         displayIntermediate();
@@ -113,11 +116,14 @@ public class ReviewController : MonoBehaviour
     }
 
     public int getRequests() {
+        if (requests != null) {
         if (requests.Count > 0) {
         return requests.Count;
         } else {
             return 0;
         }
+        }
+        return 0;
   
     }
 
@@ -130,13 +136,15 @@ public class ReviewController : MonoBehaviour
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
         string[] LineArray = CodeString.Split("\n");
-        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 70);
+        ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 100);
         foreach(string Line in LineArray) {
             addToContent(Line);
 
         }
         scrollManager.startScrolling();
         } 
+
+        inBoundsline.gameObject.SetActive(true);
             
         
 
@@ -144,9 +152,9 @@ public class ReviewController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 1.0f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 1.0f, 1.8f);
         numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 70);
-        QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
+        QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.2f);
 
     }
 
@@ -199,6 +207,8 @@ public class ReviewController : MonoBehaviour
             if (codeLine.active) {
                 if (codeLine.QTEactive) {
                         if (codeLine.QTEPressed(key)) {
+                            Debug.Log(audioManager == null);
+                            audioManager.Play("QTEComplete");
                             return true;
                         }
                         return false;
@@ -248,6 +258,7 @@ public class ReviewController : MonoBehaviour
 
     public void displayIntermediate() {
         active = false;
+        inBoundsline.gameObject.SetActive(false);
         if (requests.Count > 0) {
             if (!GetChildByName.isInChilden(CodeLinesLayout.transform, "NextTaskButton(Clone)(Clone)")) {
                 wipeContentbox();

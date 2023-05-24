@@ -51,19 +51,19 @@ public class QTEIcon : MonoBehaviour
         switch (UnityEngine.Random.Range(0,4)) {
             case 0:
                 key = QTEKEY.NORTHW;
-                textBox.text = "North / W";
+                textBox.text = "W";
                 break;
             case 1:
                 key = QTEKEY.WESTA;
-                textBox.text = "West / A";
+                textBox.text = "A";
                 break;
             case 2:
                 key = QTEKEY.SOUTHS;
-                textBox.text = "South / S";
+                textBox.text = "S";
                 break;
             case 3:
                 key = QTEKEY.EASTD;
-                textBox.text = "East / D";
+                textBox.text = "D";
                 break;         
         }
 

@@ -149,6 +149,7 @@ public class TaskManager : MonoBehaviour
             if (task.task.timeTicking) {
                 if (task.task.expired) {
                     task.setExpired();
+                    audioManager.Play("Expired");
                     StartCoroutine(DestroyAfterDelay(task.transform, 3));
                 } else if (task.task.complete) {
                     task.setComplete();
@@ -223,13 +224,29 @@ public class TaskManager : MonoBehaviour
         
     }
 
+    public Task getTaskbyID(int id) {
+        foreach (Task task in tasks) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        return null;
+
+    }
+
     public void completeTask(Task task) {
+        Task idTask = getTaskbyID(task.ID);
+        if (idTask != null) {
+            if (!idTask.expired) {
         if (task.complete) {
+            
             Global.AddPoints(task.getPoints());   
             StartCoroutine(sendEmail(task.taskType, task.completePercent));
             audioManager.Play("Task Complete");
 
 
+        }
+            }
         }
         
     }

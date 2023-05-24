@@ -700,6 +700,12 @@ MonoBehaviour:
   Vector3response:
     m_PersistentCalls:
       m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &879309881535445791
 GameObject:
   m_ObjectHideFlags: 0
@@ -4465,7 +4471,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6297014570933565315}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.4999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8019,6 +8025,12 @@ MonoBehaviour:
   Vector3response:
     m_PersistentCalls:
       m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5946621279252838729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8066,6 +8078,12 @@ MonoBehaviour:
   Vector3response:
     m_PersistentCalls:
       m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1263746241184239281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8111,6 +8129,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8714099253356019907
@@ -8447,7 +8471,7 @@ RectTransform:
   m_Children:
   - {fileID: 4681447491030248720}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 44.488, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8498,7 +8522,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 100
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &25939891366289780
 MonoBehaviour:
   m_ObjectHideFlags: 0

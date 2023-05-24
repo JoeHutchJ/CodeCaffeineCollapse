@@ -36,6 +36,10 @@ public class computerController : MonoBehaviour
     public Event resetToDeskviewEvent;
 
     AudioManager audioManager;
+
+    float timeSinceAuthentication;
+
+    float timetilLogout;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +67,7 @@ public class computerController : MonoBehaviour
         }
 
         populateEmails(15);
-        
+    
         
         //createTab(Email); 
 
@@ -77,6 +81,15 @@ public class computerController : MonoBehaviour
             currentTab.GetComponent<Button>().Select();
         }
         updateTabs();
+
+        if (authenticated) {
+        if (timeSinceAuthentication >= timetilLogout) {
+            AuthenticateWindow();
+        }
+        timeSinceAuthentication += Time.deltaTime;
+        }
+
+
     }
 
     void populateEmails(int num) {
@@ -113,6 +126,10 @@ public class computerController : MonoBehaviour
         }
 
             Email email = EmailBuilder.newEmail(sentiment, type);
+            
+            if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f) {
+                email.read = true;
+            }
             
             emails.Add(email);
         }
@@ -318,12 +335,14 @@ public class computerController : MonoBehaviour
         currentWindow = Instantiate(AuthenticationPrefab, transform).transform;
         currentTab = null;
         authenticated = false;
+        timeSinceAuthentication = 0;
+        timetilLogout = UnityEngine.Random.Range(50, 120);
+        audioManager.Play("Logout");
         //Debug.Log("authenticated: " + authenticated);
 
     }
 
     public void Authenticate(bool auth) { 
-        Debug.Log("authenticated: " + authenticated);
         if (auth) {
         authenticated = true;
         
@@ -331,6 +350,7 @@ public class computerController : MonoBehaviour
         } else {
             AuthenticateWindow();
         }
+        audioManager.Play("Authenticate");
     }
 
 
