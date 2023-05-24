@@ -33,6 +33,8 @@ public class playerInteract : MonoBehaviour
 
         if (currColl != null) {
 
+            Debug.Log(currColl.name);
+
         /*if(currColl.name == "Desk")
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, deskPos, inc);

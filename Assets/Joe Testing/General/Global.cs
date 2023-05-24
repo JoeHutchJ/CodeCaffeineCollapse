@@ -39,10 +39,13 @@ public static class Global
         }
     }
 
-    public static void setObjinHand(GameObject obj) {
-        if (obj != null) {
-        ObjInHand = obj;
+    public static void setObjinHand(Pickupable obj) {
+        if (obj == null) {
+            ObjInHand = null;
+        } else {
+        ObjInHand = obj.gameObject;
         }
+
     }
 
 

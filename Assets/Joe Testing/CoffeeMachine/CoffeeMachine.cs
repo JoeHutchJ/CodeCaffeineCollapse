@@ -18,10 +18,14 @@ public class CoffeeMachine : MonoBehaviour
 
     CoffeeStatus status = CoffeeStatus.NONE;
 
+    public Event DropEvent;
+
+    BoxCollider collider;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        collider = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -47,42 +51,89 @@ public class CoffeeMachine : MonoBehaviour
             
         }
         break;
+        case CoffeeStatus.READY:
+            if (GetChildByName.Get(gameObject, "targetPos").transform.childCount == 0) {
+                PickupCoffee();
+            }
+            break;
 
         }
     }
 
     void StartBrewing() {
+        Debug.Log("brewing");
         status = CoffeeStatus.BREWING;
+        collider.enabled = false;
+        cup = getCup();
+        if (cup != null) {
+            cup.GetComponent<Pickupable>().CanPickUp(false);
+        }
+        changePosToInter();
 
 
     }
 
     void StartFilling() {
+        Debug.Log("filling");
         status = CoffeeStatus.FILLING;
         if (cup != null) {
             if (cup.GetComponent<Animation>()) {
-                cup.GetComponent<Animation>().Play();
+                cup.GetComponent<Animation>().clip.SampleAnimation(cup, 0);
             }
         }
 
     }
 
     void CoffeeReady() {
+        Debug.Log("ready");
         status = CoffeeStatus.READY;
+        if (cup != null) {
+            cup.GetComponent<Pickupable>().CanPickUp(false);
+        }
+
 
     }
 
 
 
     void PickupCoffee() {
-        
+        status = CoffeeStatus.NONE;
+        collider.enabled = true;
+    }
+
+    bool checkHand() {
+        if (Global.ObjInHand != null) {
+            if (Global.ObjInHand.GetComponent<Pickupable>() != null) {
+                if (Global.ObjInHand.GetComponent<Pickupable>().identifier == "Cup") {
+                    return true;
+                }
+            }   
+        }
+        return false;
+
+    }
+
+    GameObject getCup() {
+        if (Global.ObjInHand != null) {
+            if (Global.ObjInHand.GetComponent<Pickupable>() != null) {
+                if (Global.ObjInHand.GetComponent<Pickupable>().identifier == "Cup") {
+                    return Global.ObjInHand;
+                }
+            }   
+        }
+        return null;
+
     }
 
 
     public void Interact() {
+        Debug.Log("coffee machine interacted");
         switch (status) {
             case CoffeeStatus.NONE: 
+            Debug.Log("none");
+                if (checkHand()) {
                 StartBrewing();
+                }
                 break;
             case CoffeeStatus.READY:
                 PickupCoffee();
@@ -92,5 +143,22 @@ public class CoffeeMachine : MonoBehaviour
 
 
 
+    }
+
+    void changePosToInter() {
+        Transform target = GetChildByName.Get(gameObject, "targetPos").transform;
+        Vector3 pos = target.transform.position;
+
+        Quaternion rotation = GetChildByName.Get(gameObject, "targetPos").transform.rotation;
+
+        if (Global.ObjInHand != null) {
+            if (Global.ObjInHand.GetComponent<Pickupable>() != null) {
+                Global.ObjInHand.GetComponent<Pickupable>().setPrevPos(pos);
+                Global.ObjInHand.GetComponent<Pickupable>().setPrevRotation(rotation);
+                GameObject objInhand = Global.ObjInHand;
+                DropEvent.Raise();
+                objInhand.GetComponent<Pickupable>().setNewParent(target);
+            }
+        }
     }
 }
