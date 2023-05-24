@@ -12,6 +12,8 @@ public class Interactable : MonoBehaviour
 
     public UnityEvent action;
 
+    public UnityEvent<GameObject> Objaction;
+
     public Vector3Event cameraMoveEvent;
 
     public Vector3Event cameraRotationEvent;
@@ -75,6 +77,36 @@ public class Interactable : MonoBehaviour
             Debug.Log(gameObject.name);
             if (action != null) {
                 action.Invoke();
+            }
+                break;
+        }
+
+    }
+
+
+    public void Interact(GameObject obj) {
+        //do things
+        Interact();
+        switch (type) {
+            case InteractableType.CAMERA:
+                //action.Invoke();
+                cameraMoveEvent.Raise(cameraPosition);
+                if (cameraRotationEvent != null && cameraRotation != null) {
+                cameraRotationEvent.Raise(cameraRotation.eulerAngles);
+                }
+                if (lockCameraRotation != null) {
+                    lockCameraRotation.Raise(lockRotation);
+                }
+                break;
+            case InteractableType.EQUIP:
+            if (Objaction != null) {
+                Objaction.Invoke(obj);
+            }
+                break;
+            case InteractableType.INTERACT:
+            Debug.Log(gameObject.name);
+            if (Objaction != null) {
+                Objaction.Invoke(obj);
             }
                 break;
         }

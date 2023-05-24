@@ -99,12 +99,13 @@ public class pickUpObject : MonoBehaviour
                     objInHand = pickupable;
                     Interactable interactable = objInHand.GetComponent<Interactable>();
                     if (interactable != null) {
-                        interactable.Interact();
+                        interactable.Interact(objInHand);
                     }
 
                     getPrevPosition(objInHand);
                     setParentClass(objInHand, NewParent);
                     handFree = false;
+                    Global.setObjinHand(objInHand);
                 }
             }
         }
