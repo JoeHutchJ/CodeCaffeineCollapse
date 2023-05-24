@@ -127,6 +127,10 @@ public class computerController : MonoBehaviour
 
             Email email = EmailBuilder.newEmail(sentiment, type);
             
+            if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f) {
+                email.read = true;
+            }
+            
             emails.Add(email);
         }
         
@@ -339,7 +343,6 @@ public class computerController : MonoBehaviour
     }
 
     public void Authenticate(bool auth) { 
-        Debug.Log("authenticated: " + authenticated);
         if (auth) {
         authenticated = true;
         

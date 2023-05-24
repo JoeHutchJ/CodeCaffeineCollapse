@@ -33,6 +33,10 @@ public class receiptPrinterController : MonoBehaviour
         anim = GetComponent<Animation>();
         audioManager = GetComponent<AudioManager>();
 
+        AddTask(newTask(TaskType.REVIEW, 0.5f, 0, true));
+
+        AddTask(newTask(TaskType.REPORT, 0.5f, 0, true));
+
         AddTask(newTask(TaskType.CODING, 0.5f, 10, true));
 
         AddTask(newTask(TaskType.REVIEW, 0.5f, 20, true));

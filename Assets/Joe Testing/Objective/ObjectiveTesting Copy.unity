@@ -2347,7 +2347,6 @@ GameObject:
   - component: {fileID: 251764045}
   - component: {fileID: 251764044}
   - component: {fileID: 251764043}
-  - component: {fileID: 251764042}
   m_Layer: 0
   m_Name: LeftDeskInteractable
   m_TagString: Untagged
@@ -2355,59 +2354,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &251764042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251764041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Event: {fileID: 11400000, guid: 3a7a0cff59472c447bca0d207957b138, type: 2}
-  eventType: 1
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 251764043}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  vector2response:
-    m_PersistentCalls:
-      m_Calls: []
-  boolresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  stringresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  intresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  taskresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Vector3response:
-    m_PersistentCalls:
-      m_Calls: []
-  Conversationresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Emailresponse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &251764043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3604,7 +3550,6 @@ GameObject:
   - component: {fileID: 493854638}
   - component: {fileID: 493854637}
   - component: {fileID: 493854636}
-  - component: {fileID: 493854635}
   m_Layer: 0
   m_Name: RightDeskInteractable
   m_TagString: Untagged
@@ -3612,59 +3557,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &493854635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493854634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Event: {fileID: 11400000, guid: 3a7a0cff59472c447bca0d207957b138, type: 2}
-  eventType: 1
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 493854636}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  vector2response:
-    m_PersistentCalls:
-      m_Calls: []
-  boolresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  stringresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  intresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  taskresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Vector3response:
-    m_PersistentCalls:
-      m_Calls: []
-  Conversationresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Emailresponse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &493854636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9295,7 +9187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37151408
+      value: -0.446
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9303,32 +9195,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.053851444
+      value: -0.7076528
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.68989986
+      value: -0.061251108
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.71970963
+      value: -0.04821333
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.056180388
+      value: -0.70224744
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.376
+      value: 1.087
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 171.081
+      value: 8.876
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -87.606
+      value: -270.355
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9bcda2968acc6a54e8f95c39e1a7ea91, type: 2}
     - target: {fileID: 919132149155446097, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_Name
       value: card_textured
@@ -9375,8 +9271,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000016, y: 0.02, z: 0.020000001}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0726098, y: 0.030843455, z: 0.032907516}
+  m_Center: {x: 0.026304869, y: -0.00077345886, z: 0.0010543717}
 --- !u!114 &1426173418
 MonoBehaviour:
   m_ObjectHideFlags: 0

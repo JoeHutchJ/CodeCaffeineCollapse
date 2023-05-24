@@ -15,12 +15,14 @@ public static class generateGibberishCode {
        static string[] operators = { "*", "/", "+", "-", "%"};
       static  string[] andor = { "&&", "||"};
 
+    static int totalLines = 0;
 
-    public static  string GenerateRandomCode(int numLines)
+    static int numLines = 0;
+    public static  string GenerateRandomCode(int _numLines)
     {
         StringBuilder code = new StringBuilder();
- 
-        for (int i = 0; i < numLines; i++)
+        numLines = _numLines;
+        while (!lineLimit())
         {
             code.Append(GenerateGenericNest(false, 0));
 
@@ -88,6 +90,7 @@ public static class generateGibberishCode {
                 
                 }
                 code.Append(";");
+                totalLines++;
 
         return code.ToString();
     }
@@ -133,12 +136,17 @@ public static class generateGibberishCode {
             code.Append(" {");
             int numsubLines = UnityEngine.Random.Range(1,5);
             code.AppendLine("");
+            totalLines++;
+
+
             for (int i = 0; i< numsubLines; i++) {
+                if (!lineLimit()) {
                 if (UnityEngine.Random.Range(1,10) >= 9 && !endNest) {
                     code.Append(GenerateGenericNest(true, numTabs+1));
                 } else {
                 code.AppendLine(GenerateGenericLine(numTabs+1));
 
+                }
                 }
             }
             for (int j = 0; j < numTabs; j++)
@@ -146,10 +154,16 @@ public static class generateGibberishCode {
                 code.Append("\t");
             }
             code.AppendLine("}");
+            totalLines++;
 
             
 
         return code.ToString();
+    }
+
+
+    static bool lineLimit() {
+        return totalLines > numLines;
     }
 
     

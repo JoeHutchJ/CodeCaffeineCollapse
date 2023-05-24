@@ -224,13 +224,29 @@ public class TaskManager : MonoBehaviour
         
     }
 
+    public Task getTaskbyID(int id) {
+        foreach (Task task in tasks) {
+            if (task.ID == id) {
+                return task;
+            }
+        }
+        return null;
+
+    }
+
     public void completeTask(Task task) {
+        Task idTask = getTaskbyID(task.ID);
+        if (idTask != null) {
+            if (!idTask.expired) {
         if (task.complete) {
+            
             Global.AddPoints(task.getPoints());   
             StartCoroutine(sendEmail(task.taskType, task.completePercent));
             audioManager.Play("Task Complete");
 
 
+        }
+            }
         }
         
     }

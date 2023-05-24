@@ -72,7 +72,6 @@ public class Interactable : MonoBehaviour
             }
                 break;
             case InteractableType.INTERACT:
-            Debug.Log(gameObject.name);
             if (action != null) {
                 action.Invoke();
             }

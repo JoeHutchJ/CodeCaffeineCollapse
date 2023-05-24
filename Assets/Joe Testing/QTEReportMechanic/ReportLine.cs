@@ -60,7 +60,6 @@ public class ReportLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!testing) {
         if (!finished && displaytext != "") {
             Background.color = new Color(1,0f,0,1.0f); 
         }
@@ -81,15 +80,7 @@ public class ReportLine : MonoBehaviour
         if (isQTE(currentCharindex)) {
             timePastQTE += Time.deltaTime;
         }
-        } else {
-            if (timeSince >= typeInterval) {
-                timeSince = 0;
-                //testLines(text);
-            }
-            
-
-
-        }
+        
 
         if (textBox.isTextOverflowing) {
             //Debug.Log("overflowing");

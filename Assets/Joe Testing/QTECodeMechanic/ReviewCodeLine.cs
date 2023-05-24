@@ -65,19 +65,19 @@ public class ReviewCodeLine : MonoBehaviour
         switch (UnityEngine.Random.Range(0,4)) {
             case 0:
                 QTEkey = QTEKEY.NORTHW;
-                QTEtextBox.text = "North / W";
+                QTEtextBox.text = "W";
                 break;
             case 1:
                 QTEkey = QTEKEY.WESTA;
-                QTEtextBox.text = "West / A";
+                QTEtextBox.text = "A";
                 break;
             case 2:
                 QTEkey = QTEKEY.SOUTHS;
-                QTEtextBox.text = "South / S";
+                QTEtextBox.text = "S";
                 break;
             case 3:
                 QTEkey = QTEKEY.EASTD;
-                QTEtextBox.text = "East / D";
+                QTEtextBox.text = "D";
                 break;         
         }
         

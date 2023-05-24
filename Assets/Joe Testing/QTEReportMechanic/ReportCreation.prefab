@@ -233,7 +233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 9.613552}
+  m_AnchoredPosition: {x: 0, y: 0.000011444092}
   m_SizeDelta: {x: 0, y: 65.752}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2536312914775473675
@@ -944,7 +944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4.0977936, y: -93.379005}
+  m_AnchoredPosition: {x: 4.0977783, y: -93.379005}
   m_SizeDelta: {x: 4.0978, y: 27.627007}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &981364050081717695
@@ -1043,8 +1043,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5294029861045668620}
   m_HandleRect: {fileID: 5872925794723084740}
   m_Direction: 3
-  m_Value: -0.0000027776268
-  m_Size: 0.0000037130517
+  m_Value: 0.99999684
+  m_Size: 0.85379106
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1510,6 +1510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numSections: 4
+  numLines: 0
   scrollSpeed: 0
   CodeLinesLayout: {fileID: 0}
   ContentBox: {fileID: 0}
@@ -1727,8 +1728,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 6.2465}
-  m_SizeDelta: {x: 0, y: -12.493}
+  m_AnchoredPosition: {x: 0, y: -2.0021973}
+  m_SizeDelta: {x: 0, y: -28.9904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8216642670687135168
 CanvasRenderer:
