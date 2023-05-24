@@ -19,10 +19,6 @@ public class receiptPrinterController : MonoBehaviour
 
     public Animation anim;
 
-    public AnimationClip def;
-
-    public AnimationClip stopped;
-
     public AudioManager audioManager;
 
     bool animActive;
@@ -57,6 +53,8 @@ public class receiptPrinterController : MonoBehaviour
             if (interactableTask == null) {
                 if (taskQueue.Count > 0) {
                 nextTask();
+                } else {
+                    anim.clip.SampleAnimation(gameObject, 0);
                 }
             }
         }
@@ -74,9 +72,10 @@ public class receiptPrinterController : MonoBehaviour
         taskQueue.Remove(taskQueue[0]);
         currentTask = task;
         animActive = true;
-        anim.clip = def;
         anim.Play();
         audioManager.Play();
+        } else {
+            anim.clip.SampleAnimation(gameObject, 0);
         }
 
     }
@@ -92,7 +91,6 @@ public class receiptPrinterController : MonoBehaviour
         taskInfoEvent.Raise(interactableTask);
         interactableTask = null;
         }
-        anim.clip = stopped;
         //anim.playAutomatically = true;
         anim.Play();
         anim.Stop();
