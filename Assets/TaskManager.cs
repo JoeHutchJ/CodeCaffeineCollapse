@@ -149,6 +149,7 @@ public class TaskManager : MonoBehaviour
             if (task.task.timeTicking) {
                 if (task.task.expired) {
                     task.setExpired();
+                    audioManager.Play("Expired");
                     StartCoroutine(DestroyAfterDelay(task.transform, 3));
                 } else if (task.task.complete) {
                     task.setComplete();
