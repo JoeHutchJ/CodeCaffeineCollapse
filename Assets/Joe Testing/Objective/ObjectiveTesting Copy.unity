@@ -7346,6 +7346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 11400000, guid: af798d7b1729f3644bab00e57681237b, type: 2}
+  - {fileID: 11400000, guid: 51a96eac312554f43bc695a935cce7cf, type: 2}
+  - {fileID: 11400000, guid: 520785b568b27304086680494eadc86c, type: 2}
   sources: []
   playAutomatically: 0
   everyXseconds: 0

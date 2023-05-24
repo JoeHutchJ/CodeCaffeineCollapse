@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f9e54e378912f140a446d5bccb6a4a2, type: 3}
-  m_Name: QTEComplete
+  m_Name: AuthenticateSound
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 7bc1b9e349dc81f4b969155f1e913337, type: 3}
-  name: QTEComplete
+  clip: {fileID: 8300000, guid: 6ff3b7503421eb7458ba532ee7899c67, type: 3}
+  name: Authenticate
   loop: 0
-  relativeVolume: 0.4
+  relativeVolume: 0.2
   spatial: 0
   range: 0
