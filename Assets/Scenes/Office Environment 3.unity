@@ -498,6 +498,89 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &23265918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 23265919}
+  - component: {fileID: 23265921}
+  - component: {fileID: 23265920}
+  m_Layer: 0
+  m_Name: polySurface35
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &23265919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23265918}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0006, y: 0.0024, z: 0}
+  m_LocalScale: {x: 0.86741, y: 0.5446641, z: 0.86741}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2107968440}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23265920
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23265918}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2310340700922821954, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &23265921
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23265918}
+  m_Mesh: {fileID: -981004378944408349, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
 --- !u!1001 &24253285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -687,6 +770,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &24527631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,6 +841,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &24527633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,6 +892,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &24527634
@@ -868,6 +960,7 @@ MonoBehaviour:
   taskContent: {fileID: 0}
   taskEvent: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
   receiptEvent: {fileID: 11400000, guid: b9e88146e06925b4799a9e59cb946043, type: 2}
+  sendEmailEvent: {fileID: 0}
   seeAll: 0
 --- !u!114 &41718602
 MonoBehaviour:
@@ -1003,6 +1096,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &41718607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,6 +1147,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &67820779
@@ -1521,6 +1620,9 @@ MonoBehaviour:
   action:
     m_PersistentCalls:
       m_Calls: []
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
   cameraRotationEvent: {fileID: 11400000, guid: 6a839926aa8ebac43b7794f2d3d5e259, type: 2}
   lockCameraRotation: {fileID: 11400000, guid: ec346b5fa0e6ef64aa4f4aec73c1fc23, type: 2}
@@ -1739,6 +1841,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -2093,6 +2198,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &246024983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2141,6 +2249,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &246024984
@@ -2193,6 +2304,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &247308758
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,6 +2339,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -2368,6 +2485,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &251764043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,6 +2502,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -3393,6 +3516,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &465484050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3619,6 +3745,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &493854636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3633,6 +3762,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -5343,6 +5475,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &981374428
@@ -7334,6 +7469,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1142770808
 GameObject:
   m_ObjectHideFlags: 0
@@ -7403,6 +7541,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -8219,6 +8360,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -8669,19 +8813,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8913026
+      value: 4.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.233514
+      value: -2.2335143
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.545265
+      value: -13.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6985039
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalRotation.x
@@ -8689,7 +8833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.71560633
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalRotation.z
@@ -8701,7 +8845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -91.386
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a40783dc65f63c4699b3160aa077626, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -9303,6 +9447,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -9466,6 +9613,9 @@ MonoBehaviour:
   action:
     m_PersistentCalls:
       m_Calls: []
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
   cameraRotationEvent: {fileID: 11400000, guid: 6a839926aa8ebac43b7794f2d3d5e259, type: 2}
   lockCameraRotation: {fileID: 11400000, guid: ec346b5fa0e6ef64aa4f4aec73c1fc23, type: 2}
@@ -9555,6 +9705,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1446820158
@@ -10744,6 +10897,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -11697,6 +11853,7 @@ Transform:
   m_LocalScale: {x: 195.13748, y: 195.13748, z: 195.13748}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2107968439}
   - {fileID: 1548758142}
   - {fileID: 30254204}
   - {fileID: 176694579}
@@ -12280,6 +12437,9 @@ MonoBehaviour:
   Conversationresponse:
     m_PersistentCalls:
       m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2010647202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12295,8 +12455,7 @@ MonoBehaviour:
   taskInfoEvent: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
   completeEvent: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
   anim: {fileID: 0}
-  def: {fileID: 1827226128182048838, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
-  stopped: {fileID: 9067093048684652814, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+  audioManager: {fileID: 0}
 --- !u!114 &2010647203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12325,6 +12484,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -12682,6 +12844,96 @@ Transform:
   m_Father: {fileID: 1829753285}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2107968438
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1829753285}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 37.464725
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 37.464725
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 37.464725
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.68
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.89
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      propertyPath: m_Name
+      value: water cooler
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 4311514775028298988, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+    - {fileID: 3306512618393000541, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+    - {fileID: -3421338058716488406, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+    - {fileID: -8140499575222096, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 822704779655210943, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 23265919}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+--- !u!4 &2107968439 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+  m_PrefabInstance: {fileID: 2107968438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2107968440 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 822704779655210943, guid: 2a83661bfa7e55c4790cfcfe11380169, type: 3}
+  m_PrefabInstance: {fileID: 2107968438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2129042275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12903,6 +13155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
