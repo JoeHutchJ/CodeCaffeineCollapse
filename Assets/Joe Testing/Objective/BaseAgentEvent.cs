@@ -28,4 +28,10 @@ public class BaseAgentEvent : ScriptableObject
 
     }
 
+    public eventTypeenum getType() {
+        assignType();
+        return type;
+      
+    }
+
 }

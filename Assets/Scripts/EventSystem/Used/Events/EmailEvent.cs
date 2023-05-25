@@ -41,6 +41,11 @@ public class EmailEvent: BaseEvent //derived from scriptable object class
 
     }
 
+       public void DeRegister(Action<Email> method) {
+        subscribed -= method;
+
+    }
+
     public override void assignType() {
     
         Type = eventTypeenum.Email;

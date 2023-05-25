@@ -40,7 +40,7 @@ public class AgentConversationEvent: BaseAgentEvent //derived from scriptable ob
 
     }
 
-    public void DeRegister(Action<Conversation, GameObject> method) {
+     public void DeRegister(Action<Conversation, GameObject> method) {
         subscribed -= method;
 
     }

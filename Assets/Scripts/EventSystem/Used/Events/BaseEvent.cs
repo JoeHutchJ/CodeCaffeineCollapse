@@ -26,4 +26,10 @@ public class BaseEvent : ScriptableObject
 
     }
 
+    public eventTypeenum getType() {
+        assignType();
+        return type;
+      
+    }
+
 }

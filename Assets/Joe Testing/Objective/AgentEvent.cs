@@ -38,13 +38,16 @@ public class AgentEvent: BaseAgentEvent
 
     public void Register(Action<GameObject> method) { //could return bool?
         //Debug.Log("event register " + this.name + " ");
-
+        //if (subscribed.GetInvocationList() != null) {
+            //Debug.Log("InvoCation " + subscribed.GetInvocationList().Length);
+        //}
         subscribed += method;
 
 
     }
 
     public void DeRegister(Action<GameObject> method) {
+
         subscribed -= method;
 
     }

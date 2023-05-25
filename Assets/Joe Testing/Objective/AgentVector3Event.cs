@@ -33,7 +33,7 @@ public class AgentVector3Event : BaseAgentEvent
 
     }
 
-    public void DeRegister(Action<Vector3, GameObject> method) {
+     public void DeRegister(Action<Vector3, GameObject> method) {
         subscribed -= method;
 
     }

@@ -42,6 +42,11 @@ public class VecEvent: BaseEvent //derived from scriptable object class
 
     }
 
+    public void DeRegister(Action<Vector2> method) {
+        subscribed -= method;
+
+    }
+
     public override void assignType() {
         
         Type = eventTypeenum.Vector2;

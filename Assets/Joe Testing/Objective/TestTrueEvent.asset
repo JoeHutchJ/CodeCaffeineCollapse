@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c929ede354ec964cafd25f64d0d2c21, type: 3}
-  m_Name: AgentEvent
+  m_Script: {fileID: 11500000, guid: e54e37a979908f349bb4d24abf595cef, type: 3}
+  m_Name: TestTrueEvent
   m_EditorClassIdentifier: 
-  Agent: {fileID: 0}
-  name: 1

@@ -41,6 +41,11 @@ public class AgentEmailEvent : BaseAgentEvent //derived from scriptable object c
 
     }
 
+    public void DeRegister(Action<Email, GameObject> method) {
+        subscribed -= method;
+
+    }
+
     public override void assignType() {
     
         Type = eventTypeenum.Email;

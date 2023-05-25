@@ -36,6 +36,10 @@ public class Objective
 
     public List<EventInfo> CompletionEvents;
 
+    public List<Condition> CompletionFlags;
+
+    public int nextObjective = -1;
+
     public void setId() {
         if (id == 0) {
         Debug.Log("Objective");
@@ -45,6 +49,24 @@ public class Objective
     }
     Objective() {
         //id = ObjectiveId.getId();
+    }
+
+    public void Activate() {
+        foreach(EventInfo info in ActiviationEvents) {
+            info.Raise();
+        }
+
+    }
+    
+    public void Triggered() {
+        Debug.Log("Triggered");
+        foreach(EventInfo info in CompletionEvents) {
+            info.Raise();
+        }
+        foreach (Condition condition in CompletionFlags) {
+            condition.Set();
+        }
+
     }
 
 

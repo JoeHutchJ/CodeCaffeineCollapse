@@ -33,7 +33,7 @@ public class TaskEvent : BaseEvent
 
     }
 
-    public void DeRegister(Action<Task> method) {
+        public void DeRegister(Action<Task> method) {
         subscribed -= method;
 
     }

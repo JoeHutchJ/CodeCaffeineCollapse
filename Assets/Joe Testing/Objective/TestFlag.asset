@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c929ede354ec964cafd25f64d0d2c21, type: 3}
-  m_Name: AgentEvent
+  m_Script: {fileID: 11500000, guid: 5b08e2a39c8cfba498845cbbf36f952d, type: 3}
+  m_Name: TestFlag
   m_EditorClassIdentifier: 
-  Agent: {fileID: 0}
-  name: 1
+  Value: 1

@@ -156,5 +156,94 @@ public class EventInfo
     }
 
 
+    public bool Check() {
+        return true;
+
+
+    }
+
+    public bool CheckAgent(GameObject agent) {
+        if (agent == Agent) {
+        return true;
+        }
+        return false;
+
+
+    }
+
+        public bool Check(Vector2 vec) {
+        if (vec == Vec2input) {
+        return true;
+        }
+        return false;
+
+
+    }
+
+    public bool Check(Boolean boo) {
+        if (boo == boolinput) {
+        return true;
+        }
+        return false;
+
+
+    }
+
+    public bool Check(String str) {
+        if (str.Equals(stringinput)) {
+        return true;
+        }
+        return false;
+
+
+    }
+
+    public bool Check(int i) {
+        if (i == intinput) {
+        return true;
+        }
+        return false;
+
+
+    }
+
+        public bool Check(Vector3 vec3) {
+        if (vec3 == vector3input) {
+        return true;
+        }
+        return false;
+
+
+    }
+
+    public bool Check(Conversation conv) {
+        if (conv == conversationinput) { //maybe not work
+        return true;
+        }
+        return false;
+
+
+    }
+
+        public bool Check(Email em) {
+        if (em.id == emailinput.id) { //maybe not work
+        return true;
+        }
+        return false;
+
+
+    }
+
+            public bool Check(Task tsk) {
+        if (tsk.ID == taskinput.ID) { //maybe not work
+        return true;
+        }
+        return false;
+
+
+    }
+
+
+
 
 }

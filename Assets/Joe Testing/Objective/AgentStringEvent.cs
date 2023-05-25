@@ -41,6 +41,11 @@ public class AgentStringEvent: BaseAgentEvent //derived from scriptable object c
 
     }
 
+  public void DeRegister(Action<String, GameObject> method) {
+        subscribed -= method;
+
+    }
+
     public override void assignType() {
     
         Type = eventTypeenum.String;

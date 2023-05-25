@@ -33,7 +33,7 @@ public class AgentTaskEvent : BaseAgentEvent
 
     }
 
-    public void DeRegister(Action<Task, GameObject> method) {
+  public void DeRegister(Action<Task, GameObject> method) {
         subscribed -= method;
 
     }

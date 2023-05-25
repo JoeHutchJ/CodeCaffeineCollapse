@@ -39,8 +39,7 @@ public class ConversationEvent: BaseEvent //derived from scriptable object class
         
 
     }
-
-    public void DeRegister(Action<Conversation> method) {
+public void DeRegister(Action<Conversation> method) {
         subscribed -= method;
 
     }
