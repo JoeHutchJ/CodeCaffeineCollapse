@@ -30,9 +30,9 @@ public class AgentEvent: BaseAgentEvent
     
 
     
-    public void Raise(GameObject agent) {
+    public void Raise() {
         if (subscribed != null ) {
-        subscribed.Invoke(agent);
+        subscribed.Invoke(Agent);
         }
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
 
-[CreateAssetMenu(fileName = "New Email Event", menuName = "AgentEvents/EmailEvent")] //custom inspector
+[CreateAssetMenu(fileName = "New Email Event", menuName = "ScriptableObjects/EmailEvent")] //custom inspector
 public class AgentEmailEvent : BaseAgentEvent //derived from scriptable object class
 {
     //public new String type = "Vector2";

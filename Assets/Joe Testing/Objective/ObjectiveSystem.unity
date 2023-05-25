@@ -625,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: 950dfd904fb2dfb4a9e2c4ddbcebce6d, type: 2}
+  info: []
 --- !u!4 &687083815
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,6 +1109,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: 950dfd904fb2dfb4a9e2c4ddbcebce6d, type: 2}
+  info:
+  - name: Objective Block
+    objectives:
+    - name: 
+      skip: 0
+      completed: 0
+      TriggerEvents:
+      - EventType: 7
+        isAgentEvent: 1
+        Event: {fileID: 0}
+        AgentEvent: {fileID: 0}
+        Agent: {fileID: 0}
+        Vec2input: {x: 0, y: 0}
+        boolinput: 0
+        stringinput: 
+        intinput: 0
+        taskinput:
+          ID: 0
+          taskType: 0
+          difficulty: 0
+          name: 
+          prompt: 
+          timeTicking: 0
+          timeStarted: 0
+          timeLimit: 0
+          timeElapsed: 0
+          complete: 0
+          completePercent: 0
+          points: 0
+          expired: 0
+          active: 0
+          CompleteEvent: {fileID: 0}
+        vector3input: {x: 0, y: 0, z: 0}
+        conversationinput: {fileID: 11400000, guid: 9fa41493a3bed0a4bb6b8595ab33bed2, type: 2}
+        emailinput:
+          id: 0
+          Subject: 
+          Message: 
+          reply: 0
+          replyMessage: 
+          read: 0
+          replied: 0
+          spam: 0
+          taskType: 0
+      ActiviationEvents: []
+      CompletionEvents: []
 --- !u!1 &2054404953
 GameObject:
   m_ObjectHideFlags: 0
