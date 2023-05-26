@@ -8,12 +8,12 @@ using UnityEngine.Events;
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
 
-[CreateAssetMenu(fileName = "New Email Event", menuName = "AgentEvents/EmailEvent")] //custom inspector
-public class AgentEmailEvent : BaseAgentEvent //derived from scriptable object class
-{
-    //public new String type = "Vector2";
 
+[CreateAssetMenu(fileName = "New Trans Event", menuName = "ScriptableObjects/TransformEvent")] //custom inspector
+public class TransformEvent: BaseEvent //derived from scriptable object class
+{
     
+
     public override eventTypeenum Type {
         get
         {return type;}
@@ -21,34 +21,33 @@ public class AgentEmailEvent : BaseAgentEvent //derived from scriptable object c
         {type = value;}
 
     }
+
     
-    public Action<Email, GameObject> subscribed; 
+    public Action<Transform> subscribed; 
 
-
-
-
-    public void Raise(Email str) {
+    public void Raise(Transform _bool) {
         if (subscribed != null ) {
-        subscribed.Invoke(str, Agent);
+        subscribed.Invoke(_bool);
         }
+        
 
     }
 
-    public void Register(Action<Email, GameObject> method) { //could return bool?
+    public void Register(Action<Transform> method) { //could return bool?
         //Debug.Log("listener " + this.name );
         subscribed += method;
         
 
     }
 
-    public void DeRegister(Action<Email, GameObject> method) {
+    public void DeRegister(Action<Transform> method) {
         subscribed -= method;
 
     }
 
     public override void assignType() {
-    
-        Type = eventTypeenum.Email;
+        
+        Type = eventTypeenum.Transform;
     }
 
     
