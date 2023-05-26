@@ -98,10 +98,19 @@ public class ObjectiveManager : MonoBehaviour
                 SetListener(triggerEvents[i], newListener());
             }
 
+        } else {
+            if (currentObjective.delay > 0) {
+                StartCoroutine(DelayToComplete(currentObjective.delay));
+            }
         }
         
 
 
+    }
+
+    IEnumerator DelayToComplete(float delay) {
+        yield return new WaitForSeconds(delay);
+        Triggered(false);
     }
 
     public EventListener newListener() {
@@ -213,7 +222,14 @@ public class ObjectiveManager : MonoBehaviour
 
     }
 
-    public void Triggered() {
+    public void Triggered(bool delay) {
+
+        if (delay) {
+            if (currentObjective.delay > 0) {
+                StartCoroutine(DelayToComplete(currentObjective.delay));
+            }
+        } else {
+
         currentObjective.Triggered();
 
         if (currentObjective.nextObjective != -1) {
@@ -227,6 +243,7 @@ public class ObjectiveManager : MonoBehaviour
                             nextObjective();
                         }
         }
+        }
 
     }
     
@@ -234,7 +251,7 @@ public class ObjectiveManager : MonoBehaviour
         if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check()) {
-                Triggered();
+                Triggered(true);
             }
         }
         }
@@ -245,7 +262,7 @@ public class ObjectiveManager : MonoBehaviour
                             if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                             }
@@ -256,7 +273,7 @@ public class ObjectiveManager : MonoBehaviour
                                 if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                 }
@@ -267,7 +284,7 @@ public class ObjectiveManager : MonoBehaviour
                                 if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                 }
@@ -278,7 +295,7 @@ public class ObjectiveManager : MonoBehaviour
                                 if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                 }
@@ -289,7 +306,7 @@ public class ObjectiveManager : MonoBehaviour
                                 if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                 }
@@ -300,7 +317,7 @@ public class ObjectiveManager : MonoBehaviour
                                     if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                     }
@@ -311,7 +328,7 @@ public class ObjectiveManager : MonoBehaviour
                                     if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                     }
@@ -322,7 +339,7 @@ public class ObjectiveManager : MonoBehaviour
                                     if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                     }
@@ -333,7 +350,7 @@ public class ObjectiveManager : MonoBehaviour
                                     if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {
-                Triggered();
+                Triggered(true);
             }
         }
                                     }

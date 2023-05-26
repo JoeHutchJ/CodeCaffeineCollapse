@@ -30,6 +30,8 @@ public class Objective
 
     public List<EventInfo> TriggerEvents;
 
+    public float delay;
+
     public List<ConditionInfo> ActivationConditions;
 
     public List<EventInfo> ActiviationEvents;
@@ -37,6 +39,7 @@ public class Objective
     public List<EventInfo> CompletionEvents;
 
     public List<Condition> CompletionFlags;
+    
 
     public int nextObjective = -1;
 

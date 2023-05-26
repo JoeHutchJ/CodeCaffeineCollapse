@@ -48,6 +48,9 @@ public class EventInfo
      
       [ShowIf("EventType", eventTypeenum.Email)]
      public Email emailinput;
+    
+     [ShowIf("EventType", eventTypeenum.Transform)]
+     public Transform transforminput;
 
 
     public void Raise() {
@@ -94,6 +97,11 @@ public class EventInfo
             AgentEmailEvent tempEmailEvent = (AgentEmailEvent)AgentEvent;
             tempEmailEvent.Agent = Agent;
             tempEmailEvent.Raise(emailinput);
+            break;
+        case eventTypeenum.Transform:
+            AgentTransformEvent temtransformEvent = (AgentTransformEvent)AgentEvent;
+            temtransformEvent.Agent = Agent;
+            temtransformEvent.Raise(transforminput);
             break;
         case eventTypeenum.Event:
             AgentEvent tempEvent = (AgentEvent)AgentEvent;
@@ -143,6 +151,10 @@ public class EventInfo
         case eventTypeenum.Email:
             EmailEvent tempEmailEvent = (EmailEvent)Event;
             tempEmailEvent.Raise(emailinput);
+            break;
+        case eventTypeenum.Transform:
+            TransformEvent temtransformEvent = (TransformEvent)Event;
+            temtransformEvent.Raise(transforminput);
             break;
         case eventTypeenum.Event:
             Event tempEvent = (Event)Event;
