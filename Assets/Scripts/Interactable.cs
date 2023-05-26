@@ -20,6 +20,8 @@ public class Interactable : MonoBehaviour
 
     public string secondaryInteractPrompt;
 
+    public bool secondaryActive;
+
     public UnityEvent secondaryAction; //only when equipped
 
     public Vector3Event cameraMoveEvent;
@@ -90,6 +92,39 @@ public class Interactable : MonoBehaviour
 
     }
 
+        public void secondaryInteract() {
+        if (secondaryActive) {
+        switch (secondaryType) {
+            case InteractableType.CAMERA:
+                //action.Invoke();
+                cameraMoveEvent.Raise(cameraPosition);
+                if (cameraRotationEvent != null && cameraRotation != null) {
+                cameraRotationEvent.Raise(cameraRotation.eulerAngles);
+                }
+                if (lockCameraRotation != null) {
+                    lockCameraRotation.Raise(lockRotation);
+                }
+                break;
+            case InteractableType.EQUIP:
+            if (action != null) {
+                secondaryAction.Invoke();
+            }
+                break;
+            case InteractableType.INTERACT:
+            if (action != null) {
+                secondaryAction.Invoke();
+            }
+                break;
+            case InteractableType.GIVE:
+            if (action != null) {
+                secondaryAction.Invoke();
+            }
+                break;
+        }
+
+    }
+        }
+
 
    /*public void Interact(GameObject obj) {
         //do things
@@ -135,6 +170,30 @@ public class Interactable : MonoBehaviour
 
                 case InteractableType.INTERACT:
                     return "Click to Interact";
+
+
+            }
+        }
+        return "Interact";
+
+
+    }
+
+        public string getSecondaryPrompt() {
+        
+        if (secondaryInteractPrompt != "") {
+            return secondaryInteractPrompt;
+        } else {
+            switch (secondaryType) {
+                case InteractableType.CAMERA:
+                    return "E to Move";
+
+                case InteractableType.EQUIP:
+                    return "E to Equip";
+
+                case InteractableType.INTERACT:
+                    return "E to Interact";
+                    
 
 
             }

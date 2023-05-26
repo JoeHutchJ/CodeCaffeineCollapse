@@ -12,6 +12,8 @@ public class NPC : MonoBehaviour
 
     public Transform testTarget;
 
+    public AgentEvent coffeeRecievedEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +85,21 @@ public class NPC : MonoBehaviour
 
 
 
+
+    }
+
+    public void ReceiveCoffee() {
+        CoffeeCup coffee = GetChildByName.Get(transform.gameObject, "CoffeeCup").GetComponent<CoffeeCup>();
+
+        if (coffee != null) {
+            Debug.Log("coffee not null");
+            if (coffee.full) {
+                if (coffeeRecievedEvent != null) {
+                    coffeeRecievedEvent.Agent = this.gameObject;
+                    coffeeRecievedEvent.Raise();
+                }
+            }
+        }
 
     }
 }

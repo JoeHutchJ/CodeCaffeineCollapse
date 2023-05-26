@@ -106,9 +106,20 @@ public class pickUpObject : MonoBehaviour
 
             }
 
+            } else {
+                if (objInHand.GetComponent<Interactable>() != null) {
+                
+            UIController.AddPrompt("Press F to drop");
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Drop();
 
+            }
 
-                } else {
+            }
+
+             } else {
             if (objInHand.GetComponent<Interactable>() != null) {
                 
             UIController.AddPrompt("Press F to drop");
@@ -118,18 +129,39 @@ public class pickUpObject : MonoBehaviour
                 Drop();
 
             }
-            }
-            }
+            
+            
             
             
 
         }
+        if (objInHand != null) {
+        if (objInHand.GetComponent<Interactable>() != null) {
+            Interactable interactable = objInHand.GetComponent<Interactable>();
+            if (interactable.secondaryType != InteractableType.NONE) {
+                if (interactable.secondaryActive) {
+            UIController.AddPrompt(interactable.getSecondaryPrompt());
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+            {
+                interactable.secondaryInteract();
+
+            }
+
+            }
+            }
+
+        }
+        }
+
 
         if (obj != null) {
 
             Pickupable pickupable = obj.GetComponent<Pickupable>();
 
         if (pickupable != null) {
+
+            if (pickupable.canPickup) {
 
         if(handFree)
             {
@@ -147,6 +179,8 @@ public class pickUpObject : MonoBehaviour
                     handFree = false;
                 }
             }
+
+            }
         }
 
     }
@@ -155,6 +189,8 @@ public class pickUpObject : MonoBehaviour
 
     }
 
-    }
+}
+
+
 
 

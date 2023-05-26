@@ -239,7 +239,7 @@ public class TaskManager : MonoBehaviour
         if (idTask != null) {
             if (!idTask.expired) {
         if (task.complete) {
-            
+            idTask = task;
             Global.AddPoints(task.getPoints());   
             StartCoroutine(sendEmail(task.taskType, task.completePercent));
             audioManager.Play("Task Complete");

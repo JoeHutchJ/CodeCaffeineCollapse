@@ -87,6 +87,11 @@ public class CoffeeMachine : MonoBehaviour
     }
 
     void CoffeeReady() {
+        if (cup != null) {
+            if (cup.GetComponent<CoffeeCup>() != null) {
+                cup.GetComponent<CoffeeCup>().Fill();
+            }
+        }
         Debug.Log("ready");
         status = CoffeeStatus.READY;
         if (cup != null) {

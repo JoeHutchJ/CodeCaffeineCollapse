@@ -11,6 +11,8 @@ public class InteractUIController : MonoBehaviour
 
     public Transform prompts;
 
+    int addedThisFrame = 0;
+
     public Image crosshair; 
 
     bool hidden;
@@ -26,8 +28,10 @@ public class InteractUIController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         WipePrompts();
+        
+        
     }
 
     public void HideAll(bool hide) {
@@ -42,19 +46,25 @@ public class InteractUIController : MonoBehaviour
     public void HideInteractIcon(bool hide) {
         if (!hidden) {
         interactIcon.enabled = !hide;
-        }
         crosshair.enabled = hide;
+        } else {
+        crosshair.enabled = false;
+        interactIcon.enabled = false;
+        }
     }
 
     public void AddPrompt(string prompt) {
         GameObject obj = Instantiate(PromptBoxPrefab, prompts);
         GetChildByName.Get(obj, "Prompt").GetComponent<TMP_Text>().text = prompt;
+        addedThisFrame++;
     }
 
     public void WipePrompts() {
-        foreach(Transform child in prompts) {
-            Destroy(child.gameObject);
-            
+        for (int i = prompts.childCount; i >= 0; i--) {
+            if (i < prompts.childCount - addedThisFrame) {
+                Destroy(prompts.GetChild(i).gameObject);
+            }
         }
+        addedThisFrame = 0;
     }
 }
