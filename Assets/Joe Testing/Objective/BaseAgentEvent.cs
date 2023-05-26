@@ -5,9 +5,11 @@ using UnityEngine;
 // due to problems with inheritance of functions between parent and children, this will need to be an abstract parent class of all Event types...
 
 
-public class BaseEvent : ScriptableObject
+public class BaseAgentEvent : ScriptableObject
 {
     protected eventTypeenum type;
+
+    public GameObject Agent;
 
     public virtual eventTypeenum Type {
         get { return type;} 

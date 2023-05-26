@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1137305049, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
-  m_Name: InspectorConfig
+  m_Script: {fileID: 11500000, guid: 5b08e2a39c8cfba498845cbbf36f952d, type: 3}
+  m_Name: TestFlag
   m_EditorClassIdentifier: 
-  enableOdinInInspector: 1
-  defaultEditorBehaviour: 15
-  processMouseMoveInInspector: 1
-  drawingConfig:
-    configs: []
+  Value: 1

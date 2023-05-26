@@ -41,6 +41,12 @@ public class StringEvent: BaseEvent //derived from scriptable object class
 
     }
 
+    public void DeRegister(Action<String> method) {
+        subscribed -= method;
+
+    }
+    
+
     public override void assignType() {
     
         Type = eventTypeenum.String;

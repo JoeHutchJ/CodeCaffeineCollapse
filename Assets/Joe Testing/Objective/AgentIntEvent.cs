@@ -9,8 +9,8 @@ using UnityEngine.Events;
 
 
 
-[CreateAssetMenu(fileName = "New Convo Event", menuName = "ScriptableObjects/ConvoEvent")] //custom inspector
-public class ConversationEvent: BaseEvent //derived from scriptable object class
+[CreateAssetMenu(fileName = "New Int Event", menuName = "AgentEvents/IntEvent")] //custom inspector
+public class AgentIntEvent: BaseAgentEvent //derived from scriptable object class
 {
     
 
@@ -23,30 +23,31 @@ public class ConversationEvent: BaseEvent //derived from scriptable object class
     }
 
     
-    public Action<Conversation> subscribed; 
+    public Action<int, GameObject> subscribed; 
 
-    public void Raise(Conversation _bool) {
+    public void Raise(int _int) {
         if (subscribed != null ) {
-        subscribed.Invoke(_bool);
+        subscribed.Invoke(_int, Agent);
         }
         
 
     }
 
-    public void Register(Action<Conversation> method) { //could return bool?
+    public void Register(Action<int, GameObject> method) { //could return bool?
         //Debug.Log("listener " + this.name );
         subscribed += method;
         
 
     }
-public void DeRegister(Action<Conversation> method) {
+
+    public void DeRegister(Action<int, GameObject> method) {
         subscribed -= method;
 
     }
 
     public override void assignType() {
         
-        Type = eventTypeenum.Conversation;
+        Type = eventTypeenum.Int;
     }
 
     

@@ -8,12 +8,12 @@ using UnityEngine.Events;
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
 
-
-[CreateAssetMenu(fileName = "New Convo Event", menuName = "ScriptableObjects/ConvoEvent")] //custom inspector
-public class ConversationEvent: BaseEvent //derived from scriptable object class
+[CreateAssetMenu(fileName = "New String Event", menuName = "AgentEvents/StringEvent")] //custom inspector
+public class AgentStringEvent: BaseAgentEvent //derived from scriptable object class
 {
-    
+    //public new String type = "Vector2";
 
+    
     public override eventTypeenum Type {
         get
         {return type;}
@@ -21,32 +21,34 @@ public class ConversationEvent: BaseEvent //derived from scriptable object class
         {type = value;}
 
     }
-
     
-    public Action<Conversation> subscribed; 
+    public Action<String, GameObject> subscribed; 
 
-    public void Raise(Conversation _bool) {
+
+
+
+    public void Raise(String str) {
         if (subscribed != null ) {
-        subscribed.Invoke(_bool);
+        subscribed.Invoke(str, Agent);
         }
-        
 
     }
 
-    public void Register(Action<Conversation> method) { //could return bool?
+    public void Register(Action<String, GameObject> method) { //could return bool?
         //Debug.Log("listener " + this.name );
         subscribed += method;
         
 
     }
-public void DeRegister(Action<Conversation> method) {
+
+  public void DeRegister(Action<String, GameObject> method) {
         subscribed -= method;
 
     }
 
     public override void assignType() {
-        
-        Type = eventTypeenum.Conversation;
+    
+        Type = eventTypeenum.String;
     }
 
     

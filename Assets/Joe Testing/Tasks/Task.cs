@@ -24,6 +24,7 @@ public static class TaskInfo {
 }
 
 
+[Serializable]
 
 public class Task
 {

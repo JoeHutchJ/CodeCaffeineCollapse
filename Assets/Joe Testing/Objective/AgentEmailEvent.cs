@@ -8,12 +8,12 @@ using UnityEngine.Events;
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
 
-
-[CreateAssetMenu(fileName = "New Convo Event", menuName = "ScriptableObjects/ConvoEvent")] //custom inspector
-public class ConversationEvent: BaseEvent //derived from scriptable object class
+[CreateAssetMenu(fileName = "New Email Event", menuName = "ScriptableObjects/EmailEvent")] //custom inspector
+public class AgentEmailEvent : BaseAgentEvent //derived from scriptable object class
 {
-    
+    //public new String type = "Vector2";
 
+    
     public override eventTypeenum Type {
         get
         {return type;}
@@ -21,32 +21,34 @@ public class ConversationEvent: BaseEvent //derived from scriptable object class
         {type = value;}
 
     }
-
     
-    public Action<Conversation> subscribed; 
+    public Action<Email, GameObject> subscribed; 
 
-    public void Raise(Conversation _bool) {
+
+
+
+    public void Raise(Email str) {
         if (subscribed != null ) {
-        subscribed.Invoke(_bool);
+        subscribed.Invoke(str, Agent);
         }
-        
 
     }
 
-    public void Register(Action<Conversation> method) { //could return bool?
+    public void Register(Action<Email, GameObject> method) { //could return bool?
         //Debug.Log("listener " + this.name );
         subscribed += method;
         
 
     }
-public void DeRegister(Action<Conversation> method) {
+
+    public void DeRegister(Action<Email, GameObject> method) {
         subscribed -= method;
 
     }
 
     public override void assignType() {
-        
-        Type = eventTypeenum.Conversation;
+    
+        Type = eventTypeenum.Email;
     }
 
     

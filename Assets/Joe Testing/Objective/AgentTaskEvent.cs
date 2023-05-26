@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-[CreateAssetMenu(fileName = "New Task Event", menuName = "ScriptableObjects/TaskEvent")] //custom inspector
-public class TaskEvent : BaseEvent
+[CreateAssetMenu(fileName = "A", menuName = "AgentEvents/TaskEvent")] //custom inspector
+public class AgentTaskEvent : BaseAgentEvent
 {
         public override eventTypeenum Type {
         get
@@ -16,24 +16,24 @@ public class TaskEvent : BaseEvent
     }
 
     
-    public Action<Task> subscribed; 
+    public Action<Task, GameObject> subscribed; 
 
     public void Raise(Task _task) {
         if (subscribed != null ) {
-        subscribed.Invoke(_task);
+        subscribed.Invoke(_task, Agent);
         }
         
 
     }
 
-    public void Register(Action<Task> method) { //could return bool?
+    public void Register(Action<Task, GameObject> method) { //could return bool?
         //Debug.Log("listener " + this.name );
         subscribed += method;
         
 
     }
 
-        public void DeRegister(Action<Task> method) {
+  public void DeRegister(Action<Task, GameObject> method) {
         subscribed -= method;
 
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-[CreateAssetMenu(fileName = "New Task Event", menuName = "ScriptableObjects/TaskEvent")] //custom inspector
-public class TaskEvent : BaseEvent
+[CreateAssetMenu(fileName = "New Vector Event", menuName = "AgentEvents/Vector3Event")] //custom inspector
+public class AgentVector3Event : BaseAgentEvent
 {
         public override eventTypeenum Type {
         get
@@ -16,31 +16,31 @@ public class TaskEvent : BaseEvent
     }
 
     
-    public Action<Task> subscribed; 
+    public Action<Vector3, GameObject> subscribed; 
 
-    public void Raise(Task _task) {
+    public void Raise(Vector3 _vec) {
         if (subscribed != null ) {
-        subscribed.Invoke(_task);
+        subscribed.Invoke(_vec, Agent);
         }
         
 
     }
 
-    public void Register(Action<Task> method) { //could return bool?
+    public void Register(Action<Vector3, GameObject> method) { //could return bool?
         //Debug.Log("listener " + this.name );
         subscribed += method;
         
 
     }
 
-        public void DeRegister(Action<Task> method) {
+     public void DeRegister(Action<Vector3, GameObject> method) {
         subscribed -= method;
 
     }
 
     public override void assignType() {
         
-        Type = eventTypeenum.Task;
+        Type = eventTypeenum.Vector3;
     }
 
     
