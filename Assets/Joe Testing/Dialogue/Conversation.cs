@@ -1,11 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
-using Sirenix.OdinInspector;
-
-[Serializable]
 
 [CreateAssetMenu(fileName = "Conversation", menuName = "ScriptableObjects/Conversation")] //custom inspector
 public class Conversation: ScriptableObject {
@@ -21,4 +16,3 @@ public class Conversation: ScriptableObject {
 
 
 }
-
