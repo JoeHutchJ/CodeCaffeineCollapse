@@ -1,114 +1,109 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-    public enum InteractableType {CAMERA, EQUIP, INTERACT};
-
-public class Interactable : MonoBehaviour
+public class interactable : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject cam;
 
-    public InteractableType type;
 
-    public UnityEvent action;
+    private pickUpObject inHand;
+    private playerInteract gameArea;
+    private bool startTimer = false;
+    private float coffeeTimr = 5;
+    private GameObject intObj;
 
-    public UnityEvent<GameObject> Objaction;
-
-    public Vector3Event cameraMoveEvent;
-
-    public Vector3Event cameraRotationEvent;
-
-    public BoolEvent lockCameraRotation; 
-
-    Vector3 cameraPosition;
-    Quaternion cameraRotation;
-
-    public bool lockRotation;
-    
-    
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        switch (type) {
-            case InteractableType.CAMERA:
-                cameraPosition = GetChildByName.Get(this.gameObject,"CameraPosition").transform.position;
-                cameraRotation = GetChildByName.Get(this.gameObject,"CameraPosition").transform.rotation;
-                break;
-            case InteractableType.EQUIP:
-
-                break;
-            case InteractableType.INTERACT:
-
-                break;
-        }
+        inHand = player.GetComponent<pickUpObject>();
+        gameArea = player.GetComponent<playerInteract>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private GameObject GetObjectInHand()
     {
-        
+        GameObject obj = inHand.getObjectInHand();
+
+        return obj;
     }
 
-    public void Hover() {
-        //hover effect
-
+    private GameObject GetArea()
+    {
+        GameObject gmeArea = gameArea.getArea();
+        return gmeArea;
     }
 
-    public void Interact() {
-        //do things
-        switch (type) {
-            case InteractableType.CAMERA:
-                //action.Invoke();
-                cameraMoveEvent.Raise(cameraPosition);
-                if (cameraRotationEvent != null && cameraRotation != null) {
-                cameraRotationEvent.Raise(cameraRotation.eulerAngles);
+    private void changePosToInter()
+    {
+        Vector3 pos = new Vector3(
+            gameObject.transform.position.x,
+            gameObject.transform.position.y,
+            gameObject.transform.position.z + 0.5f
+            );
+
+        inHand.changePutDownPos(pos);
+    }
+
+  
+
+
+
+
+    private void validateCoffee(GameObject obj, GameObject area)
+    {
+        if (area.name == "KitchenBox")
+        {
+            if (obj.name == "mug")
+            {
+                pickupable mug = obj.GetComponent<pickupable>();
+                if (mug.isReady)
+                {
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        Debug.Log("in coffee mach");
+                        intObj = obj;
+                        changePosToInter();
+                        inHand.putDown();
+                        startTimer = true;
+                        mug.canPickUp = false;
+                    }
                 }
-                if (lockCameraRotation != null) {
-                    lockCameraRotation.Raise(lockRotation);
-                }
-                break;
-            case InteractableType.EQUIP:
-            if (action != null) {
-                action.Invoke();
             }
-                break;
-            case InteractableType.INTERACT:
-            if (action != null) {
-                action.Invoke();
-            }
-                break;
         }
+    }
 
+    private void getReadyCoffee()
+    {
+        startTimer = false;
+        pickupable mug = intObj.GetComponent<pickupable>();
+        mug.isReady = false;
+        mug.canPickUp = true;
+        Debug.Log("coffee ready");
+        inHand.changePutDownPos(mug.prevPos);
+        coffeeTimr = 5;
     }
 
 
-    public void Interact(GameObject obj) {
-        //do things
-        Interact();
-        switch (type) {
-            case InteractableType.CAMERA:
-                //action.Invoke();
-                cameraMoveEvent.Raise(cameraPosition);
-                if (cameraRotationEvent != null && cameraRotation != null) {
-                cameraRotationEvent.Raise(cameraRotation.eulerAngles);
-                }
-                if (lockCameraRotation != null) {
-                    lockCameraRotation.Raise(lockRotation);
-                }
-                break;
-            case InteractableType.EQUIP:
-            if (Objaction != null) {
-                Objaction.Invoke(obj);
-            }
-                break;
-            case InteractableType.INTERACT:
-            Debug.Log(gameObject.name);
-            if (Objaction != null) {
-                Objaction.Invoke(obj);
-            }
-                break;
-        }
+    private void OnMouseOver()
+    {
+        GameObject obj = GetObjectInHand();
+        GameObject area = GetArea();
+        validateCoffee(obj, area);
+    }
 
+
+    private void Update()
+    {
+        if (startTimer)
+        {
+            if(coffeeTimr > 0)
+            {
+                coffeeTimr -= Time.deltaTime;
+            }
+            else
+            {
+                getReadyCoffee();
+            }
+        }
     }
 }

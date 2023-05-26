@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class pickUpObject : MonoBehaviour
 {
     [SerializeField] private Collider currColl;
     [SerializeField] private GameObject cam;
-    [SerializeField] private bool handFree;
+    [SerializeField] public bool handFree;
     [SerializeField] private GameObject NewParent;
+    [SerializeField] private GameObject gbl;
 
 
     private rayExample coll;
-    private Vector3 prevPosition;
-
-    private Vector3 prevRotation;
-
-    private Pickupable objInHand;
-    
+    private Vector3 prevObject;
+    private GameObject objInHand;
+    private Vector3 DeskPos;
 
 
     private void Start()
@@ -25,101 +24,122 @@ public class pickUpObject : MonoBehaviour
         handFree = true;
     }
 
+    public GameObject getObjectInHand()
+    {
+        return objInHand;
+    }
+
     private GameObject getGameObject()
     {
 
         currColl = coll.hitColl;
-        if (currColl != null) {
         GameObject pickupable = currColl.gameObject; //will get the collider in front of the raycast and will find the gameobject from that
         //Debug.Log(pickupable);
 
         return pickupable;
-        } 
-        return null;
     }
 
-    private void setParentClass(Pickupable obj, GameObject newParent)
+
+    private void setParentClass(GameObject child, GameObject newParent)
     {
+        child.transform.parent = newParent.transform;
+        child.transform.localPosition = new Vector3(-0.5f,-0.1f,1.0f);
+        child.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
-        obj.transform.parent = newParent.transform;
-        obj.Pickup();
-        obj.transform.localPosition = new Vector3(0,0,0);
-        //Debug.Log(child.transform.parent.name);
-
-        //child.transform.Translate(1, (float)0.7, 0);
 
     }
 
-    private void removeParentClass(Pickupable obj)
+    private void removeParentClass(GameObject child)
     {
-        obj.Drop();
-        //child.transform.rotation = new Quaternion(0, 0, 0,0);
+        child.transform.parent = null;
+        child.transform.position = new Vector3(prevObject.x, prevObject.y, prevObject.z);
+        child.transform.rotation = new Quaternion(0, 0, 0,0);
     }
 
-    private void getPrevPosition(GameObject pickupable)
+
+    private void objInteract(GameObject pickUpable)
     {
-        /*prevPosition.x = pickupable.transform.position.x;
-        prevPosition.y = pickupable.transform.position.y;
-        prevPosition.z = pickupable.transform.position.z;*/
-        prevPosition = pickupable.transform.position;
-
-        prevRotation = pickupable.transform.rotation.eulerAngles;
+        if(pickUpable.name == "mug")
+        {
+            pickupable mug = pickUpable.GetComponent<pickupable>();
+            if (mug.isReady == false)
+            {
+                global val = gbl.GetComponent<global>();
+                val.caffineVal = 1;
+                mug.isReady = true;
+            }
+        }
     }
 
-    public void Drop() {
+
+
+
+
+    private void getPrevPosition(GameObject pickUpable)
+    {
+        
+        pickupable pos = pickUpable.GetComponent<pickupable>();
+        pos.getPosition();
+        prevObject = pos.prevPos;
+    }
+
+    public void changePutDownPos(Vector3 newPos)
+    {
+        prevObject = newPos;
+    }
+
+
+
+
+    public void putDown()
+    {
         removeParentClass(objInHand);
         handFree = true;
         objInHand = null;
     }
 
-
+    public void pickUp()
+    {
+        getPrevPosition(objInHand);
+        setParentClass(objInHand, NewParent);
+        handFree = false;
+    }
 
 
 
     private void Update()
     {
-        if (!Global.cursorMode) {
-        GameObject obj = getGameObject();
+        GameObject pickupable = getGameObject();
 
-            if (!handFree)
+        if (handFree == false)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                Drop();
-
+                putDown();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                objInteract(objInHand);
             }
 
         }
 
-        if (obj != null) {
 
-            Pickupable pickupable = obj.GetComponent<Pickupable>();
-
-        if (pickupable != null) {
-
-        if(handFree)
+        if (pickupable.tag == "Pickupable") //must set tag of pickupable items in unity
+        {
+            if(handFree)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                objInHand = pickupable;
+                if (objInHand.GetComponent<pickupable>().canPickUp == true)
                 {
-                    objInHand = pickupable;
-                    Interactable interactable = objInHand.GetComponent<Interactable>();
-                    if (interactable != null) {
-                        interactable.Interact();
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        pickUp();
                     }
-
-                    //getPrevPosition(objInHand);
-                    setParentClass(objInHand, NewParent);
-                    handFree = false;
                 }
             }
         }
 
     }
 
-        }
-
-    }
-
-    }
-
-
+}

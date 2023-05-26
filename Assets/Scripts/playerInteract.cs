@@ -7,54 +7,50 @@ public class playerInteract : MonoBehaviour
 
 
     [SerializeField] GameObject cam;
-    [SerializeField] Vector3 deskPos;
-    [SerializeField] Vector3 ktchPos;
     [SerializeField] float moveSpeed = 8.0f;
     [SerializeField] private Collider currColl;
 
-    public rayExample coll;
+    private rayExample coll;
+    private GameObject area;
 
     private void Start()
     {
         coll = cam.GetComponent<rayExample>();
+        currColl = coll.hitColl;
+        area = currColl.gameObject;
+    }
+
+    public GameObject getArea()
+    {
+        return area;
+    }
+
+    private Vector3 areaToMove(GameObject point)
+    {
+        Vector3 toMoveTo = new Vector3(
+            point.transform.position.x,
+            point.transform.position.y,
+            point.transform.position.z);
+
+        return toMoveTo;
     }
 
 
     private void Update()
     {
-        
         var inc = moveSpeed * Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0))
         {
             currColl = coll.hitColl;
-            //Debug.Log(currColl);
-        if (!Global.cursorMode) {
+            area = currColl.gameObject;
+            Debug.Log(area.name);
+        }
 
-        if (currColl != null) {
-
-            Debug.Log(currColl.name);
-
-        /*if(currColl.name == "Desk")
+        if(area.tag == "Interactable")
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, deskPos, inc);
-        }
-
-        if(currColl.name == "kitchen")
-        {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, ktchPos, inc);
-        }*/
-        Interactable obj = currColl.gameObject.GetComponent<Interactable>();
-
-        if (obj != null) {
-            obj.Interact();
-        }
-
-        }
+            Vector3 toMove = areaToMove(area);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, toMove, inc);
         }
     }
-
-    }
-
-
 }

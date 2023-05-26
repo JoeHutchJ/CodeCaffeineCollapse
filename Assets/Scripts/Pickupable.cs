@@ -2,71 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickupable : MonoBehaviour
+public class pickupable : MonoBehaviour
 {
+    public bool isReady = true; // can be used as a variable for coffee cup and other equipibles which need to be interacted with
+    //is true when empty
 
-    public string identifier;
+    public bool canPickUp = true;
+    private bool firstTime = true;
     public Vector3 prevPos;
 
-    public Quaternion prevRotation;
-
-    bool isReady;
-
-    bool canPickup = true;
-
-    bool pickedUp = false;
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 getPosition()
     {
-        
+        Vector3 pos = new Vector3(
+            gameObject.transform.position.x,
+            gameObject.transform.position.y,
+            gameObject.transform.position.z);
+
+        if (firstTime)
+        {
+            prevPos = pos;
+            firstTime = false;
+        }
+
+        return pos;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void CanPickUp(bool pickup) {
-        canPickup = pickup;
-    }
-
-    public void setPrevPos(Vector3 pos) {
-        prevPos = pos;
-    }
-
-    public void setPrevRotation(Quaternion angle) {
-        prevRotation = angle;
-    }
-
-    public void goToPrevPos() {
-        transform.position = prevPos;
-    }
-
-    public void goToPrevRotation() {
-        transform.rotation = prevRotation;
-
-    }
-
-    public void setNewParent(Transform parent) {
-        transform.parent = parent;
-
-    }
-
-    public void Pickup() {
-        pickedUp = true;
-        setPrevPos(transform.position);
-        setPrevRotation(transform.rotation);
-        Global.setObjinHand(this);
-
-    }
-
-    public void Drop() {
-        transform.parent = null;
-        goToPrevPos();
-        goToPrevRotation();
-        pickedUp = false;
-        Global.setObjinHand(null);
-
-    }
+    
 }
