@@ -2481,7 +2481,6 @@ GameObject:
   - component: {fileID: 251764045}
   - component: {fileID: 251764044}
   - component: {fileID: 251764043}
-  - component: {fileID: 251764042}
   m_Layer: 0
   m_Name: LeftDeskInteractable
   m_TagString: Untagged
@@ -2489,59 +2488,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &251764042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251764041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Event: {fileID: 11400000, guid: 3a7a0cff59472c447bca0d207957b138, type: 2}
-  eventType: 1
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 251764043}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  vector2response:
-    m_PersistentCalls:
-      m_Calls: []
-  boolresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  stringresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  intresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  taskresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Vector3response:
-    m_PersistentCalls:
-      m_Calls: []
-  Conversationresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Emailresponse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &251764043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3651,7 +3597,6 @@ GameObject:
   - component: {fileID: 493854638}
   - component: {fileID: 493854637}
   - component: {fileID: 493854636}
-  - component: {fileID: 493854635}
   m_Layer: 0
   m_Name: RightDeskInteractable
   m_TagString: Untagged
@@ -3659,59 +3604,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &493854635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493854634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Event: {fileID: 11400000, guid: 3a7a0cff59472c447bca0d207957b138, type: 2}
-  eventType: 1
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 493854636}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  vector2response:
-    m_PersistentCalls:
-      m_Calls: []
-  boolresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  stringresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  intresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  taskresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Vector3response:
-    m_PersistentCalls:
-      m_Calls: []
-  Conversationresponse:
-    m_PersistentCalls:
-      m_Calls: []
-  Emailresponse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &493854636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5464,6 +5356,7 @@ MonoBehaviour:
   jobQuota: 0
   percent: 0
   jobPoints: 0
+  buildDebugger: {fileID: 1819746571}
 --- !u!114 &975688932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7594,7 +7487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65dc5fa8bfd2294197204081bc23815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   action:
     m_PersistentCalls:
       m_Calls:
@@ -8413,7 +8306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65dc5fa8bfd2294197204081bc23815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   action:
     m_PersistentCalls:
       m_Calls:
@@ -9547,7 +9440,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   identifier: 
   prevPos: {x: 0, y: 0, z: 0}
+  originalPos: {x: 0, y: 0, z: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
   prevRotation: {x: 0, y: 0, z: 0, w: 0}
+  canPickup: 1
 --- !u!1 &1436408086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ace361b7ee990874a81a55d8fdede2ec, type: 3}
@@ -10137,7 +10033,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   identifier: 
   prevPos: {x: 0, y: 0, z: 0}
+  originalPos: {x: 0, y: 0, z: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
   prevRotation: {x: 0, y: 0, z: 0, w: 0}
+  canPickup: 1
 --- !u!1001 &1530933911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10347,7 +10246,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   identifier: Cup
   prevPos: {x: 0, y: 0, z: 0}
+  originalPos: {x: 0, y: 0, z: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
   prevRotation: {x: 0, y: 0, z: 0, w: 0}
+  canPickup: 1
 --- !u!1001 &1544333224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11008,7 +10910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65dc5fa8bfd2294197204081bc23815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   action:
     m_PersistentCalls:
       m_Calls:
@@ -11952,6 +11854,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802067011}
   m_CullTransparentMesh: 1
+--- !u!1 &1819746571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819746573}
+  - component: {fileID: 1819746572}
+  m_Layer: 0
+  m_Name: BuildDebugger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1819746572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819746571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418f641d1bc9ca84f8c994e0e410c9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1819746573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819746571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 496.70422, y: -559.76196, z: -351.83807}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829753284
 GameObject:
   m_ObjectHideFlags: 0

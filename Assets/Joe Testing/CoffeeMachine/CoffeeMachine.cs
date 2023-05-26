@@ -90,7 +90,9 @@ public class CoffeeMachine : MonoBehaviour
         Debug.Log("ready");
         status = CoffeeStatus.READY;
         if (cup != null) {
-            cup.GetComponent<Pickupable>().CanPickUp(false);
+            Debug.Log("set original");
+            cup.GetComponent<Pickupable>().CanPickUp(true);
+            cup.GetComponent<Pickupable>().atOriginalPos = false;
         }
 
 

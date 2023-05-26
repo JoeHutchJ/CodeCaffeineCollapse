@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class playerInteract : MonoBehaviour
 {
@@ -27,13 +28,14 @@ public class playerInteract : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            
             currColl = coll.hitColl;
             //Debug.Log(currColl);
         if (!Global.cursorMode) {
 
         if (currColl != null) {
 
-            Debug.Log(currColl.name);
+
 
         /*if(currColl.name == "Desk")
         {

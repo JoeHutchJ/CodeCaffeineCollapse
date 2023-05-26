@@ -11,11 +11,12 @@ public class ConversationHolder : MonoBehaviour
 
     AudioSource audio;
 
-    public bool sent = false;
+    public bool sent;
     // Start is called before the first frame update
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        sent = false;
     }
 
     // Update is called once per frame

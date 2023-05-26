@@ -40,10 +40,11 @@ public class pickUpObject : MonoBehaviour
 
     private void setParentClass(Pickupable obj, GameObject newParent)
     {
-
+        if (obj.canPickup) {
         obj.transform.parent = newParent.transform;
         obj.Pickup();
         obj.transform.localPosition = new Vector3(0,0,0);
+        }
         //Debug.Log(child.transform.parent.name);
 
         //child.transform.Translate(1, (float)0.7, 0);

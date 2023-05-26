@@ -19,6 +19,8 @@ public static class Global
 
     public static GameObject ObjInHand;
 
+    public static GameObject BuildDebugger;
+
 
     public static void Update() {
         currentTime += Time.deltaTime;
@@ -47,6 +49,7 @@ public static class Global
         }
 
     }
+
 
 
 
