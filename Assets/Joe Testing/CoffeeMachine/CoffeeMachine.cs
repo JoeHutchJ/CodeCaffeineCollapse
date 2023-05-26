@@ -61,6 +61,8 @@ public class CoffeeMachine : MonoBehaviour
     }
 
     void StartBrewing() {
+        GetComponent<AudioManager>().StopAll();
+        GetComponent<AudioManager>().Play();
         Debug.Log("brewing");
         status = CoffeeStatus.BREWING;
         collider.enabled = false;
@@ -88,7 +90,9 @@ public class CoffeeMachine : MonoBehaviour
         Debug.Log("ready");
         status = CoffeeStatus.READY;
         if (cup != null) {
-            cup.GetComponent<Pickupable>().CanPickUp(false);
+            Debug.Log("set original");
+            cup.GetComponent<Pickupable>().CanPickUp(true);
+            cup.GetComponent<Pickupable>().atOriginalPos = false;
         }
 
 
@@ -130,7 +134,6 @@ public class CoffeeMachine : MonoBehaviour
         Debug.Log("coffee machine interacted");
         switch (status) {
             case CoffeeStatus.NONE: 
-            Debug.Log("none");
                 if (checkHand()) {
                 StartBrewing();
                 }

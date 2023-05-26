@@ -9,10 +9,13 @@ public class GlobalHandler : MonoBehaviour
     public float percent;
 
     public int jobPoints;
+
+    public GameObject buildDebugger;
     // Start is called before the first frame update
     void Start()
     {
         jobQuota = Global.jobQuota;
+        Global.BuildDebugger = buildDebugger;
     }
 
     // Update is called once per frame

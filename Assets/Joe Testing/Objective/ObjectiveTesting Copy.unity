@@ -1549,6 +1549,9 @@ MonoBehaviour:
   action:
     m_PersistentCalls:
       m_Calls: []
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
   cameraRotationEvent: {fileID: 11400000, guid: 6a839926aa8ebac43b7794f2d3d5e259, type: 2}
   lockCameraRotation: {fileID: 11400000, guid: ec346b5fa0e6ef64aa4f4aec73c1fc23, type: 2}
@@ -1767,6 +1770,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -2264,6 +2270,9 @@ MonoBehaviour:
   action:
     m_PersistentCalls:
       m_Calls: []
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
   cameraRotationEvent: {fileID: 11400000, guid: 6a839926aa8ebac43b7794f2d3d5e259, type: 2}
   lockCameraRotation: {fileID: 11400000, guid: ec346b5fa0e6ef64aa4f4aec73c1fc23, type: 2}
@@ -2368,6 +2377,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -3571,6 +3583,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -7410,6 +7425,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -8226,6 +8244,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -8939,6 +8960,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3b2496e662eec643a975292e64b7e41, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1540619481}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3b2496e662eec643a975292e64b7e41, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1540619483}
   m_SourcePrefab: {fileID: 100100000, guid: f3b2496e662eec643a975292e64b7e41, type: 3}
 --- !u!1 &1408891798
 GameObject:
@@ -9246,6 +9270,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1426173418}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1426173422}
   m_SourcePrefab: {fileID: 100100000, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
 --- !u!4 &1426173414 stripped
 Transform:
@@ -9314,10 +9341,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
   lockRotation: 0
+--- !u!114 &1426173422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854232251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be685493339a45c88945b01e55f3b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identifier: 
+  prevPos: {x: 0, y: 0, z: 0}
+  prevRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1436408086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ace361b7ee990874a81a55d8fdede2ec, type: 3}
@@ -9475,6 +9520,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
@@ -9860,6 +9908,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a449a90195e82e479b9e890f5166adc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1508503529}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a449a90195e82e479b9e890f5166adc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1508503530}
   m_SourcePrefab: {fileID: 100100000, guid: 4a449a90195e82e479b9e890f5166adc, type: 3}
 --- !u!4 &1508503528 stripped
 Transform:
@@ -9887,6 +9938,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.043343958, y: 0.08265731, z: 0.00678463}
   m_Center: {x: -0.000057002664, y: -0.002678946, z: -0.00034250732}
+--- !u!114 &1508503530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179681536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be685493339a45c88945b01e55f3b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identifier: 
+  prevPos: {x: 0, y: 0, z: 0}
+  prevRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1530933911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10082,6 +10148,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1540619483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380143058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be685493339a45c88945b01e55f3b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identifier: 
+  prevPos: {x: 0, y: 0, z: 0}
+  prevRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1544333224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10758,6 +10839,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -12236,8 +12320,6 @@ MonoBehaviour:
   taskInfoEvent: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
   completeEvent: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
   anim: {fileID: 0}
-  def: {fileID: 1827226128182048838, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
-  stopped: {fileID: 9067093048684652814, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
   audioManager: {fileID: 0}
 --- !u!114 &2010647203
 MonoBehaviour:
@@ -12267,6 +12349,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Objaction:
+    m_PersistentCalls:
+      m_Calls: []
   cameraMoveEvent: {fileID: 0}
   cameraRotationEvent: {fileID: 0}
   lockCameraRotation: {fileID: 0}
@@ -12845,6 +12930,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   action:
+    m_PersistentCalls:
+      m_Calls: []
+  Objaction:
     m_PersistentCalls:
       m_Calls: []
   cameraMoveEvent: {fileID: 11400000, guid: da41cf80b9476c54285e30f3b182ddeb, type: 2}
