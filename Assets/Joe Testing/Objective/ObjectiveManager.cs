@@ -143,6 +143,9 @@ public class ObjectiveManager : MonoBehaviour
         case eventTypeenum.Email:
             listener.SetEmailResponse(CheckTrigger);
             break;
+        case eventTypeenum.Transform:
+            listener.SetTransformResponse(CheckTrigger);
+            break;
         case eventTypeenum.Event:
             listener.SetResponse(CheckTrigger);
             break;
@@ -316,6 +319,17 @@ public class ObjectiveManager : MonoBehaviour
     }
 
                         public void CheckTrigger(Email val) {
+                                    if (currentObjective != null) {
+        foreach (EventInfo info in currentObjective.TriggerEvents) {
+            if (info.Check(val)) {
+                Triggered();
+            }
+        }
+                                    }
+
+    }
+
+                            public void CheckTrigger(Transform val) {
                                     if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
             if (info.Check(val)) {

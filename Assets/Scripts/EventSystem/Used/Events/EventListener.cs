@@ -15,7 +15,7 @@ using Sirenix.OdinInspector;
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
-public enum eventTypeenum {Vector2, Event, Boolean, String, Int, Task, Vector3, Conversation, Email};
+public enum eventTypeenum {Vector2, Event, Boolean, String, Int, Task, Vector3, Conversation, Email, Transform};
 
 public enum isAgent {NONE, AGENT};
 
@@ -70,6 +70,8 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     public UnityEvent<Conversation> Conversationresponse = new UnityEvent<Conversation>();
     [ShowIf("@eventType == eventTypeenum.Email")]
     public UnityEvent<Email> Emailresponse = new UnityEvent<Email>();
+    [ShowIf("@eventType == eventTypeenum.Transform")]
+    public UnityEvent<Transform> Transformresponse = new UnityEvent<Transform>();
     [EnumToggleButtons] //define the type of Event.
     
     
@@ -80,7 +82,7 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     bool enabled = false;
 
     private void OnEnable() {
-        //Do();
+        Do();
     }
 
     private void Update() {
@@ -88,7 +90,7 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
  
     private void  Do() //where the responses are registered to the Events.
     {   
-
+        Destroy();
         if ( !enabled) {
             enabled = true;
         if (_AgentEvent != null) {
@@ -127,6 +129,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
         case eventTypeenum.Email:
             AgentEmailEvent tempEmailEvent = (AgentEmailEvent)_AgentEvent;
             tempEmailEvent.Register(new Action<Email, GameObject>(EnactAgentEvent));
+            break;
+        case eventTypeenum.Transform:
+            AgentTransformEvent tempTransEvent = (AgentTransformEvent)_AgentEvent;
+            tempTransEvent.Register(new Action<Transform, GameObject>(EnactAgentEvent));
             break;
         case eventTypeenum.Event:
             AgentEvent tempEvent = (AgentEvent)_AgentEvent;
@@ -177,6 +183,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
             EmailEvent tempEmailEvent = (EmailEvent)_Event;
             tempEmailEvent.Register(new Action<Email>(EnactEvent));
             break;
+        case eventTypeenum.Transform:
+            TransformEvent tempTransformEvent = (TransformEvent)_Event;
+            tempTransformEvent.Register(new Action<Transform>(EnactEvent));
+            break;
         case eventTypeenum.Event:
             Event tempEvent = (Event)_Event;
             tempEvent.Register(new Action(EnactEvent));
@@ -226,6 +236,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
             AgentEmailEvent tempEmailEvent = (AgentEmailEvent)_AgentEvent;
             tempEmailEvent.DeRegister(new Action<Email, GameObject>(EnactAgentEvent));
             break;
+        case eventTypeenum.Transform:
+            AgentTransformEvent tempTransEvent = (AgentTransformEvent)_AgentEvent;
+            tempTransEvent.Register(new Action<Transform, GameObject>(EnactAgentEvent));
+            break;
         case eventTypeenum.Event:
             AgentEvent tempEvent = (AgentEvent)_AgentEvent;
             tempEvent.DeRegister(new Action<GameObject>(EnactAgentEvent));
@@ -273,6 +287,10 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
         case eventTypeenum.Email:
             EmailEvent tempEmailEvent = (EmailEvent)_Event;
             tempEmailEvent.DeRegister(new Action<Email>(EnactEvent));
+            break;
+        case eventTypeenum.Transform:
+            TransformEvent tempTransformEvent = (TransformEvent)_Event;
+            tempTransformEvent.Register(new Action<Transform>(EnactEvent));
             break;
         case eventTypeenum.Event:
             Event tempEvent = (Event)_Event;
@@ -415,6 +433,14 @@ public void SetEmailResponse(UnityAction<Email> res) {
         
     }
 
+public void SetTransformResponse(UnityAction<Transform> res) {
+            Do();
+            
+            UnityEventTools.AddPersistentListener(Transformresponse, res);
+            //response.AddListener(res);
+        
+    }
+
     //when Raise() is called, these function are called. 
 
     public void EnactEvent() {
@@ -428,6 +454,10 @@ public void SetEmailResponse(UnityAction<Email> res) {
 
     public void EnactEvent(Boolean _bool) {
         boolresponse.Invoke(_bool);
+    }
+
+    public void EnactEvent(Transform _bool) {
+        Transformresponse.Invoke(_bool);
     }
 
     public void EnactEvent(String str) {
@@ -473,6 +503,12 @@ public void SetEmailResponse(UnityAction<Email> res) {
     public void EnactAgentEvent(Boolean _bool, GameObject agent) {
         if (Agent == agent) {
         boolresponse.Invoke(_bool);
+    }
+    }
+
+    public void EnactAgentEvent(Transform _bool, GameObject agent) {
+        if (Agent == agent) {
+        Transformresponse.Invoke(_bool);
     }
     }
 

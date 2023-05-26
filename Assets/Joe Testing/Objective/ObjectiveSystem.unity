@@ -834,266 +834,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1439413312
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1439413314}
-  - component: {fileID: 1439413313}
-  m_Layer: 0
-  m_Name: ObjectiveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1439413313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439413312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d71c020cee0e74a81f57c98149cf80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  publicCurrentObjective:
-    id: 0
-    name: 
-    skip: 0
-    completed: 0
-    TriggerEvents: []
-    ActivationConditions: []
-    ActiviationEvents: []
-    CompletionEvents: []
-    CompletionFlags: []
-    nextObjective: -1
-  ObjectiveBlocks:
-  - name: 
-    objectives:
-    - id: 1
-      name: 
-      skip: 0
-      completed: 0
-      TriggerEvents:
-      - EventType: 1
-        isAgentEvent: 1
-        Event: {fileID: 0}
-        AgentEvent: {fileID: 11400000, guid: 950dfd904fb2dfb4a9e2c4ddbcebce6d, type: 2}
-        Agent: {fileID: 1873679408}
-        Vec2input: {x: 0, y: 0}
-        boolinput: 0
-        stringinput: 
-        intinput: 0
-        taskinput:
-          ID: 0
-          taskType: 0
-          difficulty: 0
-          name: 
-          prompt: 
-          timeTicking: 0
-          timeStarted: 0
-          timeLimit: 0
-          timeElapsed: 0
-          complete: 0
-          completePercent: 0
-          points: 0
-          expired: 0
-          active: 0
-          CompleteEvent: {fileID: 0}
-        vector3input: {x: 0, y: 0, z: 0}
-        conversationinput: {fileID: 0}
-        emailinput:
-          id: 0
-          Subject: 
-          Message: 
-          reply: 0
-          replyMessage: 
-          read: 0
-          replied: 0
-          spam: 0
-          taskType: 0
-      ActivationConditions: []
-      ActiviationEvents: []
-      CompletionEvents: []
-      CompletionFlags: []
-      nextObjective: 4
-    - id: 2
-      name: 
-      skip: 0
-      completed: 0
-      TriggerEvents: []
-      ActivationConditions:
-      - conditon:
-          flag: {fileID: 11400000, guid: df1700174f279674dab8b678f4bfb227, type: 2}
-          value: 1
-        SkipObjectiveId: 4
-      ActiviationEvents: []
-      CompletionEvents:
-      - EventType: 4
-        isAgentEvent: 0
-        Event: {fileID: 11400000, guid: 914c4133cdd234f4d8b8cb8da2e44bc6, type: 2}
-        AgentEvent: {fileID: 0}
-        Agent: {fileID: 0}
-        Vec2input: {x: 0, y: 0}
-        boolinput: 0
-        stringinput: 
-        intinput: 42
-        taskinput:
-          ID: 0
-          taskType: 0
-          difficulty: 0
-          name: 
-          prompt: 
-          timeTicking: 0
-          timeStarted: 0
-          timeLimit: 0
-          timeElapsed: 0
-          complete: 0
-          completePercent: 0
-          points: 0
-          expired: 0
-          active: 0
-          CompleteEvent: {fileID: 0}
-        vector3input: {x: 0, y: 0, z: 0}
-        conversationinput: {fileID: 0}
-        emailinput:
-          id: 0
-          Subject: 
-          Message: 
-          reply: 0
-          replyMessage: 
-          read: 0
-          replied: 0
-          spam: 0
-          taskType: 0
-      CompletionFlags: []
-      nextObjective: -1
-    - id: 3
-      name: 
-      skip: 0
-      completed: 0
-      TriggerEvents:
-      - EventType: 1
-        isAgentEvent: 1
-        Event: {fileID: 0}
-        AgentEvent: {fileID: 11400000, guid: 950dfd904fb2dfb4a9e2c4ddbcebce6d, type: 2}
-        Agent: {fileID: 1873679408}
-        Vec2input: {x: 0, y: 0}
-        boolinput: 0
-        stringinput: 
-        intinput: 0
-        taskinput:
-          ID: 0
-          taskType: 0
-          difficulty: 0
-          name: 
-          prompt: 
-          timeTicking: 0
-          timeStarted: 0
-          timeLimit: 0
-          timeElapsed: 0
-          complete: 0
-          completePercent: 0
-          points: 0
-          expired: 0
-          active: 0
-          CompleteEvent: {fileID: 0}
-        vector3input: {x: 0, y: 0, z: 0}
-        conversationinput: {fileID: 0}
-        emailinput:
-          id: 0
-          Subject: 
-          Message: 
-          reply: 0
-          replyMessage: 
-          read: 0
-          replied: 0
-          spam: 0
-          taskType: 0
-      ActivationConditions: []
-      ActiviationEvents: []
-      CompletionEvents: []
-      CompletionFlags: []
-      nextObjective: -1
-    - id: 4
-      name: 
-      skip: 0
-      completed: 0
-      TriggerEvents:
-      - EventType: 1
-        isAgentEvent: 1
-        Event: {fileID: 0}
-        AgentEvent: {fileID: 11400000, guid: 5c0bd7ad9a9fc8e49a6f40036be1e78b, type: 2}
-        Agent: {fileID: 1873679408}
-        Vec2input: {x: 0, y: 0}
-        boolinput: 0
-        stringinput: 
-        intinput: 0
-        taskinput:
-          ID: 0
-          taskType: 0
-          difficulty: 0
-          name: 
-          prompt: 
-          timeTicking: 0
-          timeStarted: 0
-          timeLimit: 0
-          timeElapsed: 0
-          complete: 0
-          completePercent: 0
-          points: 0
-          expired: 0
-          active: 0
-          CompleteEvent: {fileID: 0}
-        vector3input: {x: 0, y: 0, z: 0}
-        conversationinput: {fileID: 0}
-        emailinput:
-          id: 0
-          Subject: 
-          Message: 
-          reply: 0
-          replyMessage: 
-          read: 0
-          replied: 0
-          spam: 0
-          taskType: 0
-      ActivationConditions: []
-      ActiviationEvents: []
-      CompletionEvents: []
-      CompletionFlags: []
-      nextObjective: -1
-    - id: 5
-      name: 
-      skip: 0
-      completed: 0
-      TriggerEvents: []
-      ActivationConditions: []
-      ActiviationEvents: []
-      CompletionEvents: []
-      CompletionFlags: []
-      nextObjective: -1
---- !u!4 &1439413314
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439413312}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3992.571, y: 640.8618, z: 2121.503}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873679408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,3 +1285,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 33.327, z: 0}
+--- !u!1001 &2049494301382618413
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2629861409172474825, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_Name
+      value: ObjectiveManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3992.571
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 640.8618
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2121.503
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
