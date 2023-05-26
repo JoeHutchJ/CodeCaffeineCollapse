@@ -21,6 +21,8 @@ public class Pickupable : MonoBehaviour
     public bool canPickup = true;
 
     bool pickedUp = false;
+
+    public Event DropEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +104,17 @@ public class Pickupable : MonoBehaviour
         goToPrevRotation();
         pickedUp = false;
         Global.setObjinHand(null);
+
+    }
+
+    public void Give(Interactable interactable) {
+        Transform parent = interactable.getGiveParent();
+        setPrevPos(parent.position);
+        setPrevRotation(parent.rotation);
+        DropEvent.Raise();
+        setNewParent(parent);
+        Global.setObjinHand(null);
+        
 
     }
 

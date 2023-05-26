@@ -7,7 +7,15 @@ public static class Global
 
     public static float currentTime;
 
-    public static float caffeine;
+    static float dayLength = 300.0f;
+
+    static int hours = 9;
+
+    static float minutes = 0;
+
+    public static float caffeine = 1.0f;
+
+    static float caffeinePerSecond = 0.01f;
 
     public static int jobQuota = 100;
 
@@ -23,7 +31,7 @@ public static class Global
 
 
     public static void Update() {
-        currentTime += Time.deltaTime;
+        UpdateTime();
     }
 
     public static void AddPoints(int num) {
@@ -47,6 +55,37 @@ public static class Global
         } else {
         ObjInHand = obj.gameObject;
         }
+
+    }
+
+    public static void UpdateCaffeine() {
+        caffeine -= caffeinePerSecond * Time.deltaTime;
+        if (caffeine < 0) {
+            caffeine = 0;
+        }
+
+    }
+
+
+    public static void UpdateTime() {
+        currentTime += Time.deltaTime;
+
+        minutes += 0.96f * Time.deltaTime;
+
+        if (minutes > 60.0f) {
+            minutes = 0.0f;
+            hours++;
+        }
+
+
+
+
+    }
+
+    public static (int, float) GetTime() {
+
+        return (hours, Mathf.Floor(minutes));
+
 
     }
 

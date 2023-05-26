@@ -16,6 +16,8 @@ public class pickUpObject : MonoBehaviour
     private Vector3 prevRotation;
 
     private Pickupable objInHand;
+
+    public InteractUIController UIController;
     
 
 
@@ -23,6 +25,7 @@ public class pickUpObject : MonoBehaviour
     {
         coll = cam.GetComponent<rayExample>(); //accessing the cam ray script and getting the collider from that
         handFree = true;
+        UIController = GetChildByName.Get(gameObject,"InteractionUI").GetComponent<InteractUIController>();
     }
 
     private GameObject getGameObject()
@@ -73,22 +76,52 @@ public class pickUpObject : MonoBehaviour
         objInHand = null;
     }
 
+    public void Give(Interactable recip) {
+        objInHand.Give(recip);
+        handFree = true;
+        objInHand = null;
+    }
+
 
 
 
 
     private void Update()
     {
+
         if (!Global.cursorMode) {
         GameObject obj = getGameObject();
 
             if (!handFree)
         {
+            if (obj.GetComponent<Interactable>() != null) {
+                if (obj.GetComponent<Interactable>().isGivable()) {
+                    if (objInHand.GetComponent<Interactable>() != null) {
+                
+                    UIController.AddPrompt("Press F to give");
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Give(obj.GetComponent<Interactable>());
+
+            }
+
+
+
+                } else {
+            if (objInHand.GetComponent<Interactable>() != null) {
+                
+            UIController.AddPrompt("Press F to drop");
+            }
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Drop();
 
             }
+            }
+            }
+            
+            
 
         }
 
