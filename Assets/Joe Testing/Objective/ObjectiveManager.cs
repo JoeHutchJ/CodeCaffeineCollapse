@@ -224,10 +224,9 @@ public class ObjectiveManager : MonoBehaviour
 
     public void Triggered(bool delay) {
 
-        if (delay) {
-            if (currentObjective.delay > 0) {
+        if (delay && currentObjective.delay > 0) {
                 StartCoroutine(DelayToComplete(currentObjective.delay));
-            }
+           
         } else {
 
         currentObjective.Triggered();
@@ -316,9 +315,11 @@ public class ObjectiveManager : MonoBehaviour
                         public void CheckTrigger(Conversation val) {
                                     if (currentObjective != null) {
         foreach (EventInfo info in currentObjective.TriggerEvents) {
+            
             if (info.Check(val)) {
                 Triggered(true);
             }
+
         }
                                     }
 

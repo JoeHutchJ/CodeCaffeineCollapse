@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64ed47c8a4188c4f96f3e4d2e83b501, type: 3}
+  m_Name: Convo 3
+  m_EditorClassIdentifier: 
+  dialogues:
+  - {fileID: 11400000, guid: 1b1cdfc284b2ed54ea7a8a62eb7d1800, type: 2}
+  - {fileID: 11400000, guid: 785742b47ca2b104d8de5a940e0d678f, type: 2}
+  name: Auth Instructions
+  audioSource: {fileID: 0}
+  source: {x: 0, y: 0, z: 0}

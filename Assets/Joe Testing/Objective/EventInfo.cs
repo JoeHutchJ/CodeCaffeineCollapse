@@ -229,9 +229,17 @@ public class EventInfo
     }
 
     public bool Check(Conversation conv) {
+
         if (conv == conversationinput) { //maybe not work
         return true;
         }
+        if (conv.name == conversationinput.name) {
+            return true;
+        }
+        if (conversationinput.dialogues[0].audio == conv.dialogues[0].audio ) {
+            return true;
+        }
+
         return false;
 
 

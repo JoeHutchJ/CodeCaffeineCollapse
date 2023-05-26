@@ -21,6 +21,7 @@ public static class ObjectiveId {
 [ExecuteInEditMode]
 public class Objective 
 {
+    [Header("Objective")]
     public int id = 0;
     public string name;
 
