@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-    public enum InteractableType {CAMERA, EQUIP, INTERACT};
+    public enum InteractableType {NONE, CAMERA, EQUIP, INTERACT, GIVE};
 
 public class Interactable : MonoBehaviour
 {
 
     public InteractableType type;
 
+    public string InteractPrompt;
+
     public UnityEvent action;
 
-    public UnityEvent<GameObject> Objaction;
+    //public UnityEvent<GameObject> Objaction;
+
+    public InteractableType secondaryType;
+
+    public string secondaryInteractPrompt;
+
+    public UnityEvent secondaryAction; //only when equipped
 
     public Vector3Event cameraMoveEvent;
 
@@ -83,7 +91,7 @@ public class Interactable : MonoBehaviour
     }
 
 
-    public void Interact(GameObject obj) {
+   /*public void Interact(GameObject obj) {
         //do things
         Interact();
         switch (type) {
@@ -108,6 +116,44 @@ public class Interactable : MonoBehaviour
                 Objaction.Invoke(obj);
             }
                 break;
+        }
+
+    }*/
+
+
+    public string getPrompt() {
+        
+        if (InteractPrompt != "") {
+            return InteractPrompt;
+        } else {
+            switch (type) {
+                case InteractableType.CAMERA:
+                    return "Click to Move";
+
+                case InteractableType.EQUIP:
+                    return "Press E to Equip";
+
+                case InteractableType.INTERACT:
+                    return "Click to Interact";
+
+
+            }
+        }
+        return "Interact";
+
+
+    }
+
+    public bool isGivable() {
+        return type == InteractableType.GIVE || secondaryType == InteractableType.GIVE;
+
+    }
+
+    public Transform getGiveParent() {
+        if (GetChildByName.Get(gameObject,"GiveParent") != null) {
+            return GetChildByName.Get(gameObject,"GiveParent").transform;
+        } else {
+            return transform;
         }
 
     }

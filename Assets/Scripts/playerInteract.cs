@@ -15,21 +15,34 @@ public class playerInteract : MonoBehaviour
 
     public rayExample coll;
 
+    InteractUIController UIcontroller;
+
     private void Start()
     {
         coll = cam.GetComponent<rayExample>();
+        UIcontroller = GetChildByName.Get(gameObject,"InteractionUI").GetComponent<InteractUIController>();
     }
 
 
     private void Update()
     {
-        
         var inc = moveSpeed * Time.deltaTime;
+
+        if (coll.hitColl != null) {
+
+        currColl = coll.hitColl;
+
+        UIcontroller.HideInteractIcon(true);
+
+        if (currColl.GetComponent<Interactable>() != null) {
+            AddNewPrompt(currColl.GetComponent<Interactable>());
+            UIcontroller.HideInteractIcon(false);
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
             
-            currColl = coll.hitColl;
+            
             //Debug.Log(currColl);
         if (!Global.cursorMode) {
 
@@ -56,7 +69,16 @@ public class playerInteract : MonoBehaviour
         }
     }
 
+        }
+
+    }
+
+    void AddNewPrompt(Interactable interactable) {
+        UIcontroller.AddPrompt(interactable.getPrompt());
+        }
+
+
+
     }
 
 
-}

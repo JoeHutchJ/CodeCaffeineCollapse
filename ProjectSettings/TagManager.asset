@@ -9,6 +9,7 @@ TagManager:
   - ReportCreation
   - EmailTab
   - Pickupable
+  - equipPrompt
   layers:
   - Default
   - TransparentFX

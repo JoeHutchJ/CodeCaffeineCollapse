@@ -26,6 +26,8 @@ public class GlobalHandler : MonoBehaviour
         percent = Global.QuotaPercent();
         jobPoints = Global.jobQuotaPoints;
 
+        Global.UpdateCaffeine();
+
 
     }
 
