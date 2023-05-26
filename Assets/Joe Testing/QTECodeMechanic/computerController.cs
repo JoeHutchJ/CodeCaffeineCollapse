@@ -320,12 +320,16 @@ public class computerController : MonoBehaviour
             return currentWindow.GetComponent<EmailManager>().getUnreadEmails();
         } else {
             int count = 0;
+                if (emails != null) {
                 foreach(Email email in emails) {
                         if (!email.read) {
                              count++;
                     }
                  }
                 return count;
+
+                }
+            return 0;
     }
         }
 

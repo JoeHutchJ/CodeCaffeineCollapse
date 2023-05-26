@@ -101,6 +101,7 @@ public class pickUpObject : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    Debug.Log(obj.name);
                     objInHand = pickupable;
                     Interactable interactable = objInHand.GetComponent<Interactable>();
                     if (interactable != null) {
