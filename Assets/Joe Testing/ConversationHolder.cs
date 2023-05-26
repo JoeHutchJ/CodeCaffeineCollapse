@@ -39,4 +39,9 @@ public class ConversationHolder : MonoBehaviour
     public void Interact() {
         Send();
     }
+
+    public void ReceiveConvo(Conversation _convo) {
+        convo = _convo;
+        Send();
+    }
 }

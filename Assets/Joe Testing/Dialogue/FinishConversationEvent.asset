@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Sure
-  m_EditorClassIdentifier: Assembly-CSharp::Response
-  responseText: Sure
-  responseAudio: {fileID: 8300000, guid: 21e615384f69ca943bc8a2be183b161d, type: 3}
-  type: 0
+  m_Script: {fileID: 11500000, guid: 00c65aa59528d554f999eb4952ded488, type: 3}
+  m_Name: FinishConversationEvent
+  m_EditorClassIdentifier: 

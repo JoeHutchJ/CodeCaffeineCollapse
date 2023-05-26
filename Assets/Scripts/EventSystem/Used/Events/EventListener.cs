@@ -82,16 +82,16 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     bool enabled = false;
 
     private void OnEnable() {
-        Do();
+        Do(false);
     }
 
     private void Update() {
     }
  
-    private void  Do() //where the responses are registered to the Events.
+    private void  Do(bool overwrite) //where the responses are registered to the Events.
     {   
-        Destroy();
-        if ( !enabled) {
+        if ( !enabled || overwrite) {
+            Destroy();
             enabled = true;
         if (_AgentEvent != null) {
             _AgentEvent.assignType();
@@ -146,7 +146,6 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
 
 
         if (_Event != null) {
-
             _Event.assignType();
             eventType = _Event.getType();
         switch (_Event.Type) {
@@ -325,7 +324,7 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
         isAgentEvent = isAgent.AGENT;
         _AgentEvent.assignType();
         eventType = _AgentEvent.getType();
-        Do();
+        Do(true);
         
     }
 
@@ -359,7 +358,7 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
 
     public void SetResponse(UnityAction res) {
 
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(response, res);
             //response.AddListener(res);
@@ -369,7 +368,7 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
 
 
     public void SetBoolResponse(UnityAction<Boolean> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(boolresponse, res);
             //boolresponse.AddListener(res);
@@ -378,7 +377,7 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     }
 
     public void SetStringResponse(UnityAction<String> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(stringresponse, res);
             //response.AddListener(res);
@@ -386,7 +385,7 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     }
 
 public void SetIntResponse(UnityAction<int> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(intresponse, res);
             //response.AddListener(res););
@@ -394,7 +393,7 @@ public void SetIntResponse(UnityAction<int> res) {
     }
 
 public void SetVec2Response(UnityAction<Vector2> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(vector2response, res);
             //response.AddListener(res);
@@ -402,7 +401,7 @@ public void SetVec2Response(UnityAction<Vector2> res) {
     }
 
 public void SetVec3Response(UnityAction<Vector3> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(Vector3response, res);
             //response.AddListener(res);
@@ -410,7 +409,7 @@ public void SetVec3Response(UnityAction<Vector3> res) {
     }
 
 public void SetTaskResponse(UnityAction<Task> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(taskresponse, res);
             //response.AddListener(res);
@@ -418,7 +417,7 @@ public void SetTaskResponse(UnityAction<Task> res) {
     }
 
 public void SetConvResponse(UnityAction<Conversation> res) {
-           Do();
+           Do(true);
             
             UnityEventTools.AddPersistentListener(Conversationresponse, res);
             //response.AddListener(res);
@@ -426,7 +425,7 @@ public void SetConvResponse(UnityAction<Conversation> res) {
     }
 
 public void SetEmailResponse(UnityAction<Email> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(Emailresponse, res);
             //response.AddListener(res);
@@ -434,7 +433,7 @@ public void SetEmailResponse(UnityAction<Email> res) {
     }
 
 public void SetTransformResponse(UnityAction<Transform> res) {
-            Do();
+            Do(true);
             
             UnityEventTools.AddPersistentListener(Transformresponse, res);
             //response.AddListener(res);
@@ -488,7 +487,6 @@ public void SetTransformResponse(UnityAction<Transform> res) {
 
     public void EnactAgentEvent(GameObject _agent) {
         if (Agent == _agent) {
-            Debug.Log("trigger ");
             response.Invoke();
         } 
 

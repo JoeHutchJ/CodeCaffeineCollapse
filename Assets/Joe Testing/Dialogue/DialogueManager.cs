@@ -34,6 +34,8 @@ public class DialogueManager : MonoBehaviour
 
     public Vector3Event cameraRotationEvent;
 
+    public ConversationEvent FinishConvoEvent;
+
     // 
 
     void Start()
@@ -102,6 +104,7 @@ public class DialogueManager : MonoBehaviour
         } else {
             lockMouseEvent.Raise(false);
             WipeAll();
+            FinishConvoEvent.Raise(currentConversation);
         }
         }
 

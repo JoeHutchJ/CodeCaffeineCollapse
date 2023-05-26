@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
+  m_Name: Boss 05
+  m_EditorClassIdentifier: 
+  dialogue: "Oh, one more thing. These computers are nice and secure from any theft
+    that might happen, so they\u2019ll lock up when they\u2019re idle for too long.
+    When that happens, just scan that little card you got there and it\u2019ll let
+    you right in"
+  audio: {fileID: 8300000, guid: ede4bfe1c6d7f284587164b592f8ae02, type: 3}
+  skippable: 0
+  respondable: 1
+  responses: []

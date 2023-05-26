@@ -21,6 +21,7 @@ public static class ObjectiveId {
 [ExecuteInEditMode]
 public class Objective 
 {
+    [Header("Objective")]
     public int id = 0;
     public string name;
 
@@ -30,6 +31,8 @@ public class Objective
 
     public List<EventInfo> TriggerEvents;
 
+    public float delay;
+
     public List<ConditionInfo> ActivationConditions;
 
     public List<EventInfo> ActiviationEvents;
@@ -37,6 +40,7 @@ public class Objective
     public List<EventInfo> CompletionEvents;
 
     public List<Condition> CompletionFlags;
+    
 
     public int nextObjective = -1;
 

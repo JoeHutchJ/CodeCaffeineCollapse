@@ -15,14 +15,22 @@ public class NPC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       GoToPos(testTarget.position);
-       RotateToPos(testTarget.rotation);
+       //GoToPos(testTarget.position);
+       //RotateToPos(testTarget.rotation);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Move(Transform trans) {
+        GoToPos(trans.position);
+    }
+
+    public void Rotate(Transform trans) {
+        RotateToPos(trans.rotation);
     }
 
     public void GoToPos(Vector3 pos) {
@@ -52,7 +60,6 @@ public class NPC : MonoBehaviour
 
         float step = rotationSpeed * Time.deltaTime;
         while (!AtRotation(rotation)) {
-            Debug.Log(transform.rotation + "  " + rotation);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, step);
             //Debug.Log(transform.rotation);
             yield return null;
