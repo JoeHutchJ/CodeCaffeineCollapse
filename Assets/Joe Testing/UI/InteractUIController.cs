@@ -30,7 +30,7 @@ public class InteractUIController : MonoBehaviour
     void Update()
     {   
         WipePrompts();
-        
+            
         
     }
 

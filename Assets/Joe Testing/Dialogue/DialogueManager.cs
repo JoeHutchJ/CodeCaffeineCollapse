@@ -199,7 +199,7 @@ public class DialogueManager : MonoBehaviour
 
     public void recieveConversation(Conversation convo) {
 
-        Global.BuildDebugger.GetComponent<DebugStuff.ConsoleToGUI>().Log(convo.dialogues[0].dialogue, "1",LogType.Log);
+        //Global.BuildDebugger.GetComponent<DebugStuff.ConsoleToGUI>().Log(convo.dialogues[0].dialogue, "1",LogType.Log);
         currentConversation = convo;
         dialogueIndex = 0;
         currentDialogue = null;

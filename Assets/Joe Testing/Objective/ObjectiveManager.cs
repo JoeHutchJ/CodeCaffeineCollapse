@@ -17,10 +17,21 @@ public class ObjectiveManager : MonoBehaviour
     void Start()
     {
         if (Application.IsPlaying(gameObject)) {
-            if (currentObjectiveBlock == null) {
+            StartCoroutine(StartObjective());
+        }
+    }
+
+
+
+
+    IEnumerator  StartObjective() {
+
+        yield return new WaitForSeconds(1.0f);
+
+        if (currentObjectiveBlock == null) {
                 nextObjectiveBlock();
             }
-        }
+
     }
 
     // Update is called once per frame
@@ -65,13 +76,17 @@ public class ObjectiveManager : MonoBehaviour
         //set currentObjective
         //set trigger Events to Event Listeners
         //WipeListeners();
-        
-        currentObjective = obj;
+                currentObjective = obj;
+        if (!currentObjective.skip) {
         SetTriggers(currentObjective.TriggerEvents);
         checkActivationConditions(obj);
         if (currentObjective == obj) {
             currentObjective.Activate();
         }
+        } else {
+            nextObjective();
+        }
+
 
     }
 

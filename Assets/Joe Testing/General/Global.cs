@@ -7,7 +7,7 @@ public static class Global
 
     public static float currentTime;
 
-    static float dayLength = 300.0f;
+    static float dayLength = 200.0f;
 
     static int hours = 9;
 
@@ -70,7 +70,7 @@ public static class Global
     public static void UpdateTime() {
         currentTime += Time.deltaTime;
 
-        minutes += 0.96f * Time.deltaTime;
+        minutes += (480.0f/dayLength) * Time.deltaTime;
 
         if (minutes > 60.0f) {
             minutes = 0.0f;

@@ -9,6 +9,8 @@ public class CoffeeCup : MonoBehaviour
 
     Interactable interactable;
 
+    public Event drinkCoffeeEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,9 @@ public class CoffeeCup : MonoBehaviour
             full = false;
             Global.caffeine = 1;
             GetComponent<Animation>().Play();
+            if (drinkCoffeeEvent != null) {
+                drinkCoffeeEvent.Raise();
+            }
         }
     }
 

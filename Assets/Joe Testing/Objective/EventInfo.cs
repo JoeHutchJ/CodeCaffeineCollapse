@@ -81,6 +81,7 @@ public class EventInfo
         case eventTypeenum.Task:
             AgentTaskEvent tempTaskEvent = (AgentTaskEvent)AgentEvent;
             tempTaskEvent.Agent = Agent;
+            taskinput.Create();
             tempTaskEvent.Raise(taskinput);
             break;  
         case eventTypeenum.Vector3:
@@ -96,7 +97,8 @@ public class EventInfo
         case eventTypeenum.Email:
             AgentEmailEvent tempEmailEvent = (AgentEmailEvent)AgentEvent;
             tempEmailEvent.Agent = Agent;
-            tempEmailEvent.Raise(emailinput);
+            Email newEmail = EmailBuilder.newCustomEmail(emailinput.Subject, emailinput.Message, emailinput.emailSentiment, emailinput.taskType, emailinput.CustomAuthorName);
+            tempEmailEvent.Raise(newEmail);
             break;
         case eventTypeenum.Transform:
             AgentTransformEvent temtransformEvent = (AgentTransformEvent)AgentEvent;
@@ -138,6 +140,7 @@ public class EventInfo
             break;  
         case eventTypeenum.Task:
             TaskEvent tempTaskEvent = (TaskEvent)Event;
+            taskinput.Create();
             tempTaskEvent.Raise(taskinput);
             break;  
         case eventTypeenum.Vector3:
@@ -150,7 +153,10 @@ public class EventInfo
             break;
         case eventTypeenum.Email:
             EmailEvent tempEmailEvent = (EmailEvent)Event;
-            tempEmailEvent.Raise(emailinput);
+
+            Email newEmail = EmailBuilder.newCustomEmail(emailinput.Subject, emailinput.Message, emailinput.emailSentiment, emailinput.taskType, emailinput.CustomAuthorName);
+
+            tempEmailEvent.Raise(newEmail);
             break;
         case eventTypeenum.Transform:
             TransformEvent temtransformEvent = (TransformEvent)Event;

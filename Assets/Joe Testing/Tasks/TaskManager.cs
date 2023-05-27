@@ -284,7 +284,7 @@ public class TaskManager : MonoBehaviour
 
 
     public void addTasktoUI(Task task, bool seeAll) {    
-
+        Debug.Log(task.active + " task active");
         if (task.active && !task.expired) {
             if (getInstantiatedTaskById(task.ID) == null) {
                 if (!seeAll) {

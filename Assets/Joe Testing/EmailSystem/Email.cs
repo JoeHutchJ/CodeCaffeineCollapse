@@ -10,6 +10,10 @@ public class Email
 {
     public int id;
     public Author Author;
+
+    public string CustomAuthorName;
+
+    public EmailSentiment emailSentiment;
     public string Subject;
 
     public string Message;
@@ -17,6 +21,7 @@ public class Email
     public bool reply;
 
     public string replyMessage;
+    
 
     public bool read;
 

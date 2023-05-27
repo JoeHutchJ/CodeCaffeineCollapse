@@ -1210,10 +1210,22 @@ MonoBehaviour:
   _Event: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
   _AgentEvent: {fileID: 0}
   Agent: {fileID: 0}
-  eventType: 1
+  eventType: 5
   response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   vector2response:
     m_PersistentCalls:
       m_Calls: []
@@ -2997,6 +3009,10 @@ PrefabInstance:
     - target: {fileID: 2223639932434330405, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
       propertyPath: m_PlayAutomatically
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2223639932434330405, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
       propertyPath: m_Animations.Array.data[0]
@@ -7601,6 +7617,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8623360899765202687, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1123661883}
+    - targetCorrespondingSourceObject: {fileID: 8623360899765202687, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1123661889}
   m_SourcePrefab: {fileID: 100100000, guid: 5d400259fb3edf4408e509499edbc6e0, type: 3}
 --- !u!114 &1011224621 stripped
 MonoBehaviour:
@@ -8359,6 +8378,7 @@ MonoBehaviour:
   clips:
   - {fileID: 11400000, guid: 520785b568b27304086680494eadc86c, type: 2}
   - {fileID: 11400000, guid: 51a96eac312554f43bc695a935cce7cf, type: 2}
+  - {fileID: 11400000, guid: af798d7b1729f3644bab00e57681237b, type: 2}
   nonAuto: []
   sources: []
   playAutomatically: 0
@@ -8460,6 +8480,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1123661889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123661875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAgentEvent: 0
+  _Event: {fileID: 11400000, guid: 50e0289a9c547d4469add4b02bf5deff, type: 2}
+  _AgentEvent: {fileID: 0}
+  Agent: {fileID: 0}
+  eventType: 8
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+  vector2response:
+    m_PersistentCalls:
+      m_Calls: []
+  boolresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  stringresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  intresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  taskresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1011224621}
+        m_TargetAssemblyTypeName: computerController, Assembly-CSharp
+        m_MethodName: addEmail
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Transformresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1142770808
 GameObject:
   m_ObjectHideFlags: 0
@@ -9715,7 +9794,7 @@ GameObject:
   - component: {fileID: 1354328254}
   - component: {fileID: 1354328253}
   m_Layer: 0
-  m_Name: BlackScreen
+  m_Name: BlackScreeen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11709,6 +11788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   full: 0
+  drinkCoffeeEvent: {fileID: 11400000, guid: e3cd00d74be0beb4cafc246f6a97c739, type: 2}
 --- !u!1001 &1544333224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14221,7 +14301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.size
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].id
@@ -14244,20 +14324,100 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].name
       value: Boss Moves to Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].skip
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].name
       value: Boss Rotates to player
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].name
       value: Send First Convo
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].name
-      value: 
+      value: Give Coffee To Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].name
+      value: Convo 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].name
+      value: Player Drinks Coffee
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].name
+      value: Convo 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].name
+      value: Authenticate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].name
+      value: Convo 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].skip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].name
+      value: First Coding Task
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].delay
@@ -14272,6 +14432,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].delay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].TriggerEvents.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -14280,8 +14444,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].TriggerEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].TriggerEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].TriggerEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].TriggerEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].TriggerEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].TriggerEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].CompletionEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].CompletionEvents.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.size
@@ -14298,6 +14498,30 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActiviationEvents.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].ActiviationEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].ActiviationEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].ActiviationEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActivationConditions.Array.size
@@ -14320,6 +14544,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].TriggerEvents.Array.data[0].Agent
+      value: 
+      objectReference: {fileID: 1263736493}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].TriggerEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 28b43e3a917a6414a98fd43ed23ab17e, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].TriggerEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: e3cd00d74be0beb4cafc246f6a97c739, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].TriggerEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 28b43e3a917a6414a98fd43ed23ab17e, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].TriggerEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b9a3c83d7d10c44e9164bf5f4e0f878, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].TriggerEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 28b43e3a917a6414a98fd43ed23ab17e, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].TriggerEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[0].Event
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
@@ -14327,6 +14579,14 @@ PrefabInstance:
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[1].Agent
       value: 
       objectReference: {fileID: 1263736493}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].CompletionEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.data[0].Agent
       value: 
@@ -14356,6 +14616,58 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].ActiviationEvents.Array.data[0].Agent
+      value: 
+      objectReference: {fileID: 1263736493}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].TriggerEvents.Array.data[0].EventType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].TriggerEvents.Array.data[0].EventType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].ActiviationEvents.Array.data[0].Agent
+      value: 
+      objectReference: {fileID: 1263736493}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].TriggerEvents.Array.data[0].EventType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].TriggerEvents.Array.data[0].EventType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].ActiviationEvents.Array.data[0].Agent
+      value: 
+      objectReference: {fileID: 1263736493}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].TriggerEvents.Array.data[0].EventType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[1].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 50e0289a9c547d4469add4b02bf5deff, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].TriggerEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].TriggerEvents.Array.data[0].AgentEvent
       value: 
       objectReference: {fileID: 11400000, guid: 9794015134b46a54fad7acc8bc9e220e, type: 2}
@@ -14374,6 +14686,26 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].TriggerEvents.Array.data[0].isAgentEvent
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].TriggerEvents.Array.data[0].isAgentEvent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].CompletionEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].CompletionEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].TriggerEvents.Array.data[0].taskinput.ID
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.data[0].EventType
@@ -14396,6 +14728,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ac1835642df728e46bc1dd76d3fb6f1f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].ActiviationEvents.Array.data[0].EventType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].ActiviationEvents.Array.data[0].EventType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].ActiviationEvents.Array.data[0].EventType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[1].EventType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.data[0].AgentEvent
       value: 
       objectReference: {fileID: 11400000, guid: 573eae7f40bf0554aba7f9127f2ecc75, type: 2}
@@ -14412,12 +14772,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].ActiviationEvents.Array.data[0].AgentEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 49e8414c83caf3a4f9ca52a0dda00f73, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].ActiviationEvents.Array.data[0].AgentEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 49e8414c83caf3a4f9ca52a0dda00f73, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].ActiviationEvents.Array.data[0].AgentEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 49e8414c83caf3a4f9ca52a0dda00f73, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[0].taskinput.ID
       value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[1].isAgentEvent
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].CompletionEvents.Array.data[0].taskinput.ID
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].taskinput.ID
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.data[0].isAgentEvent
@@ -14440,12 +14820,52 @@ PrefabInstance:
       value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].ActiviationEvents.Array.data[0].isAgentEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].taskinput.ID
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].ActiviationEvents.Array.data[0].isAgentEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].taskinput.ID
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].ActiviationEvents.Array.data[0].isAgentEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[0].taskinput.ID
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].TriggerEvents.Array.data[0].conversationinput
       value: 
       objectReference: {fileID: 11400000, guid: 94e7cf1fb0bb021458af622afbeac339, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].TriggerEvents.Array.data[0].conversationinput
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].TriggerEvents.Array.data[0].conversationinput
+      value: 
+      objectReference: {fileID: 11400000, guid: ed3009b366b1a824890ca93dcc576630, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].TriggerEvents.Array.data[0].conversationinput
+      value: 
+      objectReference: {fileID: 11400000, guid: e396a394cb089594495ced060bd2d792, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].TriggerEvents.Array.data[0].conversationinput
+      value: 
+      objectReference: {fileID: 11400000, guid: ae2beafd52e03e348843ebac4a1c4707, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[1].emailinput.id
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.data[0].transforminput
@@ -14456,12 +14876,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24527628}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].taskinput.name
+      value: Auth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].TriggerEvents.Array.data[0].taskinput.taskType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[0].taskinput.active
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[0].taskinput.points
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].CompletionEvents.Array.data[0].taskinput.active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].taskinput.active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].taskinput.points
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].taskinput.prompt
+      value: Pickup the Authentication Card
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActiviationEvents.Array.data[0].taskinput.active
@@ -14474,6 +14918,30 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActiviationEvents.Array.data[0].taskinput.prompt
       value: Give boss Coffee
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].taskinput.active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].taskinput.prompt
+      value: Drink Coffee
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].taskinput.active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].taskinput.points
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].taskinput.prompt
+      value: Pickup the Authentication Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[0].taskinput.points
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].ActiviationEvents.Array.data[0].conversationinput
@@ -14492,11 +14960,77 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].ActiviationEvents.Array.data[0].conversationinput
+      value: 
+      objectReference: {fileID: 11400000, guid: ed3009b366b1a824890ca93dcc576630, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].CompletionEvents.Array.data[0].taskinput.complete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].CompletionEvents.Array.data[0].taskinput.taskType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].ActiviationEvents.Array.data[0].conversationinput
+      value: 
+      objectReference: {fileID: 11400000, guid: e396a394cb089594495ced060bd2d792, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].taskinput.complete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].taskinput.taskType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].ActiviationEvents.Array.data[0].conversationinput
+      value: 
+      objectReference: {fileID: 11400000, guid: ae2beafd52e03e348843ebac4a1c4707, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActiviationEvents.Array.data[0].taskinput.taskType
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].taskinput.taskType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].taskinput.taskType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[0].taskinput.taskType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[1].emailinput.Message
+      value: Hey pal, sorry to throw this at you so early on your first day, but
+        we need to get this code up and running ASAP. Pretty self-explanatory, just
+        make sure you get it done as fast as possible so the dev team can use it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[1].emailinput.Subject
+      value: Your First Task
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].taskinput.timeLimit
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[1].emailinput.taskType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].TriggerEvents.Array.data[0].taskinput.CompleteEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[0].taskinput.CompleteEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].CompletionEvents.Array.data[0].taskinput.CompleteEvent
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
@@ -14504,8 +15038,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].taskinput.CompleteEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].ActiviationEvents.Array.data[0].taskinput.CompleteEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[0].taskinput.CompleteEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[0].taskinput.completePercent
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].ActiviationEvents.Array.data[1].emailinput.CustomAuthorName
+      value: Boss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14637,7 +15187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65dc5fa8bfd2294197204081bc23815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   InteractPrompt: 
   action:
     m_PersistentCalls:
