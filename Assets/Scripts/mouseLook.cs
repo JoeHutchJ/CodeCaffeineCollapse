@@ -174,8 +174,8 @@ public class mouseLook : MonoBehaviour {
     public IEnumerator RotateTowards(Transform target) {
         float step = rotationSpeed * Time.deltaTime;
         Vector3 direction = target.position - cam.transform.position;
-
-        while (direction != Vector3.zero) {
+        while (!closeRotate(transform.rotation, target.rotation)) {
+            Debug.Log(Quaternion.Angle(transform.rotation, target.rotation));
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.localRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
             yield return null;
@@ -204,6 +204,12 @@ public class mouseLook : MonoBehaviour {
         }
 
 
+        public void GoToRotation (Vector3 rotation) {
+            transform.rotation = Quaternion.Euler(rotation);
+
+        }
+
+
     bool closeTo(Vector3 pos, Vector3 target) {
 
         if (Vector3.Distance(pos,target) < 40) {
@@ -212,9 +218,9 @@ public class mouseLook : MonoBehaviour {
         return false;
     }
 
-    bool closeRotate(Vector3 pos, Vector3 target) {
+    bool closeRotate(Quaternion pos, Quaternion target) {
         //Debug.Log(Quaternion.Angle(Quaternion.Euler(pos), Quaternion.Euler(target)));
-        if (Quaternion.Angle(Quaternion.Euler(pos), Quaternion.Euler(target)) < 5) {
+        if (Quaternion.Angle(pos, target) >= 179 && Quaternion.Angle(pos, target) <= 180) {
             
             return true;
         }
