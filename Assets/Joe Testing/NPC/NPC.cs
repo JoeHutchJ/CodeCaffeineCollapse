@@ -14,6 +14,12 @@ public class NPC : MonoBehaviour
 
     public AgentEvent coffeeRecievedEvent;
 
+    public bool lookTowardsActive;
+
+    public Transform lookTarget;
+    
+    Quaternion targetRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +30,29 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RotateTowardsTarget();
+    }
+
+    public void RotateTowardsTarget() {
+        if (lookTowardsActive && lookTarget != null) {
+            float step = rotationSpeed * Time.deltaTime;
+
+        if (!AtRotation(lookTarget.rotation)) {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookTarget.rotation, step);
+        } 
+
+
+
+        }
+    }
+
+    public void LookTowards(Transform target) {
+        Debug.Log("look towards");
+        lookTowardsActive = !lookTowardsActive;
+        if (lookTowardsActive) {
+            lookTarget = target;
+        }
+
     }
 
     public void Move(Transform trans) {

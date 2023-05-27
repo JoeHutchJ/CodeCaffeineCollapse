@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public List<CustomAudioClip> clips;
 
+    public List<CustomAudioClip> nonAuto;
+
     public List<AudioSource> sources;
 
     public bool playAutomatically;
@@ -64,6 +66,11 @@ public class AudioManager : MonoBehaviour
     public void PlayRandom() {
         CustomAudioClip clip = clips[UnityEngine.Random.Range(0,clips.Count)];
         if (clip != null) {
+                foreach (CustomAudioClip nonAuto in nonAuto) {
+                    if (clip == nonAuto) {
+                        break;
+                    }
+                }
                 //Debug.Log(clip.name);
                 AudioSource src = setAudioSource(clip);
                 src.Play();
