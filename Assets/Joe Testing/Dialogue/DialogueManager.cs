@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     public BoolEvent lockMouseEvent;
 
-    public Vector3Event cameraRotationEvent;
+    public AgentTransformEvent cameraRotationEvent;
 
     public ConversationEvent FinishConvoEvent;
 
@@ -204,7 +204,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIndex = 0;
         currentDialogue = null;
         lockMouseEvent.Raise(true);
-        cameraRotationEvent.Raise(Quaternion.LookRotation(convo.source - Camera.main.transform.position, Vector3.up).eulerAngles);
+        cameraRotationEvent.Agent = gameObject;
+        cameraRotationEvent.Raise(convo.audioSource.transform);
         nextDialogue();
 
     }

@@ -117,7 +117,6 @@ public class Task
             }
         }
 
-        Debug.Log("active " + active);
 
 
 

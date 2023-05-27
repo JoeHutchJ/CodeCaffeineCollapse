@@ -91,6 +91,7 @@ public class EventInfo
             break;
         case eventTypeenum.Conversation:
             AgentConversationEvent tempConvEvent = (AgentConversationEvent)AgentEvent;
+            Debug.Log("conv raised");
             tempConvEvent.Agent = Agent;
             tempConvEvent.Raise(conversationinput);
             break;
@@ -148,6 +149,7 @@ public class EventInfo
             tempVec3Event.Raise(vector3input);
             break;
         case eventTypeenum.Conversation:
+            Debug.Log("conv raised");
             ConversationEvent tempConvEvent = (ConversationEvent)Event;
             tempConvEvent.Raise(conversationinput);
             break;

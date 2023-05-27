@@ -39,7 +39,6 @@ public class NPC : MonoBehaviour
          Vector3 direction = lookTarget.position - transform.position;
          direction.y = 0.0f;
         if (direction != Vector3.zero) {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(lookTarget.position, transform.position), step);
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
         } 
@@ -69,6 +68,12 @@ public class NPC : MonoBehaviour
 
     public void GoToPos(Vector3 pos) {
         StartCoroutine(MoveToPos(pos));
+
+    }
+
+    public void GoToTarget(Transform trans) {
+        StartCoroutine(MoveToPos(trans.position));
+        LookTowards(trans);
 
     }
 
