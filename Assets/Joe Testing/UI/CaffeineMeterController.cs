@@ -18,6 +18,8 @@ public class CaffeineMeterController : MonoBehaviour
 
         if (Global.caffeine < 0.4f) {
             blackScreen.alpha = UsefulFunctions.Remap(Global.caffeine, 0.4f, 0, 0, 1);
+        } else {
+            blackScreen.alpha = 0;
         }
 
         

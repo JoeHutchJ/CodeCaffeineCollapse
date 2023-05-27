@@ -15,7 +15,7 @@ public static class Global
 
     public static float caffeine = 1.0f;
 
-    static float caffeinePerSecond = 0.01f;
+    static float caffeinePerSecond = 0.007f;
 
     public static int jobQuota = 100;
 

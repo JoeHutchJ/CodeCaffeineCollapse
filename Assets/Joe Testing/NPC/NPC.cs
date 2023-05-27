@@ -36,9 +36,12 @@ public class NPC : MonoBehaviour
     public void RotateTowardsTarget() {
         if (lookTowardsActive && lookTarget != null) {
             float step = rotationSpeed * Time.deltaTime;
-
-        if (!AtRotation(lookTarget.rotation)) {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookTarget.rotation, step);
+         Vector3 direction = lookTarget.position - transform.position;
+         direction.y = 0.0f;
+        if (direction != Vector3.zero) {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(lookTarget.position, transform.position), step);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
         } 
 
 
@@ -48,7 +51,8 @@ public class NPC : MonoBehaviour
 
     public void LookTowards(Transform target) {
         Debug.Log("look towards");
-        lookTowardsActive = !lookTowardsActive;
+        //lookTowardsActive = !lookTowardsActive;
+        lookTowardsActive = true;
         if (lookTowardsActive) {
             lookTarget = target;
         }
