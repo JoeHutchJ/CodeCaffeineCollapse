@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: da2969f422d9bbb48a34bbac58d4284c
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       74: -5187248419258813496
@@ -9,7 +9,12 @@ ModelImporter:
   - first:
       74: -7218490717262395308
     second: Plane|PlaneAction.001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: coffee
+    second: {fileID: 2100000, guid: ad9da992d593fd542b5c4c42e1cb0df1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -73,6 +78,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -105,6 +111,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
