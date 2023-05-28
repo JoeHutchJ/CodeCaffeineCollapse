@@ -186,7 +186,6 @@ public class mouseLook : MonoBehaviour {
 
 
         while (!CloseRotate(transform, target.position)) {
-            Debug.Log(Quaternion.Angle(transform.rotation, target.rotation));
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
              //Quaternion targetHorizontalRotation = Quaternion.RotateTowards(transform.rotation, horizontalRotation, step);
@@ -262,7 +261,6 @@ public class mouseLook : MonoBehaviour {
         float threshold = 0.95f;
 
         // Return true if the dot product is greater than the threshold, indicating it's looking towards the target
-        Debug.Log("close rotate " + (dotProduct) );
         return dotProduct >= threshold;
     }
 

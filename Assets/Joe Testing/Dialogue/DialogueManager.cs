@@ -53,9 +53,8 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp("f")) {
-            nextDialogue();
-        }
+
+        
 
         if (dialoguePlaying) {
             if (!currentConversation.audioSource.isPlaying) {
@@ -102,9 +101,12 @@ public class DialogueManager : MonoBehaviour
             setDialogue(currentDialogue);
             
         } else {
+            if (!dialoguePlaying || !responsePlaying) {
+            Debug.Log("dialogue manager lock mosue off");
             lockMouseEvent.Raise(false);
             WipeAll();
             FinishConvoEvent.Raise(currentConversation);
+            }
         }
         }
 

@@ -49,7 +49,6 @@ public class NPC : MonoBehaviour
     }
 
     public void LookTowards(Transform target) {
-        Debug.Log("look towards");
         //lookTowardsActive = !lookTowardsActive;
         lookTowardsActive = true;
         if (lookTowardsActive) {
