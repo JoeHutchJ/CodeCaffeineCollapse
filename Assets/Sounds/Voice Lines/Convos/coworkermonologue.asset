@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64ed47c8a4188c4f96f3e4d2e83b501, type: 3}
+  m_Name: coworkermonologue
+  m_EditorClassIdentifier: 
+  dialogues:
+  - {fileID: 11400000, guid: 21c44ac3732dbb744a78a59635865ba8, type: 2}
+  - {fileID: 11400000, guid: c754e5c5505144b49ac83897d082b2dd, type: 2}
+  - {fileID: 11400000, guid: cb8474c84ce78ff4682ff10d43cc841d, type: 2}
+  - {fileID: 11400000, guid: 2feeb67dd800b3143801ca59ca3817ae, type: 2}
+  name: coworkerMonologue
+  audioSource: {fileID: 0}
+  source: {x: 0, y: 0, z: 0}

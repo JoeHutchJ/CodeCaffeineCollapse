@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
+  m_Name: coworker2
+  m_EditorClassIdentifier: 
+  dialogue: "Well, anyway, did ypu hear about\u2026 Well, I don\u2019t remember his
+    name, but he\u2019s over in another room, and he didn\u2019t push his code to
+    GitHub! I mean, seriously, what are you even thinking? "
+  audio: {fileID: 8300000, guid: bf534bcf1bf9dd44abb7a05f88b37f30, type: 3}
+  skippable: 0
+  respondable: 1
+  responses: []

@@ -352,9 +352,25 @@ public class computerController : MonoBehaviour
         
         createTab(Email);
         } else {
+            if (!taskActive()) {
             AuthenticateWindow();
+            }
         }
         audioManager.Play("Authenticate");
+    }
+
+
+    public bool taskActive() {
+        if (currentWindow.GetComponent<CodeCreationController>() != null) {
+            return currentWindow.GetComponent<CodeCreationController>().isActive();
+        } else if (currentWindow.GetComponent<ReviewController>() != null) {
+            return currentWindow.GetComponent<ReviewController>().isActive();
+
+        } else if (currentWindow.GetComponent<ReportCreationController>() != null) {
+            return currentWindow.GetComponent<ReportCreationController>().isActive();
+        }
+        return false;
+
     }
 
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
+  m_Name: CoworkerBusy
+  m_EditorClassIdentifier: 
+  dialogue: Don't talk to me, I'm Busy!
+  audio: {fileID: 8300000, guid: 93e4ee5f7bf5e2f4bbe8fccdd5242481, type: 3}
+  skippable: 1
+  respondable: 1
+  responses:
+  - {fileID: 11400000, guid: 3cb740078990e3f46896501662f2828c, type: 2}
+  - {fileID: 11400000, guid: eef7bc159d355574fa122c61836744aa, type: 2}
+  - {fileID: 11400000, guid: 7faefc0a1b3a30745b4f1a76d029703d, type: 2}
