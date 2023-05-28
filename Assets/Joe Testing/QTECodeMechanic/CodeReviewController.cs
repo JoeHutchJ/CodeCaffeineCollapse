@@ -104,6 +104,11 @@ public class ReviewController : MonoBehaviour
         RequestsCountElement.text = requests.Count.ToString();
         
     }
+    
+    public bool isActive() {
+
+        return active;
+    }
 
     public void AddRequest(Task task) {
         if (task.taskType == TaskType.REVIEW && task.active) {

@@ -115,6 +115,11 @@ public class CodeCreationController : MonoBehaviour
 
     }
 
+    public bool isActive() {
+        return selectedLine == null;
+
+    }
+
     public void AddRequest(Task task) {
         if (task.taskType == TaskType.CODING && task.active) {
         Start();

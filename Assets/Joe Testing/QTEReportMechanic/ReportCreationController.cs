@@ -118,6 +118,10 @@ public class ReportCreationController : MonoBehaviour
 
     }
 
+    public bool isActive() {
+        return active;
+    }
+
     public void AddRequest(Task task) {
         if (task.taskType == TaskType.REPORT && task.active) {
         Start();
