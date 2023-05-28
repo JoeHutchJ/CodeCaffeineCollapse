@@ -165,7 +165,13 @@ public class mouseLook : MonoBehaviour {
     }
 
     public void rotateTowardsTarget(Transform target) {
+
+        if (rotationDirections == RotationDirection.Horizontal) {
         StartCoroutine(RotateTowards(target));
+        } else {
+            Debug.Log("camera move");
+             StartCoroutine(RotateToLocalZero());
+        }
 
 
     }
@@ -174,16 +180,39 @@ public class mouseLook : MonoBehaviour {
     public IEnumerator RotateTowards(Transform target) {
         float step = rotationSpeed * Time.deltaTime;
         Vector3 direction = target.position - cam.transform.position;
-        while (!closeRotate(transform.rotation, target.rotation)) {
+
+        Quaternion horizontalRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
+        Quaternion verticalRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, 0.0f));
+
+
+        while (!CloseRotate(transform, target.position)) {
             Debug.Log(Quaternion.Angle(transform.rotation, target.rotation));
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.localRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
+
+             //Quaternion targetHorizontalRotation = Quaternion.RotateTowards(transform.rotation, horizontalRotation, step);
+            //Quaternion targetVerticalRotation = Quaternion.RotateTowards(transform.rotation, verticalRotation, step);
+                transform.localRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
+            
+
+
             yield return null;
         } 
 
 
 
         }
+
+        public IEnumerator RotateToLocalZero()
+{
+    Quaternion targetRotation = Quaternion.identity;
+    float step = rotationSpeed * Time.deltaTime;
+
+    while (transform.localRotation != targetRotation)
+    {
+        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, step);
+        yield return null;
+    }
+}
 
         public IEnumerator RotateTowardsLocalRot(Vector3 rot) {
         float step = rotationSpeed * Time.deltaTime;
@@ -218,10 +247,28 @@ public class mouseLook : MonoBehaviour {
         return false;
     }
 
+    bool CloseRotate(Transform transform, Vector3 targetPosition)
+    {
+        // Calculate the direction vector from the transform to the target position
+        Vector3 directionToTarget = targetPosition - transform.position;
+
+        // Normalize the direction vector
+        directionToTarget.Normalize();
+
+        // Calculate the dot product between the transform's forward vector and the direction to target
+        float dotProduct = Vector3.Dot(transform.forward, directionToTarget);
+
+        // Specify a threshold value for the dot product
+        float threshold = 0.95f;
+
+        // Return true if the dot product is greater than the threshold, indicating it's looking towards the target
+        Debug.Log("close rotate " + (dotProduct) );
+        return dotProduct >= threshold;
+    }
+
     bool closeRotate(Quaternion pos, Quaternion target) {
         //Debug.Log(Quaternion.Angle(Quaternion.Euler(pos), Quaternion.Euler(target)));
         if (Quaternion.Angle(pos, target) >= 179 && Quaternion.Angle(pos, target) <= 180) {
-            
             return true;
         }
         //Debug.Log("closerotate");
