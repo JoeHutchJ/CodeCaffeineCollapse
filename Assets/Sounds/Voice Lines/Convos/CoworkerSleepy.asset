@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69b151d0f14e8e34bb6e30dd86f2ae59, type: 3}
-  m_Name: Yep
+  m_Script: {fileID: 11500000, guid: f64ed47c8a4188c4f96f3e4d2e83b501, type: 3}
+  m_Name: CoworkerSleepy
   m_EditorClassIdentifier: 
-  responseText: Yep!
-  responseAudio: {fileID: 8300000, guid: 854b881af3bdccf47af8e11111808c0c, type: 3}
-  type: 0
+  dialogues:
+  - {fileID: 11400000, guid: 4be8e39aec661944a957cb0fdbf93c6f, type: 2}
+  name: Coworker Sleep
+  audioSource: {fileID: 0}
+  source: {x: 0, y: 0, z: 0}

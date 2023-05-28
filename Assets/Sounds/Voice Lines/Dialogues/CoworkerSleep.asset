@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
+  m_Name: CoworkerSleep
+  m_EditorClassIdentifier: 
+  dialogue: Let me sleep... I don't wanna work today
+  audio: {fileID: 8300000, guid: 8d7640baa0367cc47872b7b07b04a312, type: 3}
+  skippable: 1
+  respondable: 1
+  responses:
+  - {fileID: 11400000, guid: a083ace96dcaae44d95b86ab32d6d0db, type: 2}
+  - {fileID: 11400000, guid: 60bf8007443832b4588161ada71e7597, type: 2}
+  - {fileID: 11400000, guid: 76780326017ed8f4ea2b709da5d884b0, type: 2}

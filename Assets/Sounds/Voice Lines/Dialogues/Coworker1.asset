@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69b151d0f14e8e34bb6e30dd86f2ae59, type: 3}
-  m_Name: Yep
+  m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
+  m_Name: Coworker1
   m_EditorClassIdentifier: 
-  responseText: Yep!
-  responseAudio: {fileID: 8300000, guid: 854b881af3bdccf47af8e11111808c0c, type: 3}
-  type: 0
+  dialogue: 
+  audio: {fileID: 8300000, guid: f6f570e584e93f84c904cd488abca6ad, type: 3}
+  skippable: 0
+  respondable: 1
+  responses: []

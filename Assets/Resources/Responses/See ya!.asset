@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: See ya!
   m_EditorClassIdentifier: 
   responseText: See ya!
-  responseAudio: {fileID: 8300000, guid: 21e615384f69ca943bc8a2be183b161d, type: 3}
+  responseAudio: {fileID: 8300000, guid: f8b2942398b5d694cad1d566d324fab1, type: 3}
   type: 1
