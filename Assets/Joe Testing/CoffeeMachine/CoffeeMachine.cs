@@ -22,10 +22,13 @@ public class CoffeeMachine : MonoBehaviour
 
     BoxCollider collider;
 
+    public AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<BoxCollider>();
+        audioManager = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -61,8 +64,8 @@ public class CoffeeMachine : MonoBehaviour
     }
 
     void StartBrewing() {
-        GetComponent<AudioManager>().StopAll();
-        GetComponent<AudioManager>().Play();
+        audioManager.StopAll();
+        audioManager.Play();
         Debug.Log("brewing");
         status = CoffeeStatus.BREWING;
         collider.enabled = false;
@@ -87,6 +90,12 @@ public class CoffeeMachine : MonoBehaviour
     }
 
     void CoffeeReady() {
+        audioManager.Play("Task Complete");
+        if (cup != null) {
+            if (cup.GetComponent<CoffeeCup>() != null) {
+                cup.GetComponent<CoffeeCup>().Fill();
+            }
+        }
         Debug.Log("ready");
         status = CoffeeStatus.READY;
         if (cup != null) {

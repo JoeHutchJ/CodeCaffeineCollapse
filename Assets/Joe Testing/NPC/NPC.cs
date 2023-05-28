@@ -12,6 +12,14 @@ public class NPC : MonoBehaviour
 
     public Transform testTarget;
 
+    public AgentEvent coffeeRecievedEvent;
+
+    public bool lookTowardsActive;
+
+    public Transform lookTarget;
+    
+    Quaternion targetRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +30,31 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RotateTowardsTarget();
+    }
+
+    public void RotateTowardsTarget() {
+        if (lookTowardsActive && lookTarget != null) {
+            float step = rotationSpeed * Time.deltaTime;
+         Vector3 direction = lookTarget.position - transform.position;
+         direction.y = 0.0f;
+        if (direction != Vector3.zero) {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
+        } 
+
+
+
+        }
+    }
+
+    public void LookTowards(Transform target) {
+        //lookTowardsActive = !lookTowardsActive;
+        lookTowardsActive = true;
+        if (lookTowardsActive) {
+            lookTarget = target;
+        }
+
     }
 
     public void Move(Transform trans) {
@@ -35,6 +67,12 @@ public class NPC : MonoBehaviour
 
     public void GoToPos(Vector3 pos) {
         StartCoroutine(MoveToPos(pos));
+
+    }
+
+    public void GoToTarget(Transform trans) {
+        StartCoroutine(MoveToPos(trans.position));
+        LookTowards(trans);
 
     }
 
@@ -83,6 +121,21 @@ public class NPC : MonoBehaviour
 
 
 
+
+    }
+
+    public void ReceiveCoffee() {
+        CoffeeCup coffee = GetChildByName.Get(transform.gameObject, "CoffeeCup").GetComponent<CoffeeCup>();
+
+        if (coffee != null) {
+            Debug.Log("coffee not null");
+            if (coffee.full) {
+                if (coffeeRecievedEvent != null) {
+                    coffeeRecievedEvent.Agent = this.gameObject;
+                    coffeeRecievedEvent.Raise();
+                }
+            }
+        }
 
     }
 }

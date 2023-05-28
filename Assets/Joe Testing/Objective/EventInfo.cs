@@ -81,6 +81,7 @@ public class EventInfo
         case eventTypeenum.Task:
             AgentTaskEvent tempTaskEvent = (AgentTaskEvent)AgentEvent;
             tempTaskEvent.Agent = Agent;
+            taskinput.Create();
             tempTaskEvent.Raise(taskinput);
             break;  
         case eventTypeenum.Vector3:
@@ -90,13 +91,15 @@ public class EventInfo
             break;
         case eventTypeenum.Conversation:
             AgentConversationEvent tempConvEvent = (AgentConversationEvent)AgentEvent;
+            Debug.Log("conv raised");
             tempConvEvent.Agent = Agent;
             tempConvEvent.Raise(conversationinput);
             break;
         case eventTypeenum.Email:
             AgentEmailEvent tempEmailEvent = (AgentEmailEvent)AgentEvent;
             tempEmailEvent.Agent = Agent;
-            tempEmailEvent.Raise(emailinput);
+            Email newEmail = EmailBuilder.newCustomEmail(emailinput.Subject, emailinput.Message, emailinput.emailSentiment, emailinput.taskType, emailinput.CustomAuthorName);
+            tempEmailEvent.Raise(newEmail);
             break;
         case eventTypeenum.Transform:
             AgentTransformEvent temtransformEvent = (AgentTransformEvent)AgentEvent;
@@ -138,6 +141,7 @@ public class EventInfo
             break;  
         case eventTypeenum.Task:
             TaskEvent tempTaskEvent = (TaskEvent)Event;
+            taskinput.Create();
             tempTaskEvent.Raise(taskinput);
             break;  
         case eventTypeenum.Vector3:
@@ -145,12 +149,16 @@ public class EventInfo
             tempVec3Event.Raise(vector3input);
             break;
         case eventTypeenum.Conversation:
+            Debug.Log("conv raised");
             ConversationEvent tempConvEvent = (ConversationEvent)Event;
             tempConvEvent.Raise(conversationinput);
             break;
         case eventTypeenum.Email:
             EmailEvent tempEmailEvent = (EmailEvent)Event;
-            tempEmailEvent.Raise(emailinput);
+
+            Email newEmail = EmailBuilder.newCustomEmail(emailinput.Subject, emailinput.Message, emailinput.emailSentiment, emailinput.taskType, emailinput.CustomAuthorName);
+
+            tempEmailEvent.Raise(newEmail);
             break;
         case eventTypeenum.Transform:
             TransformEvent temtransformEvent = (TransformEvent)Event;

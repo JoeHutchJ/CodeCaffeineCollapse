@@ -13,9 +13,9 @@ public class receiptPrinterController : MonoBehaviour
 
     public List<Task> taskQueue;
 
-    public Task currentTask;
+    public Task currentTask = null;
 
-    public Task interactableTask;
+    public Task interactableTask = null;
 
     public Animation anim;
 
@@ -28,8 +28,12 @@ public class receiptPrinterController : MonoBehaviour
         taskQueue = new List<Task>();
         anim = GetComponent<Animation>();
         audioManager = GetComponent<AudioManager>();
+        anim.clip.SampleAnimation(gameObject, 0);
 
-        AddTask(newTask(TaskType.CODING, 0.5f, 10, true));
+        currentTask = null;
+        interactableTask = null;
+
+        /*AddTask(newTask(TaskType.CODING, 0.5f, 10, true));
 
         AddTask(newTask(TaskType.REVIEW, 0.5f, 20, true));
 
@@ -37,7 +41,7 @@ public class receiptPrinterController : MonoBehaviour
 
         AddTask(newTask(TaskType.COFFEE, 0.5f, 50, true));
 
-        AddTask(newTask(TaskType.AUTHENTICATE, 0.5f, 30, true));
+        AddTask(newTask(TaskType.AUTHENTICATE, 0.5f, 30, true));&*/
     }
 
     // Update is called once per frame
@@ -61,8 +65,8 @@ public class receiptPrinterController : MonoBehaviour
     }
 
     public void AddTask(Task task) {
-        task.active = true;
         taskQueue.Add(task);
+        //nextTask();
 
     }
 
@@ -74,9 +78,7 @@ public class receiptPrinterController : MonoBehaviour
         animActive = true;
         anim.Play();
         audioManager.Play();
-        } else {
-            anim.clip.SampleAnimation(gameObject, 0);
-        }
+        } 
 
     }
 
@@ -88,6 +90,7 @@ public class receiptPrinterController : MonoBehaviour
 
     public void Interact() {
         if (interactableTask != null) {
+            interactableTask.active = true;
         taskInfoEvent.Raise(interactableTask);
         interactableTask = null;
         }

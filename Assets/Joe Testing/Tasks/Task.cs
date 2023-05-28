@@ -91,6 +91,37 @@ public class Task
 
     }
 
+    public void Create() {
+
+
+        if (name == null || name == "") {
+            name = taskType.ToString();
+        }
+
+        if (prompt == null || prompt == "") {
+            prompt = TaskInfo.promptDict[taskType];
+        }
+
+        if (timeLimit > 0) {
+            timeTicking = true;
+        } 
+
+        timeStarted = Global.currentTime;
+
+        if (points == 0) {
+            if (difficulty != null) {
+             points = TaskInfo.getPoint(difficulty);
+            } else {
+                difficulty = 0.5f;
+                points = TaskInfo.getPoint(difficulty);
+            }
+        }
+
+
+
+
+    }
+
     public void Update() {
         //timeElapsed +=  Time.deltaTime;
         if (timeTicking && !complete) {

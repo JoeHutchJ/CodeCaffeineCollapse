@@ -786,7 +786,7 @@ public static class EmailBuilder
     }
 
 
-    public static Email newCustomEmail(string Subject, string Message, EmailSentiment sentiment, TaskType taskType) {
+    public static Email newCustomEmail(string Subject, string Message, EmailSentiment sentiment, TaskType taskType, string CustomAuthorName) {
         Email email = new Email();
         
         switch (sentiment) {
@@ -811,6 +811,10 @@ public static class EmailBuilder
             email.reply = true;
 
             break;
+        }
+
+        if (CustomAuthorName != "" || CustomAuthorName != null) {
+            email.Author.name = CustomAuthorName;
         }
 
         email.Subject = Subject;

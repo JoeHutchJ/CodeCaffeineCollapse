@@ -31,6 +31,7 @@ public class ConversationHolder : MonoBehaviour
         convo.audioSource = audio;
         convo.source = transform.position;
         ConvEvent.Raise(convo);
+        
         }
 
 
@@ -42,6 +43,8 @@ public class ConversationHolder : MonoBehaviour
 
     public void ReceiveConvo(Conversation _convo) {
         convo = _convo;
+        Debug.Log(convo.dialogues[0].dialogue);
+        sent = false;
         Send();
     }
 }

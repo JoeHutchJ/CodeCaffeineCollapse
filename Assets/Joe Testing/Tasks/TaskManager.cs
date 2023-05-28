@@ -127,6 +127,18 @@ public class TaskManager : MonoBehaviour
         return null;
     }
 
+    public void UpdateInstantiatedTasks() {
+        foreach (TaskContainer task in instantiatedTasks) {
+            Task idTask = getTaskbyID(task.task.ID);
+            Debug.Log("yep");
+            if ( idTask != null) {
+                Debug.Log("match");
+                task.task = idTask;
+            }
+        }
+
+    }
+
     public void updateTasks() {
     
         List<Task>toDelete = new List<Task>();
@@ -151,21 +163,19 @@ public class TaskManager : MonoBehaviour
                     task.setExpired();
                     audioManager.Play("Expired");
                     StartCoroutine(DestroyAfterDelay(task.transform, 3));
-                } else if (task.task.complete) {
+                } 
+                task.SetTimeBar(task.task.GetTimeElapsed());
+                } 
+                if (task.task.complete) {
                     task.setComplete();
                     StartCoroutine(DestroyAfterDelay(task.transform, 3));
 
                 }
-                
-                else {
-                    task.SetTimeBar(task.task.GetTimeElapsed());
-                }
+
+            }
             }
             }
 
-        }
-
-    }
 
     public IEnumerator DestroyAfterDelay(Transform trans, int Delay) {
         yield return new WaitForSeconds(Delay);
@@ -239,7 +249,8 @@ public class TaskManager : MonoBehaviour
         if (idTask != null) {
             if (!idTask.expired) {
         if (task.complete) {
-            
+            idTask.complete = true;
+            UpdateInstantiatedTasks();
             Global.AddPoints(task.getPoints());   
             StartCoroutine(sendEmail(task.taskType, task.completePercent));
             audioManager.Play("Task Complete");
@@ -273,7 +284,6 @@ public class TaskManager : MonoBehaviour
 
 
     public void addTasktoUI(Task task, bool seeAll) {    
-
         if (task.active && !task.expired) {
             if (getInstantiatedTaskById(task.ID) == null) {
                 if (!seeAll) {

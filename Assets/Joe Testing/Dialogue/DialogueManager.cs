@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     public BoolEvent lockMouseEvent;
 
-    public Vector3Event cameraRotationEvent;
+    public AgentTransformEvent cameraRotationEvent;
 
     public ConversationEvent FinishConvoEvent;
 
@@ -53,9 +53,8 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp("f")) {
-            nextDialogue();
-        }
+
+        
 
         if (dialoguePlaying) {
             if (!currentConversation.audioSource.isPlaying) {
@@ -102,9 +101,12 @@ public class DialogueManager : MonoBehaviour
             setDialogue(currentDialogue);
             
         } else {
+            if (!dialoguePlaying || !responsePlaying) {
+            Debug.Log("dialogue manager lock mosue off");
             lockMouseEvent.Raise(false);
             WipeAll();
             FinishConvoEvent.Raise(currentConversation);
+            }
         }
         }
 
@@ -199,12 +201,13 @@ public class DialogueManager : MonoBehaviour
 
     public void recieveConversation(Conversation convo) {
 
-        Global.BuildDebugger.GetComponent<DebugStuff.ConsoleToGUI>().Log(convo.dialogues[0].dialogue, "1",LogType.Log);
+        //Global.BuildDebugger.GetComponent<DebugStuff.ConsoleToGUI>().Log(convo.dialogues[0].dialogue, "1",LogType.Log);
         currentConversation = convo;
         dialogueIndex = 0;
         currentDialogue = null;
         lockMouseEvent.Raise(true);
-        cameraRotationEvent.Raise(Quaternion.LookRotation(convo.source - Camera.main.transform.position, Vector3.up).eulerAngles);
+        cameraRotationEvent.Agent = gameObject;
+        cameraRotationEvent.Raise(convo.audioSource.transform);
         nextDialogue();
 
     }
