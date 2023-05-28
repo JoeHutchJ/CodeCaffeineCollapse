@@ -17,20 +17,37 @@ public class NPC : MonoBehaviour
     public bool lookTowardsActive;
 
     public Transform lookTarget;
+
+    public Animator Anim;
     
     Quaternion targetRotation;
+
+    AudioSource audioSource;
+
+    bool talking;
 
     // Start is called before the first frame update
     void Start()
     {
        //GoToPos(testTarget.position);
        //RotateToPos(testTarget.rotation);
+       //Anim = GetChildByName.Get(gameObject,"boss_talk").GetComponent<Animator>();
+       audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         RotateTowardsTarget();
+
+        if (audioSource.isPlaying) {
+            talking = true;
+            Anim.SetTrigger("Talk");
+        } else if (!audioSource.isPlaying && talking) {
+            talking = false;
+            Anim.SetTrigger("Idle");
+        }
+        
     }
 
     public void RotateTowardsTarget() {
@@ -58,6 +75,7 @@ public class NPC : MonoBehaviour
     }
 
     public void Move(Transform trans) {
+        Anim.SetTrigger("Walk");
         GoToPos(trans.position);
     }
 
@@ -85,6 +103,8 @@ public class NPC : MonoBehaviour
 
             yield return null;
         }
+
+        Anim.SetTrigger("Idle");
 
 
     }

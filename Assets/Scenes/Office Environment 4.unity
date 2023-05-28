@@ -16610,6 +16610,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2476313531393348527, guid: 02b4e827d500849458dd7f5f35c7338d, type: 3}
+      propertyPath: Anim
+      value: 
+      objectReference: {fileID: 2025629956}
+    - target: {fileID: 2476313531393348527, guid: 02b4e827d500849458dd7f5f35c7338d, type: 3}
       propertyPath: moveSpeed
       value: 400
       objectReference: {fileID: 0}
