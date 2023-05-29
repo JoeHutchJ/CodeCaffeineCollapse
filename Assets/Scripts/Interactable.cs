@@ -69,6 +69,7 @@ public class Interactable : MonoBehaviour
 
     public void Interact() {
         //do things
+        if (primaryActive) {
         switch (type) {
             case InteractableType.CAMERA:
                 //action.Invoke();
@@ -94,6 +95,7 @@ public class Interactable : MonoBehaviour
                 action.Invoke();
             }
                 break;
+        }
         }
 
     }
@@ -182,7 +184,7 @@ public class Interactable : MonoBehaviour
             }
         }
         }
-        return "Interact";
+        return null;
 
 
     }
