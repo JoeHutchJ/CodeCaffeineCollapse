@@ -17,6 +17,8 @@ public class CameraGo : MonoBehaviour
 
     public bool goback = false;
 
+    public bool waitingforpause;
+
     public BoolEvent mainCamEvent;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class CameraGo : MonoBehaviour
     void Update()
     {
         if (active) {
+            Debug.Log("go cam active");
             GoToPos(currentTarget.position);
             RotateTo(currentTarget.rotation);
 
@@ -39,6 +42,10 @@ public class CameraGo : MonoBehaviour
                 goback = false;
                 mainCamEvent.Raise(true);
             }
+            if (waitingforpause) {
+                Time.timeScale = 0.0f;
+                waitingforpause = false;
+            }
         }
         }
     }
@@ -47,7 +54,7 @@ public class CameraGo : MonoBehaviour
         goback = false;
         currentTarget = target;
         active = true;
-
+        
         moveSpeed = Vector3.Distance(target.position, transform.position) / timeTocomplete;
         rotationSpeed = Quaternion.Angle(target.rotation, transform.rotation) / timeTocomplete;
 

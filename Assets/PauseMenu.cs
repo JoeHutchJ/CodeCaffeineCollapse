@@ -25,6 +25,8 @@ public class PauseMenu : MonoBehaviour
 
     public StartMenu startMenu;
 
+    public BoolFlag isPCMode;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,13 +60,14 @@ public class PauseMenu : MonoBehaviour
         if (!enabled) {
         enabled = true;
         Global.paused = true;
-
+        
 
         enabled = true;
         if (mainCamera  != null) {
             pauseCamera.transform.position = mainCamera.transform.position;
             pauseCamera.transform.rotation = mainCamera.transform.rotation;
             pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
+            pauseCamera.GetComponent<CameraGo>().waitingforpause = true;
             //mainCamEvent.Raise(false);
             mainCamera.enabled = false;
             pauseCamera.enabled = true;
@@ -78,6 +81,7 @@ public class PauseMenu : MonoBehaviour
         Global.paused = true;
         displaceEvent.Raise();
 
+
         }
 
     }
@@ -86,6 +90,7 @@ public class PauseMenu : MonoBehaviour
     public void Disable() {
 
         enabled = false;
+        Time.timeScale = 1.0f;
         //move camera...
         pauseCamera.GetComponent<CameraGo>().GoBack(mainCamera.transform);
 
@@ -96,8 +101,12 @@ public class PauseMenu : MonoBehaviour
 
         //hide (hideAllchildren)
         pauseMenucontent.gameObject.SetActive(false);
-
+        if(!isPCMode.Value) {
         enableCursor(false);
+
+        } else {
+            enableCursor(true);
+        }
 
         Global.paused = false;
 
@@ -110,6 +119,8 @@ public class PauseMenu : MonoBehaviour
 
     public void goToStart() {
 
+
+        Time.timeScale = 1.0f;
         enabled = false;
         //move camera...
         
@@ -121,6 +132,31 @@ public class PauseMenu : MonoBehaviour
     }
 
 
+    public void EnableFromStart(Camera cam) {
+
+        enabled = true;
+
+        if (cam  != null) {
+            pauseCamera.transform.position = cam.transform.position;
+            pauseCamera.transform.rotation = cam.transform.rotation;
+            pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
+            pauseCamera.GetComponent<CameraGo>().waitingforpause = true;
+            //mainCamEvent.Raise(false);
+            
+            
+
+        }
+        hideUIEvent.Raise(true);
+        pauseMenucontent.gameObject.SetActive(true);
+        enableCursor(true);
+        Global.paused = true;
+        displaceEvent.Raise();
+
+    }
+
+
+
+
 
 
 
@@ -129,11 +165,13 @@ public class PauseMenu : MonoBehaviour
         if (enable) {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+            Global.cursorMode = true;
             
 
         } else {
              Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            Global.cursorMode = false;
         }
     }
 }

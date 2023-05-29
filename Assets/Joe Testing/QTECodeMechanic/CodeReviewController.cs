@@ -194,9 +194,11 @@ public class ReviewController : MonoBehaviour
         Vector3[] corners = new Vector3[4];
         line.GetWorldCorners(corners);
         for (int i = 0; i < corners.Length; i++) {
+            if (Camera.main != null) {
             corners[i] = Camera.main.WorldToScreenPoint(corners[i]);
             if (RectTransformUtility.RectangleContainsScreenPoint(point, corners[i], Camera.main)) {
                 return true;
+            }
             }
         }
         return false;

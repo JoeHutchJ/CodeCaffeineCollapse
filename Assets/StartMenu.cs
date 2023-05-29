@@ -10,6 +10,8 @@ public class StartMenu : MonoBehaviour
     public Camera pauseCamera;
     public Camera mainCamera; 
 
+    public PauseMenu pauseMenu;
+
     public Transform cameraTarget;
 
     public Transform StartMenuContent;
@@ -22,6 +24,7 @@ public class StartMenu : MonoBehaviour
 
     public Event returnEvent;
 
+    public Event startObjectives;
 
     
     // Start is called before the first frame update
@@ -78,9 +81,9 @@ public class StartMenu : MonoBehaviour
         //move camera
         //disable main camera. 
         enabled = true;
-        if (mainCamera  != null) {
-            pauseCamera.transform.position = mainCamera.transform.position;
-            pauseCamera.transform.rotation = mainCamera.transform.rotation;
+        if (cam  != null) {
+            pauseCamera.transform.position = cam.transform.position;
+            pauseCamera.transform.rotation = cam.transform.rotation;
             pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
             mainCamEvent.Raise(false);
             
@@ -94,6 +97,18 @@ public class StartMenu : MonoBehaviour
         displaceEvent.Raise();
 
 
+
+    }
+
+    public void GoToPause() {
+
+        Time.timeScale = 1.0f;
+        enabled = false;
+        //move camera...
+        pauseCamera.GetComponent<CameraGo>().hideCam(true);
+        pauseMenu.EnableFromStart(pauseCamera);
+
+        StartMenuContent.gameObject.SetActive(false);
 
     }
 
@@ -115,6 +130,8 @@ public class StartMenu : MonoBehaviour
 
         Global.paused = false;
 
+        startObjectives.Raise();
+
         //unlock cursor
 
     }
@@ -125,11 +142,13 @@ public class StartMenu : MonoBehaviour
         if (enable) {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+            Global.cursorMode = true;
             
 
         } else {
              Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            Global.cursorMode = false;
         }
     }
 

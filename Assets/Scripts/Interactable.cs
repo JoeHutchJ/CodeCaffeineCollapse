@@ -91,8 +91,7 @@ public class Interactable : MonoBehaviour
             }
                 break;
             case InteractableType.INTERACT:
-            if (action != null) {
-                action.Invoke();
+            if (action != null) {                action.Invoke();
             }
                 break;
         }

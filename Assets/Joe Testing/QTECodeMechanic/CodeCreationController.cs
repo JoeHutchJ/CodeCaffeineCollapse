@@ -57,6 +57,8 @@ public class CodeCreationController : MonoBehaviour
 
     AudioManager audioManager;
 
+    int count;
+
 
 
     // Start is called before the first frame update
@@ -108,8 +110,22 @@ public class CodeCreationController : MonoBehaviour
         }
         timeSincelastCheck += Time.deltaTime;
 
+        /*foreach (GameObject line in codeLines) {
+            CreateCodeLine codeLine = line.GetComponent<CreateCodeLine>();
+            if (codeLine.finished) {
+                count++;
+            }
+        }*/
+        if (selectedLine != null) {
+        Debug.Log("indexxxx: " + codeLines.IndexOf(selectedLine.gameObject));
+        }
 
-         progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
+
+        if (selectedLine != null && codeLines.Count > 0) {
+        progressBar.GetComponent<ProgressBar>().setProgress((float)codeLines.IndexOf(selectedLine.gameObject) / (float)codeLines.Count);
+        } else {
+            progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
+        }
         RequestsCountElement.text = requests.Count.ToString();
 
         OnKeyUp();
@@ -200,9 +216,11 @@ public class CodeCreationController : MonoBehaviour
         Vector3[] corners = new Vector3[4];
         line.GetWorldCorners(corners);
         for (int i = 0; i < corners.Length; i++) {
+            if (Camera.main != null) {
             corners[i] = Camera.main.WorldToScreenPoint(corners[i]);
             if (RectTransformUtility.RectangleContainsScreenPoint(point, corners[i], Camera.main)) {
                 return true;
+            }
             }
         }
         return false;

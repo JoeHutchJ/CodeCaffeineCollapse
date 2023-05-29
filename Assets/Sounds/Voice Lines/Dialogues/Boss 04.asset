@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
   m_Name: Boss 04
   m_EditorClassIdentifier: 
-  dialogue: now i recommend getting used to that, because you_re gonna need it to
+  dialogue: now i recommend getting used to that, because you're gonna need it to
     stay focused and alert on all your work
   audio: {fileID: 8300000, guid: bc1f6d28c4c1fae44aab57bb10d347e6, type: 3}
   skippable: 0
   respondable: 1
-  responses: []
+  relativeVolume: 1
+  responses:
+  - {fileID: 11400000, guid: eef7bc159d355574fa122c61836744aa, type: 2}
+  - {fileID: 11400000, guid: 7faefc0a1b3a30745b4f1a76d029703d, type: 2}
+  - {fileID: 11400000, guid: 221516b533b2933418e37242ea70a81d, type: 2}

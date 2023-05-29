@@ -36,7 +36,7 @@ public class printerController : MonoBehaviour
 
         if (printing) {
             timeSinceStart += Time.deltaTime; 
-            if (timeSinceStart >= 5.0f) {
+            if (timeSinceStart >= 7.0f) {
                 interactable = true;
                 Instantiate(paperPrefab, GetChildByName.Get(gameObject, "PaperTarget").transform);
                 GetComponent<Interactable>().primaryActive = true;
@@ -63,6 +63,7 @@ public class printerController : MonoBehaviour
 
     public void Print(Task _task) {
         if (!printing) {
+            toprint.Remove(toprint[0]);
         GetComponent<AudioManager>().StopAll();
         GetComponent<AudioManager>().Play();
         currentPrint = _task;
@@ -74,9 +75,9 @@ public class printerController : MonoBehaviour
     public void Interact() {
         if (interactable) {
             currentPrint.Complete(currentPrint.completePercent);
-            toprint.Remove(toprint[0]);
             RemovePaper();
             GetComponent<Interactable>().primaryActive = false;
+            interactable = false;
 
 
 

@@ -15,6 +15,7 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 8f76074b852601c4b98496d4311ada0a, type: 3}
   name: Printer
   loop: 0
-  relativeVolume: 0.05
+  relativeVolume: 0.1
   spatial: 1
   range: 5000
+  random: 1

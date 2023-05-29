@@ -110,7 +110,11 @@ public class ReportCreationController : MonoBehaviour
         timeSincelastCheck += Time.deltaTime;
 
 
-         progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
+        if (selectedLine != null) {
+        progressBar.GetComponent<ProgressBar>().setProgress(codeLines.IndexOf(selectedLine.gameObject) / codeLines.Count);
+        } else {
+            progressBar.GetComponent<ProgressBar>().setProgress(1.0f);
+        }
         RequestsCountElement.text = requests.Count.ToString();
 
         OnKeyUp();
@@ -256,9 +260,11 @@ public class ReportCreationController : MonoBehaviour
         Vector3[] corners = new Vector3[4];
         line.GetWorldCorners(corners);
         for (int i = 0; i < corners.Length; i++) {
+            if (Camera.main != null) {
             corners[i] = Camera.main.WorldToScreenPoint(corners[i]);
             if (RectTransformUtility.RectangleContainsScreenPoint(point, corners[i], Camera.main)) {
                 return true;
+            }
             }
         }
         return false;
