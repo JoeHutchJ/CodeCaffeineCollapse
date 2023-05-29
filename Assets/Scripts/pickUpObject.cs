@@ -9,6 +9,8 @@ public class pickUpObject : MonoBehaviour
     [SerializeField] private bool handFree;
     [SerializeField] private GameObject NewParent;
 
+     [SerializeField] private GameObject InspectParent;
+
 
     private rayExample coll;
     private Vector3 prevPosition;
@@ -167,7 +169,6 @@ public class pickUpObject : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log(obj.name);
                     objInHand = pickupable;
                     Interactable interactable = objInHand.GetComponent<Interactable>();
                     if (interactable != null) {
@@ -175,7 +176,11 @@ public class pickUpObject : MonoBehaviour
                     }
 
                     //getPrevPosition(objInHand);
+                    if (!pickupable.inspect) {
                     setParentClass(objInHand, NewParent);
+                    } else {
+                    setParentClass(objInHand, InspectParent);
+                    }
                     handFree = false;
                 }
             }

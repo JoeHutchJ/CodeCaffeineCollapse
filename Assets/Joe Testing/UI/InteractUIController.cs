@@ -54,9 +54,11 @@ public class InteractUIController : MonoBehaviour
     }
 
     public void AddPrompt(string prompt) {
+        if (prompt != null) {
         GameObject obj = Instantiate(PromptBoxPrefab, prompts);
         GetChildByName.Get(obj, "Prompt").GetComponent<TMP_Text>().text = prompt;
         addedThisFrame++;
+        }
     }
 
     public void WipePrompts() {
@@ -66,5 +68,10 @@ public class InteractUIController : MonoBehaviour
             }
         }
         addedThisFrame = 0;
+    }
+
+    public void HideUI(bool hide) {
+        GetComponent<Canvas>().enabled = !hide;
+
     }
 }

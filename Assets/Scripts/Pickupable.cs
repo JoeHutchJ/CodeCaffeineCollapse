@@ -22,6 +22,8 @@ public class Pickupable : MonoBehaviour
 
     bool pickedUp = false;
 
+    public bool inspect = false;
+
     public Event DropEvent;
 
     public float moveSpeed = 400.0f;

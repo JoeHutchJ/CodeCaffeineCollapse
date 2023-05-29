@@ -418,4 +418,10 @@ GameObject obj = Instantiate(taskUITime, taskContent);
         fill.fillAmount = Global.QuotaPercent();
 
     }
+
+    public void HideUI(bool hide) {
+        GetComponent<Canvas>().enabled = !hide;
+
+
+    }
 }

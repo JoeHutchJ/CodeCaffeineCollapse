@@ -54,6 +54,7 @@ public class mouseLook : MonoBehaviour {
     }
 
     public void enableCursor(bool enable) {
+        Debug.Log("enable cursor");
         if (enable) {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
@@ -319,6 +320,12 @@ public class mouseLook : MonoBehaviour {
             resetToDeskEvent.Raise();
              
         } 
+
+    }
+
+    public void EnableCamera(bool enable) {
+        cam.GetComponent<Camera>().enabled = enable;
+        cam.GetComponent<AudioListener>().enabled = enable;
 
     }
 

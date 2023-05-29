@@ -17,9 +17,14 @@ public class ObjectiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Application.IsPlaying(gameObject)) {
+        /*if (Application.IsPlaying(gameObject)) {
             StartCoroutine(StartObjective());
-        }
+        }*/
+    }
+
+    public void StartObjectives() {
+
+        StartCoroutine(StartObjective());
     }
 
 
