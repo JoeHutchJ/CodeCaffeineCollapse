@@ -36,6 +36,8 @@ public class DialogueManager : MonoBehaviour
 
     public ConversationEvent FinishConvoEvent;
 
+    public BoolFlag caffeinePaused;
+
     // 
 
     void Start()
@@ -99,14 +101,15 @@ public class DialogueManager : MonoBehaviour
             currentDialogue = currentConversation.dialogues[dialogueIndex];
             dialogueIndex++;
             setDialogue(currentDialogue);
+            caffeinePaused.Value = true;
             
         } else {
-            if (!dialoguePlaying || !responsePlaying) {
             Debug.Log("dialogue manager lock mosue off");
             lockMouseEvent.Raise(false);
             WipeAll();
             FinishConvoEvent.Raise(currentConversation);
-            }
+            caffeinePaused.Value = false;
+            
         }
         }
 
@@ -153,6 +156,7 @@ public class DialogueManager : MonoBehaviour
     public void skipConversation() {
         if (currentDialogue.skippable) {
             currentConversation.audioSource.Stop();
+            FinishConvoEvent.Raise(currentConversation);
         currentConversation = null;
         dialogueIndex = 0;
         currentDialogue = null;

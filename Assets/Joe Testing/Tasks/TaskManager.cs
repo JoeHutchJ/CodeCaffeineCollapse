@@ -263,6 +263,8 @@ public class TaskManager : MonoBehaviour
     }
 
     IEnumerator sendEmail(TaskType type, float percent) {
+        
+        if (type == TaskType.CODING || type == TaskType.REPORT || type == TaskType.REVIEW) {
         EmailSentiment sentiment = EmailSentiment.POSITIVE;
         if (percent > 0.5) {
             sentiment = EmailSentiment.POSITIVE;
@@ -274,6 +276,8 @@ public class TaskManager : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         
         sendEmailEvent.Raise(email);
+
+        }
 
 
         //StopAllCoroutines();

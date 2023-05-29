@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
-  m_Name: coworker2
+  m_Name: coworker6
   m_EditorClassIdentifier: 
-  dialogue: "Well, anyway, did ypu hear about\u2026 Well, I don\u2019t remember his
-    name, but he\u2019s over in another room, and he didn\u2019t push his code to
-    GitHub! I mean, seriously, what are you even thinking? "
-  audio: {fileID: 8300000, guid: bf534bcf1bf9dd44abb7a05f88b37f30, type: 3}
-  skippable: 0
+  dialogue: Oh im so sorry for being friendly with you... ugh people like you really
+    bring down my aura. How am i supposed to push my work today when I'm dealing
+    with your negativity
+  audio: {fileID: 8300000, guid: 117dc148fd4245b419e0ffbe7c3880ab, type: 3}
+  skippable: 1
   respondable: 1
   responses: []

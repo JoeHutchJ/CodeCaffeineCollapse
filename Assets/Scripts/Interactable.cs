@@ -12,6 +12,8 @@ public class Interactable : MonoBehaviour
 
     public string InteractPrompt;
 
+    public bool primaryActive= true;
+
     public UnityEvent action;
 
     //public UnityEvent<GameObject> Objaction;
@@ -158,6 +160,7 @@ public class Interactable : MonoBehaviour
 
     public string getPrompt() {
         
+        if (primaryActive) {
         if (InteractPrompt != "") {
             return InteractPrompt;
         } else {
@@ -173,6 +176,7 @@ public class Interactable : MonoBehaviour
 
 
             }
+        }
         }
         return "Interact";
 

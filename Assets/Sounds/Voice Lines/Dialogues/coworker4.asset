@@ -15,6 +15,9 @@ MonoBehaviour:
   dialogue: "If I catch him being risky with his code again\u2026 hey, am I bothering
     you? "
   audio: {fileID: 8300000, guid: 0c96bc52311c946479cc17fcf9cd626c, type: 3}
-  skippable: 1
+  skippable: 0
   respondable: 1
-  responses: []
+  responses:
+  - {fileID: 11400000, guid: 3cb740078990e3f46896501662f2828c, type: 2}
+  - {fileID: 11400000, guid: 60bf8007443832b4588161ada71e7597, type: 2}
+  - {fileID: 11400000, guid: 76780326017ed8f4ea2b709da5d884b0, type: 2}
