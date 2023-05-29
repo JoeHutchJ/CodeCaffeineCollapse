@@ -16,4 +16,8 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: 54907b7365a8ef64dadf72720e90bcf5, type: 3}
   skippable: 0
   respondable: 1
-  responses: []
+  relativeVolume: 1
+  responses:
+  - {fileID: 11400000, guid: 60bf8007443832b4588161ada71e7597, type: 2}
+  - {fileID: 11400000, guid: 4429a1ae9dbc31d41b6c59ade769dc41, type: 2}
+  - {fileID: 11400000, guid: eef7bc159d355574fa122c61836744aa, type: 2}

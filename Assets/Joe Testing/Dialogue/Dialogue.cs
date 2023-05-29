@@ -64,7 +64,10 @@ public class Dialogue : ScriptableObject
 
     public bool respondable;
 
+    public float relativeVolume = 1.0f;
+
     public Response[] responses; 
+    
     
     public void populateResponses() {
         if (respondable) {

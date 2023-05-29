@@ -40,9 +40,17 @@ public class mouseLook : MonoBehaviour {
 
     public float rotationSpeed = 100.0f;
 
+    public BoolFlag isPcMode;
+
+    public Event resetToDeskEvent;
+
+    public Quaternion originalRot;
+
+
     private void Start()
     {
        enableCursor(false);
+       originalRot = Quaternion.identity;
     }
 
     public void enableCursor(bool enable) {
@@ -102,8 +110,8 @@ public class mouseLook : MonoBehaviour {
         }
 
         velocity = new Vector2(
-            Mathf.MoveTowards(velocity.x, TargetVelocity.x, acceleration.x * Time.deltaTime),
-            Mathf.MoveTowards(velocity.y, TargetVelocity.y, acceleration.y * Time.deltaTime));
+            Mathf.MoveTowards(velocity.x, TargetVelocity.x, acceleration.x * Time.deltaTime * Global.GetMouseSensitivity()),
+            Mathf.MoveTowards(velocity.y, TargetVelocity.y, acceleration.y * Time.deltaTime * Global.GetMouseSensitivity()));
             // the accelaration and the move towards function are used to smooth out the viewing speed
         rotation += velocity * Time.deltaTime;
         rotation.y = clampLookingangle(rotation.y);
@@ -169,7 +177,11 @@ public class mouseLook : MonoBehaviour {
         if (rotationDirections == RotationDirection.Horizontal) {
         StartCoroutine(RotateTowards(target));
         } else {
-            Debug.Log("camera move");
+            if (isPcMode.Value) {
+                originalRot = transform.localRotation;
+                //resetToDeskEvent.Raise();
+                //lockRotation(true);
+            }
              StartCoroutine(RotateToLocalZero());
         }
 
@@ -233,7 +245,13 @@ public class mouseLook : MonoBehaviour {
 
 
         public void GoToRotation (Vector3 rotation) {
-            transform.rotation = Quaternion.Euler(rotation);
+            if (rotationDirections == RotationDirection.Horizontal) {
+                 transform.localRotation = Quaternion.Euler(new Vector3 (rotation.x, 0.0f, rotation.z));
+
+            } else {
+                 transform.localRotation = Quaternion.Euler(new Vector3 (0.0f, rotation.y, 0.0f));
+            }
+            //transform.localRotation = Quaternion.Euler(rotation);
 
         }
 
@@ -278,14 +296,31 @@ public class mouseLook : MonoBehaviour {
     }
 
     public void lockRotation(bool Lock) {
-        rotationLocked = Lock;
+        /*rotationLocked = Lock;
         enableCursor(Lock);
         if (!Lock) {
             //UpdateRotation();
         } else {
             //rotationBeforeLock = new Vector3(rotation.y, rotation.x, 0);
-        }
-        }
+        }*/
+
+        rotationLocked = Lock;
+        enableCursor(Lock);
+        
+        
+
+
+        if (originalRot != Quaternion.identity) {
+            transform.localRotation = originalRot;
+            /*originalRot = Quaternion.identity;
+            enableCursor(true);
+            rotationLocked = true;*/
+            originalRot = Quaternion.identity;
+            resetToDeskEvent.Raise();
+             
+        } 
+
+    }
 
     }
 

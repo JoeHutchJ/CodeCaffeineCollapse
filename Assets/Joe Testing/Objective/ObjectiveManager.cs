@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor;
+
+
 [ExecuteAlways]
 public class ObjectiveManager : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class ObjectiveManager : MonoBehaviour
                 }
             }
         } else {
-            int index  = ArrayUtility.IndexOf(currentObjectiveBlock.objectives.ToArray(), currentObjective);
+            int index  = Array.IndexOf(currentObjectiveBlock.objectives.ToArray(), currentObjective);
             if (index + 1 < currentObjectiveBlock.objectives.Count) {
                 Debug.Log("new Objective");
                 WipeCurrentObjective();

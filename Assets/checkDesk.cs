@@ -29,21 +29,18 @@ public class checkDesk : MonoBehaviour
     }
 
     private void OnCollisionExit(Collision other) {
-        Debug.Log("exit");
         if (other.gameObject.tag == "Player") {
             playerAtDesk.Value = false;
         }
     }
 
     private void OnCollisionStay(Collision other) {
-                Debug.Log("stay");
         if (other.gameObject.tag == "Player") {
             playerAtDesk.Value = true;
         }
     }
 
     private void OnCollisionEnter(Collision other) {
-                Debug.Log("enter");
         if (other.gameObject.tag == "Player") {
             playerAtDesk.Value = true;
         }

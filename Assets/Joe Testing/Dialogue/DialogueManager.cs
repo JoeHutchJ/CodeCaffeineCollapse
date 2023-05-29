@@ -125,6 +125,11 @@ public class DialogueManager : MonoBehaviour
         if (currentDialogue.audio != null) {
 
         currentConversation.audioSource.clip = currentDialogue.audio;
+                currentConversation.audioSource.volume = Global.volume * dialogue.relativeVolume;
+                currentConversation.audioSource.spatialBlend = 1;
+        currentConversation.audioSource.rolloffMode = AudioRolloffMode.Linear;
+        currentConversation.audioSource.maxDistance = 5000;
+        currentConversation.audioSource.dopplerLevel = 0;
                 currentConversation.audioSource.Play();
                 dialoguePlaying = true;
         } else {

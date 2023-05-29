@@ -25,6 +25,8 @@ public static class Global
 
     public static float volume = 1.0f;
 
+    public static float mouseSensitivity = 1.0f;
+
     public static GameObject ObjInHand;
 
     public static GameObject BuildDebugger;
@@ -86,6 +88,11 @@ public static class Global
 
         return (hours, Mathf.Floor(minutes));
 
+
+    }
+
+    public static float GetMouseSensitivity() {
+        return mouseSensitivity;
 
     }
 
