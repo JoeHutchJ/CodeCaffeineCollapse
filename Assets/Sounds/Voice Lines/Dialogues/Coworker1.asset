@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
-  m_Name: Coworker1
+  m_Name: coworker1
   m_EditorClassIdentifier: 
-  dialogue: 
-  audio: {fileID: 8300000, guid: f6f570e584e93f84c904cd488abca6ad, type: 3}
+  dialogue: "Hey, so you\u2019re the new guy, right? "
+  audio: {fileID: 8300000, guid: 820a0af8d3d4e094fadd0b0e83b6b195, type: 3}
   skippable: 0
   respondable: 1
-  responses: []
+  responses:
+  - {fileID: 11400000, guid: 7faefc0a1b3a30745b4f1a76d029703d, type: 2}
+  - {fileID: 11400000, guid: 221516b533b2933418e37242ea70a81d, type: 2}
+  - {fileID: 11400000, guid: 80479b90f6a3c744f9a2fefbbc3ef84e, type: 2}

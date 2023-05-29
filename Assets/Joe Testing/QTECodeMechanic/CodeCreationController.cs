@@ -58,6 +58,7 @@ public class CodeCreationController : MonoBehaviour
     AudioManager audioManager;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -327,6 +328,7 @@ public class CodeCreationController : MonoBehaviour
         float percent = (float)count / (float)codeLines.Count;
         Debug.Log("Percentage: " + percent  * 100 + "%");
         requests[0].Complete(percent);
+
         if (requests.Count > 0 ) {
             
             requests.Remove(requests[0]);

@@ -1509,6 +1509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f7c568bd3dbfe4f967f464cead62d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requests: []
   numSections: 4
   numLines: 0
   scrollSpeed: 0
@@ -1525,6 +1526,7 @@ MonoBehaviour:
   codeLines: []
   disabled: 0
   started: 0
+  sendToPrinter: {fileID: 11400000, guid: eb290f3e451f8ed4d9395d43abac56ae, type: 2}
 --- !u!114 &-8681583173600572630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,7 +1539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAgentEvent: 0
   _Event: {fileID: 11400000, guid: bc12f905353e1fc4fb65d250113bd811, type: 2}
+  _AgentEvent: {fileID: 0}
+  Agent: {fileID: 0}
   eventType: 1
   response:
     m_PersistentCalls:
@@ -1576,6 +1581,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Transformresponse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!82 &6198845871750526370
@@ -1688,6 +1696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 11400000, guid: 0e8222d38ed2d764cb277c882cc6881d, type: 2}
+  nonAuto: []
   sources: []
   playAutomatically: 0
   everyXseconds: 0

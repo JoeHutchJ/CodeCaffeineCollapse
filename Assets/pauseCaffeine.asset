@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fab46fa6f8c9284790fa07b81c20a45, type: 3}
-  m_Name: coworker1
+  m_Script: {fileID: 11500000, guid: 5b08e2a39c8cfba498845cbbf36f952d, type: 3}
+  m_Name: pauseCaffeine
   m_EditorClassIdentifier: 
-  dialogue: "Hey, so you\u2019re the new guy, right? "
-  audio: {fileID: 8300000, guid: 820a0af8d3d4e094fadd0b0e83b6b195, type: 3}
-  skippable: 0
-  respondable: 1
-  responses: []
+  initValue: 0
+  Value: 0

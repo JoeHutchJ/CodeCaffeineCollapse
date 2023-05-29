@@ -24,7 +24,16 @@ public class NPC : MonoBehaviour
 
     AudioSource audioSource;
 
+    public Vector3 originalPos;
+    public Quaternion originalRot;
+
     bool talking;
+
+    public bool coworker; 
+
+    public BoolFlag playerAtDesk;
+
+    public Transform otherTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +42,8 @@ public class NPC : MonoBehaviour
        //RotateToPos(testTarget.rotation);
        //Anim = GetChildByName.Get(gameObject,"boss_talk").GetComponent<Animator>();
        audioSource = GetComponent<AudioSource>();
+       originalPos = transform.position;
+       originalRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -55,10 +66,16 @@ public class NPC : MonoBehaviour
             float step = rotationSpeed * Time.deltaTime;
          Vector3 direction = lookTarget.position - transform.position;
          direction.y = 0.0f;
+         if (coworker) {
+            transform.LookAt(lookTarget, Vector3.up);
+         } else {
         if (direction != Vector3.zero) {
+            Debug.Log(direction);
+            
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
         } 
+         }
 
 
 
@@ -75,6 +92,7 @@ public class NPC : MonoBehaviour
     }
 
     public void Move(Transform trans) {
+        Debug.Log("move");
         Anim.SetTrigger("Walk");
         GoToPos(trans.position);
     }
@@ -96,6 +114,11 @@ public class NPC : MonoBehaviour
 
     IEnumerator MoveToPos(Vector3 pos) {
 
+        if (!playerAtDesk.Value) {
+            if (otherTarget != null) {
+            pos = otherTarget.position;
+            }
+        }
         float step = moveSpeed * Time.deltaTime;
         while (!AtPos(pos)) {
 
@@ -129,7 +152,7 @@ public class NPC : MonoBehaviour
 
 
     public bool AtPos(Vector3 pos) {
-        return Vector3.Distance(transform.position, pos) < 100;
+        return Vector3.Distance(transform.position, pos) < 20;
 
 
 
@@ -141,6 +164,14 @@ public class NPC : MonoBehaviour
 
 
 
+
+    }
+
+    public void ReturnToOriginal() {
+        GoToPos(originalPos);
+        RotateToPos(originalRot);
+        lookTowardsActive = false;
+        lookTarget = null;
 
     }
 

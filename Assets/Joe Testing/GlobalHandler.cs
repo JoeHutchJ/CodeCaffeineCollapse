@@ -11,6 +11,8 @@ public class GlobalHandler : MonoBehaviour
     public int jobPoints;
 
     public GameObject buildDebugger;
+
+    public BoolFlag caffeinePaused;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +27,9 @@ public class GlobalHandler : MonoBehaviour
         jobQuota = Global.jobQuota;
         percent = Global.QuotaPercent();
         jobPoints = Global.jobQuotaPoints;
-
+        if (!caffeinePaused.Value) {
         Global.UpdateCaffeine();
+        }
 
 
     }

@@ -60,6 +60,8 @@ public class ReportCreationController : MonoBehaviour
 
     AudioManager audioManager;
 
+    public TaskEvent sendToPrinter;
+
     
     // Start is called before the first frame update
     void Start()
@@ -133,6 +135,7 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public int getRequests() {
+        Debug.Log("report requests " + requests.Count);
         if (requests.Count > 0) {
         return requests.Count;
         } else {
@@ -141,9 +144,9 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.5f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.4f);
         numSections = (int)UsefulFunctions.Remap(difficulty, 0, 1, 1, 5);
-        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 5, 15);
+        numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 3, 12);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
 
     }
@@ -380,10 +383,15 @@ public class ReportCreationController : MonoBehaviour
         }
         float percent = (float)count / (float)codeLines.Count;
         Debug.Log("Percentage: " + percent  * 100 + "%");
-        requests[0].Complete(percent);
+        //requests[0].Complete(percent);
+
+        requests[0].completePercent = percent;
+        sendToPrinter.Raise(requests[0]);
+
         if (requests.Count > 0 ) {
             
         requests.Remove(requests[0]);
+        
         }
 
         codeLines.Clear();
