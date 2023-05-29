@@ -42,6 +42,7 @@ public class printerController : MonoBehaviour
                 GetComponent<Interactable>().primaryActive = true;
                 printing = false;
                 timeSinceStart = 0.0f;
+                GetComponent<AudioManager>().Play("QTEComplete");
             }
         
     

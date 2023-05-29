@@ -79,6 +79,10 @@ public class Interactable : MonoBehaviour
                 if (lockCameraRotation != null) {
                     lockCameraRotation.Raise(lockRotation);
                 }
+
+                if (action != null) {
+                    action.Invoke();
+                }
                 break;
             case InteractableType.EQUIP:
             if (action != null) {

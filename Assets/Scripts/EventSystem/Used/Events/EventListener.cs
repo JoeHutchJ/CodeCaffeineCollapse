@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEditor.Events;
+//using UnityEditor.Events;
 using System;
 
 using Sirenix.OdinInspector;
@@ -360,8 +360,8 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
 
             Do(true);
             
-            UnityEventTools.AddPersistentListener(response, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(response, res);
+            response.AddListener(res);
 
         
     }
@@ -370,8 +370,8 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     public void SetBoolResponse(UnityAction<Boolean> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(boolresponse, res);
-            //boolresponse.AddListener(res);
+            //UnityEventTools.AddPersistentListener(boolresponse, res);
+            boolresponse.AddListener(res);
 
         
     }
@@ -379,64 +379,64 @@ public class EventListener: MonoBehaviour //key class, which interprets all kind
     public void SetStringResponse(UnityAction<String> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(stringresponse, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(stringresponse, res);
+            stringresponse.AddListener(res);
         
     }
 
 public void SetIntResponse(UnityAction<int> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(intresponse, res);
-            //response.AddListener(res););
+            //UnityEventTools.AddPersistentListener(intresponse, res);
+            intresponse.AddListener(res);
         
     }
 
 public void SetVec2Response(UnityAction<Vector2> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(vector2response, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(vector2response, res);
+            vector2response.AddListener(res);
         
     }
 
 public void SetVec3Response(UnityAction<Vector3> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(Vector3response, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(Vector3response, res);
+            Vector3response.AddListener(res);
         
     }
 
 public void SetTaskResponse(UnityAction<Task> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(taskresponse, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(taskresponse, res);
+            taskresponse.AddListener(res);
         
     }
 
 public void SetConvResponse(UnityAction<Conversation> res) {
            Do(true);
             
-            UnityEventTools.AddPersistentListener(Conversationresponse, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(Conversationresponse, res);
+            Conversationresponse.AddListener(res);
         
     }
 
 public void SetEmailResponse(UnityAction<Email> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(Emailresponse, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(Emailresponse, res);
+            Emailresponse.AddListener(res);
         
     }
 
 public void SetTransformResponse(UnityAction<Transform> res) {
             Do(true);
             
-            UnityEventTools.AddPersistentListener(Transformresponse, res);
-            //response.AddListener(res);
+            //UnityEventTools.AddPersistentListener(Transformresponse, res);
+            Transformresponse.AddListener(res);
         
     }
 

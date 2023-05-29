@@ -70,7 +70,6 @@ public class NPC : MonoBehaviour
             transform.LookAt(lookTarget, Vector3.up);
          } else {
         if (direction != Vector3.zero) {
-            Debug.Log(direction);
             
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);

@@ -40,6 +40,8 @@ public class computerController : MonoBehaviour
     float timeSinceAuthentication;
 
     float timetilLogout;
+
+    public BoolFlag isPcMode;
     // Start is called before the first frame update
     void Start()
     {
@@ -311,7 +313,9 @@ public class computerController : MonoBehaviour
     }
 
     public void clickQuitButton() {
+        isPcMode.Value = false;
         resetToDeskviewEvent.Raise();
+        
     }
 
 

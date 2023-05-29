@@ -17,5 +17,7 @@ public class CustomAudioClip : ScriptableObject
 
     public float range;
 
+    public bool random = true;
+
 
 }

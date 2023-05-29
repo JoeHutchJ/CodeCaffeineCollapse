@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Joe Testing/Tasks/TaskTesting.unity
     guid: 1452eb18c37e32e448a0c7defacc9b8f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Office Environment 3.unity
     guid: af40cd44d92e56d45895edf99fb5d36a
+  - enabled: 1
+    path: Assets/Scenes/Office Environment 4.unity
+    guid: 4a847e86fc05a6549a7cde93a8e1b156
   m_configObjects: {}
