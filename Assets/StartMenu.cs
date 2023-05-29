@@ -30,9 +30,11 @@ public class StartMenu : MonoBehaviour
         pauseCamera = GetComponentInChildren<Camera>();
         mainCamera = Camera.main;
         StartMenuContent = GetChildByName.Get(gameObject, "start menu").transform;
+        StartMenuContent.gameObject.SetActive(false);
         cameraTarget = GetChildByName.Get(gameObject, "CameraTarget").transform;
-        Enable();
-        enableCursor(true);
+        pauseCamera.GetComponent<CameraGo>().hideCam(true);
+        //Enable();
+
     }
 
     // Update is called once per frame
@@ -48,6 +50,31 @@ public class StartMenu : MonoBehaviour
     }
 
     public void Enable() {
+        //move camera
+        //disable main camera. 
+        enabled = true;
+        if (mainCamera  != null) {
+            pauseCamera.transform.position = mainCamera.transform.position;
+            pauseCamera.transform.rotation = mainCamera.transform.rotation;
+            pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
+            //mainCamEvent.Raise(false);
+            mainCamera.enabled = false;
+            pauseCamera.enabled = true;
+            
+            
+
+        }
+        hideUIEvent.Raise(true);
+        StartMenuContent.gameObject.SetActive(true);
+        enableCursor(true);
+        Global.paused = true;
+        displaceEvent.Raise();
+
+
+
+    }
+
+    public void EnableFromPause(Camera cam) {
         //move camera
         //disable main camera. 
         enabled = true;

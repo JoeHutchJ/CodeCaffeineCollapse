@@ -6,8 +6,12 @@ public class CameraGo : MonoBehaviour
 {
 
     public Transform currentTarget;
+    
     public float moveSpeed;
+    
     public float rotationSpeed; 
+
+    public float timeTocomplete = 1.0f;
 
     public bool active;
 
@@ -27,7 +31,7 @@ public class CameraGo : MonoBehaviour
             GoToPos(currentTarget.position);
             RotateTo(currentTarget.rotation);
 
-        }
+        
 
         if (closeTo(transform.position,currentTarget.position) && transform.rotation == currentTarget.rotation) {
             active = false;
@@ -36,11 +40,17 @@ public class CameraGo : MonoBehaviour
                 mainCamEvent.Raise(true);
             }
         }
+        }
     }
 
     public void Go(Transform target) {
+        goback = false;
         currentTarget = target;
         active = true;
+
+        moveSpeed = Vector3.Distance(target.position, transform.position) / timeTocomplete;
+        rotationSpeed = Quaternion.Angle(target.rotation, transform.rotation) / timeTocomplete;
+
 
     }
 
@@ -48,6 +58,9 @@ public class CameraGo : MonoBehaviour
         currentTarget = target;
         active = true;
         goback = true;
+
+                moveSpeed = Vector3.Distance(target.position, transform.position) / timeTocomplete;
+        rotationSpeed = Quaternion.Angle(target.rotation, transform.rotation) / timeTocomplete;
     }
 
 
