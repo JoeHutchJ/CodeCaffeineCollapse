@@ -14,7 +14,7 @@ public class displaceObject : MonoBehaviour
     {
         pos = transform.position;
         rot = transform.rotation;
-        Displace();
+        //Displace();
     }
 
     // Update is called once per frame

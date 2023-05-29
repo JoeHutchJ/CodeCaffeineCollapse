@@ -10,12 +10,14 @@ public class rayExample : MonoBehaviour
     public Collider hitColl;
 
     void Update()
-    {
+    {   
+        if (Camera.main != null) {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
             hitColl = hit.collider;
             //Debug.Log(hitColl);
+        }
         }
     }
 

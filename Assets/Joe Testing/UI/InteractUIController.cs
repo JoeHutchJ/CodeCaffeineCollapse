@@ -67,4 +67,9 @@ public class InteractUIController : MonoBehaviour
         }
         addedThisFrame = 0;
     }
+
+    public void HideUI(bool hide) {
+        GetComponent<Canvas>().enabled = !hide;
+
+    }
 }

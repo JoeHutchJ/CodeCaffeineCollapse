@@ -31,9 +31,13 @@ public static class Global
 
     public static GameObject BuildDebugger;
 
+    public static bool paused;
+
 
     public static void Update() {
+        if (!paused) {
         UpdateTime();
+        }
     }
 
     public static void AddPoints(int num) {
@@ -61,9 +65,11 @@ public static class Global
     }
 
     public static void UpdateCaffeine() {
+        if (!paused) {
         caffeine -= caffeinePerSecond * Time.deltaTime;
         if (caffeine < 0) {
             caffeine = 0;
+        }
         }
 
     }

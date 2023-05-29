@@ -220,4 +220,9 @@ public class DialogueManager : MonoBehaviour
         nextDialogue();
 
     }
+
+    public void HideUI(bool hide) {
+        GetComponent<Canvas>().enabled = !hide;
+
+    }
 }
