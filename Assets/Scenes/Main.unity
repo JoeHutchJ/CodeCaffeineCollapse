@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  InteractPrompt: Move to Kitchen
+  InteractPrompt: Click to Move to Kitchen
   primaryActive: 1
   action:
     m_PersistentCalls:
@@ -3149,7 +3149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  InteractPrompt: Move to Printer
+  InteractPrompt: Click to Move to Printer
   primaryActive: 1
   action:
     m_PersistentCalls:
@@ -13700,7 +13700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  InteractPrompt: 
+  InteractPrompt: Click to move to desk
   primaryActive: 1
   action:
     m_PersistentCalls:

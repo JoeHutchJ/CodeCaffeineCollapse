@@ -22,7 +22,7 @@ public static class Global
 
     };
 
-    static float dayLength = 300.0f;
+    static float dayLength = 350.0f;
 
     static int hours = 9;
 
@@ -30,7 +30,7 @@ public static class Global
 
     public static float caffeine = 1.0f;
 
-    static float caffeinePerSecond = 0.01f;
+    static float caffeinePerSecond = 0.02f;
 
     //static float caffeinePerSecond = 0.07f;
 
