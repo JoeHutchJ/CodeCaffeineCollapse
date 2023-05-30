@@ -13,8 +13,6 @@ public class TaskManager : MonoBehaviour
 
     public List<TaskContainer>instantiatedTasks;
 
-    public bool randomActive; //random tasks can start being produced. 
-
     public GameObject taskUI;
 
     float taskUIheight;
@@ -203,6 +201,14 @@ public class TaskManager : MonoBehaviour
         clearAlltasks();
         UpdateAllTasks();
         //StopAllCoroutines();
+    }
+
+    public void WipeAllTasks() {
+        UsefulFunctions.deleteAllchildren(taskContent);
+        instantiatedTasks = new List<TaskContainer>();
+        tasks = new List<Task>();
+
+
     }
 
     public void UpdateAllTasks() {

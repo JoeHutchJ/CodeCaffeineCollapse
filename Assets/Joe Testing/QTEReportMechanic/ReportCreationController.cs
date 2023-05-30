@@ -112,7 +112,7 @@ public class ReportCreationController : MonoBehaviour
 
         if (codeLines.Count > 0) {
             if (selectedLine != null) {
-        progressBar.GetComponent<ProgressBar>().setProgress((float)codeLines.IndexOf(selectedLine.gameObject) / (float)codeLines.Count - 1.0f);
+        progressBar.GetComponent<ProgressBar>().setProgress((float)codeLines.IndexOf(selectedLine.gameObject) / ((float)codeLines.Count - 1.0f));
             }
         } else {
             progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
