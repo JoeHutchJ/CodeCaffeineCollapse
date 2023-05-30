@@ -18278,7 +18278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enabled: 0
-  defaultEnable: 1
+  defaultEnable: 0
   pauseCamera: {fileID: 2055076850}
   mainCamera: {fileID: 246024978}
   pauseMenu: {fileID: 2101638281}

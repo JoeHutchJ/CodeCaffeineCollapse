@@ -83,7 +83,9 @@ public class PauseMenu : MonoBehaviour
             pauseCamera.GetComponent<CameraGo>().waitingforpause = true;
             //mainCamEvent.Raise(false);
             mainCamera.enabled = false;
-            pauseCamera.enabled = true;
+            mainCamera.gameObject.GetComponent<AudioListener>().enabled = false;
+            
+            pauseCamera.GetComponent<CameraGo>().hideCam(false);
             
             
 
@@ -176,7 +178,7 @@ public class PauseMenu : MonoBehaviour
             pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
             pauseCamera.GetComponent<CameraGo>().waitingforpause = true;
             //mainCamEvent.Raise(false);
-            pauseCamera.enabled = true;
+            pauseCamera.GetComponent<CameraGo>().hideCam(false);
 
             
 

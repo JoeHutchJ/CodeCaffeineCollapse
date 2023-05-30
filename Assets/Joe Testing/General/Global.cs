@@ -30,7 +30,7 @@ public static class Global
 
     public static float caffeine = 1.0f;
 
-    static float caffeinePerSecond = 0.02f;
+    static float caffeinePerSecond = 0.013f;
 
     //static float caffeinePerSecond = 0.07f;
 
@@ -148,12 +148,14 @@ public static class Global
     }
 
     public static void nextDay() {
+        
         ResetDay();
         dayIndex++;
         if (dayIndex == 5) {
             dayIndex = 0;
         }
         currentDay = days[dayIndex];
+        Debug.Log(currentDay);
 
         if (dayIndex != 0) {
             freeMode = true;

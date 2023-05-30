@@ -109,6 +109,7 @@ public class InteractUIController : MonoBehaviour
         ResetBlackScreen();
 
         TMP_Text textBox = GetChildByName.Get(gameObject,"Day").GetComponent<TMP_Text>();
+        Debug.Log("ui " + Global.dayIndex);
         textBox.text = Global.currentDay;
         StartCoroutine(fadeDay(textBox.gameObject.GetComponent<CanvasGroup>()));
 

@@ -30,7 +30,6 @@ public class CameraGo : MonoBehaviour
     void Update()
     {
         if (active) {
-            Debug.Log("go cam active");
             GoToPos(currentTarget.position);
             RotateTo(currentTarget.rotation);
 

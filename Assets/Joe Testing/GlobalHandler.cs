@@ -47,6 +47,7 @@ public class GlobalHandler : MonoBehaviour
 
     public void LeftOffice() {
         Global.leftOffice = true;
+        Debug.Log(Global.leftOffice);
 
     }
 
