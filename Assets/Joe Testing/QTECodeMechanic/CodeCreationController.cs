@@ -132,7 +132,7 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public bool isActive() {
-        return selectedLine == null;
+        return active;
 
     }
 

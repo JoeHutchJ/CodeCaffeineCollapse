@@ -4097,6 +4097,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2010647205}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2010647208}
   m_SourcePrefab: {fileID: 100100000, guid: 6adc979ba3c25094fac92db579dfc9b0, type: 3}
 --- !u!1 &277782424
 GameObject:
@@ -19033,7 +19036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.size
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].id
@@ -19112,12 +19115,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].name
       value: Boss Moves to Player
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].name
@@ -19125,7 +19132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].name
@@ -19133,7 +19140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].name
@@ -19141,7 +19148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].name
@@ -19149,7 +19156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[4].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].name
@@ -19157,7 +19164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].name
@@ -19165,7 +19172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[6].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].name
@@ -19173,7 +19180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[7].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].name
@@ -19181,7 +19188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[8].skip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[9].name
@@ -19352,6 +19359,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].TriggerEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -19378,6 +19389,10 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[18].CompletionEvents.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].ActiviationEvents.Array.size
@@ -19442,6 +19457,10 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[18].ActiviationEvents.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActivationConditions.Array.size
@@ -19512,6 +19531,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].TriggerEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c0b1d791f775784ba32ce24da7b3ec4, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].CompletionEvents.Array.data[0].Event
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
@@ -19531,6 +19554,10 @@ PrefabInstance:
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.data[0].Agent
       value: 
       objectReference: {fileID: 1263736493}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].ActiviationEvents.Array.data[0].Agent
       value: 
@@ -19672,6 +19699,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.data[0].Event
+      value: 
+      objectReference: {fileID: 11400000, guid: e31313d023a0b4649852b8b9574e7531, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].TriggerEvents.Array.data[0].EventType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].TriggerEvents.Array.data[0].AgentEvent
       value: 
       objectReference: {fileID: 11400000, guid: 9794015134b46a54fad7acc8bc9e220e, type: 2}
@@ -19734,6 +19769,10 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[18].TriggerEvents.Array.data[0].taskinput.ID
       value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.data[0].EventType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].ActiviationEvents.Array.data[0].EventType
@@ -19828,6 +19867,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.data[0].EventType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].ActiviationEvents.Array.data[0].AgentEvent
       value: 
       objectReference: {fileID: 11400000, guid: ac1835642df728e46bc1dd76d3fb6f1f, type: 2}
@@ -19894,6 +19937,10 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[0].ActiviationEvents.Array.data[0].isAgentEvent
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.data[0].taskinput.ID
+      value: 780
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[1].ActiviationEvents.Array.data[0].isAgentEvent
@@ -19970,6 +20017,10 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[18].ActiviationEvents.Array.data[0].taskinput.ID
       value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.data[0].taskinput.ID
+      value: 780
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].TriggerEvents.Array.data[0].conversationinput
@@ -20080,6 +20131,10 @@ PrefabInstance:
       value: Pickup the Authentication Card
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.data[0].taskinput.active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActiviationEvents.Array.data[0].taskinput.active
       value: 1
       objectReference: {fileID: 0}
@@ -20126,6 +20181,14 @@ PrefabInstance:
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[18].TriggerEvents.Array.data[0].taskinput.difficulty
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.data[0].taskinput.active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.data[0].taskinput.prompt
+      value: Leave the Office!
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[2].ActiviationEvents.Array.data[0].conversationinput
@@ -20175,6 +20238,14 @@ PrefabInstance:
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[13].ActiviationEvents.Array.data[0].conversationinput
       value: 
       objectReference: {fileID: 11400000, guid: f3b052385b3a7b940be912bdd9e28a46, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.data[0].taskinput.complete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.data[0].taskinput.taskType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActiviationEvents.Array.data[0].taskinput.taskType
       value: 6
@@ -20244,6 +20315,10 @@ PrefabInstance:
       value: Write a report
       objectReference: {fileID: 0}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.data[0].taskinput.taskType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[5].ActiviationEvents.Array.data[0].taskinput.timeLimit
       value: 60
       objectReference: {fileID: 0}
@@ -20304,6 +20379,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].CompletionEvents.Array.data[0].taskinput.CompleteEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[3].ActiviationEvents.Array.data[0].taskinput.CompleteEvent
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
@@ -20329,6 +20408,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[18].ActiviationEvents.Array.data[0].taskinput.CompleteEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
+    - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
+      propertyPath: ObjectiveBlocks.Array.data[0].objectives.Array.data[19].ActiviationEvents.Array.data[0].taskinput.CompleteEvent
       value: 
       objectReference: {fileID: 11400000, guid: c50c4ac43c32ea643820dbf6aae8826f, type: 2}
     - target: {fileID: 8882633844557374749, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
@@ -20728,6 +20811,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2010647208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415412251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cc1fe8a8a432b4a80fee6f673929de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAgentEvent: 0
+  _Event: {fileID: 11400000, guid: 3c0b1d791f775784ba32ce24da7b3ec4, type: 2}
+  _AgentEvent: {fileID: 0}
+  Agent: {fileID: 0}
+  eventType: 1
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+  vector2response:
+    m_PersistentCalls:
+      m_Calls: []
+  boolresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  stringresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  intresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  taskresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Vector3response:
+    m_PersistentCalls:
+      m_Calls: []
+  Conversationresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Emailresponse:
+    m_PersistentCalls:
+      m_Calls: []
+  Transformresponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2012368407
 GameObject:
   m_ObjectHideFlags: 0

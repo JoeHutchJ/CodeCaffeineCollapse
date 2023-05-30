@@ -70,6 +70,7 @@ public class computerController : MonoBehaviour
         
         if (!authenticated) {
             AuthenticateWindow();
+            
         }
 
         timetilEmail = UnityEngine.Random.Range(30.0f, 60.0f);
