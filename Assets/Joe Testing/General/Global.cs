@@ -126,18 +126,31 @@ public static class Global
     }
 
     public static float GetMouseSensitivity() {
-        float caffeineSens = UsefulFunctions.Remap(caffeine, 0.4f, 0.0f, 1.0f, 0.7f);
+        float caffeineSens = UsefulFunctions.Remap(caffeine, 0.4f, 0.0f, 1.0f, 0.4f);
         return mouseSensitivity * caffeineSens;
 
     }
 
+    public static void ResetTime() {
+        hours = 9;
+        minutes = 0.0f;
+    }
+
+    public static void ResetDay() {
+        ResetTime();
+        caffeine = 1.0f;
+        jobQuotaPoints = 0;
+
+    }
+
     public static void nextDay() {
+        ResetDay();
         dayIndex++;
         if (dayIndex == 5) {
             dayIndex = 0;
         }
         currentDay = days[dayIndex];
-        jobQuotaPoints = 0;
+
         if (dayIndex != 0) {
             freeMode = true;
         } else {

@@ -30,6 +30,8 @@ public class StartMenu : MonoBehaviour
 
     public bool firstDay;
 
+    public Event ResetDay;
+
     
     // Start is called before the first frame update
     void Start()
@@ -72,6 +74,7 @@ public class StartMenu : MonoBehaviour
             
 
         }
+        ResetDay.Raise();
         hideUIEvent.Raise(true);
         StartMenuContent.gameObject.SetActive(true);
         enableCursor(true);
@@ -131,6 +134,7 @@ public class StartMenu : MonoBehaviour
             firstDay = false;
         }
 
+
         displayDay.Raise();
         //move camera...
         pauseCamera.GetComponent<CameraGo>().GoBack(mainCamera.transform);
@@ -188,6 +192,7 @@ public class StartMenu : MonoBehaviour
     public void ContinueGame() {
         if (firstDay) {
             Global.nextDay();
+            Global.caffeine = 1.0f;
         }
         
         StartGame();

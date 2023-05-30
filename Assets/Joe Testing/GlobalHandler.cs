@@ -49,4 +49,8 @@ public class GlobalHandler : MonoBehaviour
         Global.leftOffice = true;
 
     }
+
+    public void ResetDay() {
+        Global.ResetDay();
+    }
 }

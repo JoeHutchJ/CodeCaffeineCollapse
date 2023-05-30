@@ -10,6 +10,8 @@ public class CaffeineMeterController : MonoBehaviour
     public CanvasGroup blackScreen;
 
     public Event endDay;
+
+    bool endDayRaised = false;
     private void Start() {
         fill = GetChildByName.Get(gameObject, "FillCaffeineMeter").GetComponent<Image>();
         blackScreen = GetChildByName.Get(transform.parent.gameObject, "BlackScreen").GetComponent<CanvasGroup>();
@@ -25,10 +27,18 @@ public class CaffeineMeterController : MonoBehaviour
         }
 
         if (Global.caffeine == 0.0f) {
-            endDay.Raise();
+            if (!endDayRaised) {
+                endDay.Raise();
+                endDayRaised = true;
+            }
+            
         }
 
         
 
+    }
+
+    public void Reset() {
+        endDayRaised = false;
     }
 }
