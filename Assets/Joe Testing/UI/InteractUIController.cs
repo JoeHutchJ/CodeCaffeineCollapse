@@ -17,6 +17,8 @@ public class InteractUIController : MonoBehaviour
 
     bool hidden;
 
+    public Event leftOffice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +74,77 @@ public class InteractUIController : MonoBehaviour
 
     public void HideUI(bool hide) {
         GetComponent<Canvas>().enabled = !hide;
+
+    }
+
+    public void FadeBlackScreen() {
+        StartCoroutine(FadeInBlackScreen());
+
+
+    }
+
+    public void ResetBlackScreen() {
+        GetChildByName.Get(gameObject, "BlackScreenFade").GetComponent<CanvasGroup>().alpha = 0;
+
+    }
+
+    IEnumerator FadeInBlackScreen() {
+        CanvasGroup obj = GetChildByName.Get(gameObject, "BlackScreenFade").GetComponent<CanvasGroup>();
+        float step = 0.4f * Time.deltaTime;
+
+        while (obj.alpha < 1) {
+            obj.alpha += step;
+            yield return null;
+        }
+
+        leftOffice.Raise();
+
+
+
+
+
+    }
+
+    public void DisplayDay() {
+        ResetBlackScreen();
+
+        TMP_Text textBox = GetChildByName.Get(gameObject,"Day").GetComponent<TMP_Text>();
+        textBox.text = Global.currentDay;
+        StartCoroutine(fadeDay(textBox.gameObject.GetComponent<CanvasGroup>()));
+
+    }
+
+    IEnumerator fadeDay(CanvasGroup canvasGroup) {
+
+            bool done = false;
+
+            bool fadingIn = true;
+
+            float step = 0.4f * Time.deltaTime;
+
+            while (!done) {
+                if (fadingIn) {
+                    if (canvasGroup.alpha < 1) {
+                        canvasGroup.alpha += step;
+                    } else {
+                        fadingIn = false;
+                    }
+                    yield return null;
+                    
+                } else {
+                    if (canvasGroup.alpha > 0) {
+                         canvasGroup.alpha -= step;
+                    } else {
+                        done = true;
+                    }
+                    yield return null;
+
+
+                }
+
+
+            }
+
 
     }
 }

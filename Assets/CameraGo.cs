@@ -41,6 +41,7 @@ public class CameraGo : MonoBehaviour
             if (goback) {
                 goback = false;
                 mainCamEvent.Raise(true);
+                
             }
             if (waitingforpause) {
                 Time.timeScale = 0.0f;
@@ -66,8 +67,8 @@ public class CameraGo : MonoBehaviour
         active = true;
         goback = true;
 
-                moveSpeed = Vector3.Distance(target.position, transform.position) / timeTocomplete;
-        rotationSpeed = Quaternion.Angle(target.rotation, transform.rotation) / timeTocomplete;
+                moveSpeed = Vector3.Distance(target.position, transform.position) / ( timeTocomplete * 0.25f);
+        rotationSpeed = Quaternion.Angle(target.rotation, transform.rotation) / ( timeTocomplete * 0.25f);
     }
 
 

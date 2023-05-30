@@ -15,6 +15,7 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 8efcacc5dad6ea042b110438dc1e2b0d, type: 3}
   name: 
   loop: 1
-  relativeVolume: 0.02
+  relativeVolume: 0.013
   spatial: 1
   range: 5000
+  random: 1

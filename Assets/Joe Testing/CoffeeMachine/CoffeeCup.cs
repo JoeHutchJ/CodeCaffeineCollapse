@@ -34,6 +34,7 @@ public class CoffeeCup : MonoBehaviour
             if (drinkCoffeeEvent != null) {
                 drinkCoffeeEvent.Raise();
             }
+            GetComponent<AudioManager>().Play();
         }
     }
 

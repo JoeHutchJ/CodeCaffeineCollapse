@@ -27,6 +27,13 @@ public static class generateGibberishCode {
             code.Append(GenerateGenericNest(false, 0));
 
         }
+
+        if (code.ToString().Split("/n").Length <= 1) {
+
+        }
+
+                    totalLines = 0;
+            numLines = 0;
         
         return code.ToString();
     }
@@ -155,8 +162,6 @@ public static class generateGibberishCode {
             }
             code.AppendLine("}");
             totalLines++;
-
-            
 
         return code.ToString();
     }

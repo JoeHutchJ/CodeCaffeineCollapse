@@ -116,13 +116,12 @@ public class CodeCreationController : MonoBehaviour
                 count++;
             }
         }*/
-        if (selectedLine != null) {
-        Debug.Log("indexxxx: " + codeLines.IndexOf(selectedLine.gameObject));
-        }
 
 
-        if (selectedLine != null && codeLines.Count > 0) {
-        progressBar.GetComponent<ProgressBar>().setProgress((float)codeLines.IndexOf(selectedLine.gameObject) / (float)codeLines.Count);
+        if (codeLines.Count > 0) {
+            if (selectedLine != null) {
+        progressBar.GetComponent<ProgressBar>().setProgress((float)codeLines.IndexOf(selectedLine.gameObject) / ((float)codeLines.Count - 1.0f));
+            }
         } else {
             progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
         }
@@ -156,7 +155,7 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.2f, 0.7f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.4f, 1.0f);
         numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 20);
         Debug.Log(numLines + " " + difficulty);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
@@ -171,8 +170,8 @@ public class CodeCreationController : MonoBehaviour
         ContentBox.position = new Vector3(ContentBox.position.x,ContentBox.position.y-20,ContentBox.position.z);
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
+
         string[] LineArray = CodeString.Split("\n");
-        Debug.Log("lines: " + LineArray.Length + " " + numLines);
         ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 30);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {

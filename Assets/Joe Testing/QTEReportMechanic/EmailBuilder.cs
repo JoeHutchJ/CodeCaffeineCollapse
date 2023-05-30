@@ -787,6 +787,7 @@ public static class EmailBuilder
 
 
     public static Email newCustomEmail(string Subject, string Message, EmailSentiment sentiment, TaskType taskType, string CustomAuthorName) {
+        yep();
         Email email = new Email();
         
         switch (sentiment) {

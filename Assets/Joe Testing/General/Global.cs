@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public static class Global 
 {
 
     public static float currentTime;
 
-    static float dayLength = 200.0f;
+    public static string currentDay = "Monday";
+
+    public static int dayIndex = 0;
+
+    public static Dictionary<int, string> days = new Dictionary<int, string>() { 
+        {0, "Monday"},
+        {1, "Tuesday"},
+        {2, "Wednesday"},
+        {3, "Thursday"},
+        {4, "Friday"},
+
+    };
+
+    static float dayLength = 300.0f;
 
     static int hours = 9;
 
@@ -17,7 +32,10 @@ public static class Global
 
     static float caffeinePerSecond = 0.007f;
 
-    public static int jobQuota = 100;
+    //static float caffeinePerSecond = 0.07f;
+
+
+    public static int jobQuota = 250;
 
     public static int jobQuotaPoints;
 
@@ -32,6 +50,12 @@ public static class Global
     public static GameObject BuildDebugger;
 
     public static bool paused;
+
+    public static bool ObjectivesStarted;
+
+    public static bool freeMode = false;
+
+    public static bool leftOffice;
 
 
     public static void Update() {
@@ -85,6 +109,10 @@ public static class Global
             hours++;
         }
 
+        if (hours >= 5.0f) {
+
+        }
+
 
 
 
@@ -98,7 +126,24 @@ public static class Global
     }
 
     public static float GetMouseSensitivity() {
-        return mouseSensitivity;
+        float caffeineSens = UsefulFunctions.Remap(caffeine, 0.4f, 0.0f, 1.0f, 0.7f);
+        return mouseSensitivity * caffeineSens;
+
+    }
+
+    public static void nextDay() {
+        dayIndex++;
+        if (dayIndex == 5) {
+            dayIndex = 0;
+        }
+        currentDay = days[dayIndex];
+        jobQuotaPoints = 0;
+        if (dayIndex != 0) {
+            freeMode = true;
+        } else {
+            freeMode = false;
+        }
+
 
     }
 

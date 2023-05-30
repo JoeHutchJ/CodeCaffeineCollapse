@@ -26,6 +26,10 @@ public class StartMenu : MonoBehaviour
 
     public Event startObjectives;
 
+    public Event displayDay;
+
+    public bool firstDay;
+
     
     // Start is called before the first frame update
     void Start()
@@ -36,7 +40,7 @@ public class StartMenu : MonoBehaviour
         StartMenuContent.gameObject.SetActive(false);
         cameraTarget = GetChildByName.Get(gameObject, "CameraTarget").transform;
         pauseCamera.GetComponent<CameraGo>().hideCam(true);
-        //Enable();
+        Enable();
 
     }
 
@@ -55,6 +59,7 @@ public class StartMenu : MonoBehaviour
     public void Enable() {
         //move camera
         //disable main camera. 
+        StopAllCoroutines();
         enabled = true;
         if (mainCamera  != null) {
             pauseCamera.transform.position = mainCamera.transform.position;
@@ -80,6 +85,7 @@ public class StartMenu : MonoBehaviour
     public void EnableFromPause(Camera cam) {
         //move camera
         //disable main camera. 
+        StopAllCoroutines();
         enabled = true;
         if (cam  != null) {
             pauseCamera.transform.position = cam.transform.position;
@@ -106,15 +112,26 @@ public class StartMenu : MonoBehaviour
         enabled = false;
         //move camera...
         pauseCamera.GetComponent<CameraGo>().hideCam(true);
+        StopAllCoroutines();
+        StartCoroutine(waitTilHide(1));
         pauseMenu.EnableFromStart(pauseCamera);
-
-        StartMenuContent.gameObject.SetActive(false);
+        
+        //StartMenuContent.gameObject.SetActive(false);
+        
 
     }
 
     public void StartGame() {
 
         enabled = false;
+
+        if (Global.dayIndex == 0) {
+            firstDay = true;
+        } else {
+            firstDay = false;
+        }
+
+        displayDay.Raise();
         //move camera...
         pauseCamera.GetComponent<CameraGo>().GoBack(mainCamera.transform);
 
@@ -130,13 +147,25 @@ public class StartMenu : MonoBehaviour
 
         Global.paused = false;
 
+        if (Global.currentDay == "Monday") {
         startObjectives.Raise();
+        }
 
         //unlock cursor
 
     }
 
+    IEnumerator waitTilHide(int delay) {
 
+        Debug.Log("hide");
+
+        yield return new WaitForSecondsRealtime(delay);
+
+        Debug.Log("hide");
+
+        StartMenuContent.gameObject.SetActive(false);
+
+    }
 
     public void enableCursor(bool enable) {
         if (enable) {
@@ -150,6 +179,19 @@ public class StartMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Global.cursorMode = false;
         }
+    }
+
+    public void QuitButton() {
+        Application.Quit();
+
+    }
+    public void ContinueGame() {
+        if (firstDay) {
+            Global.nextDay();
+        }
+        
+        StartGame();
+
     }
 
 

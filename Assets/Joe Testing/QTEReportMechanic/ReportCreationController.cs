@@ -110,10 +110,12 @@ public class ReportCreationController : MonoBehaviour
         timeSincelastCheck += Time.deltaTime;
 
 
-        if (selectedLine != null) {
-        progressBar.GetComponent<ProgressBar>().setProgress(codeLines.IndexOf(selectedLine.gameObject) / codeLines.Count);
+        if (codeLines.Count > 0) {
+            if (selectedLine != null) {
+        progressBar.GetComponent<ProgressBar>().setProgress((float)codeLines.IndexOf(selectedLine.gameObject) / (float)codeLines.Count - 1.0f);
+            }
         } else {
-            progressBar.GetComponent<ProgressBar>().setProgress(1.0f);
+            progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
         }
         RequestsCountElement.text = requests.Count.ToString();
 
@@ -148,7 +150,7 @@ public class ReportCreationController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.1f, 0.4f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.3f, 1.0f);
         numSections = (int)UsefulFunctions.Remap(difficulty, 0, 1, 1, 5);
         numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 3, 12);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);

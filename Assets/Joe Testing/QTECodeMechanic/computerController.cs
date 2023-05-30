@@ -41,6 +41,10 @@ public class computerController : MonoBehaviour
 
     float timetilLogout;
 
+    float sinceLastemail;
+
+    float timetilEmail;
+
     public BoolFlag isPcMode;
     // Start is called before the first frame update
     void Start()
@@ -68,7 +72,9 @@ public class computerController : MonoBehaviour
             AuthenticateWindow();
         }
 
-        populateEmails(15);
+        timetilEmail = UnityEngine.Random.Range(30.0f, 60.0f);
+
+        //populateEmails(15);
     
         
         //createTab(Email); 
@@ -86,10 +92,21 @@ public class computerController : MonoBehaviour
 
         if (authenticated) {
         if (timeSinceAuthentication >= timetilLogout) {
+            if (!isDoingTask()) {
             AuthenticateWindow();
+            }
         }
         timeSinceAuthentication += Time.deltaTime;
         }
+
+
+        if (sinceLastemail >= timetilEmail ) {
+            timetilEmail = UnityEngine.Random.Range(30.0f, 60.0f);
+            RandomEmail();
+            sinceLastemail = 0.0f;
+
+        }
+        sinceLastemail += Time.deltaTime;
 
 
     }
@@ -137,6 +154,31 @@ public class computerController : MonoBehaviour
         }
         
         
+
+
+
+    }
+
+    public void RandomEmail() {
+        EmailSentiment sentiment;
+            TaskType type;
+            float random = UnityEngine.Random.Range(0.5f,1.0f);
+            
+             if (random >= 0.5f && random <= 0.75f) {
+            sentiment = EmailSentiment.SPAM;
+            type = TaskType.EMAIL;
+        } else {
+            sentiment = EmailSentiment.INQUIRY;
+            type = TaskType.EMAIL;
+        }
+
+            Email email = EmailBuilder.newEmail(sentiment, type);
+            
+            if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f) {
+                email.read = true;
+            }
+            
+            emails.Add(email);
 
 
 
@@ -347,6 +389,38 @@ public class computerController : MonoBehaviour
         timetilLogout = UnityEngine.Random.Range(50, 120);
         audioManager.Play("Logout");
         //Debug.Log("authenticated: " + authenticated);
+
+    }
+    
+
+    public bool isDoingTask() {
+        switch (currentWindow.tag) {  
+                case "EmailTab":
+
+                    
+                    break;
+                case "CodeCreation":
+                    CodeCreationController create = currentWindow.GetComponent<CodeCreationController>();
+                    if (create.isActive()) {
+                        return true;
+                    }
+                    break;
+                case "CodeReview":
+                    ReviewController review = currentWindow.GetComponent<ReviewController>();
+                    if (review.isActive()) {
+                        return true;
+                    }
+                    break;
+                case "ReportCreation":
+                    ReportCreationController report = currentWindow.GetComponent<ReportCreationController>();
+                    if (report.isActive()) {
+                        return true;
+                    }
+                    break;
+
+    }
+    
+    return false;
 
     }
 

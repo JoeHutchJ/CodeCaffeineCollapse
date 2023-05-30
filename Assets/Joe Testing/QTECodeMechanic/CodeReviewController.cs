@@ -157,8 +157,9 @@ public class ReviewController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 1.0f, 1.8f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 1.3f, 2.2f);
         numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 70);
+        Debug.Log("review " + difficulty + " " + numLines);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.2f);
 
     }
