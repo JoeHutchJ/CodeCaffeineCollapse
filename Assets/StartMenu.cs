@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
@@ -75,6 +76,7 @@ public class StartMenu : MonoBehaviour
 
         }
         ResetDay.Raise();
+        
         hideUIEvent.Raise(true);
         StartMenuContent.gameObject.SetActive(true);
         enableCursor(true);
@@ -124,7 +126,21 @@ public class StartMenu : MonoBehaviour
 
     }
 
+    public void StartMonday() {
+        if (Global.started) {
+            Global.started = false;
+            Global.resetToMonday();
+            SceneManager.LoadScene("Main");
+        } else {
+            StartGame();
+        }
+
+
+    }
+
     public void StartGame() {
+
+        Global.started = true;
 
         enabled = false;
 
@@ -133,6 +149,7 @@ public class StartMenu : MonoBehaviour
         } else {
             firstDay = false;
         }
+
 
 
         displayDay.Raise();

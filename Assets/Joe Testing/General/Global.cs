@@ -30,12 +30,12 @@ public static class Global
 
     public static float caffeine = 1.0f;
 
-    static float caffeinePerSecond = 0.007f;
+    static float caffeinePerSecond = 0.01f;
 
     //static float caffeinePerSecond = 0.07f;
 
 
-    public static int jobQuota = 250;
+    public static int jobQuota = 160;
 
     public static int jobQuotaPoints;
 
@@ -56,6 +56,8 @@ public static class Global
     public static bool freeMode = false;
 
     public static bool leftOffice;
+
+    public static bool started;
 
 
     public static void Update() {
@@ -140,6 +142,8 @@ public static class Global
         ResetTime();
         caffeine = 1.0f;
         jobQuotaPoints = 0;
+        ObjectivesStarted = false;
+        leftOffice = false;
 
     }
 
@@ -156,6 +160,14 @@ public static class Global
         } else {
             freeMode = false;
         }
+
+
+    }
+
+    public static void resetToMonday() {
+        dayIndex = 0;
+        currentDay = days[dayIndex];
+        ResetDay();
 
 
     }

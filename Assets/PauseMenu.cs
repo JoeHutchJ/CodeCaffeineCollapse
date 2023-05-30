@@ -53,7 +53,7 @@ public class PauseMenu : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape)) {
             if (enabled) {
-                if (Global.ObjectivesStarted) {
+                if (Global.dayIndex == 0 && Global.ObjectivesStarted) {
                 Disable();
                 }
             } else {
@@ -140,7 +140,13 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void checkObjectiveStarted() {
+        if (Global.dayIndex == 0) {
         GetChildByName.Get(pauseMenucontent.gameObject, "Resume").GetComponent<Button>().interactable = Global.ObjectivesStarted;
+        } else {
+            if (!Global.leftOffice) {
+            GetChildByName.Get(pauseMenucontent.gameObject, "Resume").GetComponent<Button>().interactable = true;
+            }
+        }
 
 
     }
