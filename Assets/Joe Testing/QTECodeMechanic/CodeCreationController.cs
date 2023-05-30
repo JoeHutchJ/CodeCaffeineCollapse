@@ -57,6 +57,8 @@ public class CodeCreationController : MonoBehaviour
 
     AudioManager audioManager;
 
+    int count;
+
 
 
     // Start is called before the first frame update
@@ -108,8 +110,21 @@ public class CodeCreationController : MonoBehaviour
         }
         timeSincelastCheck += Time.deltaTime;
 
+        /*foreach (GameObject line in codeLines) {
+            CreateCodeLine codeLine = line.GetComponent<CreateCodeLine>();
+            if (codeLine.finished) {
+                count++;
+            }
+        }*/
 
-         progressBar.GetComponent<ProgressBar>().setProgress(1 - scrollManager.getScrollValue());
+
+        if (codeLines.Count > 0) {
+            if (selectedLine != null) {
+        progressBar.GetComponent<ProgressBar>().setProgress((float)codeLines.IndexOf(selectedLine.gameObject) / ((float)codeLines.Count - 1.0f));
+            }
+        } else {
+            progressBar.GetComponent<ProgressBar>().setProgress(0.0f);
+        }
         RequestsCountElement.text = requests.Count.ToString();
 
         OnKeyUp();
@@ -117,7 +132,7 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public bool isActive() {
-        return selectedLine == null;
+        return active;
 
     }
 
@@ -140,7 +155,7 @@ public class CodeCreationController : MonoBehaviour
     }
 
     public void newDifficulty(float difficulty) {
-        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.2f, 0.7f);
+        scrollManager.scrollSpeed = UsefulFunctions.Remap(difficulty, 0, 1, 0.4f, 1.0f);
         numLines = (int)UsefulFunctions.Remap(difficulty, 0, 1, 10, 20);
         Debug.Log(numLines + " " + difficulty);
         QTEFrequency = UsefulFunctions.Remap(difficulty, 0, 1, 0.8f, 0.6f);
@@ -155,8 +170,8 @@ public class CodeCreationController : MonoBehaviour
         ContentBox.position = new Vector3(ContentBox.position.x,ContentBox.position.y-20,ContentBox.position.z);
         scrollManager.resetScrolling();
         string CodeString = generateGibberishCode.GenerateRandomCode(numLines);
+
         string[] LineArray = CodeString.Split("\n");
-        Debug.Log("lines: " + LineArray.Length + " " + numLines);
         ContentBox.sizeDelta = new Vector2(ContentBox.sizeDelta.x, LineArray.Length * estimatedCodeLineHeight + 30);
         Instantiate(BufferPrefab, CodeLinesLayout.transform);
         foreach(string Line in LineArray) {
@@ -200,9 +215,11 @@ public class CodeCreationController : MonoBehaviour
         Vector3[] corners = new Vector3[4];
         line.GetWorldCorners(corners);
         for (int i = 0; i < corners.Length; i++) {
+            if (Camera.main != null) {
             corners[i] = Camera.main.WorldToScreenPoint(corners[i]);
             if (RectTransformUtility.RectangleContainsScreenPoint(point, corners[i], Camera.main)) {
                 return true;
+            }
             }
         }
         return false;

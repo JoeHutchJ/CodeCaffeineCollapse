@@ -104,4 +104,12 @@ public class receiptPrinterController : MonoBehaviour
         return new Task(type, difficulty, "", "", timeLimit, completeEvent, active);
 
      }
+
+     public void Reset() {
+        taskQueue = new List<Task>();
+        currentTask = null;
+        interactableTask = null;
+        anim.clip.SampleAnimation(gameObject, 0);
+
+     }
 }

@@ -13,6 +13,7 @@ public class GlobalHandler : MonoBehaviour
     public GameObject buildDebugger;
 
     public BoolFlag caffeinePaused;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +33,24 @@ public class GlobalHandler : MonoBehaviour
         }
 
 
+
+
     }
 
     public void setCursorMode(bool locked) {
         Global.cursorMode = locked;
+    }
+
+    public void ObjectivesStarted() {
+        Global.ObjectivesStarted = true;
+    }
+
+    public void LeftOffice() {
+        Global.leftOffice = true;
+
+    }
+
+    public void ResetDay() {
+        Global.ResetDay();
     }
 }

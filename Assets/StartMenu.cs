@@ -10,6 +10,8 @@ public class StartMenu : MonoBehaviour
     public Camera pauseCamera;
     public Camera mainCamera; 
 
+    public PauseMenu pauseMenu;
+
     public Transform cameraTarget;
 
     public Transform StartMenuContent;
@@ -22,6 +24,13 @@ public class StartMenu : MonoBehaviour
 
     public Event returnEvent;
 
+    public Event startObjectives;
+
+    public Event displayDay;
+
+    public bool firstDay;
+
+    public Event ResetDay;
 
     
     // Start is called before the first frame update
@@ -30,9 +39,11 @@ public class StartMenu : MonoBehaviour
         pauseCamera = GetComponentInChildren<Camera>();
         mainCamera = Camera.main;
         StartMenuContent = GetChildByName.Get(gameObject, "start menu").transform;
+        StartMenuContent.gameObject.SetActive(false);
         cameraTarget = GetChildByName.Get(gameObject, "CameraTarget").transform;
+        pauseCamera.GetComponent<CameraGo>().hideCam(true);
         Enable();
-        enableCursor(true);
+
     }
 
     // Update is called once per frame
@@ -50,10 +61,38 @@ public class StartMenu : MonoBehaviour
     public void Enable() {
         //move camera
         //disable main camera. 
+        StopAllCoroutines();
         enabled = true;
         if (mainCamera  != null) {
             pauseCamera.transform.position = mainCamera.transform.position;
             pauseCamera.transform.rotation = mainCamera.transform.rotation;
+            pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
+            //mainCamEvent.Raise(false);
+            mainCamera.enabled = false;
+            pauseCamera.enabled = true;
+            
+            
+
+        }
+        ResetDay.Raise();
+        hideUIEvent.Raise(true);
+        StartMenuContent.gameObject.SetActive(true);
+        enableCursor(true);
+        Global.paused = true;
+        displaceEvent.Raise();
+
+
+
+    }
+
+    public void EnableFromPause(Camera cam) {
+        //move camera
+        //disable main camera. 
+        StopAllCoroutines();
+        enabled = true;
+        if (cam  != null) {
+            pauseCamera.transform.position = cam.transform.position;
+            pauseCamera.transform.rotation = cam.transform.rotation;
             pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
             mainCamEvent.Raise(false);
             
@@ -70,9 +109,33 @@ public class StartMenu : MonoBehaviour
 
     }
 
+    public void GoToPause() {
+
+        Time.timeScale = 1.0f;
+        enabled = false;
+        //move camera...
+        pauseCamera.GetComponent<CameraGo>().hideCam(true);
+        StopAllCoroutines();
+        StartCoroutine(waitTilHide(1));
+        pauseMenu.EnableFromStart(pauseCamera);
+        
+        //StartMenuContent.gameObject.SetActive(false);
+        
+
+    }
+
     public void StartGame() {
 
         enabled = false;
+
+        if (Global.dayIndex == 0) {
+            firstDay = true;
+        } else {
+            firstDay = false;
+        }
+
+
+        displayDay.Raise();
         //move camera...
         pauseCamera.GetComponent<CameraGo>().GoBack(mainCamera.transform);
 
@@ -88,22 +151,52 @@ public class StartMenu : MonoBehaviour
 
         Global.paused = false;
 
+        if (Global.currentDay == "Monday") {
+        startObjectives.Raise();
+        }
+
         //unlock cursor
 
     }
 
+    IEnumerator waitTilHide(int delay) {
 
+        Debug.Log("hide");
+
+        yield return new WaitForSecondsRealtime(delay);
+
+        Debug.Log("hide");
+
+        StartMenuContent.gameObject.SetActive(false);
+
+    }
 
     public void enableCursor(bool enable) {
         if (enable) {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+            Global.cursorMode = true;
             
 
         } else {
              Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            Global.cursorMode = false;
         }
+    }
+
+    public void QuitButton() {
+        Application.Quit();
+
+    }
+    public void ContinueGame() {
+        if (firstDay) {
+            Global.nextDay();
+            Global.caffeine = 1.0f;
+        }
+        
+        StartGame();
+
     }
 
 

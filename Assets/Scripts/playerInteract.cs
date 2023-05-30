@@ -36,7 +36,9 @@ public class playerInteract : MonoBehaviour
 
         if (currColl.GetComponent<Interactable>() != null) {
             AddNewPrompt(currColl.GetComponent<Interactable>());
+            if (currColl.GetComponent<Interactable>().gameObject != Global.ObjInHand) {
             UIcontroller.HideInteractIcon(false);
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -74,7 +76,17 @@ public class playerInteract : MonoBehaviour
     }
 
     void AddNewPrompt(Interactable interactable) {
+
+        if (interactable.type == InteractableType.EQUIP) {
+            if (Global.ObjInHand != interactable.gameObject) {
+                UIcontroller.AddPrompt(interactable.getPrompt());
+            }
+        } else {
+
+        
         UIcontroller.AddPrompt(interactable.getPrompt());
+
+        }
         }
 
 

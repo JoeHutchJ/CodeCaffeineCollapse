@@ -56,10 +56,14 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
 
+        if (currentConversation != null) {
+            enableCursor(true);
+        }
         
 
         if (dialoguePlaying) {
             if (!currentConversation.audioSource.isPlaying) {
+                
                 setResponses(currentDialogue);
                 dialoguePlaying = false;
             }
@@ -108,6 +112,7 @@ public class DialogueManager : MonoBehaviour
             lockMouseEvent.Raise(false);
             WipeAll();
             FinishConvoEvent.Raise(currentConversation);
+            currentConversation = null;
             caffeinePaused.Value = false;
             
         }
@@ -224,5 +229,18 @@ public class DialogueManager : MonoBehaviour
     public void HideUI(bool hide) {
         GetComponent<Canvas>().enabled = !hide;
 
+    }
+
+
+    public void enableCursor(bool enable) {
+        if (enable) {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            
+
+        } else {
+             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

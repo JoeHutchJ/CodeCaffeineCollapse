@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f9e54e378912f140a446d5bccb6a4a2, type: 3}
-  m_Name: mouseClick
+  m_Name: CoffeeDrink
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: bb844c23e6488bd4abeae492e3c55d22, type: 3}
-  name: 
+  clip: {fileID: 8300000, guid: 0de1884e5448dcb4193ef45149b4da15, type: 3}
+  name: DrinkCoffee
   loop: 0
-  relativeVolume: 0.05
-  spatial: 1
-  range: 5000
+  relativeVolume: 0.3
+  spatial: 0
+  range: 0
   random: 1

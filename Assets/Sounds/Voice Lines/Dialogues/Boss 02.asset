@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Boss 02
   m_EditorClassIdentifier: 
   dialogue: alright son, just to get you adjusted to our family environment here,
-    why don_t you grab a cup of coffee for me
+    why don't you grab a cup of coffee for me
   audio: {fileID: 8300000, guid: c44e8fea83f05bf4abd1fe589108d464, type: 3}
   skippable: 0
   respondable: 1
   relativeVolume: 1
   responses:
-  - {fileID: 11400000, guid: 76780326017ed8f4ea2b709da5d884b0, type: 2}
-  - {fileID: 11400000, guid: 6c80bbba954c62442bf0c6a5333b83b4, type: 2}
   - {fileID: 11400000, guid: 7faefc0a1b3a30745b4f1a76d029703d, type: 2}
+  - {fileID: 11400000, guid: 6c80bbba954c62442bf0c6a5333b83b4, type: 2}
+  - {fileID: 11400000, guid: 4429a1ae9dbc31d41b6c59ade769dc41, type: 2}

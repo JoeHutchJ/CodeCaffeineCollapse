@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     public float randomRange;
 
     float timeElapsed;
+
+    float sinceVolumechange;
     
     // Start is called before the first frame update
     void Start()
@@ -48,8 +50,25 @@ public class AudioManager : MonoBehaviour
             }
             }
             timeElapsed += Time.deltaTime;
+
+        if (sinceVolumechange >= 3.0f) {
+            sinceVolumechange = 0.0f;
+            UpdateVolumes();
+        } 
+        sinceVolumechange += Time.deltaTime;
         
     }
+
+    }
+
+    public void UpdateVolumes() {
+        foreach(AudioSource src in sources) {
+            foreach (CustomAudioClip clip in clips) {
+                if (src.clip == clip.clip) {
+                    src.volume = clip.relativeVolume * Global.volume;
+                }
+            }
+        }
 
     }
 

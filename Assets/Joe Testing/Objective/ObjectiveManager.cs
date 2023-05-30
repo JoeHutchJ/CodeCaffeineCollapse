@@ -52,6 +52,11 @@ public class ObjectiveManager : MonoBehaviour
             }
         }
         }
+
+        if (Input.GetKeyUp(KeyCode.H)) {
+            SkipObjective();
+
+        }
     }
 
     public void nextObjective() {
@@ -111,6 +116,10 @@ public class ObjectiveManager : MonoBehaviour
             }
         }
         
+    }
+
+    public void SkipObjective() {
+        Triggered(true);
     }
 
     public void SetTriggers(List<EventInfo> triggerEvents) {
@@ -244,7 +253,7 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     public void Triggered(bool delay) {
-
+        if (currentObjective != null) {
         if (delay && currentObjective.delay > 0) {
                 StartCoroutine(DelayToComplete(currentObjective.delay));
            
@@ -263,6 +272,8 @@ public class ObjectiveManager : MonoBehaviour
                             nextObjective();
                         }
         }
+        }
+
         }
 
     }

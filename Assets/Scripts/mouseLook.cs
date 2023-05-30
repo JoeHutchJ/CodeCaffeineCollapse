@@ -46,11 +46,15 @@ public class mouseLook : MonoBehaviour {
 
     public Quaternion originalRot;
 
+    public Vector3 originalPos;
+
 
     private void Start()
     {
        enableCursor(false);
        originalRot = Quaternion.identity;
+       originalPos = transform.position;
+
     }
 
     public void enableCursor(bool enable) {
@@ -93,6 +97,12 @@ public class mouseLook : MonoBehaviour {
         return lastInputEvent;
     }
 
+    public void Reset() {
+        transform.position = originalPos;
+        transform.rotation = originalRot;
+
+    }
+
     private void Update()
     {
 
@@ -120,7 +130,7 @@ public class mouseLook : MonoBehaviour {
         transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
         }
 
-        }
+        } 
 
         if (cameraMoving) {
             if (movementTarget != null) {
@@ -307,7 +317,9 @@ public class mouseLook : MonoBehaviour {
 
         rotationLocked = Lock;
         enableCursor(Lock);
-        
+        if (!Lock) {
+            
+        }
         
 
 
