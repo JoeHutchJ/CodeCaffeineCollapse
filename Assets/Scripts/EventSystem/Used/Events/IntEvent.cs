@@ -7,7 +7,7 @@ using UnityEngine.Events;
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
-
+//This is work from a previous project, used for MPIE Project Joseph Hutchinson
 
 [CreateAssetMenu(fileName = "New Int Event", menuName = "ScriptableObjects/IntEvent")] //custom inspector
 public class IntEvent: BaseEvent //derived from scriptable object class

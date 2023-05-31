@@ -22,7 +22,7 @@ public static class Global
 
     };
 
-    static float dayLength = 300.0f;
+    static float dayLength = 350.0f;
 
     static int hours = 9;
 
@@ -30,7 +30,9 @@ public static class Global
 
     public static float caffeine = 1.0f;
 
-    static float caffeinePerSecond = 0.01f;
+    static float caffeinePerSecond = 0.013f;
+
+    public static bool caffeineEnabled = true;
 
     //static float caffeinePerSecond = 0.07f;
 
@@ -91,7 +93,7 @@ public static class Global
     }
 
     public static void UpdateCaffeine() {
-        if (!paused) {
+        if (!paused && caffeineEnabled) {
         caffeine -= caffeinePerSecond * Time.deltaTime;
         if (caffeine < 0) {
             caffeine = 0;
@@ -134,6 +136,7 @@ public static class Global
     }
 
     public static void ResetTime() {
+        currentTime = 0.0f;
         hours = 9;
         minutes = 0.0f;
     }
@@ -141,19 +144,23 @@ public static class Global
     public static void ResetDay() {
         ResetTime();
         caffeine = 1.0f;
+        caffeineEnabled = true;
         jobQuotaPoints = 0;
-        ObjectivesStarted = false;
+        //ObjectivesStarted = false;
         leftOffice = false;
+        started = false;
 
     }
 
     public static void nextDay() {
+        
         ResetDay();
         dayIndex++;
         if (dayIndex == 5) {
             dayIndex = 0;
         }
         currentDay = days[dayIndex];
+        Debug.Log(currentDay);
 
         if (dayIndex != 0) {
             freeMode = true;

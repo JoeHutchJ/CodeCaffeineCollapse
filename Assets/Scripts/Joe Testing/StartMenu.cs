@@ -8,6 +8,8 @@ public class StartMenu : MonoBehaviour
 
     public bool enabled; 
 
+    public bool defaultEnable = true;
+
     public Camera pauseCamera;
     public Camera mainCamera; 
 
@@ -43,7 +45,12 @@ public class StartMenu : MonoBehaviour
         StartMenuContent.gameObject.SetActive(false);
         cameraTarget = GetChildByName.Get(gameObject, "CameraTarget").transform;
         pauseCamera.GetComponent<CameraGo>().hideCam(true);
+        if (defaultEnable) {
         Enable();
+        } else {
+            displayDay.Raise();
+            StartGame();
+        }
 
     }
 
@@ -70,12 +77,13 @@ public class StartMenu : MonoBehaviour
             pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
             //mainCamEvent.Raise(false);
             mainCamera.enabled = false;
-            pauseCamera.enabled = true;
+            mainCamera.gameObject.GetComponent<AudioListener>().enabled = false;
+            pauseCamera.GetComponent<CameraGo>().hideCam(false);
             
             
 
         }
-        ResetDay.Raise();
+        //ResetDay.Raise();
         
         hideUIEvent.Raise(true);
         StartMenuContent.gameObject.SetActive(true);
@@ -96,7 +104,11 @@ public class StartMenu : MonoBehaviour
             pauseCamera.transform.position = cam.transform.position;
             pauseCamera.transform.rotation = cam.transform.rotation;
             pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
-            mainCamEvent.Raise(false);
+            //mainCamEvent.Raise(false);
+
+            cam.enabled = false;
+            cam.gameObject.GetComponent<AudioListener>().enabled = false;
+            pauseCamera.GetComponent<CameraGo>().hideCam(false);
             
             
 
@@ -127,8 +139,9 @@ public class StartMenu : MonoBehaviour
     }
 
     public void StartMonday() {
-        if (Global.started) {
+        if (Global.ObjectivesStarted || Global.freeMode) {
             Global.started = false;
+            Global.ObjectivesStarted = false;
             Global.resetToMonday();
             SceneManager.LoadScene("Main");
         } else {
@@ -141,6 +154,8 @@ public class StartMenu : MonoBehaviour
     public void StartGame() {
 
         Global.started = true;
+
+        Time.timeScale = 1.0f;
 
         enabled = false;
 
@@ -161,10 +176,12 @@ public class StartMenu : MonoBehaviour
 
         returnEvent.Raise();
 
+        ResetDay.Raise();
+
         //hide (hideAllchildren)
         StartMenuContent.gameObject.SetActive(false);
 
-        enableCursor(false);
+        //enableCursor(false);
 
         Global.paused = false;
 
@@ -207,12 +224,17 @@ public class StartMenu : MonoBehaviour
 
     }
     public void ContinueGame() {
-        if (firstDay) {
+        Debug.Log(Global.leftOffice);
+        if (Global.leftOffice) {
             Global.nextDay();
-            Global.caffeine = 1.0f;
-        }
+            Debug.Log(Global.dayIndex);
+            SceneManager.LoadScene("FreeModeDay");
+
+        } else {
         
         StartGame();
+
+        }
 
     }
 

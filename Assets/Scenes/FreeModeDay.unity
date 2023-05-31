@@ -2604,21 +2604,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 2310378587725180654, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2376192423952130145, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
       propertyPath: m_Name
       value: start menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618063868746956241, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3088121626371240531, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3442755446612943626, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -2703,14 +2691,6 @@ PrefabInstance:
     - target: {fileID: 3728376582023771905, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -255
-      objectReference: {fileID: 0}
-    - target: {fileID: 4860587048277677466, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447170094970958266, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6740867451138563262, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
       propertyPath: m_Camera
@@ -2820,17 +2800,9 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 232
       objectReference: {fileID: 0}
-    - target: {fileID: 7193269444165719220, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7543362308955977534, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7838676259198330058, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8527228469114791674, guid: 0e59ef784816af846ac6f60537e6421e, type: 3}
       propertyPath: m_TargetGraphic
@@ -3583,7 +3555,7 @@ MonoBehaviour:
   rotationSpeed: 50
   isPcMode: {fileID: 11400000, guid: e75ffc04a995c484cafc2a7ff008a74b, type: 2}
   resetToDeskEvent: {fileID: 11400000, guid: 3a7a0cff59472c447bca0d207957b138, type: 2}
-  lockRotationEvent: {fileID: 11400000, guid: ec346b5fa0e6ef64aa4f4aec73c1fc23, type: 2}
+  lockRotationEvent: {fileID: 0}
   originalRot: {x: 0, y: 0, z: 0, w: 0}
   prevRot: {x: 0, y: 0, z: 0, w: 0}
   originalPos: {x: 0, y: 0, z: 0}
@@ -8339,7 +8311,7 @@ MonoBehaviour:
   jobPoints: 0
   buildDebugger: {fileID: 1819746571}
   caffeinePaused: {fileID: 11400000, guid: f3768c56d1fd65945adfae2c55c1535a, type: 2}
-  freeMode: 0
+  freeMode: 1
 --- !u!114 &975688932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13820,10 +13792,6 @@ PrefabInstance:
       value: card_textured
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: e87ebda5b5141704180ab432e4b3044b, type: 3}
       propertyPath: m_TagString
       value: Pickupable
       objectReference: {fileID: 0}
@@ -14784,10 +14752,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4a449a90195e82e479b9e890f5166adc, type: 3}
       propertyPath: m_Name
       value: mobile phone
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 4a449a90195e82e479b9e890f5166adc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4a449a90195e82e479b9e890f5166adc, type: 3}
       propertyPath: m_TagString
@@ -18911,7 +18875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enabled: 0
-  defaultEnable: 1
+  defaultEnable: 0
   pauseCamera: {fileID: 2055076850}
   mainCamera: {fileID: 246024978}
   pauseMenu: {fileID: 2101638281}
@@ -19673,7 +19637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2629861409172474825, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6480713150538399232, guid: c7b35a3b3228e074ca519469cd99e69b, type: 3}
       propertyPath: m_RootOrder

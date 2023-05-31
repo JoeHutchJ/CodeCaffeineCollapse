@@ -27,9 +27,15 @@ public class PauseMenu : MonoBehaviour
 
     public BoolFlag isPCMode;
 
+    public BoolEvent cameraLockEvent;
+
+    public BoolEvent PauseEvent;
+
     float volume;
 
     float mouseSensitivity;
+
+    bool cursorModeatEnable = false;
 
 
     // Start is called before the first frame update
@@ -57,6 +63,7 @@ public class PauseMenu : MonoBehaviour
                 Disable();
                 }
             } else {
+                cursorModeatEnable = Global.cursorMode;
             Enable();
             }
             
@@ -71,6 +78,7 @@ public class PauseMenu : MonoBehaviour
         if (!enabled) {
             if (!Global.leftOffice) {
         enabled = true;
+        PauseEvent.Raise(true);
         Global.paused = true;
         StopAllCoroutines();
         checkObjectiveStarted();
@@ -83,7 +91,9 @@ public class PauseMenu : MonoBehaviour
             pauseCamera.GetComponent<CameraGo>().waitingforpause = true;
             //mainCamEvent.Raise(false);
             mainCamera.enabled = false;
-            pauseCamera.enabled = true;
+            mainCamera.gameObject.GetComponent<AudioListener>().enabled = false;
+            
+            pauseCamera.GetComponent<CameraGo>().hideCam(false);
             
             
 
@@ -91,7 +101,7 @@ public class PauseMenu : MonoBehaviour
         hideUIEvent.Raise(true);
         pauseMenucontent.gameObject.SetActive(true);
         enableCursor(true);
-        Global.paused = true;
+        
         displaceEvent.Raise();
 
 
@@ -110,9 +120,12 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("disable");
         enabled = false;
         Time.timeScale = 1.0f;
+        PauseEvent.Raise(false);
         //move camera...
         pauseCamera.GetComponent<CameraGo>().GoBack(mainCamera.transform);
-
+        if (cursorModeatEnable) {
+            pauseCamera.GetComponent<CameraGo>().enableCursor = false;
+        }
         //mainCamEvent.Raise(true);
         pauseMenucontent.gameObject.SetActive(false);
         //enable UI...
@@ -124,10 +137,10 @@ public class PauseMenu : MonoBehaviour
         //hide (hideAllchildren)
         
         if(!isPCMode.Value) {
-        enableCursor(false);
+        //enableCursor(false);
 
         } else {
-            enableCursor(true);
+            pauseCamera.GetComponent<CameraGo>().enableCursor = false;
         }
 
         Global.paused = false;
@@ -159,6 +172,7 @@ public class PauseMenu : MonoBehaviour
         //move camera...
         pauseCamera.GetComponent<CameraGo>().hideCam(true);
         startMenu.EnableFromPause(pauseCamera);
+        PauseEvent.Raise(true);
 
         StartCoroutine(waitTilHide(1));
 
@@ -176,7 +190,7 @@ public class PauseMenu : MonoBehaviour
             pauseCamera.GetComponent<CameraGo>().Go(cameraTarget);
             pauseCamera.GetComponent<CameraGo>().waitingforpause = true;
             //mainCamEvent.Raise(false);
-            pauseCamera.enabled = true;
+            pauseCamera.GetComponent<CameraGo>().hideCam(false);
 
             
 
@@ -185,6 +199,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenucontent.gameObject.SetActive(true);
         enableCursor(true);
         Global.paused = true;
+        PauseEvent.Raise(true);
         checkObjectiveStarted();
         displaceEvent.Raise();
 
@@ -209,12 +224,14 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             Global.cursorMode = true;
+            cameraLockEvent.Raise(true);
             
 
         } else {
              Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             Global.cursorMode = false;
+            cameraLockEvent.Raise(false);
         }
     }
 
@@ -230,6 +247,8 @@ public class PauseMenu : MonoBehaviour
         Global.volume = volume;
         GetChildByName.Get(gameObject, "Volume").transform.Find("Fill").GetComponent<Image>().fillAmount = volume;
         GetChildByName.Get(gameObject, "Mouse Sensitivity").transform.Find("Fill").GetComponent<Image>().fillAmount = mouseSensitivity;
+
+        GetChildByName.Get(gameObject, "CaffeineMeter").transform.GetComponentInChildren<Toggle>().isOn = Global.caffeineEnabled;
 
     }
 
@@ -268,6 +287,12 @@ public class PauseMenu : MonoBehaviour
         }
 
         UpdateBars();
+
+    }
+
+
+    public void CaffeineMeterToggled(bool toggle) {
+        Global.caffeineEnabled = toggle;
 
     }
 }

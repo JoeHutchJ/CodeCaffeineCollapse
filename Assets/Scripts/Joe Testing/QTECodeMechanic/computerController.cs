@@ -110,6 +110,11 @@ public class computerController : MonoBehaviour
         sinceLastemail += Time.deltaTime;
 
 
+        if (Input.GetKeyUp(KeyCode.Q)) {
+            clickQuitButton();
+        }
+
+
     }
 
     void populateEmails(int num) {
