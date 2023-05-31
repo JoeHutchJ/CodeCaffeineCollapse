@@ -7,6 +7,8 @@ using UnityEngine.Events;
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
+//This is work from a previous project, used for MPIE Project Joseph Hutchinson
+
 
 [CreateAssetMenu(fileName = "New Vector Event", menuName = "ScriptableObjects/VecEvent")] //custom inspector
 public class VecEvent: BaseEvent //derived from scriptable object class

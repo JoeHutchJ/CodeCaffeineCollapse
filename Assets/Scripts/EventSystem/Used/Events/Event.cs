@@ -7,7 +7,7 @@ using System;
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
 
-
+//This is work from a previous project, used for MPIE Project Joseph Hutchinson
 
 
 [CreateAssetMenu(fileName = "New Event", menuName = "ScriptableObjects/Events")] //custom inspector

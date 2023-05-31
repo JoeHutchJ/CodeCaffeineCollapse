@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// due to problems with inheritance of functions between parent and children, this will need to be an abstract parent class of all Event types...
+//This is work from a previous project, used for MPIE Project Joseph Hutchinson
 
 
 public class BaseEvent : ScriptableObject

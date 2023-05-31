@@ -7,7 +7,7 @@ using UnityEngine.Events;
 //using Inspiration:
 //https://www.youtube.com/watch?v=raQ3iHhE_Kk&ab_channel=Unity
 
-
+//This is work from a previous project, used for MPIE Project Joseph Hutchinson
 
 [CreateAssetMenu(fileName = "New Bool Event", menuName = "ScriptableObjects/BoolEvent")] //custom inspector
 public class BoolEvent: BaseEvent //derived from scriptable object class
