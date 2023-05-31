@@ -60,6 +60,8 @@ public class TaskManager : MonoBehaviour
 
         timeTilTask = UnityEngine.Random.Range(30.0f, 60.0f);
 
+        StartCoroutine(waitNewTask(UnityEngine.Random.Range(5, 15)));
+
         
     }
 
@@ -76,7 +78,7 @@ public class TaskManager : MonoBehaviour
 
         updateQuotaBar();
 
-        RandomTask();
+        RandomTask(false);
     }
 
     public void clearAlltasks() {
@@ -298,8 +300,9 @@ public class TaskManager : MonoBehaviour
 
     }
 
-    public void RandomTask() {
+    public void RandomTask(bool now) {
         if (Global.freeMode) {
+            if (!now) {
         if (timeSinceTask > timeTilTask) {
             timeSinceTask = 0.0f;
             timeTilTask = UnityEngine.Random.Range(30.0f, 60.0f);
@@ -341,8 +344,55 @@ public class TaskManager : MonoBehaviour
 
         timeSinceTask += Time.deltaTime;
 
+        } else {
+            timeSinceTask = 0.0f;
+            timeTilTask = UnityEngine.Random.Range(30.0f, 60.0f);
+
+            float random = UnityEngine.Random.Range(0.0f, 1.0f);
+
+            float timeLimit = UnityEngine.Random.Range(0.0f, 1.0f);
+
+            if (random < 0.33f) {
+                if (timeLimit > 0.5f) {
+                AddTask(newTask(TaskType.CODING, UnityEngine.Random.Range(0.1f, 0.9f), UnityEngine.Random.Range(40, 60), false));
+
+                } else {
+                    AddTask(newTask(TaskType.CODING, UnityEngine.Random.Range(0.1f, 0.9f), 0, false));
+                }
+            } else if (random >= 0.33f && random < 0.66f) {
+                if (timeLimit > 0.5f) {
+                AddTask(newTask(TaskType.REVIEW, UnityEngine.Random.Range(0.1f, 0.9f), UnityEngine.Random.Range(40, 60), false));
+
+                } else {
+                    AddTask(newTask(TaskType.REVIEW, UnityEngine.Random.Range(0.1f, 0.9f), 0, false));
+                }
+
+
+            } else {
+                if (timeLimit > 0.5f) {
+                AddTask(newTask(TaskType.REPORT, UnityEngine.Random.Range(0.1f, 0.9f), UnityEngine.Random.Range(40, 60), false));
+
+                } else {
+                    AddTask(newTask(TaskType.REPORT, UnityEngine.Random.Range(0.1f, 0.9f), 0, false));
+                }
+
+
+            }
+
+            timeTilTask = UnityEngine.Random.Range(30.0f, 60.0f);
+            timeSinceTask += Time.deltaTime;
         }
 
+
+    }
+
+    }
+
+    IEnumerator waitNewTask(int delay) {
+
+        yield return new WaitForSeconds(delay);
+
+        RandomTask(true);
 
     }
 

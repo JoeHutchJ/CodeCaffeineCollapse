@@ -106,6 +106,7 @@ public class NPC : MonoBehaviour
     }
 
     public void GoToTarget(Transform trans) {
+        StopAllCoroutines();
         StartCoroutine(MoveToPos(trans.position));
         LookTowards(trans);
 
@@ -118,10 +119,10 @@ public class NPC : MonoBehaviour
             pos = otherTarget.position;
             }
         }
-        float step = moveSpeed * Time.deltaTime;
+        float step = moveSpeed;
         while (!AtPos(pos)) {
 
-            transform.position = Vector3.MoveTowards(transform.position, pos, step);
+            transform.position = Vector3.MoveTowards(transform.position, pos, step * Time.deltaTime);
 
             yield return null;
         }
@@ -131,6 +132,16 @@ public class NPC : MonoBehaviour
 
     }
 
+    IEnumerator ReturnToPos(Vector3 pos) {
+        float step = moveSpeed;
+        while (!AtPos(pos)) {
+
+            transform.position = Vector3.MoveTowards(transform.position, pos, step * Time.deltaTime);
+
+            yield return null;
+        }
+    }
+
     public void RotateToPos(Quaternion rotation) {
         StartCoroutine(RotateTo(rotation));
 
@@ -138,9 +149,9 @@ public class NPC : MonoBehaviour
 
         IEnumerator RotateTo(Quaternion rotation) {
 
-        float step = rotationSpeed * Time.deltaTime;
+        float step = rotationSpeed;
         while (!AtRotation(rotation)) {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, step);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, step * Time.deltaTime);
             //Debug.Log(transform.rotation);
             yield return null;
         }
@@ -167,7 +178,8 @@ public class NPC : MonoBehaviour
     }
 
     public void ReturnToOriginal() {
-        GoToPos(originalPos);
+        StopAllCoroutines();
+        StartCoroutine(ReturnToPos(originalPos));
         RotateToPos(originalRot);
         lookTowardsActive = false;
         lookTarget = null;

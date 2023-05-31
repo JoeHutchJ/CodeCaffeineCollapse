@@ -15,6 +15,11 @@ public class CoffeeCup : MonoBehaviour
     void Start()
     {
         interactable = GetComponent<Interactable>();
+        full = false;
+    }
+
+ private void OnEnable() {
+        full = false;
     }
 
     // Update is called once per frame

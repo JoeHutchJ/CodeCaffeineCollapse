@@ -14,11 +14,14 @@ public class GlobalHandler : MonoBehaviour
 
     public BoolFlag caffeinePaused;
 
+    public bool freeMode = false;
+
     // Start is called before the first frame update
     void Start()
     {
         jobQuota = Global.jobQuota;
         Global.BuildDebugger = buildDebugger;
+        Global.freeMode = freeMode;
     }
 
     // Update is called once per frame
@@ -28,9 +31,8 @@ public class GlobalHandler : MonoBehaviour
         jobQuota = Global.jobQuota;
         percent = Global.QuotaPercent();
         jobPoints = Global.jobQuotaPoints;
-        if (!caffeinePaused.Value) {
         Global.UpdateCaffeine();
-        }
+        
 
 
 

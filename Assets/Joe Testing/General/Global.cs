@@ -32,6 +32,8 @@ public static class Global
 
     static float caffeinePerSecond = 0.013f;
 
+    public static bool caffeineEnabled = true;
+
     //static float caffeinePerSecond = 0.07f;
 
 
@@ -91,7 +93,7 @@ public static class Global
     }
 
     public static void UpdateCaffeine() {
-        if (!paused) {
+        if (!paused && caffeineEnabled) {
         caffeine -= caffeinePerSecond * Time.deltaTime;
         if (caffeine < 0) {
             caffeine = 0;
@@ -134,6 +136,7 @@ public static class Global
     }
 
     public static void ResetTime() {
+        currentTime = 0.0f;
         hours = 9;
         minutes = 0.0f;
     }
@@ -141,9 +144,11 @@ public static class Global
     public static void ResetDay() {
         ResetTime();
         caffeine = 1.0f;
+        caffeineEnabled = true;
         jobQuotaPoints = 0;
-        ObjectivesStarted = false;
+        //ObjectivesStarted = false;
         leftOffice = false;
+        started = false;
 
     }
 

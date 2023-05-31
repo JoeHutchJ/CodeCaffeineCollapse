@@ -90,10 +90,10 @@ public class InteractUIController : MonoBehaviour
 
     IEnumerator FadeInBlackScreen() {
         CanvasGroup obj = GetChildByName.Get(gameObject, "BlackScreenFade").GetComponent<CanvasGroup>();
-        float step = 0.4f * Time.deltaTime;
+        float step = 0.7f;
 
         while (obj.alpha < 1) {
-            obj.alpha += step;
+            obj.alpha += step * Time.deltaTime;
             yield return null;
         }
 
@@ -121,12 +121,12 @@ public class InteractUIController : MonoBehaviour
 
             bool fadingIn = true;
 
-            float step = 0.4f * Time.deltaTime;
+            float step = 0.4f;
 
             while (!done) {
                 if (fadingIn) {
                     if (canvasGroup.alpha < 1) {
-                        canvasGroup.alpha += step;
+                        canvasGroup.alpha += step * Time.deltaTime;
                     } else {
                         fadingIn = false;
                     }
@@ -134,7 +134,7 @@ public class InteractUIController : MonoBehaviour
                     
                 } else {
                     if (canvasGroup.alpha > 0) {
-                         canvasGroup.alpha -= step;
+                         canvasGroup.alpha -= step* Time.deltaTime;
                     } else {
                         done = true;
                     }

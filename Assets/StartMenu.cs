@@ -49,6 +49,7 @@ public class StartMenu : MonoBehaviour
         Enable();
         } else {
             displayDay.Raise();
+            StartGame();
         }
 
     }
@@ -138,8 +139,9 @@ public class StartMenu : MonoBehaviour
     }
 
     public void StartMonday() {
-        if (Global.started) {
+        if (Global.ObjectivesStarted || Global.freeMode) {
             Global.started = false;
+            Global.ObjectivesStarted = false;
             Global.resetToMonday();
             SceneManager.LoadScene("Main");
         } else {
@@ -152,6 +154,8 @@ public class StartMenu : MonoBehaviour
     public void StartGame() {
 
         Global.started = true;
+
+        Time.timeScale = 1.0f;
 
         enabled = false;
 
@@ -177,7 +181,7 @@ public class StartMenu : MonoBehaviour
         //hide (hideAllchildren)
         StartMenuContent.gameObject.SetActive(false);
 
-        enableCursor(false);
+        //enableCursor(false);
 
         Global.paused = false;
 
@@ -223,7 +227,6 @@ public class StartMenu : MonoBehaviour
         Debug.Log(Global.leftOffice);
         if (Global.leftOffice) {
             Global.nextDay();
-            Global.freeMode = true;
             Debug.Log(Global.dayIndex);
             SceneManager.LoadScene("FreeModeDay");
 

@@ -6,6 +6,8 @@ public class CameraGo : MonoBehaviour
 {
 
     public Transform currentTarget;
+
+    public Quaternion currentTargetRot;
     
     public float moveSpeed;
     
@@ -17,9 +19,15 @@ public class CameraGo : MonoBehaviour
 
     public bool goback = false;
 
+    public bool enableCursor;
+
     public bool waitingforpause;
 
     public BoolEvent mainCamEvent;
+
+    public bool mainCam = false;
+
+    public BoolEvent cameraLockEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,22 +38,54 @@ public class CameraGo : MonoBehaviour
     void Update()
     {
         if (active) {
+            if (currentTarget != null) {
             GoToPos(currentTarget.position);
             RotateTo(currentTarget.rotation);
+            } else {
+                RotateTo(currentTargetRot);
+
+            }
 
         
-
+        if (currentTarget != null) {
         if (closeTo(transform.position,currentTarget.position) && transform.rotation == currentTarget.rotation) {
             active = false;
+            Debug.Log("camera go close to");
             if (goback) {
                 goback = false;
+                if (!mainCam) {
                 mainCamEvent.Raise(true);
+                }
+                Debug.Log(enableCursor);
+                cameraLockEvent.Raise(!enableCursor);
+                
                 
             }
             if (waitingforpause) {
                 Time.timeScale = 0.0f;
                 waitingforpause = false;
             }
+        }
+        } else {
+             if (transform.rotation == currentTargetRot) {
+                active = false;
+            Debug.Log("camera go close to");
+            if (goback) {
+                goback = false;
+                if (!mainCam) {
+                mainCamEvent.Raise(true);
+                }
+                Debug.Log(enableCursor);
+                cameraLockEvent.Raise(enableCursor);
+                
+                
+            }
+            if (waitingforpause) {
+                Time.timeScale = 0.0f;
+                waitingforpause = false;
+            }
+             }
+
         }
         }
     }
@@ -68,6 +108,19 @@ public class CameraGo : MonoBehaviour
 
                 moveSpeed = Vector3.Distance(target.position, transform.position) / ( timeTocomplete * 0.25f);
         rotationSpeed = Quaternion.Angle(target.rotation, transform.rotation) / ( timeTocomplete * 0.25f);
+        enableCursor = true;
+        
+    }
+
+    public void GoBack(Quaternion rot) {
+        active = true;
+        goback = true;
+        currentTargetRot = rot;
+         rotationSpeed = Quaternion.Angle(currentTargetRot, transform.rotation) / ( timeTocomplete * 0.25f);
+         enableCursor = true;
+
+
+
     }
 
 

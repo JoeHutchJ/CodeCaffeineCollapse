@@ -33,10 +33,15 @@ public class DialogueManager : MonoBehaviour
     public BoolEvent lockMouseEvent;
 
     public AgentTransformEvent cameraRotationEvent;
+    public AgentEvent cameraRotatePrevEvent;
 
     public ConversationEvent FinishConvoEvent;
 
     public BoolFlag caffeinePaused;
+
+    public GameObject player;
+
+    bool paused;
 
     // 
 
@@ -76,6 +81,10 @@ public class DialogueManager : MonoBehaviour
             }
 
         }
+
+        if (Input.GetKeyUp(KeyCode.L)) {
+            nextDialogue();
+        }
     }
 
     public void WipeAll() {
@@ -105,15 +114,19 @@ public class DialogueManager : MonoBehaviour
             currentDialogue = currentConversation.dialogues[dialogueIndex];
             dialogueIndex++;
             setDialogue(currentDialogue);
-            caffeinePaused.Value = true;
+            //caffeinePaused.Value = true;
+            Global.caffeineEnabled = false;
             
         } else {
             Debug.Log("dialogue manager lock mosue off");
-            lockMouseEvent.Raise(false);
+            //lockMouseEvent.Raise(false);
+            cameraRotatePrevEvent.Agent = player;
+            cameraRotatePrevEvent.Raise();
             WipeAll();
             FinishConvoEvent.Raise(currentConversation);
             currentConversation = null;
-            caffeinePaused.Value = false;
+            //caffeinePaused.Value = false;
+            Global.caffeineEnabled = true;;
             
         }
         }
@@ -170,7 +183,10 @@ public class DialogueManager : MonoBehaviour
         currentConversation = null;
         dialogueIndex = 0;
         currentDialogue = null;
-        lockMouseEvent.Raise(false);
+        cameraRotatePrevEvent.Agent = player;
+        cameraRotatePrevEvent.Raise();
+
+        
         
         dialoguePlaying = false;
         responsePlaying = false;
@@ -243,4 +259,30 @@ public class DialogueManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+
+
+    public void onPause(bool pause) {
+        if (currentConversation != null) {
+        if (currentDialogue != null) {
+            if (pause) {
+            if (currentConversation.audioSource.isPlaying) {
+                if (pause) {
+                currentConversation.audioSource.Pause();
+                paused = true;
+                } 
+            }
+        } else {
+            if (paused) {
+                currentConversation.audioSource.Play();
+                paused = false;
+            }
+
+    }
+
+    }
+}
+
+    }
+
+
 }

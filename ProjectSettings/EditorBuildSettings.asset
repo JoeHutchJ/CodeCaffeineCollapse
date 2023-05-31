@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 258d0e5ae5924d846b54dd27f0a83a88
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/FreeModeDay.unity
-    guid: 1810e72d25995234d892454ba8818bd2
+    guid: 50fb0e93794c48a40893102e00b419d2
   m_configObjects: {}
